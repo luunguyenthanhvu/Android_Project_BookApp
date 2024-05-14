@@ -37,4 +37,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation("com.android.support:appcompat-v7:26.1.0");
+    implementation("com.android.support:recyclerview-v7:26.1;.0");
+    implementation("com.android.support:design:26.1.0");
 }

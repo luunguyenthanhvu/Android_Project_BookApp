@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="48dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:text="Icon quay lại"
+            android:textColor="#808080"
+        android:textSize="24sp"/>
+
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="90dp"
+            android:text="Thể loại"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center"
+            android:src="@drawable/favorite" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:src="@drawable/cart" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:background="@drawable/vien2">
+
+
+        <TextView
+            android:id="@+id/signup_email"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="3dp"
+
+            android:hint="Tìm kiếm"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="210dp"
+            android:layout_gravity="center"
+            android:src="@drawable/search" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:weightSum="6"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:text="Sắp xếp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:backgroundTint="@color/white_now"
+            android:background="@drawable/vien2"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center"
+            android:text="Đánh giá"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:backgroundTint="@color/white_now"
+            android:background="@drawable/vien2"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center"
+            android:text="Đánh giá"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:backgroundTint="@color/white_now"
+            android:background="@drawable/vien2"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center"
+            android:text="Đánh giá"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:backgroundTint="@color/white_now"
+            android:background="@drawable/vien2"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center"
+            android:text="Đánh giá"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:backgroundTint="@color/white_now"
+            android:background="@drawable/vien2"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center"
+            android:text="Đánh giá"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:backgroundTint="@color/white_now"
+            android:background="@drawable/vien2"/>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center"
+            android:text="Đánh giá"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:backgroundTint="@color/white_now"
+            android:background="@drawable/vien2"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="15dp"
+        android:text="Thể loại...."
+        android:textSize="23dp"
+        android:textStyle="bold">
+
+    </TextView>
+
+
+<!--    <GridLayout-->
+<!--        android:id="@+id/GridLayout1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="212dp"-->
+<!--        android:background="@drawable/vien2"-->
+<!--        android:columnCount="3"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:rowCount="4">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="70dp"-->
+<!--            android:layout_height="96dp"-->
+<!--            android:layout_row="2"-->
+<!--            android:layout_column="0"-->
+<!--            android:layout_gravity="left|top"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:background="@drawable/search"-->
+<!--            android:scaleType="center" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="155dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_row="1"-->
+<!--            android:layout_column="1"-->
+<!--            android:layout_gravity="left|top"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:text="Sách gì?"-->
+<!--            android:textSize="18dp" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="155dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_row="2"-->
+<!--            android:layout_column="1"-->
+<!--            android:layout_gravity="left|top"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:text="Sách gì?"-->
+<!--            android:textSize="18dp" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="155dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_row="3"-->
+<!--            android:layout_column="1"-->
+<!--            android:layout_gravity="left|top"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:text="Sách gì?"-->
+<!--            android:textSize="18dp" />-->
+
+
+<!--    </GridLayout>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/bookList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
