@@ -1,4 +1,4 @@
-package org.example.backend;
+package nlu.hcmuaf.android_bookapp;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
