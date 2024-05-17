@@ -22,9 +22,21 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
+        <!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:background="#EDE386" />-->
+
+        <!-- TextView cho phần Mode -->
+
+        <!-- LinearLayout chứa các tùy chọn và menu -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="15dp"
+            android:background="#F9EBFF"
             android:padding="16dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -35,7 +47,7 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/circle_background"
 
-                android:src="@drawable/profile" />
+                android:src="@drawable/avatar" />
 
             <!-- Tên người dùng -->
             <TextView
@@ -63,35 +75,35 @@
                 android:textSize="14sp" />
 
             <!-- Icon sửa thông tin -->
-            <Button
-                android:id="@+id/edit_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <!--            <Button-->
+            <!--                android:id="@+id/edit_button"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_alignParentEnd="true"-->
+            <!--                android:layout_centerVertical="true"-->
+            <!--                android:layout_marginEnd="16dp"-->
+            <!--                android:background="?android:attr/selectableItemBackground"-->
+            <!--                android:text="Edit"-->
+            <!--                android:textColor="@android:color/black"-->
+            <!--                android:textSize="16sp" />-->
+            <ImageView
+                android:id="@+id/editImageView"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:text="Edit"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
-
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/pencil" />
 
         </RelativeLayout>
 
-<!--        <View-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="1dp"-->
-<!--            android:background="#EDE386" />-->
-
-        <!-- TextView cho phần Mode -->
-
-        <!-- LinearLayout chứa các tùy chọn và menu -->
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="Mode"
-            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -105,7 +117,6 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_corners"
                 android:orientation="horizontal"
-                android:layout_marginBottom="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:padding="16dp">
@@ -124,15 +135,19 @@
 
 
             <!-- TextView cho phần General -->
+
+            <!-- Các mục menu -->
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
-                android:text="General"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="15dp"
+                android:text="General"
                 android:textStyle="bold" />
 
-            <!-- Các mục menu -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -159,6 +174,7 @@
                     android:layout_marginEnd="10dp"/>
 
                 <ImageView
+                    android:id="@+id/notification_arrow"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/arrowright" />
@@ -190,6 +206,7 @@
                     android:layout_marginEnd="10dp"/>
 
                 <ImageView
+                    android:id="@+id/reviews_arrow"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/arrowright" />
@@ -221,6 +238,7 @@
                     android:layout_marginEnd="10dp"/>
 
                 <ImageView
+                    android:id="@+id/cart_arrow"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/arrowright" />
@@ -252,6 +270,7 @@
                     android:layout_marginEnd="10dp"/>
 
                 <ImageView
+                    android:id="@+id/privacy_arrow"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/arrowright" />
@@ -284,6 +303,7 @@
                     android:layout_marginEnd="10dp"/>
 
                 <ImageView
+                    android:id="@+id/about_arrow"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/arrowright" />
@@ -316,6 +336,7 @@
                     android:layout_marginEnd="10dp"/>
 
                 <ImageView
+                    android:id="@+id/help_arrow"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/arrowright" />

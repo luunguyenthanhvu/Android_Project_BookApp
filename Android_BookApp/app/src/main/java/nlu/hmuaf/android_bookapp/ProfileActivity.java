@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -37,36 +38,29 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        Button editButton = findViewById(R.id.edit_button);
+        ImageView editImageView = findViewById(R.id.editImageView);
         TextView userNameTextView = findViewById(R.id.user_name);
         TextView userEmailTextView = findViewById(R.id.user_email);
 
-        editButton.setOnClickListener(new View.OnClickListener() {
+        editImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Xử lý sự kiện click vào nút sửa thông tin ở đây
-                // Ví dụ: mở hộp thoại sửa thông tin hoặc chuyển đến một Activity khác
 
-                // Tạo AlertDialog.Builder
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
                 builder.setTitle("Nhập thông tin mới");
 
-                // Giao diện người dùng để nhập username và email mới
                 final EditText usernameEditText = new EditText(ProfileActivity.this);
                 final EditText emailEditText = new EditText(ProfileActivity.this);
 
-                // Đặt giá trị ban đầu cho username và email
                 usernameEditText.setText(userNameTextView.getText().toString());
                 emailEditText.setText(userEmailTextView.getText().toString());
 
-                // Thêm EditText vào AlertDialog
                 LinearLayout layout = new LinearLayout(ProfileActivity.this);
                 layout.setOrientation(LinearLayout.VERTICAL);
                 layout.addView(usernameEditText);
                 layout.addView(emailEditText);
                 builder.setView(layout);
 
-                // Thiết lập nút OK
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -80,7 +74,6 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 });
 
-                // Thiết lập nút Cancel
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -88,7 +81,6 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 });
 
-                // Hiển thị hộp thoại
                 builder.show();
             }
         });
@@ -102,8 +94,8 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
-        TextView notificationTextView = findViewById(R.id.notification_label);
-        notificationTextView.setOnClickListener(new View.OnClickListener() {
+        ImageView notificationImageView = findViewById(R.id.notification_arrow);
+        notificationImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Chuyển hướng sang Activity NotificationActivity
@@ -112,8 +104,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        TextView reviewTextView = findViewById(R.id.my_reviews_label);
-        reviewTextView.setOnClickListener(new View.OnClickListener() {
+        ImageView reviewImageView = findViewById(R.id.reviews_arrow);
+        reviewImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Chuyển hướng sang Activity NotificationActivity
@@ -122,8 +114,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        TextView cartTextView = findViewById(R.id.my_cart_label);
-        cartTextView.setOnClickListener(new View.OnClickListener() {
+        ImageView cartImageView = findViewById(R.id.cart_arrow);
+        cartImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Chuyển hướng sang Activity NotificationActivity
@@ -132,8 +124,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        TextView privacyTextView = findViewById(R.id.privacy_policy_label);
-        privacyTextView.setOnClickListener(new View.OnClickListener() {
+        ImageView privacyImageView = findViewById(R.id.privacy_arrow);
+        privacyImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Chuyển hướng sang Activity NotificationActivity
@@ -142,8 +134,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        TextView aboutTextView = findViewById(R.id.about_label);
-        aboutTextView.setOnClickListener(new View.OnClickListener() {
+        ImageView aboutImageView = findViewById(R.id.about_arrow);
+        aboutImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Chuyển hướng sang Activity NotificationActivity
@@ -152,8 +144,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        TextView helpTextView = findViewById(R.id.help_label);
-        helpTextView.setOnClickListener(new View.OnClickListener() {
+        ImageView helpImageView = findViewById(R.id.help_arrow);
+        helpImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Chuyển hướng sang Activity NotificationActivity
