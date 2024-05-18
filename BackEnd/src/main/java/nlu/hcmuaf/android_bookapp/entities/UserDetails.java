@@ -12,10 +12,16 @@ import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import nlu.hcmuaf.android_bookapp.enums.EGender;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "User_Details")
 public class UserDetails implements Serializable {
 

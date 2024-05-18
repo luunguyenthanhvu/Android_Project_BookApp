@@ -14,9 +14,15 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "Users")
 public class Users implements Serializable {
 
