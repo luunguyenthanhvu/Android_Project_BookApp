@@ -15,14 +15,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textViewNameCoupon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Giảm giá"
-            android:textColor="#6D1683"
-            android:textSize="20sp" />
-
-        <TextView
             android:id="@+id/textViewDetailCoupon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,6 +26,12 @@
             android:layout_height="wrap_content"
             android:text="HSD:11/05/2024"
             android:textColor="#E53935" />
+
+        <TextView
+            android:id="@+id/textViewCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
     </LinearLayout>
 
     <Button
