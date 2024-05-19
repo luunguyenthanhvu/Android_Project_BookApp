@@ -38,7 +38,8 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:text="@string/new_books" />
+                android:text="@string/new_books"
+                android:layout_marginBottom="30dp"/>
 
             <View
                 android:layout_width="0dp"
@@ -72,7 +73,8 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:text="@string/popular" />
+                android:text="@string/popular"
+                android:layout_marginBottom="30dp"/>
 
             <View
                 android:layout_width="0dp"
@@ -86,12 +88,16 @@
                 android:gravity="end" />
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/imageRecyclerView1"
+            android:id="@+id/PopularRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/popular_item" />
+
+
+
     </LinearLayout>
+
 
 </ScrollView>

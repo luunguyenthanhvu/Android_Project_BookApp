@@ -13,7 +13,9 @@
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:padding="30dp"
+            android:src="@drawable/home"/>
 
         <TextView
             android:id="@+id/itemTextView"
