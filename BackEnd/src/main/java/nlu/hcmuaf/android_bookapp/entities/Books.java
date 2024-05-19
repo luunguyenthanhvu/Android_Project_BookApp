@@ -12,9 +12,15 @@ import jakarta.persistence.OneToMany;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "Books")
 public class Books implements Serializable {
 
@@ -54,7 +60,7 @@ public class Books implements Serializable {
   private Set<CartUsers> cartUsers;
 
   @ManyToOne
-  @JoinColumn(name = "discountId")
+  @JoinColumn(name = "discountId", nullable = true)
   private Discounts discounts;
 
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)

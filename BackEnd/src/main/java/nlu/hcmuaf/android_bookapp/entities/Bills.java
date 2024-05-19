@@ -14,10 +14,16 @@ import jakarta.persistence.OneToMany;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import nlu.hcmuaf.android_bookapp.enums.EBillStatus;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "Bills")
 public class Bills implements Serializable {
 
