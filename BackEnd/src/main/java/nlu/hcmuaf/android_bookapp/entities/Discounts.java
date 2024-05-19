@@ -1,6 +1,5 @@
 package nlu.hcmuaf.android_bookapp.entities;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,13 +35,13 @@ public class Discounts implements Serializable {
   @Column(name = "description")
   private String description;
 
-  @Column(name = "condition")
-  private String condition;
+  @Column(name = "conditionDescription")
+  private String conditionDescription;
 
   @Column(name = "status")
   private String status;
 
-  @OneToMany(mappedBy = "discounts", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "discounts")
   private Set<Books> books;
 
 }

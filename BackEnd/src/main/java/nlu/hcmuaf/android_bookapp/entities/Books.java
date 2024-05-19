@@ -60,7 +60,7 @@ public class Books implements Serializable {
   private Set<CartUsers> cartUsers;
 
   @ManyToOne
-  @JoinColumn(name = "discountId")
+  @JoinColumn(name = "discountId", nullable = true)
   private Discounts discounts;
 
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
