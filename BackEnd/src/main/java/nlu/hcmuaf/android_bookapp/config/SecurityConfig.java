@@ -1,7 +1,8 @@
 package nlu.hcmuaf.android_bookapp.config;
 
-import nlu.hcmuaf.android_bookapp.service.jwt.JwtAuthFilter;
-import nlu.hcmuaf.android_bookapp.service.jwt.UserDetailsServiceImpl;
+import lombok.RequiredArgsConstructor;
+import nlu.hcmuaf.android_bookapp.enums.ERole;
+import nlu.hcmuaf.android_bookapp.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,10 +24,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
   @Autowired
-  JwtAuthFilter jwtAuthFilter;
+  private JwtAuthFilter jwtAuthFilter;
 
   @Bean
   public UserDetailsService userDetailsService() {
@@ -33,20 +36,26 @@ public class SecurityConfig {
   }
 
   @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    return http.csrf().disable()
-        .authorizeHttpRequests()
-        .requestMatchers("/api/user/login").permitAll()
-        .and()
-        .authorizeHttpRequests().requestMatchers("/api/test/**")
-        .authenticated()
-        .and()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-        .authenticationProvider(authenticationProvider())
-        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-        .build();
+  public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+    httpSecurity
+        .csrf(AbstractHttpConfigurer::disable)
+        .authorizeHttpRequests(auth -> auth // ủy quyền
+            .requestMatchers("/api/user/login").permitAll() // ai cũng có thể truy cập
+            .requestMatchers("/api/v1/auth/register").permitAll() // ai cũng có thể truy cập
+            .requestMatchers("/api/v1/product/apple")
+            .hasAnyAuthority(ERole.USER.name()) // Chỉ user
+            .requestMatchers("/api/v1/product/fish")
+            .hasAnyAuthority(ERole.ADMIN.name())// Chỉ ADMIN
+            .requestMatchers("/api/v1/product/sion")
+            .hasAnyAuthority(ERole.MANAGER.name())// Chỉ MANAGER
+            .anyRequest()
+            .authenticated())
+        .sessionManagement(
+            sessionManager -> sessionManager.sessionCreationPolicy(
+                SessionCreationPolicy.STATELESS)) // quản lý các phiên
+        .authenticationProvider(daoAuthenticationProvider())
+        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+    return httpSecurity.build();
   }
 
   @Bean
@@ -55,7 +64,7 @@ public class SecurityConfig {
   }
 
   @Bean
-  public AuthenticationProvider authenticationProvider() {
+  public AuthenticationProvider daoAuthenticationProvider() {
     DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
     authenticationProvider.setUserDetailsService(userDetailsService());
     authenticationProvider.setPasswordEncoder(passwordEncoder());
@@ -67,4 +76,5 @@ public class SecurityConfig {
       throws Exception {
     return config.getAuthenticationManager();
   }
+
 }

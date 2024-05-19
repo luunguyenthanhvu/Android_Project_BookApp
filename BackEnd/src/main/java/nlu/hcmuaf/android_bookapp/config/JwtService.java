@@ -1,4 +1,4 @@
-package nlu.hcmuaf.android_bookapp.service.jwt;
+package nlu.hcmuaf.android_bookapp.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

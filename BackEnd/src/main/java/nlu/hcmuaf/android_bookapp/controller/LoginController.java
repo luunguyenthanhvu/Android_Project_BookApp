@@ -1,13 +1,13 @@
 package nlu.hcmuaf.android_bookapp.controller;
 
-import nlu.hcmuaf.android_bookapp.dto.request.AuthRequestDTO;
-import nlu.hcmuaf.android_bookapp.dto.response.JwtResponseDTO;
-import nlu.hcmuaf.android_bookapp.service.jwt.JwtService;
+import nlu.hcmuaf.android_bookapp.config.JwtService;
+import nlu.hcmuaf.android_bookapp.dto.request.LoginRequestDTO;
+import nlu.hcmuaf.android_bookapp.dto.response.TokenResponseDTO;
+import nlu.hcmuaf.android_bookapp.service.templates.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,16 +23,11 @@ public class LoginController {
   @Autowired
   private JwtService jwtService;
 
-  @PostMapping("/login")
-  public JwtResponseDTO AuthenticateAndGetToken(@RequestBody AuthRequestDTO requestDTO) {
-    Authentication authentication = authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(requestDTO.getUsername(),
-            requestDTO.getPassword()));
-    if (authentication.isAuthenticated()) {
-      return JwtResponseDTO.builder()
-          .accessToken(jwtService.generateToken(requestDTO.getUsername())).build();
-    } else {
-      throw new UsernameNotFoundException("invalid request user");
-    }
+  @Autowired
+  private UserService userService;
+
+  @PostMapping("login")
+  public ResponseEntity<TokenResponseDTO> login(@RequestBody LoginRequestDTO loginRequest) {
+    return new ResponseEntity<>(userService.login(loginRequest), HttpStatus.OK);
   }
 }
