@@ -35,7 +35,7 @@ public class Users implements Serializable {
   @JoinColumn(name = "roleId", referencedColumnName = "roleId")
   private Roles roles;
 
-  @Column(name = "username")
+  @Column(name = "username", unique = true)
   private String username;
 
   @Column(name = "password")
