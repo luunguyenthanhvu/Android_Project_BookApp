@@ -95,25 +95,29 @@ public class JwtService {
    * @param username
    * @return token
    */
-  public String generateToken(String username) {
-    Map<String, Object> claims = new HashMap<>();
-    return createToken(claims, username);
+  public String generateToken(CustomUserDetails userDetails) {
+    return generateToken(new HashMap<>(), userDetails);
   }
 
-  /**
-   * This method is responsible for creating the JWT token
-   *
-   * @param claims
-   * @param username
-   * @return token
-   */
-  private String createToken(Map<String, Object> claims, String username) {
-    return Jwts.builder()
-        .setClaims(claims)
-        .setSubject(username)
+  public String generateToken(
+      Map<String, Object> extraClaims,
+      CustomUserDetails userDetails
+  ) {
+    return buildToken(extraClaims, userDetails);
+  }
+
+  private String buildToken(
+      Map<String, Object> extraClaims,
+      CustomUserDetails userCustomDetails
+  ) {
+    return Jwts
+        .builder()
+        .setClaims(extraClaims)
+        .setSubject(userCustomDetails.getUsername())
         .setIssuedAt(new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 1))
-        .signWith(getSignKey(), SignatureAlgorithm.ES256).compact();
+        .setExpiration(new Date(System.currentTimeMillis() + 86400000))
+        .signWith(getSignKey(), SignatureAlgorithm.HS256)
+        .compact();
   }
 
   /**

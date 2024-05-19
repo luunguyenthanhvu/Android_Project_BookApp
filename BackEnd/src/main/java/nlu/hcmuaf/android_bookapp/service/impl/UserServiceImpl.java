@@ -11,6 +11,7 @@ import nlu.hcmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hcmuaf.android_bookapp.entities.Roles;
 import nlu.hcmuaf.android_bookapp.entities.UserDetails;
 import nlu.hcmuaf.android_bookapp.entities.Users;
+import nlu.hcmuaf.android_bookapp.enums.ERole;
 import nlu.hcmuaf.android_bookapp.repositories.RoleRepository;
 import nlu.hcmuaf.android_bookapp.repositories.UserDetailRepository;
 import nlu.hcmuaf.android_bookapp.repositories.UserRepository;
@@ -48,21 +49,20 @@ public class UserServiceImpl implements UserService {
   @Override
   public TokenResponseDTO login(LoginRequestDTO requestDTO) {
     try {
-      Optional<UserDetails> userDetails = userDetailRepository.findUserDetailsByEmail(
-          requestDTO.getEmail());
-      if (userDetails.isPresent()) {
-        Optional<Users> user = userRepository.findUsersByUserId(userDetails.get().getUserId());
-        user.get().setRoles(new Roles());
+      Optional<Users> user = userRepository.findAllInfoByEmail(requestDTO.getEmail());
+      if (user.isPresent() && passwordEncoder.matches(requestDTO.getPassword(),
+          user.get().getPassword())) {
+
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(user.get().getUsername(),
-                requestDTO.getPassword()));
+                requestDTO.getPassword())
+        );
 
-        String jwtToken = jwtService.generateToken(
-            String.valueOf(new CustomUserDetails(user.get())));
+        String jwtToken = jwtService.generateToken(new CustomUserDetails(user.get()));
         return TokenResponseDTO
             .builder()
             .token(jwtToken)
-            .role(String.valueOf(user.get().getRoles()))
+            .role(user.get().getRoles().getRoleName().toString())
             .message("Login success!")
             .build();
       }
@@ -79,6 +79,7 @@ public class UserServiceImpl implements UserService {
         .build();
   }
 
+
   @Override
   public MessageResponseDTO register(@Validated RegisterRequestDTO requestDTO) {
     try {
@@ -86,7 +87,15 @@ public class UserServiceImpl implements UserService {
           requestDTO.getEmail());
       System.out.println(userDetail);
       if (!userDetail.isPresent()) {
+        requestDTO.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
         Users users = modelMapper.map(requestDTO, Users.class);
+
+        Iterable<Roles> roles = roleRepository.findAll();
+        roles.forEach(role -> {
+          if (role.getRoleName().equals(ERole.USER)) {
+            users.setRoles(role);
+          }
+        });
 
         UserDetails newUserDetail = new UserDetails();
         newUserDetail.setUser(users);
