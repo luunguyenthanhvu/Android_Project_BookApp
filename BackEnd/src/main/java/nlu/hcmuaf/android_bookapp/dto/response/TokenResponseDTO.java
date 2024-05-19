@@ -13,4 +13,5 @@ public class TokenResponseDTO {
 
   private String token;
   private String role;
+  private String message;
 }

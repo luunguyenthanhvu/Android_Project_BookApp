@@ -41,7 +41,7 @@ public class SecurityConfig {
         .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(auth -> auth // ủy quyền
             .requestMatchers("/api/user/login").permitAll() // ai cũng có thể truy cập
-            .requestMatchers("/api/v1/auth/register").permitAll() // ai cũng có thể truy cập
+            .requestMatchers("/api/user/**").permitAll() // ai cũng có thể truy cập
             .requestMatchers("/api/v1/product/apple")
             .hasAnyAuthority(ERole.USER.name()) // Chỉ user
             .requestMatchers("/api/v1/product/fish")

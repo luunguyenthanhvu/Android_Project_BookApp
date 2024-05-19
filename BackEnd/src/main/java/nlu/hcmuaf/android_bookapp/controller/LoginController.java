@@ -2,6 +2,8 @@ package nlu.hcmuaf.android_bookapp.controller;
 
 import nlu.hcmuaf.android_bookapp.config.JwtService;
 import nlu.hcmuaf.android_bookapp.dto.request.LoginRequestDTO;
+import nlu.hcmuaf.android_bookapp.dto.request.RegisterRequestDTO;
+import nlu.hcmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hcmuaf.android_bookapp.service.templates.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/user/")
+@RequestMapping("/api/user")
 public class LoginController {
 
   @Autowired
@@ -27,7 +29,13 @@ public class LoginController {
   private UserService userService;
 
   @PostMapping("login")
-  public ResponseEntity<TokenResponseDTO> login(@RequestBody LoginRequestDTO loginRequest) {
-    return new ResponseEntity<>(userService.login(loginRequest), HttpStatus.OK);
+  public ResponseEntity<TokenResponseDTO> login(@RequestBody LoginRequestDTO requestDTO) {
+    return new ResponseEntity<>(userService.login(requestDTO), HttpStatus.OK);
   }
+
+  @PostMapping("register")
+  public ResponseEntity<MessageResponseDTO> register(@RequestBody RegisterRequestDTO requestDTO) {
+    return new ResponseEntity<>(userService.register(requestDTO), HttpStatus.OK);
+  }
+
 }
