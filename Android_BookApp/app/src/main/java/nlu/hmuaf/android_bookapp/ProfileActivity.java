@@ -16,28 +16,34 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class ProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DarkModeUtil.applyDarkMode(this);
+
+
         setContentView(R.layout.activity_profile);
+
         Switch darkModeSwitch = findViewById(R.id.dark_mode_switch);
+        boolean isDarkMode = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("dark_mode", false);
+        darkModeSwitch.setChecked(isDarkMode);
 
         darkModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    // Enable Dark Mode
-                    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                } else {
-                    // Disable Dark Mode
-                    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                }
+                DarkModeUtil.saveDarkModeSetting(ProfileActivity.this, isChecked);
+                DarkModeUtil.applyDarkMode(ProfileActivity.this);
+                recreate();
             }
         });
 
+        // Phần còn lại của mã
         ImageView editImageView = findViewById(R.id.editImageView);
         TextView userNameTextView = findViewById(R.id.user_name);
         TextView userEmailTextView = findViewById(R.id.user_email);
@@ -85,14 +91,11 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle("Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
 
         ImageView notificationImageView = findViewById(R.id.notification_arrow);
         notificationImageView.setOnClickListener(new View.OnClickListener() {
@@ -153,7 +156,6 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
+
 }

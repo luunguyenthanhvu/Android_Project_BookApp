@@ -15,34 +15,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"/>
 
-    <!-- Các TextView khác -->
-    <TextView
-        android:id="@+id/notification_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notification Title"
-        android:textSize="24sp"
-        android:layout_below="@id/toolbar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"/>
-
-    <TextView
-        android:id="@+id/notification_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notification Content"
-        android:textSize="18sp"
-        android:layout_below="@id/notification_title"
-        android:layout_marginTop="8dp"
-        android:layout_centerHorizontal="true"/>
     <!-- RecyclerView cho danh sách thông báo -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/notifications_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/notification_content"
+        android:layout_below="@id/toolbar"
         android:layout_marginTop="16dp"/>
-
-    <!-- Thêm các TextView khác tương tự cho nội dung cần hiển thị -->
-
 </RelativeLayout>

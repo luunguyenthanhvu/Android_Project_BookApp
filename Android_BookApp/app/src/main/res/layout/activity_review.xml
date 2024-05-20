@@ -15,27 +15,11 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"/>
 
-    <!-- Các TextView khác -->
-    <TextView
-        android:id="@+id/my_reviews_title"
-        android:layout_width="wrap_content"
+    <!-- RecyclerView cho danh sách đánh giá -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reviews_recycler_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My Reviews Title"
-        android:textSize="24sp"
         android:layout_below="@id/toolbar"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"/>
-
-    <TextView
-        android:id="@+id/my_reviews_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Reviews Content"
-        android:textSize="18sp"
-        android:layout_below="@id/my_reviews_title"
-        android:layout_marginTop="8dp"
-        android:layout_centerHorizontal="true"/>
-
-    <!-- Thêm các TextView khác tương tự cho nội dung cần hiển thị -->
-
 </RelativeLayout>
