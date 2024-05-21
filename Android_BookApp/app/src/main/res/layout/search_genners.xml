@@ -14,12 +14,12 @@
 
         <TextView
             android:layout_width="48dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
+            android:layout_height="21dp"
             android:layout_gravity="center"
-            android:text="Icon quay lại"
+            android:layout_marginLeft="10dp"
+            android:text="Icon quay lại nè"
             android:textColor="#808080"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="110dp"
