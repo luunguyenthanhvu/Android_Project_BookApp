@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    tools:context=".Login">
 
     <ImageView
         android:layout_width="match_parent"
@@ -80,18 +81,21 @@
 
 
         <ImageView
+            android:id="@+id/login_google"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="20dp"
             android:src="@drawable/google" />
 
         <ImageView
+            android:id="@+id/login_face"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="20dp"
             android:src="@drawable/fb" />
 
         <ImageView
+            android:id="@+id/login_twitter"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="20dp"
