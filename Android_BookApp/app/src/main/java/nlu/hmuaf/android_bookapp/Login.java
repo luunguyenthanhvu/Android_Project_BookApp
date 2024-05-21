@@ -19,46 +19,39 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Khởi tạo
         loginMail = findViewById(R.id.login_email);
         loginPassword = findViewById(R.id.login_password);
         loginButton = findViewById(R.id.login_button);
-        signupRedirectText = findViewById(R.id.signupRedirectText);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String user = loginMail.getText().toString().trim();
-                String pass = loginPassword.getText().toString().trim();
-                if (user.isEmpty()){
-                    loginMail.setError("Email cannot be empty");
-                }
-                if (pass.isEmpty()){
-                    loginPassword.setError("Password cannot be empty");
-                } else{
-//                    auth.createUserWithEmailAndPassword(user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<AuthResult> task) {
-//                            if (task.isSuccessful()) {
-//                                Toast.makeText(SignUp.this, "SignUp Successful", Toast.LENGTH_SHORT).show();
-//                                startActivity(new Intent(SignUp.this, Login.class));
-//                            } else {
-//                                Toast.makeText(SignUp.this, "SignUp Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    }
-                    String email1 = loginMail.getText().toString();
-                    Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Login.this, MainActivity.class));
-
+                String email = loginMail.getText().toString().trim();
+                String password = loginPassword.getText().toString().trim();
+                if (email.equals("Admin@123") && password.equals("123")) {
+                    Toast.makeText(Login.this, "Login Ok", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Login.this, MainActivity.class);
+                    startActivity(intent);
+                    finish(); // Tùy chọn: đóng Login activity để không quay lại khi nhấn back
+                } else {
+                    Toast.makeText(Login.this, "Invalid", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        signupRedirectText = findViewById(R.id.signupRedirectText);
         signupRedirectText.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Login.this, SignUp.class));
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, SignUp.class);
+                startActivity(intent);
             }
         });
+
+
     }
+
+
 
 }
