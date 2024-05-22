@@ -1,47 +1,832 @@
-{
-  "title": "Thiên Sứ Nhà Bên - Tập 8.5 (Bản giới hạn)",
-  "price": "95,000đ",
-  "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/279/thien-su-nha-ben-tap-8_5-db.jpg"
-}
+[
+  {
+    "Books": {
+      "code": "893535260909",
+      "title": "Thiên Sứ Nhà Bên - Tập 8.5 (Bản giới hạn)",
+      "price": "95000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/279/thien-su-nha-ben-tap-8_5-db.jpg",
+      "description": "“Mình muốn tạo ra thật nhiều kỉ niệm.”\nTừ cuộc gặp gỡ tình cờ, Fujimiya Amane - một học sinh trung học đang sống tự lập và khá cẩu thả, đã bắt đầu kết thân cùng Shiina Mahiru - cô gái xinh đẹp nhất trường với biệt danh thiên sứ.\nKhông biết từ lúc nào, đôi bên dần bị thu hút và trở thành người không thể thay thế trong tim đối phương.\nĐây là tập ngoại truyện khắc họa những hồi ức xoay quanh các mối quan hệ đã dần thay hình đổi dạng.\nMột câu chuyện tình yêu ngọt ngào và chậm rãi.",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/279/thien-su-nha-ben-tap-8_5-db.jpg",
+        "https://nhasachphuongnam.com/images/detailed/279/thien-su-nha-ben-tap-8_5-db-b01.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "19 x 13 x 1.5 cm",
+        "numPage": "316",
+        "author": "Saekisan",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893535260908",
+      "title": "Thiên Sứ Nhà Bên - Tập 8.5",
+      "price": "95000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/279/thien-su-nha-ben-tap-8_5.jpg",
+      "description": "“Mình muốn tạo ra thật nhiều kỉ niệm.”\nTừ cuộc gặp gỡ tình cờ, Fujimiya Amane - một học sinh trung học đang sống tự lập và khá cẩu thả, đã bắt đầu kết thân cùng Shiina Mahiru - cô gái xinh đẹp nhất trường với biệt danh thiên sứ.\n  \nKhông biết từ lúc nào, đôi bên dần bị thu hút và trở thành người không thể thay thế trong tim đối phương.\n  \nĐây là tập ngoại truyện khắc họa những hồi ức xoay quanh các mối quan hệ đã dần thay hình đổi dạng.\n  \nMột câu chuyện tình yêu ngọt ngào và chậm rãi.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/279/thien-su-nha-ben-tap-8_5.jpg",
+        "https://nhasachphuongnam.com/images/detailed/279/thien-su-nha-ben-tap-8_5-mockup.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "19 x 13 x 1.5 cm",
+        "numPage": "316",
+        "author": "Saekisan",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893535260645",
+      "title": "[Manga] Thiên Sứ Nhà Bên - Tập 2",
+      "price": "50000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/276/manga-thien-su-nha-ben-tap-2.jpg",
+      "description": "TRUYỆN TRANH CHUYỂN THỂ TỪ BỘ LIGHT-NOVEL “THIÊN SỨ NHÀ BÊN” RẤT ĐƯỢC YÊU THÍCH!!\nAmane là một nam sinh khá cẩu thả, còn Mahiru là nữ sinh xinh xắn nhất trường với biệt danh “thiên sứ”. Cả hai vốn chẳng có mối liên hệ nào với nhau, thế nhưng sau một dịp tình cờ, họ đã bắt đầu qua lại và ăn cơm chung một nhà.\n  \nThời gian dần trôi, có “điều gì đó” đã nảy sinh nhưng Amane vẫn vờ như không nhận thấy. Từ món đồ Mahiru bỏ quên, Amane đã biết được “một chuyện”.\n  \nĐây là câu chuyện tình ngọt ngào với cô gái nhà bên tuy lạnh lùng nhưng thật đáng yêu…\n  \nWINGS BOOKS - Thương hiệu sách trẻ của NXB Kim Đồng hân hạnh gửi đến các bạn độc giả phiên bản chuyển thể truyện tranh đặc sắc của bộ light-novel ăn khách THIÊN SỨ NHÀ BÊN! Series đã được đón nhận nồng nhiệt tại Việt Nam!~\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/276/manga-thien-su-nha-ben-tap-2.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 18 x 1 cm",
+        "numPage": "192",
+        "author": "Hanekoto\n  Saekisan\n  Suzu Yuki\n  Wan Shibata",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893535260413",
+      "title": "[Manga] Thiên Sứ Nhà Bên - Tập 1",
+      "price": "50000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/274/manga-thien-su-nha-ben-tap-1.jpg",
+      "description": "TRUYỆN TRANH CHUYỂN THỂ TỪ BỘ LIGHT-NOVEL “THIÊN SỨ NHÀ BÊN” RẤT ĐƯỢC YÊU THÍCH!!\nHàng xóm kế bên căn hộ của Fujimiya Amane chính là nữ sinh xinh đẹp nhất trường cậu, Shiina Mahiru. Hai người vốn chẳng có mối liên hệ nào cho đến một ngày mưa tầm tã, Amane tình nguyện đưa chiếc ô của mình cho cô bạn hàng xóm xinh đẹp tựa thiên thần. Kể từ đó, cả hai đã bắt đầu tương tác với nhau theo một cách kì quặc.\n  \nChẳng thể chịu được lối sinh hoạt cẩu thả khi sống một mình của Amane, Mahiru đã quyết định sẽ chăm sóc cậu từ những điều nhỏ nhất.\n  \nChuyện tình ngọt ngào với cô gái nhà bên tuy lạnh lùng nhưng thật đáng yêu chính thức ra mắt phiên bản truyện tranh! Tập 1 có thêm một phần ngoại truyện đặc biệt do chính tác giả nguyên tác Saekisan sáng tác!\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/274/manga-thien-su-nha-ben-tap-1.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 18 x 1 cm",
+        "numPage": "194",
+        "author": "Saekisan\n  Suzu Yuki\n  Wan Shibata",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893535260265",
+      "title": "Thiên Sứ Nhà Bên - Tập 8 (Bản giới hạn)",
+      "price": "95000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/272/thien-su-nha-ben-tap-8-ban-gioi-han.jpg",
+      "description": "“Hôm nay… mình không về… có được không…?”\nLễ hội trường nhộn nhịp đã trôi qua, mọi người lại quay về với cuộc sống thường nhật. Amane một lần nữa truyền đạt cảm xúc của cậu đến Mahiru bằng lời nói, đồng thời hứa hẹn về một tương lai bên nhau. Vì muốn tặng Mahiru một món quà bảo chứng cho lời hứa đó, Amane quyết định đi làm thêm. Mặt khác, Mahiru trong lúc cô đơn chờ đợi Amane đi làm về, đã bí mật làm một thứ để bày tỏ tình cảm của mình với cậu…\nĐây là câu chuyện tình ngọt ngào với cô gái nhà bên tuy lạnh lùng nhưng thật đáng yêu đã được ủng hộ nhiệt tình trên trang Shousetsuka ni Narou.\nTHIÊN SỨ NHÀ BÊN được xem là cú hit của dòng Light Novel rom-com tại thị trường Nhật Bản, với nội dung hài hước - lãng mạn rất được yêu thích. Tác phẩm nằm top 10 Kono Light novel ga Sugoi năm 2021, đã bán ra 1,5 triệu bản, được chuyển thể thành manga và anime.\nSố tập: 8.5+ (on-going)",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/272/thien-su-nha-ben-tap-8-ban-gioi-han.jpg",
+        "https://nhasachphuongnam.com/images/detailed/272/thien-su-nha-ben-tap-8-ban-gioi-han-b1.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 x 1.7 cm",
+        "numPage": "340",
+        "author": "Saekisan",
+        "Dịch giả": "Trân Trân",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893535260264",
+      "title": "Thiên Sứ Nhà Bên - Tập 8",
+      "price": "95000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/272/thien-su-nha-ben-tap-8.jpg",
+      "description": "“Hôm nay… mình không về… có được không…?”\nLễ hội trường nhộn nhịp đã trôi qua, mọi người lại quay về với cuộc sống thường nhật. Amane một lần nữa truyền đạt cảm xúc của cậu đến Mahiru bằng lời nói, đồng thời hứa hẹn về một tương lai bên nhau. Vì muốn tặng Mahiru một món quà bảo chứng cho lời hứa đó, Amane quyết định đi làm thêm. Mặt khác, Mahiru trong lúc cô đơn chờ đợi Amane đi làm về, đã bí mật làm một thứ để bày tỏ tình cảm của mình với cậu…\n  \nĐây là câu chuyện tình ngọt ngào với cô gái nhà bên tuy lạnh lùng nhưng thật đáng yêu đã được ủng hộ nhiệt tình trên trang Shousetsuka ni Narou.\n  \nTHIÊN SỨ NHÀ BÊN được xem là cú hit của dòng Light Novel rom-com tại thị trường Nhật Bản, với nội dung hài hước - lãng mạn rất được yêu thích. Tác phẩm nằm top 10 Kono Light novel ga Sugoi năm 2021, đã bán ra 1,5 triệu bản, được chuyển thể thành manga và anime.   \nSố tập: 8.5+ (on-going)\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/272/thien-su-nha-ben-tap-8.jpg",
+        "https://nhasachphuongnam.com/images/detailed/272/thien-su-nha-ben-tap-8-mockup.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 x 1.7 cm",
+        "numPage": "340",
+        "author": "Saekisan",
+        "Dịch giả": "Trân Trân",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489846",
+      "title": "Thiên Sứ Nhà Bên - Tập 7 (Bản giới hạn)",
+      "price": "95000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/264/thien-su-nha-ben-tap-7-dac-biet.jpg",
+      "description": "\nKết thúc kì nghỉ hè, khắp trường bắt đầu nhộn nhịp chuẩn bị cho lễ hội văn hóa. Các bạn cùng lớp dường như đã quen với sự thân mật của cặp đôi Amane và Mahiru, mỗi ngày họ đều dõi theo cả hai bằng ánh mắt thích thú.\nTrong lễ hội văn hóa, lớp Amane quyết định mở quán giải khát quản gia - hầu gái. Thấy các bạn cùng lớp đều phấn khích khi nhìn “thiên sứ” trong bộ trang phục hầu gái, Amane không khỏi khó chịu khi nghĩ đến việc Mahiru sẽ bị nhiều ánh mắt dòm ngó. Mặt khác, Mahiru cũng cảm thấy lo lắng khi Amane dần cởi mở với mọi người xung quanh và ngày càng được các cô gái chú ý tới...\nĐây là câu chuyện tình ngọt ngào với cô gái nhà bên tuy lạnh lùng nhưng thật đáng yêu đã được ủng hộ nhiệt tình trên trang Shousetsuka ni Narou.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/264/thien-su-nha-ben-tap-7-dac-biet.jpg",
+        "https://nhasachphuongnam.com/images/detailed/264/thien-su-nha-ben-tap-7-dac-biet-02.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 x 1.6 cm",
+        "numPage": "336",
+        "author": "Saekisan",
+        "Dịch giả": "Trân Trân",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489845",
+      "title": "Thiên Sứ Nhà Bên - Tập 7",
+      "price": "95000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/264/thien-su-nha-ben-tap-7.jpg",
+      "description": "\nKết thúc kì nghỉ hè, khắp trường bắt đầu nhộn nhịp chuẩn bị cho lễ hội văn hóa. Các bạn cùng lớp dường như đã quen với sự thân mật của cặp đôi Amane và Mahiru, mỗi ngày họ đều dõi theo cả hai bằng ánh mắt thích thú.\nTrong lễ hội văn hóa, lớp Amane quyết định mở quán giải khát quản gia - hầu gái. Thấy các bạn cùng lớp đều phấn khích khi nhìn “thiên sứ” trong bộ trang phục hầu gái, Amane không khỏi khó chịu khi nghĩ đến việc Mahiru sẽ bị nhiều ánh mắt dòm ngó. Mặt khác, Mahiru cũng cảm thấy lo lắng khi Amane dần cởi mở với mọi người xung quanh và ngày càng được các cô gái chú ý tới...\nĐây là câu chuyện tình ngọt ngào với cô gái nhà bên tuy lạnh lùng nhưng thật đáng yêu đã được ủng hộ nhiệt tình trên trang Shousetsuka ni Narou.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/264/thien-su-nha-ben-tap-7.jpg",
+        "https://nhasachphuongnam.com/images/detailed/264/thien-su-nha-ben-tap-7-b1.jpg",
+        "https://nhasachphuongnam.com/images/detailed/264/thien-su-nha-ben-tap-7-mockup.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 x 1.6 cm",
+        "numPage": "336",
+        "author": "Saekisan",
+        "Dịch giả": "Trân Trân",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489172",
+      "title": "Thiên Sứ Nhà Bên - Tập 6",
+      "price": "95000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/253/thien-su-nha-ben-tap-6.jpg",
+      "description": "\nNhờ có Mahiru luôn ở bên, Amane đã dũng cảm đối diện với những hồi ức đau khổ trong quá khứ. Trong chuyến về thăm nhà bố mẹ Amane, khi cảm nhận được sự chăm sóc, quan tâm và tình cảm ấm áp từ gia đình, Mahiru thấy rất hạnh phúc. Ngắm nhìn cô với nụ cười chan chứa yêu thương, Amane một lần nữa củng cố quyết tâm sẽ luôn ở bên chăm sóc cô.\nVào những ngày cuối mùa hè, cả hai đã cùng mặc yukata đến lễ hội pháo hoa. Dù thật chậm rãi, nhưng cả Amane và Mahiru đều dần biết cách thể hiện cảm xúc của mình một cách thẳng thắn hơn, khiến những kí ức mùa hè của họ càng trở nên sâu sắc.\nĐây là câu chuyện tình ngọt ngào với cô gái nhà bên tuy lạnh lùng nhưng thật đáng yêu đã được ủng hộ nhiệt tình trên trang Shousetsuka ni Narou.\nTHIÊN SỨ NHÀ BÊN được xem là cú hit của dòng Light Novel rom-com tại thị trường Nhật Bản, với nội dung hài hước - lãng mạn rất được yêu thích. Tác phẩm nằm top 10 Kono Light novel ga Sugoi năm 2021, đã bán ra 1,5 triệu bản, được chuyển thể thành manga và anime.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/253/thien-su-nha-ben-tap-6.jpg",
+        "https://nhasachphuongnam.com/images/detailed/253/thien-su-nha-ben-tap-6-02.jpg",
+        "https://nhasachphuongnam.com/images/detailed/253/thien-su-nha-ben-tap-6-03.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 x 1.5 cm",
+        "numPage": "324",
+        "author": "Saekisan",
+        "Dịch giả": "Trân Trân",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524488766",
+      "title": "Thiên Sứ Nhà Bên - Tập 5.5",
+      "price": "95000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/246/thien-su-nha-ben-tap-5-5.jpg",
+      "description": "\nFujimiya Amane - học sinh cấp ba sống tự lập với lối sinh hoạt cẩu thả, và Shiina Mahiru – hoa khôi của trường với biệt danh “thiên sứ”, dù học cùng trường, đồng thời là hàng xóm cạnh nhà nhau, nhưng giữa họ lại chẳng hề có sự kết nối nào. Cho đến một ngày, cuộc gặp gỡ tình cờ của số phận đã thay đổi cuộc sống của họ mãi mãi. Để ngày hôm nay, Mahiru và Amane được ăn cơm chung một nhà.\nĐây là tập truyện ngắn khắc họa những khoảnh khắc ngọt ngào trong chuyện tình của chàng trai nhà bên với nàng thiên sứ tuy lạnh lùng nhưng thật đáng yêu, về quá khứ và hiện tại của hai con người đã âm thầm thu hút lẫn nhau ấy.\nĐó là một chuyện tình êm đềm và chậm rãi…\nTHIÊN SỨ NHÀ BÊN được xem là cú hit của dòng Light Novel rom-com tại thị trường Nhật Bản, với nội dung hài hước - lãng mạn rất được yêu thích. Tác phẩm nằm top 10 Kono Light novel ga Sugoi năm 2021, đã bán ra 1,5 triệu bản, được chuyển thể thành manga và anime.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/246/thien-su-nha-ben-tap-5-5.jpg",
+        "https://nhasachphuongnam.com/images/detailed/246/thien-su-nha-ben-tap-5-5-02.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 cm",
+        "numPage": "300",
+        "author": "Saekisan",
+        "Dịch giả": "Trân Trân",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524488043",
+      "title": "Thiên Sứ Nhà Bên - Tập 5",
+      "price": "95000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/239/thien-su-nha-ben-tap-5.jpg",
+      "description": "\nCùng trải qua biết bao vui buồn, Amane và Mahiru đã nhận ra tình cảm sâu sắc họ dành cho nhau. Mối quan hệ giữa nàng thiên sứ và chàng trai nhà bên đã bước sang một giai đoạn mới. Đều là “tình đầu” của nhau nên họ không tránh khỏi có những phút giây lúng túng, ngượng ngùng dễ thương. Dù vẫn có những lời bàn tán xôn xao về chuyện của hai người, nhưng trước sự thay đổi tích cực và tự tin của Amane, cách nhìn của mọi người về cậu đã dần thay đổi. Chỉ có duy nhất Mahiru là chẳng hề bận tâm đến những lời xì xào sau lưng ấy.\nMùa hè đến, họ cùng nhau đi bơi, về thăm quê nhà của Amane, những kỉ niệm ngọt ngào bên nhau cứ ngày một đong đầy…\nChuyện tình ngọt ngào với cô gái nhà bên tuy lạnh lùng nhưng thật đáng yêu rất được ủng hộ trên trang Shousetsuka ni Narou, đã chính thức bước sang một chương mới!\nTHIÊN SỨ NHÀ BÊN được xem là cú hit của dòng Light Novel rom-com tại thị trường Nhật Bản, với nội dung hài hước - lãng mạn rất được yêu thích. Tác phẩm nằm top 10 Kono Light novel ga Sugoi năm 2021, đã bán ra hơn 400.000 bản chỉ với 4 tập truyện riêng tại Nhật Bản.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/239/thien-su-nha-ben-tap-5.jpg",
+        "https://nhasachphuongnam.com/images/detailed/239/thien-su-nha-ben-tap-5-b2.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 cm",
+        "numPage": "344",
+        "author": "Saekisan",
+        "Dịch giả": "Trân Trân",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524487697",
+      "title": "Thiên Sứ Nhà Bên - Tập 4",
+      "price": "95000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/235/thien-su-nha-ben-tap-4-full.jpg",
+      "description": "\n“Đối với tôi... cậu ấy là người quan trọng nhất.”\nTrong khi cả lớp náo loạn vì phát ngôn gây sốc ấy của Mahiru thì Amane - người không thể đoán định được suy nghĩ của cô - đã quyết tâm trở thành chàng trai xứng đáng ở bên cạnh cô ấy.\nĐể theo kịp Mahiru, cô gái xinh đẹp, thông minh, hoàn hảo và luôn dành sự tin tưởng cho cậu, Amane đang rất phấn đấu trong cả chuyện học hành lẫn rèn luyện thể thao. Chẳng rõ Mahiru có hiểu cho tâm ý của Amane hay không, nhưng chính Mahiru cũng đang cố gắng tiến thêm một bước để xoay chuyển trạng thái mơ hồ trong mối quan hệ của hai người.\nĐây là câu chuyện tình ngọt ngào với cô gái nhà bên tuy lạnh lùng nhưng thật đáng yêu đã được ủng hộ nhiệt tình trên trang Shousetsuka ni Narou.\nTHIÊN SỨ NHÀ BÊN được xem là cú hit của dòng Light Novel rom-com tại thị trường Nhật Bản, với nội dung hài hước - lãng mạn rất được yêu thích. Tác phẩm nằm top 10 Kono Light novel ga Sugoi năm 2021, đã bán ra hơn 400.000 bản chỉ với 4 tập truyện riêng tại Nhật Bản.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/235/thien-su-nha-ben-tap-4-full.jpg",
+        "https://nhasachphuongnam.com/images/detailed/235/thien-su-nha-ben-tap-4.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 cm",
+        "numPage": "320",
+        "author": "Saekisan",
+        "Dịch giả": "Trân Trân",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524487297",
+      "title": "Thiên Sứ Nhà Bên - Tập 3",
+      "price": "95000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/230/thien-su-nha-ben-tap-3.jpg",
+      "description": "\nAmane là một nam sinh khá cẩu thả, còn Mahiru là nữ sinh xinh xắn nhất trường với biệt danh “thiên sứ”. Cả hai vốn chẳng có mối liên hệ nào với nhau, thế nhưng sau một dịp tình cờ, họ đã bắt đầu qua lại và ăn cơm chung một nhà.\nCùng nhau đón năm mới, đi chùa đầu năm, tránh khỏi những rắc rối của ngày Valentine... Nhờ những hành động tuy vụng về nhưng ấm áp của Amane, sự gặp gỡ với bố mẹ và bạn bè của Amane, trái tim băng giá của Mahiru dần tan chảy...\nĐây là câu chuyện tình ngọt ngào với cô gái nhà bên tuy lạnh lùng nhưng thật đáng yêu đã được ủng hộ nhiệt tình trên trang Shousetsuka ni Narou.\nTHIÊN SỨ NHÀ BÊN được xem là cú hit của dòng Light Novel rom-com tại thị trường Nhật Bản, với nội dung hài hước - lãng mạn rất được yêu thích. Tác phẩm nằm top 10 Kono Light novel ga Sugoi năm 2021, đã bán ra hơn 400.000 bản chỉ với 4 tập truyện riêng tại Nhật Bản.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/230/thien-su-nha-ben-tap-3.jpg",
+        "https://nhasachphuongnam.com/images/detailed/230/thien-su-nha-ben-tap-3-mockup.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 cm",
+        "numPage": "324",
+        "author": "Saekisan",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524486731",
+      "title": "Thiên Sứ Nhà Bên - Tập 2",
+      "price": "95000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/226/thien-su-nha-ben-tap-2.jpg",
+      "description": "\nAmane là một nam sinh khá cẩu thả, còn Mahiru là nữ sinh xinh xắn nhất trường với biệt danh “thiên sứ”. Cả hai vốn chẳng có mối liên hệ nào với nhau, thế nhưng sau một dịp tình cờ, họ đã bắt đầu qua lại và ăn cơm chung một nhà.\nCùng nhau đón năm mới, đi chùa đầu năm, tránh khỏi những rắc rối của ngày Valentine... Nhờ những hành động tuy vụng về nhưng ấm áp của Amane, sự gặp gỡ với bố mẹ và bạn bè của Amane, trái tim băng giá của Mahiru dần tan chảy...\nĐây là câu chuyện tình ngọt ngào với cô gái nhà bên tuy lạnh lùng nhưng thật đáng yêu đã được ủng hộ nhiệt tình trên trang Shousetsuka ni Narou.\nTHIÊN SỨ NHÀ BÊN được xem là cú hit của dòng Light Novel rom-com tại thị trường Nhật Bản, với nội dung hài hước - lãng mạn rất được yêu thích. Tác phẩm nằm top 10 Kono Light novel ga Sugoi năm 2021, đã bán ra hơn 400.000 bản chỉ với 4 tập truyện riêng tại Nhật Bản.\nSố tập: 5+ (on-going)\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/226/thien-su-nha-ben-tap-2.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 18 cm",
+        "numPage": "320",
+        "author": "Saekisan",
+        "Dịch giả": "Không Chán",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893535260546",
+      "title": "Boruto - Naruto Hậu Sinh Khả Úy - Tập 19",
+      "price": "25000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/276/boruto-naruto-hau-sinh-kha-uy-tap-19.jpg",
+      "description": "Code và Ada chia rẽ. Sau đó Ada quyết định gia nhập làng Lá. Đội 7 cuối cùng cũng được giao nhiệm vụ mới. Nhiệm vụ đó là gì!? Trong khi đó, Code bắt đầu triển khai kế hoạch với Thập vĩ… còn Ada đến làng Lá với bầu không khí bất an!?",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/276/boruto-naruto-hau-sinh-kha-uy-tap-19.jpg",
+        "https://nhasachphuongnam.com/images/detailed/276/boruto-naruto-hau-sinh-kha-uy-tap-19-b04.jpg",
+        "https://nhasachphuongnam.com/images/detailed/276/boruto-naruto-hau-sinh-kha-uy-tap-19-mockup.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "11.3 x 17.6 x 1 cm",
+        "numPage": "176",
+        "author": "Masashi Kishimoto\n  Mikio Ikemoto\n  Ukyo Kodachi",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "498316488868",
+      "title": "Banp Naruto Narutop99 Uzumaki Naruto Figure",
+      "price": "499000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/275/vn-11134207-7r98o-lr77geyor1l0cd.jpg",
+      "description": "Banp Naruto Narutop99 Uzumaki Naruto Figure\n♦️ Mô hình chính hãng Naruto♦️ Hãng sản xuất: Banpresto♦️ Kích thước: 18cm♦️ Chất liệu: PVC♦️ Xuất xứ: Nhật Bản\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/275/vn-11134207-7r98o-lr77geyor1l0cd.jpg",
+        "https://nhasachphuongnam.com/images/detailed/275/vn-11134207-7r98o-lr77geyosg5gc1.jpg",
+        "https://nhasachphuongnam.com/images/detailed/275/vn-11134207-7r98o-lr77geyotupwb4.jpg",
+        "https://nhasachphuongnam.com/images/detailed/275/vn-11134207-7r98o-lr77geyov9acaa.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Mô Hình",
+        "size": "18 x 7 x 3 cm",
+        "Xuất xứ": "Thương Hiệu Nhật"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "498316488652",
+      "title": "Banpresto Naruto Mô Hình Memorable Saga-Momochi Zabuza",
+      "price": "499000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/275/vn-11134207-7r98o-lpqe6r4m3e8i83.jpg",
+      "description": " BANPRESTO NARUTO MÔ HÌNH MEMORABLE SAGA-MOMOCHI ZABUZA tái hiện xuất sắc hình ảnh một Momochi Zabuza mà các fan đã quen thuộc trong bộ truyện nổi tiếng. Tư thế thi triển sức mạnh, đôi mắt lạnh lùng, phía dưới còn có hiệu ứng khói tỏa rất sống động. Màu sắc mô hình đều và mượt, các chi tiết chuẩn xác, sắc sảo. Sản phẩm chính hãng chất lượng cao đang đợi bạn sưu tập đây. ",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/275/vn-11134207-7r98o-lpqe6r4m3e8i83.jpg",
+        "https://nhasachphuongnam.com/images/detailed/275/vn-11134207-7r98o-lpqe6r4m4ssyce.jpg",
+        "https://nhasachphuongnam.com/images/detailed/275/vn-11134207-7r98o-lpqe6r4m7lxue7.jpg",
+        "https://nhasachphuongnam.com/images/detailed/275/vn-11134207-7r98o-lpqe6r4m67de43.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Mô Hình",
+        "size": "18x7 cm",
+        "Xuất xứ": "Thương Hiệu Nhật"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893535260545",
+      "title": "Boruto - Naruto Hậu Sinh Khả Úy - Tập 18",
+      "price": "25000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/275/boruto-naruto-hau-sinh-kha-uy-tap-18.jpg",
+      "description": "Sau trận đấu gian nan với Code, Boruto sống lại một cách kì diệu. Tuy nhiên Làng Lá đang phải đau đầu để tìm ra phương án xử lí về sau… Đúng vào lúc đó, Code tự mình xuất hiện trước Shikamaru và Amado! Shikamaru đã triển khai kế hoạch của anh, song…!?\nVà ngôi làng một lần nữa lại lâm nguy!!\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/275/boruto-naruto-hau-sinh-kha-uy-tap-18.jpg",
+        "https://nhasachphuongnam.com/images/detailed/275/boruto-naruto-hau-sinh-kha-uy-tap-18-b04.jpg",
+        "https://nhasachphuongnam.com/images/detailed/275/boruto-naruto-hau-sinh-kha-uy-tap-18-mockup.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "11.3 x 17.6 x 1 cm",
+        "numPage": "176",
+        "author": "Masashi Kishimoto\n  Mikio Ikemoto",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489960",
+      "title": "Tiểu Thuyết Naruto - Shikamaru Bí Truyền - Ám Mặc Phù Vân",
+      "price": "55000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/265/tieu-thuyet-naruto-shikamaru-bi-truyen.jpg",
+      "description": "\n“Từ khi nào mình đã thôi kêu ca “phiền phức” nhỉ?”\n2 năm sau Đại chiến Ninja, Shikamaru trở thành nhân vật trọng yếu của làng Lá. Ngày nọ, cậu nhận được báo cáo về sự mất tích hàng loạt của Ninja các vùng, Sai cũng biệt tăm biệt tích. Và nơi họ đang lưu lạc là đất nước bí ẩn mang tên “Mặc Quốc”…\nLÀ MỘT NINJA, MỘT TRANG NAM TỬ, ĐỂ BẢO VỆ NHỮNG THỨ THIÊNG LIÊNG ĐANG GÁNH VÁC, SHIKAMARU ĐỨNG LÊN QUYẾT ĐẤU VỚI BÓNG TỐI CỦA THỜI ĐẠI MỚI.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/265/tieu-thuyet-naruto-shikamaru-bi-truyen.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 x 1.1 cm",
+        "numPage": "228",
+        "author": "Masashi Kishimoto\n  Takashi Yano",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489964",
+      "title": "Tiểu Thuyết Naruto - Sakura Bí Truyền - Tư Tình Gửi Gió Xuân",
+      "price": "55000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/265/tieu-thuyet-naruto-sakura-bi-truyen.jpg",
+      "description": "\n“Để lần sau nhé...” - Chàng trai ấy để lại lời nhắn nhủ rồi cất bước phiêu bạt.\nSau cuộc tập kích của Otsutsuki Toneri, thời gian thấm thoắt thoi đưa. Tiết trời đã vào Xuân. Sakura bắt tay vào hệ thống y tế mới cùng với chuỗi ngày bận rộn, yên bình. Cô vừa cổ vũ tình yêu của bạn bè, vừa trăn trở “Mình còn phải chờ đợi đến bao giờ?”.\nĐúng vào lúc ấy, một người đàn ông xuất hiện, gieo rắc bóng đêm u ám.\nLÀ MỘT NỮ NHÂN, ĐỒNG THỜI LÀ NINJA TRỊ LIỆU TRONG THỜI ĐẠI MỚI, RẤT NHIỀU “THỬ THÁCH” MỚI ĐANG ĐÓN ĐỢI SAKURA\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/265/tieu-thuyet-naruto-sakura-bi-truyen.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 x 1.2 cm",
+        "numPage": "244",
+        "author": "Masashi Kishimoto\n  Tomohito Ohsaki",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489963",
+      "title": "Tiểu Thuyết Naruto - Mộc Diệp Bí Truyền - Chúc Ngôn Nhật Hòa",
+      "price": "55000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/265/tieu-thuyet-naruto-moc-diep-bi-truyen.jpg",
+      "description": "\nTrước thềm hôn lễ của Naruto và Hinata, hội bạn bè thân thiết trong làng được giao nhiệm vụ tuyệt mật: Tìm quà cưới cho đôi uyên ương. Các đồng đội làng Lá sẽ chọn quà nào cho họ? Vì Hinata, nhiệm vụ cuối cùng của Đội 8 đang thách thức Shino và Kiba là gì?\nCÁC NINJA NHỘN NHỊP CHÚC MỪNG HỈ SỰ CỦA THỜI ĐẠI MỚI. CHẲNG BAO LÂU NỮA, LỄ THÀNH HÔN CỦA ĐÔI TRAI TÀI GÁI SẮC SẼ BẮT ĐẦU.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/265/tieu-thuyet-naruto-moc-diep-bi-truyen.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 x 1.4 cm",
+        "numPage": "276",
+        "author": "Masashi Kishimoto\n  Sho Hinata",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489962",
+      "title": "Tiểu Thuyết Naruto - Gaara Bí Truyền - Sa Trần Huyễn Tưởng",
+      "price": "55000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/265/tieu-thuyet-naruto-gaara-bi-truyen.jpg",
+      "description": "\n“Kết hôn đi.”\nLiên minh Ninja đã vượt qua hiểm họa từ Mặt Trăng. Trong bối cảnh đó, các trưởng lão đã đánh tiếng với Gaara - Kazekage của làng Cát. Họ tuyên bố sẽ sắp xếp một buổi xem mắt cho Gaara vì cậu đã đến tuổi 20.\nMặt khác, một bóng đen bất ổn xuất hiện bên cạnh Kankuro. Khúc dạo đầu cho âm mưu phá hoại làng Cát đã khai màn...\nVÌ GIA TỘC NƠI MÌNH SINH RA, VÌ SỨ MỆNH CHẢY TRONG HUYẾT QUẢN. HÃY DÕI THEO CÁCH SỐNG CỦA CHÀNG TRAI MANG LÍ TƯỞNG BẢO VỆ THỜI ĐẠI MỚI.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/265/tieu-thuyet-naruto-gaara-bi-truyen.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 x 1 cm",
+        "numPage": "212",
+        "author": "Masashi Kishimoto\n  Uhyo Kodachi",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489965",
+      "title": "Tiểu Thuyết Naruto - Kakashi Bí Truyền - Băng Thiên Chi Lôi",
+      "price": "55000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/265/tieu-thuyet-naruto-kakashi-bi-truyen.jpg",
+      "description": "\n1 năm sau Đại chiến Ninja lần IV, ngày Kakashi nhậm chức Hokage Đệ Lục đang cận kề. Trước nhiệm vụ xâm nhập khinh khí cầu tuyệt mật Tobishachimaru của Sóng Quốc để giải cứu con tin, anh phải đương đầu với một Ninja mang trái tim băng giá, u uất.\nMất đi đồng lực bằng hữu để lại và tuyệt kĩ Raikiri, liệu Kakashi có thể đứng ra bảo vệ những người quan trọng đối với mình?\n“HỎA CHÍ” ANH NẮM ĐƯỢC NƠI BẦU TRỜI XA XĂM KIA LÀ GÌ? CHỈ BIẾT RẰNG, KAKASHI SẼ MỞ RA MỘT THỜI ĐẠI NINJA MỚI.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/265/tieu-thuyet-naruto-kakashi-bi-truyen.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 x 1.1 cm",
+        "numPage": "224",
+        "author": "Akira Higashiyama\n  Masashi Kishimoto",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489961",
+      "title": "Tiểu Thuyết Naruto - Akatsuki Bí Truyền - Tiếu Loạn Ác Hoa",
+      "price": "55000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/265/tieu-thuyet-naruto-akatsuki-bi-truyen.jpg",
+      "description": "\nTrên đường phiêu bạt, Uchiha Sasuke tình cờ hội ngộ hai anh em nọ. Theo lời kể của người anh, thân nhân của họ đã mất mạng dưới tay “Akatsuki”. Đó là tổ chức quy tụ nhiều tài năng, khoác trên mình áo choàng đen nổi bật với họa tiết áng mây đỏ thẫm. Chúng giết chóc, cướp đoạt và tàn phá. Mỗi thành viên đều có mục đích riêng: Vì bản thân, vì người thân, vì tiền, vì tín ngưỡng, vì nghệ thuật, vì hòa bình và vì đóa hoa rực nở trong hi vọng…\nTHỨ ĐƯỢC SOI SÁNG TRONG ÁNH BÌNH MINH CỦA THỜI ĐẠI NINJA MỚI LÀ SỰ THẬT VỀ HỌ, NHỮNG KẺ TỪNG ĐƯỢC GỌI BẰNG HAI CHỮ “ÁC NHÂN”.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/265/tieu-thuyet-naruto-akatsuki-bi-truyen.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 x 1.2 cm",
+        "numPage": "252",
+        "author": "Masashi Kishimoto\n  Shin Towada",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489966",
+      "title": "Boxset Tiểu Thuyết Naruto Bí Truyền (Bộ 6 tập)",
+      "price": "330000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/265/boxset-tieu-thuyet-naruto-bi-truyen-6-cuon.jpg",
+      "description": "\nĐại chiến Ninja lần thứ IV đã khép lại. Kakashi, Shikamaru, Gaara, Sakura, Làng Lá và tổ chức Akatsuki - Câu chuyện về những nhân vật được yêu thích trong NARUTO tiếp tục được hé lộ trong loạt tiểu thuyết vô cùng hấp dẫn đến từ những cây viết hàng đầu!!\nBoxset Tiểu thuyết Naruto Bí Truyền (6 Tập) gồm:\n\nTiểu Thuyết Naruto - Gaara Bí Truyền: Sa Trần Huyễn Tưởng\nTiểu Thuyết Naruto - Akatsuki Bí Truyền: Tiếu Loạn Ác Hoa\nTiểu Thuyết Naruto - Mộc Diệp Bí Truyền: Chúc Ngôn Nhật Hòa\nTiểu Thuyết Naruto - Sakura Bí Truyền: Tư Tình Gửi Gió Xuân\nTiểu Thuyết Naruto - Shikamaru Bí Truyền: Ám Mặc Phù Vân\nTiểu Thuyết Naruto - Kakashi Bí Truyền: Băng Thiên Chi Lôi\n\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/265/boxset-tieu-thuyet-naruto-bi-truyen-6-cuon.jpg",
+        "https://nhasachphuongnam.com/images/detailed/265/boxset-tieu-thuyet-naruto-bi-truyen-6-cuon-02.jpg",
+        "https://nhasachphuongnam.com/images/detailed/265/boxset-tieu-thuyet-naruto-bi-truyen-6-cuon-03.jpg",
+        "https://nhasachphuongnam.com/images/detailed/265/boxset-tieu-thuyet-naruto-bi-truyen-tap-1.jpg",
+        "https://nhasachphuongnam.com/images/detailed/265/boxset-tieu-thuyet-naruto-bi-truyen-tap-2.jpg",
+        "https://nhasachphuongnam.com/images/detailed/265/boxset-tieu-thuyet-naruto-bi-truyen-tap-3.jpg",
+        "https://nhasachphuongnam.com/images/detailed/265/boxset-tieu-thuyet-naruto-bi-truyen-tap-4.jpg",
+        "https://nhasachphuongnam.com/images/detailed/265/boxset-tieu-thuyet-naruto-bi-truyen-tap-5.jpg",
+        "https://nhasachphuongnam.com/images/detailed/265/boxset-tieu-thuyet-naruto-bi-truyen-tap-6.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Hộp",
+        "size": "14 x 20 x 8 cm",
+        "numPage": "1430",
+        "author": "Masashi Kishimoto\n  Takashi Yano",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489583",
+      "title": "Boruto - Naruto Hậu Sinh Khả Úy - Tập 16",
+      "price": "25000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/257/boruto-hau-sinh-kha-uy-tap-16.jpg",
+      "description": "\nNhận được sự giúp đỡ của Eida, kẻ sở hữu thứ năng lực đáng sợ, Code đang nhắm tới nhóm Boruto. Naruto và làng Lá đề cao cảnh giác, cho truy tìm “vết móng” – năng lực của Code - quanh làng. Nhưng với lòng ngưỡng mộ Naruto, Kawaki đã tự ý hành động và gây ra tình huống ngoài dự đoán!?\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/257/boruto-hau-sinh-kha-uy-tap-16.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "11.3 x 17.6 x 0.8 cm",
+        "numPage": "176",
+        "author": "Masashi Kishimoto\n  Mikio Ikemoto",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489584",
+      "title": "Boruto - Naruto Hậu Sinh Khả Úy - Tập 17",
+      "price": "25000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/257/boruto-hau-sinh-kha-uy-tap-17.jpg",
+      "description": "\nTrong trận giao tranh với Code, Boruto đã đánh thức sức mạnh của “Karma”. Dù cầm chân được kẻ địch mạnh, nhưng cơ thể cậu bỗng phát sinh bất thường! Ý thức của Momoshiki đã lấn chiếm cơ thể Boruto, hỗn chiến với Kawaki và Code. Cùng lúc ấy, Naruto đang lần theo dấu vết Chakra của Boruto…!?\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/257/boruto-hau-sinh-kha-uy-tap-17.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "11.3 x 17.6 x 0.8 cm",
+        "numPage": "176",
+        "author": "Masashi Kishimoto\n  Mikio Ikemoto",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489455",
+      "title": "Boruto - Naruto Hậu Sinh Khả Úy - Tập 14",
+      "price": "25000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/255/boruto-tap-14.jpg",
+      "description": "Trong trận quyết chiến với Otsutsuki Isshiki, Naruto và Kurama đã đạt được hình thái mới. Cậu bào mòn mạng sống của chính mình để bảo vệ làng Lá... Cùng lúc đó, Isshiki, dù đã gần tới giới hạn sinh mệnh, đã lần theo dấu vết chakra và tóm được Kawaki. Đúng lúc đó, một chuyện bất thường đã xảy đến với Boruto!?\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/255/boruto-tap-14.jpg",
+        "https://nhasachphuongnam.com/images/detailed/255/boruto-tap-14-b1.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "11.3 x 17.6 x 1 cm",
+        "numPage": "176",
+        "author": "Masashi Kishimoto\n  Mikio Ikemoto",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489582",
+      "title": "Boruto - Naruto Hậu Sinh Khả Úy - Tập 15",
+      "price": "25000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/255/boruto-tap-15.jpg",
+      "description": "\nĐể trả thù Boruto và các bạn của cậu, Code - tàn dư của tổ chức “Kara” - đã bắt đầu hành động. Với sức mạnh đặc biệt từ “Karma Trắng”, hắn âm mưu đánh thức một nhân vật đặc biệt! Cùng lúc đó, sau trận quyết chiến với Isshiki, khi Boruto đang chán nản, Kawaki đã đề xuất phương án chuẩn bị một “vật chứa” cho cậu...\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/255/boruto-tap-15.jpg",
+        "https://nhasachphuongnam.com/images/detailed/255/boruto-tap-15-b1.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "11.3 x 17.6 x 1 cm",
+        "numPage": "176",
+        "author": "Masashi Kishimoto\n  Mikio Ikemoto",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524489454",
+      "title": "Boruto - Naruto Hậu Sinh Khả Úy - Tập 13",
+      "price": "25000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/253/boruto-tap-13.jpg",
+      "description": "\nTrong trận đấu với Kashin Koji, Otsutsuki cuối cùng cũng lộ nguyên hình. Hắn đã tấn công làng Lá hòng khắc ấn “Karma” lên “vật chứa” Kawaki!! Trước tình cảnh đó, Naruto, Sasuke và Boruto sẽ ứng phó như thế nào...!?\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/253/boruto-tap-13.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "11.3 x 17.6 cm",
+        "numPage": "176",
+        "author": "Masashi Kishimoto\n  Mikio Ikemoto\n  Ukyo Kodachi",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524488596",
+      "title": "Naruto - Tập 71",
+      "price": "25000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/250/naruto-tap-71.jpg",
+      "description": "\nTsukuyomi vô hạn được phát động, đưa người người chìm vào mộng giới. Qua âm mưu của Hắc Zetsu, Kaguya đã phục sinh và tiến hành thống nhất Chakra!! Với sức mạnh được Lục Đạo Tiên Nhân phó thác, Naruto và Sasuke sẽ đứng lên chống lại Kaguya và phong ấn bà ta!?\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/250/naruto-tap-71.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "11.3 x 17.6 cm",
+        "numPage": "208",
+        "author": "Masashi Kishimoto",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524486824",
+      "title": "Naruto - Tập 55",
+      "price": "25000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/234/naruto-tap-55.jpg",
+      "description": "\nĐại chiến Ninja lần thứ 4 chính thức bắt đầu! Liên minh Ninja tiến hành phân bổ các đội nghênh chiến và phục kích “Akatsuki”. Để bảo vệ Naruto, Gaara đã có lời hịch tướng nhằm khích lệ tinh thần của toàn quân!! Mặt khác, Kabuto đã bắt tay hợp tác với Madara. Dưới tác động của “Uế Thổ Chuyển Sinh”, hắn lần lượt triệu hồi các cao thủ Ninja trở về từ cõi chết!\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/234/naruto-tap-55.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "11.3 x 17.6 cm",
+        "numPage": "196",
+        "author": "Masashi Kishimoto",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524486823",
+      "title": "Naruto - Tập 54",
+      "price": "25000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/234/naruto-tap-54.jpg",
+      "description": "\nKế thừa ý chí của cha và mẹ, Naruto đã trưởng thành vượt bậc trong vai trò là một Ninja! Sau khi điều khiển được sức mạnh cửu vĩ, bằng năng lực mới, cậu đã phát giác Kisame đang ẩn náu trong Samehada! Trong lúc Kisame tìm đường tẩu thoát với những thông tin hắn có được, lần thứ 3, “Mãnh Thú Màu Xanh” của làng Lá đã đứng ra ngăn chặn!!\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/234/naruto-tap-54.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "11.3 x 17.6 cm",
+        "numPage": "188",
+        "author": "Masashi Kishimoto",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893524486821",
+      "title": "Naruto - Tập 52",
+      "price": "25000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/234/naruto-tap-52.jpg",
+      "description": "\nBị ám ảnh bởi khát vọng báo thù, Sasuke đã biến chất. Những lời thuyết phục của Sakura và thầy Kakashi không sao chạm đến trái tim cậu. Biến căm hờn thành sức mạnh, Sasuke điên cuồng tấn công. Khi đồng đội rơi vào tình thế ngàn cân treo sợi tóc, Naruto đã ứng cứu kịp thời! Quả là một cuộc trùng phùng đầy căng thẳng giữa các thành viên của đội 7 năm xưa…!!\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/234/naruto-tap-52.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "11.3 x 17.6 cm",
+        "numPage": "208",
+        "author": "Masashi Kishimoto",
+        "companyName": "NXB Kim Đồng"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893528091646",
+      "title": "Chuyện Tình Thanh Xuân Bi Hài Của Tôi Quả Nhiên Là Sai Lầm @Comic - Tập 5",
+      "price": "69000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/279/chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-comic-tap-5.jpg",
+      "description": "Chuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm (tên gốc: Yahari Ore no Seishun Rabukome wa Machigatteiru, gọi tắt là Oregairu), là một trong những series light novel ăn khách nhất trong vòng 20 năm trở lại đây, bộ truyện được viết bởi tác giả trẻ Wataru WATARI, do họa sĩ Ponkan8 vẽ minh họa và được xuất bản bởi NXB nổi tiếng Shogakukan.\nChính bởi những thành công ấy của tiểu thuyết gốc, hàng loạt các phiên bản chuyển thể dựa vào nội dung của tiểu thuyết gốc Oregairu đã ra mắt như TV series anime, manga, artbook. Chuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm @comic được xem là bản chuyển thể truyện tranh bám sát nội dung bản gốc nhất, do hoạ sĩ Naomichi Io minh hoạ, đăng tải trên tạp chí  Monthly Sunday G-X của Shogakukan, hiện đã xuất bản 21 tập tankobon.\n  \nKỳ nghỉ hè đã tới. Hachiman đang thả mình trong khoảng thời gian lường biếng, thì một tiếng chuông điện thoại đã phá vỡ bầu không khí yên bình ấy. Cô Hiratsuka đã ra chỉ thị cho CLB Tình nguyện tham gia vào chuyến trại hè tại làng Chiba, Hachiman không có quyền được từ chối.\n  \nCác thành viên tham gia trại hè ngoài ba người thuộc CLB Tình nguyện, còn có cả em gái Komachi và Totsuka Saika siêu cấp đáng yêu nữa. Tuy nhiên, ngay cả nhóm trung tâm trong lớp học với Hayama và Miura cũng tham dự. Và thế là, cao trào được đẩy lên với những mâu thuẫn giữa Yukinoshita với Hayama, giữa Yukinoshita với Miura.\n  \nNhưng đồng thời, nhờ sự hiện diện của cô bé Tsurumi Rumi, Hachiman đã phần nào thấy được một góc cô đơn rất dỗi dịu dàng bên trong Yukinoshita. Những rắc rối xoay quanh các mối quan hệ trong lớp, kéo dài từ thuở ấu thơ tới khi trưởng thành, lại một lần nữa được giải quyết theo cách chẳng giống ai của Hachiman. Chỉ là dư vị của nó khiến cho ai cũng cảm thấy phiền muộn…\n  \nQuả nhiên không nên tham gia trại hè chút nào!\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/279/chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-comic-tap-5.jpg",
+        "https://nhasachphuongnam.com/images/detailed/279/chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-comic-tap-5-b04.jpg",
+        "https://nhasachphuongnam.com/images/detailed/279/chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-comic-tap-5-mockup.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "18 x 13 x 1 cm",
+        "numPage": "180",
+        "author": "Naomichi IO\n  Wataru Watari",
+        "companyName": "NXB Hà Nội",
+        "Đơn Vị Liên Kết Xuất Bản": "Hikari LightNovel"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893528091486",
+      "title": "Chuyện Tình Thanh Xuân Bi Hài Của Tôi Quả Nhiên Là Sai Lầm @Comic - Tập 4",
+      "price": "69000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/266/chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-comic-tap-4.jpg",
+      "description": "\nChuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm. (tên gốc: Yahari Ore no Seishun Rabukome wa Machigatteiru., gọi tắt là Oregairu), là một trong những series light novel ăn khách nhất trong vòng 20 năm trở lại đây, bộ truyện được viết bởi tác giả trẻ Wataru WATARI, do họa sĩ Ponkan8 vẽ minh họa và được xuất bản bởi NXB nổi tiếng Shogakukan.\nChính bởi những thành công ấy của tiểu thuyết gốc, hàng loạt các phiên bản chuyển thể dựa vào nội dung của tiểu thuyết gốc Oregairu đã ra mắt như TV series anime, manga, artbook. Chuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm @comic được xem là bản chuyển thể truyện tranh bám sát nội dung bản gốc nhất, do hoạ sĩ Naomichi Io minh hoạ, đăng tải trên tạp chí Monthly Sunday G-X của Shogakukan, hiện đã xuất bản 21 tập tankobon.\nMâu thuẫn giữa Yuigahama với hai thành viên còn lại của CLB Tình nguyện cũng đã tạm lắng xuống. Chưa yên ổn được bao lâu, phiền phức lại gõ cửa căn phòng thêm một lần nữa. Người mang tới phiền phức, không ai khác xa lạ, chính là Zaimokuza Yoshiteru. Lời cầu cứu khẩn khiết của cậu ta kéo CLB Tình nguyện tới màn đối đầu với CLB Trò chơi trong một trận đấu khốc liệt vì danh dự.\nMùa hè cũng đã tới. Cái nóng oi ả của Chiba khiến người ta cảm thấy bức bối hơn nữa. Đấy hẳn là một phần nguyên nhân khiến thành viên của CLB Judo xin rút dần. Nhưng lý do chính lại tới từ một cựu thành viên nghiêm khắc và khó tính, khiến cho bầu không khí trong CLB Judo ngày càng ngột ngạt. Yêu cầu giúp tuyển thêm thành viên cho CLB Judo được gửi tới CLB Tình nguyện. Đại hội Judo toàn trường thấm đấm mồ hôi, nỗ lực và cả sự chua chát của thanh xuân sẽ được truyền tải trong tập 4 của Chuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm comic 4\nMục lục:\nChương 18: Dù vậy, Zaimokuza Yoshiteru lại đơn độc khóc than nơi vùng hoang vu (phần đầu)\nChương 19: Dù vậy, Zaimokuza Yoshiteru lại đơn độc khóc than nơi vùng hoang vu (phần cuối)\nChương 20: Cuối cùng, sự khởi đầu của cậu ấy và cô ấy cũng đến hồi kết\nChương 21: Đến bây giờ mà một vài người vẫn chưa biết mình nên quay về đâu (phần đầu)\nChương 22: Đến bây giờ mà một vài người vẫn chưa biết mình nên quay về đâu (phần giữa)\nChương 23: Đến bây giờ mà một vài người vẫn chưa biết mình nên quay về đâu (phần cuối)\nThông tin tác giả\nNaomichi Io\nRa mắt lần đầu với giải thưởng Nỗ lực và giải thưởng Nhà văn mới lần thứ 23 của tạp chí GX. Phát hành truyện ngắn lần đầu trên website chuyên phân phối truyện tranh trên điện thoại mang tên Moba Man và tác phẩm này là series đầu tay.\nWataru WATARI\nRa mắt với tác phẩm Những câu chuyện ma giành giải Nhất trong cuộc thi Light novel Shogakukan lần ba của Gagaga Bunko. Các tác phẩm chính: Những câu chuyện ma, Chuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm.\nPonkan8\nHoạ sĩ vẽ tranh minh hoạ. Tác phẩm chính: Chuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm, Sư tử không đi làm và thánh nữ đỏ, Thám tử hội học sinh Kirika.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/266/chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-comic-tap-4.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 18 x 1 cm",
+        "numPage": "188",
+        "author": "Naomichi IO\n  Ponkan8\n  Wataru Watari",
+        "companyName": "NXB Hà Nội",
+        "Đơn Vị Liên Kết Xuất Bản": "Hikari LightNovel"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893528091431",
+      "title": "Chuyện Tình Thanh Xuân Bi Hài Của Tôi Quả Nhiên Là Sai Lầm @Comic - Tập 3",
+      "price": "65000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/258/comic-chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-tap-3.jpg",
+      "description": "\nChuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm. (tên gốc: Yahari Ore no Seishun Rabukome wa Machigatteiru., gọi tắt là Oregairu), là một trong những series light novel ăn khách nhất trong vòng 20 năm trở lại đây, bộ truyện được viết bởi tác giả trẻ Wataru WATARI, do họa sĩ Ponkan8 vẽ minh họa và được xuất bản bởi NXB nổi tiếng Shogakukan.\nChính bởi những thành công ấy của tiểu thuyết gốc, hàng loạt các phiên bản chuyển thể dựa vào nội dung của tiểu thuyết gốc Oregairu đã ra mắt như TV series anime, manga, artbook. Chuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm @comic được xem là bản chuyển thể truyện tranh bám sát nội dung bản gốc nhất, do hoạ sĩ Naomichi Io minh hoạ, đăng tải trên tạp chí  Monthly Sunday G-X của Shogakukan, hiện đã xuất bản 21 tập tankobon.\nCLB Tình nguyện đang ngày càng hợp tác ăn ý với nhau hơn. Sau khi liên tiếp giải quyết các yêu cầu từ Totsuka Saika – thành viên CLB Tennis, Hayama Hayato – nhân vật trung tâm của nhóm đẳng cấp cao trong trường học, cho tới thiếu nữ cá biệt Kawasaki Saki, những tưởng mọi chuyện sẽ ngày càng tốt đẹp hơn thì Hachiman chợt phát hiện Yuigahama chính là chủ nhân của chú chó mà cậu đã cứu vào ngày nhập học, khiến bản thân gặp phải tai nạn xe hơi.\nBầu không khí bỗng chốc trở nên thật khó xử, Hachiman và Yui cũng không thể nói với nhau những lời thật lòng nữa. Đúng lúc ấy, Yukino đã ngỏ lời đề nghị “hẹn hò” vào ngày nghỉ lễ cùng với Hachiman. Liều thuốc tốt nhất dành cho một mối quan hệ rạn rỡ, ấy chính là sự quan tâm chân thành và dịu dàng.\nTập 3 đầy cảm xúc của phiên bản thể truyện tranh Chuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm đã đến rồi đây.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/258/comic-chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-tap-3.jpg",
+        "https://nhasachphuongnam.com/images/detailed/258/comic-chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-tap-3-b1.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 18 x 1 cm",
+        "numPage": "180",
+        "author": "Wataru Watari",
+        "companyName": "NXB Hà Nội",
+        "Đơn Vị Liên Kết Xuất Bản": "Hikari LightNovel"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893528091367",
+      "title": "[Comic] Chuyện Tình Thanh Xuân Bi Hài Của Tôi Quả Nhiên Là Sai Lầm - Tập 2",
+      "price": "69000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/248/comic-chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-tap-2.jpg",
+      "description": "\nChuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm. (tên gốc: Yahari Ore no Seishun Rabukome wa Machigatteiru., gọi tắt là Oregairu), là một trong những series light novel ăn khách nhất trong vòng 20 năm trở lại đây, bộ truyện được viết bởi tác giả trẻ Wataru WATARI, do họa sĩ Ponkan8 vẽ minh họa và được xuất bản bởi NXB nổi tiếng Shogakukan.\nChính bởi những thành công ấy của tiểu thuyết gốc, hàng loạt các phiên bản chuyển thể dựa vào nội dung của tiểu thuyết gốc Oregairu đã ra mắt như TV series anime, manga, artbook. Chuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm @comic được xem là bản chuyển thể truyện tranh bám sát nội dung bản gốc nhất, do hoạ sĩ Naomichi Io minh hoạ, đăng tải trên tạp chí Monthly Sunday G-X của Shogakukan, hiện đã xuất bản 21 tập tankobon.\nTiếp diễn tập 1 với những tình tiết đã trở nên vô cùng quen thuộc với các độc giả của oregairu như hỗ trợ Totsuka Saika luyện tập Tennis rồi vô tình bị cuốn vào trận đấu Tennis với Hayato và Yumiko – những nhân vật đứng top đầu tại trường Soubu. Kế tiếp là rắc rối nảy sinh trong quá trình phân chia nhóm đi thực tế khiến nội bộ lớp 11-F bị chia rẽ tới mức Hayato phải nhờ cậy câu lạc bộ tình nguyện, để rồi Hachiman có một phen thể hiện khiến tất cả phải đứng hình.\nTập 2 vui nhộn và châm biếm của oregairu comic đã trở lại.\nThông tin tác giả\nNaomichi Io\nRa mắt lần đầu với giải thưởng Nỗ lực và giải thưởng Nhà văn mới lần thứ 23 của tạp chí GX. Phát hành truyện ngắn lần đầu trên website chuyên phân phối truyện tranh trên điện thoại mang tên Moba Man và tác phẩm này là series đầu tay.\nWataru WATARI\nRa mắt với tác phẩm Những câu chuyện ma giành giải Nhất trong cuộc thi Light novel Shogakukan lần ba của Gagaga Bunko. Các tác phẩm chính: Những câu chuyện ma, Chuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm.\nPonkan8\nHoạ sĩ vẽ tranh minh hoạ. Tác phẩm chính: Chuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm, Sư tử không đi làm và thánh nữ đỏ, Thám tử hội học sinh Kirika.\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/248/comic-chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-tap-2.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 18 cm",
+        "numPage": "194",
+        "author": "Naomichi IO\n  Ponkan8\n  Wataru Watari",
+        "companyName": "NXB Hà Nội",
+        "Đơn Vị Liên Kết Xuất Bản": "Hikari LightNovel"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893528091267",
+      "title": "[Comic] Chuyện Tình Thanh Xuân Bi Hài Của Tôi Quả Nhiên Là Sai Lầm - Tập 1",
+      "price": "59000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/237/chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-tap-1-manga.jpg",
+      "description": "\n\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/237/chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-tap-1-manga.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 18 cm",
+        "numPage": "164",
+        "author": "Naomichi IO\n  Wataru Watari",
+        "companyName": "NXB Hà Nội",
+        "Đơn Vị Liên Kết Xuất Bản": "Hikari LightNovel"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893528090734",
+      "title": "Chuyện Tình Thanh Xuân Bi Hài Của Tôi Quả Nhiên Là Sai Lầm - Tập 11",
+      "price": "109000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/187/chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-tap-11.jpg",
+      "description": "\nChuyện Tình Thanh Xuân Bi Hài Của Tôi Quả Nhiên Là Sai Lầm (tên gốc: Yahari Ore no Seishun Rabukome wa Machigatteiru., gọi tắt là Oregairu), là một trong những series light novel ăn khách nhất trong vòng 20 năm trở lại đây, bộ truyện được viết bởi tác giả trẻ Wataru WATARI, do họa sĩ Ponkan8 vẽ minh họa và được xuất bản bởi NXB nổi tiếng Shogakukan.\nChuyện Tình Thanh Xuân Bi Hài Của Tôi Quả Nhiên Là Sai Lầm đã dành giải light novel hay nhất của bảng xếp hạng uy tín Kono light novel ga sugoi! trong 3 năm liên tiếp là 2014, 2015 và 2016. Bên cạnh đó, nam chính và nữ chính của series này là Hachiman và Yokin oshita cũng đoạt giải nam nữ chính được yêu thích nhất trong các năm đó. Họa sĩ minh họa Ponkan8 với những bức tranh minh họa đẹp và sinh động của mình cũng được bình chọn là họa sĩ minh họa được yêu thích nhất trong năm 2015. Đến thời điểm hiện tại, series đã kết thúc với 14 tập, nhưng số sách bán ra đã vượt mốc 10 triệu bản.\nTháng 2 tới, cái lạnh của mùa đông vẫn còn khắc nghiệt. Tuy vậy, bầu không khí trong lớp học đã trở nên ấm áp, rộn ràng hơn nhiều. Hẳn là vì ngày valentine sắp tới rồi. Tiếp nhận yêu cầu của Isshiki Iroha, câu lạc bộ tình nguyện đi hỗ trợ cho sự kiện ngày Valentine. Thành viên tham gia đều là những gương mặt quen thuộc như Miura, Ebina, Kawasaki và quy mô cũng lớn dần. Trong bầu không khí yên ổn ấy, Hachiman ngày càng không thể phớt lờ được cảm giác có thứ gì đó không đúng, cảm giác không thể tự lừa dối bản thân dù đã tự thuyết phục rằng mình chỉ đang bối rối vì chưa quen.\nCó khi cứ giữ nguyên khoảng thời gian này lại tốt hơn. Có khi không nhận ra điều gì lại tốt hơn… “Chuyện của Y, yêu cầu của Y” được đưa ra. Tuyết đang lặng lẽ rơi và tích tụ lại, thay đổi cảnh sắc của mọi người.\nMời các bạn đón đọc tập 11 của series light novel được yêu thích nhất Chuyện Tình Thanh Xuân Bi Hài Của Tôi Quả Nhiên Là Sai Lầm!\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/187/chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-tap-11.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 cm",
+        "numPage": "376",
+        "author": "Wataru Watari",
+        "Dịch giả": "Nguyên Phạm",
+        "companyName": "NXB Hà Nội",
+        "Đơn Vị Liên Kết Xuất Bản": "Hikari LightNovel"
+      }
+    }
+  },
+  {
+    "Books": {
+      "code": "893528090619",
+      "title": "Chuyện Tình Thanh Xuân Bi Hài Của Tôi Quả Nhiên Là Sai Lầm - Tập 6.5",
+      "price": "179000",
+      "thumbnail": "https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/162/chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-tap-6.5.jpg",
+      "description": "\nChuyện Tình Thanh Xuân Bi Hài Của Tôi Quả Nhiên Là Sai Lầm - Tập 6.5\n \nChuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm. (tên gốc: Yahari Ore no Seishun Rabukome wa Machigatteiru., gọi tắt là Oregairu), là một trong những series light novel ăn khách nhất trong vòng 20 năm trở lại đây, bộ truyện được viết bởi tác giả trẻ Wataru WATARI, do họa sĩ Ponkan8 vẽ minh họa và được xuất bản bởi NXB nổi tiếng Shogakukan. Chuyện tình thanh xuân bi hài của tôi quả nhiên là sai lầm. đã dành giải light novel hay nhất của bảng xếp hạng uy tín Kono light novel ga sugoi! trong 3 năm liên tiếp là 2014, 2015 và 2016. Bên cạnh đó, nam chính và nữ chính của series này là Hachiman và Yokin oshita cũng đoạt giải nam nữ chính được yêu thích nhất trong các năm đó. Họa sĩ minh họa Ponkan8 với những bức tranh minh họa đẹp và sinh động của mình cũng được bình chọn là họa sĩ minh họa được yêu thích nhất trong năm 2015. Đến thời điểm hiện tại, series đã kết thúc với 14 tập, nhưng số sách bán ra đã vượt mốc 10 triệu bản. Lễ hội văn hoá kết thúc với những dư vị đắng ngắt! Hachiman trở thành cái gai trong mắt toàn trường, còn Sagami thì ngày càng trở nên phiền phức hơn. Bầu không khí trong lớp học trở nên tồi tệ, điều ấy đã khiến “nữ vương” cảm thấy chướng mắt. Đồng thời, cô Hiratsuka cũng nảy ra ý tưởng về hòm tư vấn email xuyên tỉnh Chiba, giao cho CLB Tình nguyện xử lý những yêu cầu tư vấn tâm lý trực tuyến trong phạm vi tỉnh Chiba. Hachiman lại ngập đầu trong công việc. Nhưng đấy chưa phải là tất cả! Chị hội trưởng Shiromeguri Meguri xuất hiện tại phòng CLB để gửi yêu cầu cùng tổ chức một hội thao đáng nhớ. Tuy nhiên, dù rất sát thời gian hội thao diễn ra nhưng vị trí trưởng Ban tổ chức vẫn khuyết. Cùng lúc ấy, một yêu cầu mới được gửi tới CLB Tình nguyện về trường hợp của Sagami. Yukinoshita, Yui và Hachiman đã quyết định sẽ thuyết phục Sagami tiếp tục đảm nhiệm vai trò Trưởng Ban tổ chức hội thao, một mũi tên trúng hai đích. Vậy nhưng, rắc rối nảy sinh đến từ những nhân vật không ngờ, khiến cho quá trình chuẩn bị bị trễ nải rất nhiều. Những cô cậu ấy sẽ thành công vượt qua thử thách và trưởng thành hơn, hay sẽ bị tụt dốc bởi những sai lầm của tuổi thanh xuân? Tập 6.5 “Vậy nên, lễ hội của họ vẫn chưa kết thúc” đi kèm với Bonus track “Khi ánh nến Giáng sinh đung đưa lay động” rất được mong chờ!\n",
+      "BookImages": [
+        "https://nhasachphuongnam.com/images/detailed/162/chuyen-tinh-thanh-xuan-bi-hai-cua-toi-qua-nhien-la-sai-lam-tap-6.5.jpg"
+      ],
+      "BookDetails": {
+        "bookFormat": "Bìa mềm",
+        "size": "13 x 19 cm",
+        "numPage": "713",
+        "author": "Wataru Watari",
+        "Dịch giả": "AQ",
+        "companyName": "NXB Hà Nội",
+        "Đơn Vị Liên Kết Xuất Bản": "Hikari LightNovel"
+      }
+    }
+  },
 
-{
-  "title": 'Thiên Sứ Nhà Bên - Tập 8.5',
-  price: '95,000đ',
-  thumbnail: 'https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/279/thien-su-nha-ben-tap-8_5.jpg'
-}
-{
-"title": '[Manga] Thiên Sứ Nhà Bên - Tập 2', price: '50,000đ', thumbnail: 'https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/276/manga-thien-su-nha-ben-tap-2.jpg'
-}
-3: {
-"title": '[Manga] Thiên Sứ Nhà Bên - Tập 1', price: '50,000đ', thumbnail: 'https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/274/manga-thien-su-nha-ben-tap-1.jpg'
-}
-4: {
-"title": 'Thiên Sứ Nhà Bên - Tập 8 (Bản giới hạn)', price: '95,000đ', thumbnail: 'https://nhasachphuongnam.com/images/thumbnails/240…ailed/272/thien-su-nha-ben-tap-8-ban-gioi-han.jpg'
-}
-5: {
-"title": 'Thiên Sứ Nhà Bên - Tập 8', price: '95,000đ', thumbnail: 'https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/272/thien-su-nha-ben-tap-8.jpg'
-}
-6: {
-"title": 'Thiên Sứ Nhà Bên - Tập 7 (Bản giới hạn)', price: '95,000đ', thumbnail: 'https://nhasachphuongnam.com/images/thumbnails/240…/detailed/264/thien-su-nha-ben-tap-7-dac-biet.jpg'
-}
-7: {
-"title": 'Thiên Sứ Nhà Bên - Tập 7', price: '95,000đ', thumbnail: 'https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/264/thien-su-nha-ben-tap-7.jpg'
-}
-8: {
-"title": 'Thiên Sứ Nhà Bên - Tập 6', price: '95,000đ', thumbnail: 'https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/253/thien-su-nha-ben-tap-6.jpg'
-}
-9: {
-"title": 'Thiên Sứ Nhà Bên - Tập 5.5', price: '95,000đ', thumbnail: 'https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/246/thien-su-nha-ben-tap-5-5.jpg'
-}
-10: {
-"title": 'Thiên Sứ Nhà Bên - Tập 5', price: '95,000đ', thumbnail: 'https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/239/thien-su-nha-ben-tap-5.jpg'
-}
-11: {
-"title": 'Thiên Sứ Nhà Bên - Tập 4', price: '95,000đ', thumbnail: 'https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/235/thien-su-nha-ben-tap-4-full.jpg'
-}
-12: {
-"title": 'Thiên Sứ Nhà Bên - Tập 3', price: '95,000đ', thumbnail: 'https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/230/thien-su-nha-ben-tap-3.jpg'
-}
-13: {
-"title": 'Thiên Sứ Nhà Bên - Tập 2', price: '95,000đ', thumbnail: 'https://nhasachphuongnam.com/images/thumbnails/240/290/detailed/226/thien-su-nha-ben-tap-2.jpg'
-}
+]

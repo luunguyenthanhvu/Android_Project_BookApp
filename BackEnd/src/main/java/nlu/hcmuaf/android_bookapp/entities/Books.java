@@ -53,9 +53,6 @@ public class Books implements Serializable {
   private Set<BookImages> bookImages;
 
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-  private Set<BookGenres> bookGenres;
-
-  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
   private Set<CartUsers> cartUsers;
 
   @ManyToOne
