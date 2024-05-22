@@ -74,18 +74,6 @@
                 android:text="e-mail@gmail.com"
                 android:textSize="14sp" />
 
-            <!-- Icon sửa thông tin -->
-            <!--            <Button-->
-            <!--                android:id="@+id/edit_button"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_alignParentEnd="true"-->
-            <!--                android:layout_centerVertical="true"-->
-            <!--                android:layout_marginEnd="16dp"-->
-            <!--                android:background="?android:attr/selectableItemBackground"-->
-            <!--                android:text="Edit"-->
-            <!--                android:textColor="@android:color/black"-->
-            <!--                android:textSize="16sp" />-->
             <ImageView
                 android:id="@+id/editImageView"
                 android:layout_width="24dp"
@@ -133,8 +121,6 @@
 
             </LinearLayout>
 
-
-            <!-- TextView cho phần General -->
 
             <!-- Các mục menu -->
             <TextView

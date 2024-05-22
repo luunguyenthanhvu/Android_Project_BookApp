@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp;
+package nlu.hmuaf.android_bookapp.profile;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import nlu.hmuaf.android_bookapp.R;
 
 public class NotificationActivity extends AppCompatActivity {
 

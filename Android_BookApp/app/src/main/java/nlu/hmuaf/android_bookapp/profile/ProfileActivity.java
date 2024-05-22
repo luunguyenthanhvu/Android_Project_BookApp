@@ -1,10 +1,10 @@
-package nlu.hmuaf.android_bookapp;
+package nlu.hmuaf.android_bookapp.profile;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,10 +14,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
-import android.content.SharedPreferences;
+
 import android.preference.PreferenceManager;
+
+import nlu.hmuaf.android_bookapp.R;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -55,17 +56,17 @@ public class ProfileActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
                 builder.setTitle("Nhập thông tin mới");
 
-                final EditText usernameEditText = new EditText(ProfileActivity.this);
-                final EditText emailEditText = new EditText(ProfileActivity.this);
+                // Inflate the custom layout/view
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.dialog_edit_profile, null);
+                builder.setView(dialogView);
 
+                final EditText usernameEditText = dialogView.findViewById(R.id.usernameEditText);
+                final EditText emailEditText = dialogView.findViewById(R.id.emailEditText);
+
+                // Set the current text to the EditText
                 usernameEditText.setText(userNameTextView.getText().toString());
                 emailEditText.setText(userEmailTextView.getText().toString());
-
-                LinearLayout layout = new LinearLayout(ProfileActivity.this);
-                layout.setOrientation(LinearLayout.VERTICAL);
-                layout.addView(usernameEditText);
-                layout.addView(emailEditText);
-                builder.setView(layout);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -90,6 +91,8 @@ public class ProfileActivity extends AppCompatActivity {
                 builder.show();
             }
         });
+
+
 
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);

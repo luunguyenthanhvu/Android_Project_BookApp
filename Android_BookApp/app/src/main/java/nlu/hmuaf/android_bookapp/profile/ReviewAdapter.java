@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp;
+package nlu.hmuaf.android_bookapp.profile;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
+import nlu.hmuaf.android_bookapp.R;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
 

@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp;
+package nlu.hmuaf.android_bookapp.profile;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -6,17 +6,19 @@ import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class HelpActivity extends AppCompatActivity {
+import nlu.hmuaf.android_bookapp.R;
+
+public class CartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
+        setContentView(R.layout.activity_cart);
         DarkModeUtil.applyDarkMode(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Help");
+        getSupportActionBar().setTitle("Cart");
 
         // Thêm nút quay lại trên Toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

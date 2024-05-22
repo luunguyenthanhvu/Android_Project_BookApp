@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp;
+package nlu.hmuaf.android_bookapp.profile;
 
 public class Notification {
     private String title;

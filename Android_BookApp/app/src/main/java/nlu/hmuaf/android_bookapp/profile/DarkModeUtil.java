@@ -1,5 +1,5 @@
 // DarkModeUtil.java
-package nlu.hmuaf.android_bookapp;
+package nlu.hmuaf.android_bookapp.profile;
 
 import android.content.Context;
 import android.content.SharedPreferences;
