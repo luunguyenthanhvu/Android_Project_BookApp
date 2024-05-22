@@ -45,52 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         // Phần còn lại của mã
-        ImageView editImageView = findViewById(R.id.editImageView);
-        TextView userNameTextView = findViewById(R.id.user_name);
-        TextView userEmailTextView = findViewById(R.id.user_email);
 
-        editImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
-                builder.setTitle("Nhập thông tin mới");
-
-                // Inflate the custom layout/view
-                LayoutInflater inflater = getLayoutInflater();
-                View dialogView = inflater.inflate(R.layout.dialog_edit_profile, null);
-                builder.setView(dialogView);
-
-                final EditText usernameEditText = dialogView.findViewById(R.id.usernameEditText);
-                final EditText emailEditText = dialogView.findViewById(R.id.emailEditText);
-
-                // Set the current text to the EditText
-                usernameEditText.setText(userNameTextView.getText().toString());
-                emailEditText.setText(userEmailTextView.getText().toString());
-
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Lấy nội dung đã nhập từ EditText
-                        String newUsername = usernameEditText.getText().toString();
-                        String newEmail = emailEditText.getText().toString();
-
-                        // Đặt nội dung mới cho TextView "Username" và "Email"
-                        userNameTextView.setText(newUsername);
-                        userEmailTextView.setText(newEmail);
-                    }
-                });
-
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                builder.show();
-            }
-        });
 
 
 
@@ -99,6 +54,16 @@ public class ProfileActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        ImageView editImageView = findViewById(R.id.editImageView);
+        editImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ImageView notificationImageView = findViewById(R.id.notification_arrow);
         notificationImageView.setOnClickListener(new View.OnClickListener() {
