@@ -11,7 +11,7 @@ const loadProducts = async function () {
         let code, description, price;
         const productinfo = {};
         const images = [];
-
+        const companyName = {};
         await $.ajax({
           url: url,
           type: 'get',
@@ -29,7 +29,9 @@ const loadProducts = async function () {
             $html.find('.ty-product-feature').each(function () {
               let featureLabel = $(this).find(
                   '.ty-product-feature__label span').text().trim();
-              var text = ["Loại sản phẩm", "Kích thước", "Số trang", "Tác giả", "Nhà Xuất Bản"];
+              var text = ["Loại sản phẩm", "Kích thước", "Số trang", "Tác giả",
+                "Nhà Xuất Bản"];
+              let isValidFeature = true;
               switch (featureLabel) {
                 case "Loại sản phẩm" :
                   featureLabel = "bookFormat";
@@ -44,18 +46,26 @@ const loadProducts = async function () {
                   featureLabel = "author";
                   break;
                 case "Nhà Xuất Bản" :
-                  featureLabel = "companyName";
+                  featureLabel = "PublishCompany";
+                  break;
+                default :
+                  isValidFeature = false;
                   break;
               }
               const featureValue = $(this).find(
                   '.ty-product-feature__value').text().trim();
-              productinfo[featureLabel] = featureValue;
+              if (featureLabel === "PublishCompany") {
+                companyName.companyName = featureValue;
+                productinfo[featureLabel] = companyName;
+              } else if (isValidFeature) {
+                productinfo[featureLabel] = featureValue;
+              }
             });
           }
         });
 
         return {
-          Books :{
+          Books: {
             code: code,
             title: title,
             price: price,
