@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.profile;
+package nlu.hmuaf.android_bookapp.profile.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -7,25 +7,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.profile.DarkModeUtil;
 
-public class BankAccountActivity extends AppCompatActivity {
+public class HelpActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bank_account);
+        setContentView(R.layout.activity_help);
+        DarkModeUtil.applyDarkMode(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Tài khoản ngân hàng/Thẻ");
+        getSupportActionBar().setTitle("Help");
+
+        // Thêm nút quay lại trên Toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Xử lý sự kiện khi người dùng nhấn vào nút quay lại trên Toolbar
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

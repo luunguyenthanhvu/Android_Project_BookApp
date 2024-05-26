@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.profile;
+package nlu.hmuaf.android_bookapp.profile.Class;
 
 public class Review {
     private String title;

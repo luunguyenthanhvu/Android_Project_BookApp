@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.profile;
+package nlu.hmuaf.android_bookapp.profile.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.profile.DarkModeUtil;
 
 public class CartActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.profile;
+package nlu.hmuaf.android_bookapp.profile.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,39 +12,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.profile.DarkModeUtil;
+import nlu.hmuaf.android_bookapp.profile.Class.Notification;
+import nlu.hmuaf.android_bookapp.profile.adapter.NotificationAdapter;
 
-public class ReviewActivity extends AppCompatActivity {
+public class NotificationActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private ReviewAdapter adapter;
-    private List<Review> reviewList;
+    private NotificationAdapter adapter;
+    private List<Notification> notificationList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_review);
+        setContentView(R.layout.activity_notification);
         DarkModeUtil.applyDarkMode(this);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Reviews");
+        getSupportActionBar().setTitle("Notifications");
 
         // Thêm nút quay lại trên Toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Thiết lập RecyclerView
-        recyclerView = findViewById(R.id.reviews_recycler_view);
+        recyclerView = findViewById(R.id.notifications_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Tạo dữ liệu kiểm thử
-        reviewList = new ArrayList<>();
-        reviewList.add(new Review("Great Book", "I loved the storyline and the characters.", "John Doe", "The Great Gatsby"));
-        reviewList.add(new Review("Not Bad", "The book was okay, but could be better.", "Jane Smith", "To Kill a Mockingbird"));
-        reviewList.add(new Review("Must Read", "A must-read for anyone who loves mystery.", "Alice Johnson", "The Da Vinci Code"));
+        notificationList = new ArrayList<>();
+        notificationList.add(new Notification("New Book Release", "Check out the new release of 'The Great Gatsby'.", "2023-05-01 10:00 AM"));
+        notificationList.add(new Notification("Special Discount", "Get 20% off on all science fiction books.", "2023-05-02 02:00 PM"));
+        notificationList.add(new Notification("Author Meet & Greet", "Join us for a meet and greet with J.K. Rowling.", "2023-05-03 09:00 AM"));
         // Thêm nhiều dữ liệu hơn nếu cần
 
         // Thiết lập adapter
-        adapter = new ReviewAdapter(reviewList);
+        adapter = new NotificationAdapter(notificationList);
         recyclerView.setAdapter(adapter);
     }
 

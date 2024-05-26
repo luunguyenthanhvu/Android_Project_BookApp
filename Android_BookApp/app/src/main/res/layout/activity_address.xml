@@ -16,13 +16,29 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"/>
 
+    <!-- Title -->
+    <TextView
+        android:id="@+id/addressTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Địa chỉ"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+
+    <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
+        android:layout_height="0dp"
+        android:layout_below="@id/addressTitleTextView"
+        android:layout_above="@id/addAddressButton"
         android:padding="16dp"/>
 
+    <!-- Add Address Button -->
     <Button
         android:id="@+id/addAddressButton"
         android:layout_width="wrap_content"
@@ -32,5 +48,6 @@
         android:text="+ Thêm Địa Chỉ Mới"
         android:textColor="@android:color/holo_red_light"
         android:background="?attr/selectableItemBackground"
-        android:padding="8dp"/>
+        android:padding="8dp"
+        android:layout_marginBottom="16dp"/>
 </RelativeLayout>

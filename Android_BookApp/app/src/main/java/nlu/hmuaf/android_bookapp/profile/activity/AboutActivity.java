@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.profile;
+package nlu.hmuaf.android_bookapp.profile.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,16 +9,16 @@ import androidx.appcompat.widget.Toolbar;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.profile.DarkModeUtil;
 
-public class PrivacyActivity extends AppCompatActivity {
-
+public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_privacy);
+        setContentView(R.layout.activity_about);
         DarkModeUtil.applyDarkMode(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("About");
 
         // Thêm nút quay lại trên Toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
