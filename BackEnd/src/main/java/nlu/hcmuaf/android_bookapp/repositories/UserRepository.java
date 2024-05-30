@@ -1,7 +1,9 @@
 package nlu.hcmuaf.android_bookapp.repositories;
 
+import jakarta.transaction.Transactional;
 import java.util.Optional;
 import nlu.hcmuaf.android_bookapp.entities.Users;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -20,5 +22,9 @@ public interface UserRepository extends CrudRepository<Users, Long> {
   @Query("SELECT u from Users u JOIN FETCH u.roles WHERE u.userId = :id")
   Optional<Users> findUsersByUserIdWithRole(@Param("id") long id);
 
+  @Modifying
+  @Transactional
+  @Query("UPDATE Users  u SET u.verified = true WHERE u.userId = :id")
+  int updateUserVerified(@Param("id") long id);
 
 }

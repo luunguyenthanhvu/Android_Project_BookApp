@@ -11,4 +11,6 @@ public interface UserService {
 
   MessageResponseDTO register(RegisterRequestDTO requestDTO);
 
+  MessageResponseDTO verifyAccount(String email, String verifyCode);
+
 }

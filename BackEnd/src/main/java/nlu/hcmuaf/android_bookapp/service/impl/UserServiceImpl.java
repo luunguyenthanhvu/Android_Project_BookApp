@@ -15,7 +15,9 @@ import nlu.hcmuaf.android_bookapp.enums.ERole;
 import nlu.hcmuaf.android_bookapp.repositories.RoleRepository;
 import nlu.hcmuaf.android_bookapp.repositories.UserDetailRepository;
 import nlu.hcmuaf.android_bookapp.repositories.UserRepository;
+import nlu.hcmuaf.android_bookapp.service.templates.IEmailService;
 import nlu.hcmuaf.android_bookapp.service.templates.UserService;
+import nlu.hcmuaf.android_bookapp.utils.MyUtils;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +45,10 @@ public class UserServiceImpl implements UserService {
   private UserDetailRepository userDetailRepository;
   @Autowired
   private ModelMapper modelMapper;
+  @Autowired
+  private IEmailService emailService;
+  @Autowired
+  private MyUtils myUtils;
 
   private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -53,18 +59,25 @@ public class UserServiceImpl implements UserService {
       if (user.isPresent() && passwordEncoder.matches(requestDTO.getPassword(),
           user.get().getPassword())) {
 
-        authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(user.get().getUsername(),
-                requestDTO.getPassword())
-        );
+        if (user.get().isVerified()) {
+          authenticationManager.authenticate(
+              new UsernamePasswordAuthenticationToken(user.get().getUsername(),
+                  requestDTO.getPassword())
+          );
 
-        String jwtToken = jwtService.generateToken(new CustomUserDetails(user.get()));
-        return TokenResponseDTO
-            .builder()
-            .token(jwtToken)
-            .role(user.get().getRoles().getRoleName().toString())
-            .message("Login success!")
-            .build();
+          String jwtToken = jwtService.generateToken(new CustomUserDetails(user.get()));
+          return TokenResponseDTO
+              .builder()
+              .token(jwtToken)
+              .role(user.get().getRoles().getRoleName().toString())
+              .message("Login success!")
+              .build();
+        } else {
+          return TokenResponseDTO
+              .builder()
+              .message("Please verified your account!")
+              .build();
+        }
       }
     } catch (Exception e) {
       logger.error(e.getMessage());
@@ -85,7 +98,7 @@ public class UserServiceImpl implements UserService {
     try {
       Optional<UserDetails> userDetail = userDetailRepository.findUserDetailsByEmail(
           requestDTO.getEmail());
-      System.out.println(userDetail);
+
       if (!userDetail.isPresent()) {
         requestDTO.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
         Users users = modelMapper.map(requestDTO, Users.class);
@@ -96,6 +109,9 @@ public class UserServiceImpl implements UserService {
             users.setRoles(role);
           }
         });
+        // set User verification code
+        users.setVerified(false);
+        users.setVerificationCode(myUtils.generateVerificationCode());
 
         UserDetails newUserDetail = new UserDetails();
         newUserDetail.setUser(users);
@@ -122,5 +138,46 @@ public class UserServiceImpl implements UserService {
         .message("User already exist")
         .build();
   }
+
+  @Override
+  public MessageResponseDTO verifyAccount(String email, String verifyCode) {
+    try {
+      Optional<Users> users = userRepository.findAllInfoByEmail(email);
+      if (users.isPresent()) {
+
+        if (users.get().isVerified()) {
+          return MessageResponseDTO
+              .builder()
+              .message("User already verified")
+              .build();
+        }
+
+        if (users.get().getVerificationCode() != verifyCode) {
+          return MessageResponseDTO
+              .builder()
+              .message("Please enter right verify code")
+              .build();
+        }
+
+        userRepository.updateUserVerified(users.get().getUserId());
+        emailService.sendThankYou(users.get().getUserDetails().getEmail());
+        return MessageResponseDTO
+            .builder()
+            .message("Verified success")
+            .build();
+      }
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+      return MessageResponseDTO
+          .builder()
+          .message("500 Error")
+          .build();
+    }
+    return MessageResponseDTO
+        .builder()
+        .message("User not exist")
+        .build();
+  }
+
 
 }

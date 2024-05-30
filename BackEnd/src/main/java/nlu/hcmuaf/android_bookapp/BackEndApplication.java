@@ -35,7 +35,7 @@ public class BackEndApplication implements CommandLineRunner {
       roleRepository.saveAll(rolesList);
     }
 
-    bookService.loadDefaultData();
+//    bookService.loadDefaultData();
 
   }
 }
