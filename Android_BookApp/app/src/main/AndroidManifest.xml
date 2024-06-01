@@ -76,6 +76,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ReviewYourOrder"
             android:exported="false"></activity>
         <activity android:name=".MyCart"

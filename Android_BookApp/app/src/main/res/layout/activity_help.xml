@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
+
+    <!-- ScrollView for Help Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/help_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trợ giúp và Hỗ trợ"
+                android:textSize="24sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/help_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tại đây bạn có thể tìm thấy các câu hỏi thường gặp và các hướng dẫn để giải quyết vấn đề khi sử dụng ứng dụng."
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"/>
+
+            <!-- Thêm các phần FAQ, Contact Information, etc. -->
+            <TextView
+                android:id="@+id/help_faq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Câu Hỏi Thường Gặp:\n- Làm thế nào để đăng ký?\n- Làm thế nào để đặt mua sách?"
+                android:textSize="18sp"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:id="@+id/help_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thông tin liên hệ:\n- Email hỗ trợ: support@example.com\n- Số điện thoại: (123) 456-7890"
+                android:textSize="18sp"
+                android:layout_marginTop="16dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
