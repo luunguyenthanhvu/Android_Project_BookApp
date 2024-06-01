@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.profile.DarkModeUtil;
 
 public class BankUserInforActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_ADD_BANK_ACCOUNT = 2;
@@ -16,10 +17,10 @@ public class BankUserInforActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank_user_infor);
-
+        DarkModeUtil.applyDarkMode(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Thông tin người dùng");
+        getSupportActionBar().setTitle("User infomation");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // Thiết lập nút quay lại
 
         Button buttonNext = findViewById(R.id.buttonNext);

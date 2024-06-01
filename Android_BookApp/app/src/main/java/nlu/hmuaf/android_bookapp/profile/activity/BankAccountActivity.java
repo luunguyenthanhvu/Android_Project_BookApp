@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.profile.DarkModeUtil;
 
 public class BankAccountActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_ADD_ACCOUNT = 1;
@@ -21,10 +22,10 @@ public class BankAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank_account);
-
+        DarkModeUtil.applyDarkMode(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Tài khoản ngân hàng/Thẻ");
+        getSupportActionBar().setTitle("Bank Account/Card");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // Thiết lập nút quay lại
 
         bankAccountList = findViewById(R.id.bankAccountList);

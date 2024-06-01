@@ -17,6 +17,19 @@ public class SocialAccountsActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(v -> onBackPressed());
+        getSupportActionBar().setTitle("Social Accounts");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  // Hiển thị mũi tên quay lại
+
+        // Tiếp tục cài đặt cho activity của bạn
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Xử lý sự kiện khi người dùng nhấn vào nút quay lại trên Toolbar
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

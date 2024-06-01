@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    >
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -30,7 +30,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chi tiết thẻ"
+                android:text="Card Details"
                 android:textSize="14sp"
                 android:padding="8dp"
                 android:textColor="#000000"/>
@@ -39,7 +39,7 @@
                 android:id="@+id/editTextCardNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Số thẻ"
+                android:hint="Card Number"
                 android:padding="8dp"
                 android:background="@drawable/edit_text_background"/>
 
@@ -51,7 +51,7 @@
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="Ngày hết hạn (MM/YY)"
+                    android:hint="Expiry Date (MM/YY)"
                     android:layout_weight="1"
                     android:padding="8dp"
                     android:id="@+id/editTextExpiryDate"
@@ -60,7 +60,7 @@
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="Mã CVV"
+                    android:hint="CVV Code"
                     android:layout_weight="1"
                     android:padding="8dp"
                     android:id="@+id/editTextCVV"
@@ -70,7 +70,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Họ và tên chủ thẻ"
+                android:hint="Card Holder Name"
                 android:padding="8dp"
                 android:id="@+id/editTextCardHolderName"
                 android:background="@drawable/edit_text_background"/>
@@ -78,7 +78,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Địa chỉ đăng ký thẻ Tín dụng/Ghi nợ"
+                android:text="Billing Address"
                 android:textSize="14sp"
                 android:padding="8dp"
                 android:textColor="#000000"/>
@@ -86,7 +86,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Địa chỉ"
+                android:hint="Address"
                 android:padding="8dp"
                 android:id="@+id/editTextBillingAddress"
                 android:background="@drawable/edit_text_background"/>
@@ -94,7 +94,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mã bưu chính"
+                android:hint="Postal Code"
                 android:padding="8dp"
                 android:id="@+id/editTextPostalCode"
                 android:background="@drawable/edit_text_background"/>
@@ -102,7 +102,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hoàn thành"
+                android:text="Complete"
                 android:background="?attr/colorPrimary"
                 android:textColor="#FFFFFF"
                 android:padding="16dp"

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    >
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -42,7 +42,7 @@
                     android:id="@+id/account_security"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Tài khoản và Bảo mật"
+                    android:text="Account And Security"
                     android:textSize="18sp"
                     android:layout_weight="1"/>
 
@@ -52,8 +52,6 @@
                     android:layout_height="24dp"
                     android:src="@drawable/arrowright" />
             </LinearLayout>
-
-
 
             <!-- Address -->
             <LinearLayout
@@ -70,7 +68,7 @@
                     android:id="@+id/address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Địa Chỉ"
+                    android:text="Address"
                     android:textSize="18sp"
                     android:layout_weight="1"/>
 
@@ -80,7 +78,6 @@
                     android:layout_height="24dp"
                     android:src="@drawable/arrowright" />
             </LinearLayout>
-
 
             <!-- Bank Account -->
             <LinearLayout
@@ -97,7 +94,7 @@
                     android:id="@+id/bank_account"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Tài khoản / Thẻ Ngân hàng"
+                    android:text="Bank Account / Card"
                     android:textSize="18sp"
                     android:layout_weight="1"/>
 
@@ -107,9 +104,6 @@
                     android:layout_height="24dp"
                     android:src="@drawable/arrowright" />
             </LinearLayout>
-
-
         </LinearLayout>
     </ScrollView>
-
 </RelativeLayout>

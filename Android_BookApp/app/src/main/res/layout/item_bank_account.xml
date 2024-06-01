@@ -8,7 +8,7 @@
         android:id="@+id/textViewBankInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thông tin tài khoản"
+        android:text="Bank Account Information"
         android:textSize="16sp"
         android:textStyle="bold"
         android:layout_alignParentStart="true"/>

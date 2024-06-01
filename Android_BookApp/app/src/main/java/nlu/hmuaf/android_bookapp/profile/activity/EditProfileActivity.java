@@ -20,7 +20,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Thiết lập tài khoản");
+        getSupportActionBar().setTitle("Account Setup");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Set up click listeners

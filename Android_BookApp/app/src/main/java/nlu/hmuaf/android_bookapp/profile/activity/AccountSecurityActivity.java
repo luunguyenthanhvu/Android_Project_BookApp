@@ -9,16 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.profile.DarkModeUtil;
 
 public class AccountSecurityActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_security);
-
+        DarkModeUtil.applyDarkMode(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Tài khoản & Bảo mật");
+        getSupportActionBar().setTitle("Account And Security");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Adding click listener for "Hồ sơ của tôi"

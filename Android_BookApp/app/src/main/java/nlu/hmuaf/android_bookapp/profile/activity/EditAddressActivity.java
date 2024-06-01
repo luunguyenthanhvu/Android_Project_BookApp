@@ -3,10 +3,11 @@ package nlu.hmuaf.android_bookapp.profile.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,8 +19,7 @@ import nlu.hmuaf.android_bookapp.profile.Class.Address;
 
 public class EditAddressActivity extends AppCompatActivity {
 
-    private EditText editName, editPhone, editStreet;
-    private TextView cityDistrictWardTextView;
+    private EditText editName, editPhone, editStreet, editCity, editDistrict, editWard;
     private Switch defaultSwitch;
     private Address address;
     private List<Address> addressList;
@@ -31,13 +31,16 @@ public class EditAddressActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Sửa Địa chỉ");
+        getSupportActionBar().setTitle("Eddit Address");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         editName = findViewById(R.id.editName);
         editPhone = findViewById(R.id.editPhone);
         editStreet = findViewById(R.id.editStreet);
-        cityDistrictWardTextView = findViewById(R.id.cityDistrictWardTextView);
+        editCity = findViewById(R.id.editCity);
+        editDistrict = findViewById(R.id.editDistrict);
+        editWard = findViewById(R.id.editWard);
         defaultSwitch = findViewById(R.id.defaultSwitch);
         Button deleteButton = findViewById(R.id.deleteButton);
         Button saveButton = findViewById(R.id.saveButton);
@@ -48,7 +51,9 @@ public class EditAddressActivity extends AppCompatActivity {
         if (address != null) {
             editName.setText(address.getUser().getFirstName() + " " + address.getUser().getLastName());
             editPhone.setText(address.getUser().getPhoneNum());
-            cityDistrictWardTextView.setText(address.getCity() + ", " + address.getDistrict() + ", " + address.getWard());
+            editCity.setText(address.getCity());
+            editDistrict.setText(address.getDistrict());
+            editWard.setText(address.getWard());
             editStreet.setText(address.getStreet());
             defaultSwitch.setChecked(address.isDefault());
         }
@@ -71,12 +76,20 @@ public class EditAddressActivity extends AppCompatActivity {
             address.getUser().setLastName(lastName);
             address.getUser().setPhoneNum(editPhone.getText().toString());
             address.setStreet(editStreet.getText().toString());
-            address.setCity(cityDistrictWardTextView.getText().toString().split(", ")[0]);
-            address.setDistrict(cityDistrictWardTextView.getText().toString().split(", ")[1]);
-            address.setWard(cityDistrictWardTextView.getText().toString().split(", ")[2]);
+            address.setCity(editCity.getText().toString());
+            address.setDistrict(editDistrict.getText().toString());
+            address.setWard(editWard.getText().toString());
 
             Intent resultIntent = new Intent();
             resultIntent.putExtra("updatedAddress", address);
+            setResult(RESULT_OK, resultIntent);
+            finish();
+        });
+
+        deleteButton.setOnClickListener(v -> {
+            // Xóa địa chỉ và trả kết quả về AddressActivity
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("deletedAddress", address);
             setResult(RESULT_OK, resultIntent);
             finish();
         });

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    >
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -30,7 +30,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tên ngân hàng"
+                android:text="Bank Name"
                 android:textSize="14sp"
                 android:padding="8dp"
                 android:textColor="#000000"/>
@@ -38,7 +38,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Chọn ngân hàng"
+                android:hint="Select Bank"
                 android:padding="8dp"
                 android:id="@+id/editTextBankName"
                 android:background="@drawable/edit_text_background"/>
@@ -46,7 +46,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tên chi nhánh"
+                android:text="Branch Name"
                 android:textSize="14sp"
                 android:padding="8dp"
                 android:textColor="#000000"/>
@@ -54,7 +54,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Điền tên chi nhánh"
+                android:hint="Enter Branch Name"
                 android:padding="8dp"
                 android:id="@+id/editTextBranchName"
                 android:background="@drawable/edit_text_background"/>
@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Số tài khoản"
+                android:text="Account Number"
                 android:textSize="14sp"
                 android:padding="8dp"
                 android:textColor="#000000"/>
@@ -70,7 +70,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nhập Số tài khoản"
+                android:hint="Enter Account Number"
                 android:padding="8dp"
                 android:id="@+id/editTextAccountNumber"
                 android:background="@drawable/edit_text_background"/>
@@ -78,7 +78,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tên chủ tài khoản"
+                android:text="Account Holder Name"
                 android:textSize="14sp"
                 android:padding="8dp"
                 android:textColor="#000000"/>
@@ -86,7 +86,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Điền tên đầy đủ"
+                android:hint="Enter Full Name"
                 android:padding="8dp"
                 android:id="@+id/editTextAccountHolderName"
                 android:background="@drawable/edit_text_background"/>
@@ -101,7 +101,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Thiết lập tài khoản ngân hàng mặc định"
+                    android:text="Set as Default Bank Account"
                     android:textSize="14sp"
                     android:padding="8dp"
                     android:textColor="#000000"/>
@@ -115,7 +115,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hoàn thành"
+                android:text="Complete"
                 android:background="?attr/colorPrimary"
                 android:textColor="#FFFFFF"
                 android:padding="16dp"

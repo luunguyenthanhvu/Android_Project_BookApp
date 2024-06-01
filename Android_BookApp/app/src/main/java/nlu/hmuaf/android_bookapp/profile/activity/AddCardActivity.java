@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.profile.DarkModeUtil;
 
 public class AddCardActivity extends AppCompatActivity {
     private EditText editTextCardNumber;
@@ -24,10 +25,10 @@ public class AddCardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
-
+        DarkModeUtil.applyDarkMode(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Thêm thẻ");
+        getSupportActionBar().setTitle("Add Card");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // Thiết lập nút quay lại
 
         editTextCardNumber = findViewById(R.id.editTextCardNumber);
@@ -51,7 +52,7 @@ public class AddCardActivity extends AppCompatActivity {
 
                 // Kiểm tra thông tin nhập vào
                 if (cardNumber.isEmpty() || expiryDate.isEmpty() || cvv.isEmpty() || cardHolderName.isEmpty() || billingAddress.isEmpty() || postalCode.isEmpty()) {
-                    Toast.makeText(AddCardActivity.this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddCardActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 } else {
                     // Quay lại BankAccountActivity và cập nhật danh sách thẻ
                     Intent resultIntent = new Intent();

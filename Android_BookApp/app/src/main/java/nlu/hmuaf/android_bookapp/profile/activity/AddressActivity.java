@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.profile.DarkModeUtil;
 import nlu.hmuaf.android_bookapp.profile.adapter.AddressAdapter;
 import nlu.hmuaf.android_bookapp.profile.Class.Address;
 import nlu.hmuaf.android_bookapp.profile.Class.User;
@@ -29,7 +30,7 @@ public class AddressActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
-
+        DarkModeUtil.applyDarkMode(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Địa chỉ của Tôi");
@@ -85,17 +86,17 @@ public class AddressActivity extends AppCompatActivity {
         User user1 = new User(1, 1, "tuongminh", "password", "hash", "2023-01-01");
         user1.setFirstName("Tường");
         user1.setLastName("Minh");
-        user1.setPhoneNum("847 881 229");
+        user1.setPhoneNum("1234567");
 
         Address address1 = new Address(1, "TP. Hồ Chí Minh", "Thủ Đức", "Linh Trung", "Đại Học Nông Lâm, Cư Xá E", true);
         address1.setUser(user1);
         addressList.add(address1);
 
-        Address address2 = new Address(2, "Tiền Giang", "Gò Công Đông", "Kiểng Phước", "Chùa Bửu Đức, Ấp Xóm Chùa", false);
+        Address address2 = new Address(1, "TP. Hồ Chí Minh", "Thủ Đức", "Linh Trung", "Đại Học Nông Lâm, Cư Xá E", false);
         address2.setUser(user1);
         addressList.add(address2);
 
-        Address address3 = new Address(3, "Tiền Giang", "Gò Công Đông", "Kiểng Phước", "Chùa Bửu Đức, Ấp Xóm Chùa", false);
+        Address address3 = new Address(1, "TP. Hồ Chí Minh", "Thủ Đức", "Linh Trung", "Đại Học Nông Lâm, Cư Xá E", false);
         address3.setUser(user1);
         addressList.add(address3);
     }

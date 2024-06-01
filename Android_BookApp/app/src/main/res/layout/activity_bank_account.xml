@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    >
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Thẻ Tín dụng/Ghi nợ"
+                android:text="Credit/Debit Card"
                 android:textSize="18sp"
                 android:padding="8dp"
                 android:textStyle="bold"/>
@@ -52,7 +52,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+ Thêm thẻ mới"
+                    android:text="+ Add New Card"
                     android:textSize="16sp"
                     android:textColor="@android:color/holo_red_light"
                     android:paddingStart="8dp"/>
@@ -61,7 +61,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tài khoản ngân hàng"
+                android:text="Bank Account"
                 android:textSize="18sp"
                 android:padding="8dp"
                 android:textStyle="bold"/>
@@ -82,7 +82,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+ Thêm tài khoản ngân hàng"
+                    android:text="+ Add New Bank Account"
                     android:textSize="16sp"
                     android:textColor="@android:color/holo_red_light"
                     android:paddingStart="8dp"/>

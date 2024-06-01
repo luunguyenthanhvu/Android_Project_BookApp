@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    >
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -40,7 +40,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Hồ sơ của tôi"
+                    android:text="My Profile"
                     android:textSize="16sp"
                     android:layout_weight="1"/>
 
@@ -70,7 +70,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Tài khoản mạng xã hội"
+                    android:text="Social Account"
                     android:textSize="16sp"
                     android:layout_weight="1"/>
 
@@ -98,7 +98,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Đổi mật khẩu"
+                    android:text="Change Password"
                     android:textSize="16sp"
                     android:layout_weight="1"/>
 

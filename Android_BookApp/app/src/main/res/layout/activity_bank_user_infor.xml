@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    >
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -30,7 +30,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Vui lòng đảm bảo tính chính xác của các thông tin đã cung cấp."
+                android:text="Please ensure the accuracy of the provided information."
                 android:textSize="14sp"
                 android:padding="8dp"
                 android:textColor="#000000"/>
@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2. Để đảm bảo an toàn, Shopee sẽ tự động đặt tài khoản ngân hàng mới của bạn làm tài khoản ngân hàng mặc định và xác minh tài khoản đó. Khi bạn gửi yêu cầu thay đổi tài khoản ngân hàng mặc định, bạn được coi là đã đồng ý. Nếu tài khoản mới không thể được xác minh, tài khoản ngân hàng mặc định sẽ tự động được khôi phục thành tài khoản ngân hàng đã xác minh khác."
+                android:text="2. To ensure safety, we will automatically set your new bank account as the default bank account and verify it. When you submit a request to change the default bank account, you are considered to have agreed. If the new account cannot be verified, the default bank account will automatically be restored to another verified bank account."
                 android:textSize="14sp"
                 android:padding="8dp"
                 android:textColor="#000000"/>
@@ -46,7 +46,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Họ và tên"
+                android:hint="Full Name"
                 android:padding="8dp"
                 android:id="@+id/editTextFullName"
                 android:background="@drawable/edit_text_background"/>
@@ -54,7 +54,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Số CCCD"
+                android:hint="ID Number"
                 android:padding="8dp"
                 android:id="@+id/editTextCCCD"
                 android:background="@drawable/edit_text_background"/>
@@ -62,7 +62,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TIẾP THEO"
+                android:text="NEXT"
                 android:background="?attr/colorPrimary"
                 android:textColor="#FFFFFF"
                 android:padding="16dp"
