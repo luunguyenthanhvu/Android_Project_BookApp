@@ -60,15 +60,15 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        ImageView notificationImageView = findViewById(R.id.notification_arrow);
-        notificationImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Chuyển hướng sang Activity NotificationActivity
-                Intent intent = new Intent(ProfileActivity.this, NotificationActivity.class);
-                startActivity(intent);
-            }
-        });
+            ImageView notificationImageView = findViewById(R.id.notification_arrow);
+            notificationImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Chuyển hướng sang Activity NotificationActivity
+                    Intent intent = new Intent(ProfileActivity.this, NotificationActivity.class);
+                    startActivity(intent);
+                }
+            });
 
         ImageView reviewImageView = findViewById(R.id.reviews_arrow);
         reviewImageView.setOnClickListener(new View.OnClickListener() {

@@ -25,7 +25,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/bankAccountList">
 
             <TextView
                 android:layout_width="match_parent"
@@ -37,6 +38,7 @@
 
             <!-- Add New Card Button -->
             <LinearLayout
+                android:id="@+id/addNewCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -46,8 +48,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/creditcard"
-                    />
+                    android:src="@drawable/creditcard"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -67,6 +68,7 @@
 
             <!-- Add New Bank Account Button -->
             <LinearLayout
+                android:id="@+id/addNewBankAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -76,8 +78,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/bankcard"
-                    />
+                    android:src="@drawable/bankcard"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -89,5 +90,4 @@
 
         </LinearLayout>
     </ScrollView>
-
 </RelativeLayout>

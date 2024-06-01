@@ -13,6 +13,21 @@
         android:theme="@style/Theme.Android_BookApp"
         tools:targetApi="31">
         <activity
+            android:name=".profile.activity.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.SocialAccountsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.AddCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.AddBankAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.BankUserInforActivity"
+            android:exported="false" />
+        <activity
             android:name=".profile.activity.EditAddressActivity"
             android:exported="false" />
         <activity

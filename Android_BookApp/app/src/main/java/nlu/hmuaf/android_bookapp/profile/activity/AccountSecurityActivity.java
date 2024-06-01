@@ -30,6 +30,24 @@ public class AccountSecurityActivity extends AppCompatActivity {
             }
         });
 
+        // Adding click listener for "Tài khoản mạng xã hội"
+        findViewById(R.id.social_account_layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccountSecurityActivity.this, SocialAccountsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Adding click listener for "Đổi mật khẩu"
+        findViewById(R.id.change_password_layout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccountSecurityActivity.this, ChangePasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Add other click listeners if needed
     }
 
