@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EEF4FB"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarOrderSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:title="Order Summary"
+        android:layout_marginBottom="40dp"
+        app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
+        />
+    <com.shuhart.stepview.StepView
+        android:id="@+id/stepViewInOrderSummary"
+        android:layout_width="match_parent"
+        app:sv_selectedCircleColor="#6D1683"
+        app:sv_nextStepCircleColor="@color/material_dynamic_neutral70"
+        app:sv_selectedTextColor="#B868E9"
+        app:sv_nextTextColor="#B868E9"
+        app:sv_doneTextColor="#B868E9"
+        app:sv_nextStepLineColor="@color/material_dynamic_neutral70"
+        app:sv_stepLineWidth="3dp"
+        android:layout_height="86dp"
+        android:layout_marginBottom="20dp"
+        android:background="#EEF4FB">
+
+
+    </com.shuhart.stepview.StepView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#E8E4E9">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewBook"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginTop="20dp"
+        android:background="#E8E4E9">
+
+        <TextView
+            android:id="@+id/textViewAddress"
+            android:layout_width="177dp"
+            android:layout_height="44dp"
+            android:text="Name, contact no,  door no, street, city, dist, pin code"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.201"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="DeliveryAdress"
+            app:layout_constraintBottom_toTopOf="@+id/textViewAddress"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.297" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.079"
+            app:srcCompat="@drawable/location_dot_solid" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="82dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Payment Mode" />
+
+            <TextView
+                android:id="@+id/textViewPaymentMethod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cart on delivery" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/buttonChangePaymentMethod"
+            android:layout_width="126dp"
+            android:layout_height="match_parent"
+            tools:src="@drawable/chevron_right_solid">
+
+        </ImageButton>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        >
+
+        <LinearLayout
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_priceDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price Details (1 item)" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2500" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="193dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/buttonPlaceOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:text="PLACE ORDER" />
+
+    </RelativeLayout>
+
+</LinearLayout>

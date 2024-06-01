@@ -77,6 +77,16 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ReviewYourOrder"
+            android:exported="false"></activity>
+        <activity android:name=".MyCart"
+            android:exported="false"></activity>
+        <activity android:name=".DeliveryAddress"
+            android:exported="false"></activity>
+        <activity android:name=".Payment"
+            android:exported="false"></activity>
+        <activity android:name=".OrderSummary"
+            android:exported="false"></activity>
     </application>
 
 </manifest>
