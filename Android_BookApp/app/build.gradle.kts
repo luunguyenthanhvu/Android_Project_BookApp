@@ -38,6 +38,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(libs.material)
 
+//    depen của step view
+    implementation("com.github.shuhart:stepview:1.5.1")
 }
