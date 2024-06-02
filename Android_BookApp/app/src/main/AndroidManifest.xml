@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_BookApp"
         tools:targetApi="31">
-
+        <activity
+            android:name=".profile.activity.LogOutActivity"
+            android:exported="false" />
 
         <activity
             android:name=".profile.activity.ChangePasswordActivity"

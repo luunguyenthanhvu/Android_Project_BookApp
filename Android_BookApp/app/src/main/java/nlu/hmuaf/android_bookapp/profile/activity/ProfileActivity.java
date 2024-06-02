@@ -3,6 +3,7 @@ package nlu.hmuaf.android_bookapp.profile.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -117,6 +118,16 @@ public class ProfileActivity extends AppCompatActivity {
                 // Chuyển hướng sang Activity NotificationActivity
                 Intent intent = new Intent(ProfileActivity.this, HelpActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        Button logoutButton = findViewById(R.id.logout_button);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, LogOutActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
