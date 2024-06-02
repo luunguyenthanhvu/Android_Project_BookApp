@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.preference.PreferenceManager;
 
+import nlu.hmuaf.android_bookapp.CartUser.Activity.MyCart;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.profile.DarkModeUtil;
 
@@ -86,7 +87,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Chuyển hướng sang Activity NotificationActivity
-                Intent intent = new Intent(ProfileActivity.this, CartActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, MyCart.class);
                 startActivity(intent);
             }
         });
