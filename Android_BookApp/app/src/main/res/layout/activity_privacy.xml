@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
+
+    <!-- ScrollView for Terms and Privacy Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/terms_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chính Sách và Điều Khoản Sử Dụng"
+                android:textSize="24sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"/>
+
+            <TextView
+                android:id="@+id/terms_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="
+1. Giới thiệu
+
+\n Chào mừng bạn đến với ứng dụng bán sách của chúng tôi. Khi sử dụng ứng dụng của chúng tôi, bạn đồng ý tuân theo các chính sách và điều khoản đã nêu dưới đây.
+\n2. Quyền riêng tư
+
+\nChúng tôi cam kết bảo vệ quyền riêng tư của bạn. Thông tin cá nhân thu thập sẽ chỉ được sử dụng để cải thiện chất lượng dịch vụ và cung cấp sản phẩm phù hợp với nhu cầu của bạn.
+\n3. Sử dụng dịch vụ
+
+\nNgười dùng cam kết sử dụng ứng dụng để mua sách theo quy định của pháp luật, không vi phạm bản quyền hoặc sử dụng dịch vụ cho mục đích trái phép.
+\n4. Điều khoản mua bán
+
+\nKhi bạn đặt mua sách, bạn đồng ý rằng bạn có trách nhiệm thanh toán đầy đủ cho các mặt hàng mà bạn đã đặt. Chúng tôi cung cấp các tùy chọn thanh toán an toàn và đa dạng.
+\n5. Thay đổi chính sách
+
+\nChúng tôi có quyền cập nhật hoặc thay đổi các chính sách và điều khoản tại bất kỳ thời điểm nào mà không cần thông báo trước. Việc tiếp tục sử dụng ứng dụng sau khi các thay đổi này có hiệu lực có nghĩa là bạn đồng ý tuân theo chính sách và điều khoản mới.
+\n6. Liên hệ
+
+\nNếu bạn có bất kỳ câu hỏi nào về các chính sách và điều khoản này, xin vui lòng liên hệ với chúng tôi qua [Email hỗ trợ]."
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"/>
+
+            <!-- Các phần khác của chính sách và điều khoản -->
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

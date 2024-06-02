@@ -13,6 +13,62 @@
         android:theme="@style/Theme.Android_BookApp"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity"
+            android:exported="true"/>
+
+        <activity
+            android:name=".profile.activity.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.SocialAccountsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.AddCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.AddBankAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.BankUserInforActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.EditAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.ProfileEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.AccountSecurityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.BankAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.AddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.HelpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.AboutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.PrivacyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.ReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".profile.activity.ProfileActivity"
             android:name=".CartUser.Activity.MainActivity"
             android:exported="true">
             <intent-filter>
