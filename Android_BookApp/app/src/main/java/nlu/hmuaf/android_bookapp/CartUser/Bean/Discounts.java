@@ -1,31 +1,32 @@
-package nlu.hmuaf.android_bookapp;
+package nlu.hmuaf.android_bookapp.CartUser.Bean;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Discounts {
-    private int discountId;
+public class Discounts implements Serializable {
+    private long discountId;
     private double percent;
     private Date expireDate;
     private String description;
-    private int condition;
+    private int conditionDescription;
     private String status;
 
-    public Discounts(int discountId, double percent, Date expireDate, String description, int condition, String status) {
+    public Discounts(long discountId, double percent, Date expireDate, String description, int condition, String status) {
         this.discountId = discountId;
         this.percent = percent;
         this.expireDate = expireDate;
         this.description = description;
-        this.condition = condition;
+        this.conditionDescription = condition;
         this.status = status;
     }
     public Discounts(){
 
     }
-    public int getDiscountId() {
+    public long getDiscountId() {
         return discountId;
     }
 
-    public void setDiscountId(int discountId) {
+    public void setDiscountId(long discountId) {
         this.discountId = discountId;
     }
 
@@ -54,11 +55,11 @@ public class Discounts {
     }
 
     public int getCondition() {
-        return condition;
+        return conditionDescription;
     }
 
     public void setCondition(int condition) {
-        this.condition = condition;
+        this.conditionDescription = condition;
     }
 
     public String getStatus() {

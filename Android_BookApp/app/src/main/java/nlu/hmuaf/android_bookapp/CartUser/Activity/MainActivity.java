@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp;
+package nlu.hmuaf.android_bookapp.CartUser.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import nlu.hmuaf.android_bookapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,5 +26,13 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        Button btn = findViewById(R.id.button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MyCart.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EEF4FB"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -19,75 +20,25 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="138dp"
-        android:layout_marginTop="20dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/button_remove"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Remove" />
-
-    <Button
-        android:id="@+id/button_coupon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Apply coupon" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="130dp"/>
+        android:orientation="horizontal"></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
+        android:layout_height="482dp"
+        android:layout_marginTop="20dp">
 
-        <TextView
-            android:id="@+id/textViewAmount"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listViewBookInCart"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Price Details (1 item)" />
-
-        <TextView
-            android:id="@+id/textViewDelivery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Free delivery" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textViewOrderTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text=" Order total" />
-
-            <TextView
-                android:id="@+id/textViewGiaTien"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Giá tiền" />
-        </LinearLayout>
-
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="405dp"
+        android:layout_height="205dp"
         android:layout_weight="1">
 
         <Button

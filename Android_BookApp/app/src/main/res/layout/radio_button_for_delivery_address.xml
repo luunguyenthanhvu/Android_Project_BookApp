@@ -33,7 +33,7 @@
             android:layout_width="134dp"
             android:layout_height="wrap_content"
             android:layout_column="3"
-            android:clickable="true"
+            android:clickable="false"
 
             android:text="" />
     </TableRow>

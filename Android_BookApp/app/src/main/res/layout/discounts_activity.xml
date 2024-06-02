@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#EEF4FB"
     android:orientation="vertical">
 
-
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarDeliveryAddress"
+        android:id="@+id/toolbarDiscountActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:layout_marginBottom="40dp"
         android:theme="?attr/actionBarTheme"
-        app:title="Delivery Address"
         app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
-
-        />
+        app:title="Discounts" />
 
     <com.shuhart.stepview.StepView
-        android:id="@+id/stepViewInDeliverAddress"
+        android:id="@+id/stepViewInDiscountActivity"
         android:layout_width="match_parent"
-        android:layout_height="153dp"
-        android:layout_marginBottom="40dp"
-        android:layout_weight="0"
+        android:layout_height="131dp"
+        android:layout_weight="1"
         android:background="#EEF4FB"
         app:sv_doneTextColor="#B868E9"
         app:sv_nextStepCircleColor="@color/material_dynamic_neutral70"
@@ -36,20 +33,10 @@
         app:sv_stepLineWidth="3dp">
 
     </com.shuhart.stepview.StepView>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonAddNewAddress"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/draw_button_for_my_cart"
-        android:text="Add New Address"
-        android:textColor="#242629"
-        >
 
-    </Button>
 
     <FrameLayout
-        android:id="@+id/contentListAddress"
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="700dp"
         android:layout_weight="5">
@@ -62,12 +49,12 @@
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/buttonDeliverToThisAddress"
+            android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="44dp"
-            android:text="Deliver to this address" />
+            android:text="Continue" />
 
     </RelativeLayout>
 

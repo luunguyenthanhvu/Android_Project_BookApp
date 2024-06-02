@@ -26,6 +26,7 @@
         app:sv_selectedTextColor="#B868E9"
         app:sv_nextTextColor="#B868E9"
         app:sv_doneTextColor="#B868E9"
+        app:sv_animationType="All"
         app:sv_nextStepLineColor="@color/material_dynamic_neutral70"
         app:sv_stepLineWidth="3dp"
         android:layout_height="86dp"
@@ -44,7 +45,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleViewBook"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="200dp" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,6 +58,7 @@
             android:id="@+id/textViewAddress"
             android:layout_width="177dp"
             android:layout_height="44dp"
+            android:textColor="@color/black"
             android:text="Name, contact no,  door no, street, city, dist, pin code"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,23 +105,17 @@
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Payment Mode" />
+                android:textColor="@color/black"
+                android:text="Payment Method" />
 
             <TextView
                 android:id="@+id/textViewPaymentMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="Cart on delivery" />
 
         </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/buttonChangePaymentMethod"
-            android:layout_width="126dp"
-            android:layout_height="match_parent"
-            tools:src="@drawable/chevron_right_solid">
-
-        </ImageButton>
 
     </LinearLayout>
     <LinearLayout
@@ -138,13 +134,9 @@
                 android:id="@+id/tv_priceDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="Price Details (1 item)" />
 
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
         </LinearLayout>
 
         <TextView
@@ -152,6 +144,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/black"
             android:text="2500" />
     </LinearLayout>
 
