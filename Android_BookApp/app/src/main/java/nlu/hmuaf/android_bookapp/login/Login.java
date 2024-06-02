@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp;
+package nlu.hmuaf.android_bookapp.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import nlu.hmuaf.android_bookapp.R;
 
 public class Login extends AppCompatActivity {
     private EditText loginMail, loginPassword;
@@ -29,13 +31,12 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 String email = loginMail.getText().toString().trim();
                 String password = loginPassword.getText().toString().trim();
-                if (email.equals("Admin@123") && password.equals("123")) {
-                    Toast.makeText(Login.this, "Login Ok", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Login.this, MainActivity.class);
+                if (email.equals("Admin") && password.equals("123")) {
+                    Intent intent = new Intent(Login.this, Activate.class);
                     startActivity(intent);
-                    finish(); // Tùy chọn: đóng Login activity để không quay lại khi nhấn back
+                    finish(); // đóng activity
                 } else {
-                    Toast.makeText(Login.this, "Invalid", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Tài khoản hoặc mật khẩu sai!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -49,8 +50,17 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        // Nhận dữ liệu từ Intent từ trang Đăng ký
+        Intent intent = getIntent();
+        String message = intent.getStringExtra("signup_success");
 
+        // Nếu có thông báo đăng ký thành công, hiển thị Toast
+        if (message != null && !message.isEmpty()) {
+            Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
+        }
     }
+
+
 
 
 
