@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp;
+package nlu.hmuaf.android_bookapp.CartUser.Activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,12 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shuhart.stepview.StepView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import nlu.hmuaf.android_bookapp.CartUser.Adapter.RecycleViewBookChosenAdapter;
+import nlu.hmuaf.android_bookapp.CartUser.Bean.Address;
+import nlu.hmuaf.android_bookapp.CartUser.Bean.Books;
+import nlu.hmuaf.android_bookapp.R;
 
 public class OrderSummary extends AppCompatActivity {
     private Toolbar toolbar;
@@ -29,6 +36,7 @@ public class OrderSummary extends AppCompatActivity {
      private TextView priceDetail;
      private TextView price;
      private Button placeOrder;
+    private List<Books> listBook = new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -38,20 +46,36 @@ public class OrderSummary extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         stepView = findViewById(R.id.stepViewInOrderSummary);
-        listStepView.add("Cart");
+        listStepView.add("Review your order");
         listStepView.add("Address");
         listStepView.add("Payment");
         listStepView.add("Summary");
+
         stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
-        stepView.go(0, true);
+        stepView.go(3, true);
+        stepView.done( true);
 
         recyclerView = findViewById(R.id.recycleViewBook);
         address = findViewById(R.id.textViewAddress);
         paymentMethod = findViewById(R.id.textViewPaymentMethod);
-        changePaymentMethod = findViewById(R.id.buttonChangePaymentMethod);
         priceDetail = findViewById(R.id.tv_priceDetails);
         price = findViewById(R.id.tv_price);
         placeOrder = findViewById(R.id.buttonPlaceOrder);
+
+        listBook =(ArrayList<Books>) getIntent().getSerializableExtra("listBook");
+        HashMap<Integer,Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("quantityMap");
+        RecycleViewBookChosenAdapter adapter2 = new RecycleViewBookChosenAdapter(this, listBook,quantityMap);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager2);
+        recyclerView.setAdapter(adapter2);
+
+        Address address1 = (Address) getIntent().getSerializableExtra("address");
+        address.setText(address1.getStreet()+", "+address1.getWard()+", "+address1.getDistrict()+", "+address1.getCity());
+        paymentMethod.setText(getIntent().getStringExtra("paymentMethod"));
+        priceDetail.setText("Price Details "+adapter2.countQuantity()+" items");
+        price.setText("Total: "+adapter2.getTotalPrice()+" VNĐ");
+
+
 
     }
 
