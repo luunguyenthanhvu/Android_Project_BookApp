@@ -18,10 +18,11 @@
          app:title="Payment"
         app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
         />
+
     <com.shuhart.stepview.StepView
         android:id="@+id/stepViewInPayment"
         android:layout_width="match_parent"
-        android:layout_height="153dp"
+        android:layout_height="134dp"
         android:layout_marginBottom="40dp"
         android:layout_weight="0"
         android:background="#EEF4FB"
@@ -47,6 +48,7 @@
     </TextView>
 
     <RadioGroup
+        android:id="@+id/radioGroupPaymentMethods"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -54,34 +56,39 @@
             android:id="@+id/radioButton_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:textColor="@color/black"
+            android:text="Thanh toán khi nhận hàng" />
 
         <RadioButton
             android:id="@+id/radioButton_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:textColor="@color/black"
+            android:text="Thẻ ngân hàng" />
 
         <RadioButton
             android:id="@+id/radioButton_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:textColor="@color/black"
+            android:text="MoMo" />
 
         <RadioButton
             android:id="@+id/radioButton_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:textColor="@color/black"
+            android:text="Thẻ tín dụng" />
 
     </RadioGroup>
 
-    <TextView
-        android:id="@+id/totalCost"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </TextView>
+    </FrameLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="193dp"

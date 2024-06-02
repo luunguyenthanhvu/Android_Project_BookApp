@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Android_BookApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".CartUser.Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,15 +21,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ReviewYourOrder"
+        <activity android:name=".CartUser.Activity.ReviewYourOrder"
             android:exported="false"></activity>
-        <activity android:name=".MyCart"
+        <activity android:name=".CartUser.Activity.MyCart"
             android:exported="false"></activity>
-        <activity android:name=".DeliveryAddress"
+        <activity android:name=".CartUser.Activity.DeliveryAddress"
             android:exported="false"></activity>
-        <activity android:name=".Payment"
+        <activity android:name=".CartUser.Activity.Payment"
             android:exported="false"></activity>
-        <activity android:name=".OrderSummary"
+        <activity android:name=".CartUser.Activity.OrderSummary"
+            android:exported="false"></activity>
+        <activity android:name=".CartUser.Activity.DiscountsActivity"
             android:exported="false"></activity>
     </application>
 
