@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F9EBFF">
 
     <!-- Phần trên của giao diện -->
 
@@ -21,71 +22,48 @@
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-        <!-- TextView cho phần Mode -->
-
-        <!-- RelativeLayout chứa hình ảnh hồ sơ và địa chỉ email -->
+        <!-- Phần đăng nhập/đăng ký -->
         <RelativeLayout
+            android:id="@+id/auth_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_margin="16dp"
             android:background="#F9EBFF"
             android:padding="16dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/profile_image"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/circle_background"
-                android:src="@drawable/avatar" />
+                android:src="@drawable/profile_user" />
 
-            <!-- Tên người dùng -->
-            <TextView
-                android:id="@+id/user_name"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_toEndOf="@id/profile_image"
-                android:text="Username"
-                android:textSize="16sp" />
-
-            <!-- Email -->
-            <TextView
-                android:id="@+id/user_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/user_name"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_toEndOf="@id/profile_image"
-                android:text="e-mail@gmail.com"
-                android:textSize="14sp" />
-
-            <ImageView
-                android:id="@+id/editImageView"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:orientation="horizontal"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/pencil" />
+                android:layout_centerVertical="true">
 
+                <Button
+                    android:id="@+id/login_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/rounded_corners"
+                    android:text="Đăng nhập"
+                    android:textColor="#FFFFFF" />
+
+                <Button
+                    android:id="@+id/register_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corners"
+                    android:text="Đăng ký"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
         </RelativeLayout>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Mode"
-            android:layout_marginTop="15dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:textStyle="bold" />
 
         <!-- Nội dung cuộn được -->
         <ScrollView
@@ -326,16 +304,4 @@
         </ScrollView>
     </LinearLayout>
 
-    <!-- Nút Logout -->
-    <Button
-        android:id="@+id/logout_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/round_corner_logout"
-        android:text="LOGOUT"
-        android:textColor="#FFFFFF"
-        android:layout_alignParentBottom="true" />
 </RelativeLayout>
