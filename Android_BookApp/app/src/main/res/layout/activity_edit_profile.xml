@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- Account & Security -->
+            <LinearLayout
+                android:id="@+id/account_security_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/rounded_corners"
+                android:layout_marginBottom="15dp"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/account_security"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Account And Security"
+                    android:textSize="18sp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/account_arrrow"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrowright" />
+            </LinearLayout>
+
+            <!-- Address -->
+            <LinearLayout
+                android:id="@+id/address_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/rounded_corners"
+                android:layout_marginBottom="15dp"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:textSize="18sp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/address_arrrow"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrowright" />
+            </LinearLayout>
+
+            <!-- Bank Account -->
+            <LinearLayout
+                android:id="@+id/bank_account_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/rounded_corners"
+                android:layout_marginBottom="15dp"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/bank_account"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Bank Account / Card"
+                    android:textSize="18sp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/bank_arrrow"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrowright" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

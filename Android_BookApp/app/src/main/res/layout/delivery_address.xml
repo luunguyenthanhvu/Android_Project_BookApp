@@ -48,31 +48,13 @@
 
     </Button>
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/contentListAddress"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="700dp"
+        android:layout_weight="5">
 
-        <include layout="@layout/radio_button_for_delivery_address" />
-
-        <TextView
-            android:id="@+id/tv_addressUser"
-            android:layout_width="115dp"
-            android:layout_height="wrap_content"
-            android:text="Name: contact no
-door no, strust city
-dist, pincode" />
-
-        <Button
-            android:id="@+id/btn_editAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/draw_button_for_my_cart"
-            android:text="Edit"
-            android:textColor="#242629" />
-
-
-    </LinearLayout>
+    </FrameLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

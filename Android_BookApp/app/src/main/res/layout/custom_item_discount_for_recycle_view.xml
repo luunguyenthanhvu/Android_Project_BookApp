@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/background_discount">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="3"
+        app:srcCompat="@drawable/discount_icon" />
+
+    <LinearLayout
+        android:layout_width="213dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewDetailCoupon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#2F2E2E"
+            android:text="Giảm 20% cho đơn hàng từ 150k trở lên" />
+
+        <TextView
+            android:id="@+id/textViewExpiredDateCoupon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HSD:11/05/2024"
+            android:textColor="#E53935" />
+
+        <TextView
+            android:id="@+id/textViewCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#2F2E2E"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonUse"
+        android:layout_width="118dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="5"
+        android:background="@drawable/custom_button_use_discount"
+        android:focusable="false"
+        android:text="Sử dụng"
+        android:textColor="#000000"
+        android:textSize="12dp"
+        app:backgroundTint="@null"
+        app:cornerRadius="30dp"
+
+        />
+</LinearLayout>
