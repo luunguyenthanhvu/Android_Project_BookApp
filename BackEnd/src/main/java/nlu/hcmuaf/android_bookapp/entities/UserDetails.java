@@ -11,6 +11,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -58,4 +59,13 @@ public class UserDetails implements Serializable {
 
   @OneToMany(mappedBy = "userDetails")
   private Set<UserAddresses> userAddresses;
+
+  @Column(name = "otp")
+  private String otp;
+
+  @Column(name = "verified")
+  private boolean verified;
+
+  @Column(name = "otpExpiryTime")
+  private LocalDateTime otpExpiryTime;
 }
