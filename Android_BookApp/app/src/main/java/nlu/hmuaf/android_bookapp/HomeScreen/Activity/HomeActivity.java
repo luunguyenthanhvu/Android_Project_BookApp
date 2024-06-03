@@ -1,29 +1,25 @@
-package nlu.hmuaf.android_bookapp;
+package nlu.hmuaf.android_bookapp.HomeScreen.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-
+import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.ImageAdapter;
+import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.PopularAdapter;
+import nlu.hmuaf.android_bookapp.R;
+
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-//        Button btn = findViewById(R.id.button2);
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.class.);
-//            }
-//        });
+        setContentView(R.layout.home_activity);
 
         // RecyclerView cho recycler_item
         RecyclerView recyclerView = findViewById(R.id.imageRecyclerView);
@@ -62,6 +58,36 @@ public class MainActivity extends AppCompatActivity {
         // Tạo một Adapter và thiết lập cho RecyclerView
         PopularAdapter popularAdapter = new PopularAdapter(this, popularImageIds, popularTexts);
         recyclerViewPopular.setAdapter(popularAdapter);
-    }
 
+        // Tìm và thêm sự kiện onClick cho chuyển đến SearchActivity
+        LinearLayout searchLayout = findViewById(R.id.searchLayout);
+        searchLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Tìm và thêm sự kiện onClick cho chuyển đến LibraryActivity
+        LinearLayout libraryLayout = findViewById(R.id.libraryLayout);
+        libraryLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, LibraryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+//        // Tìm và thêm sự kiện onClick cho chuyển đến ProfileActivity
+//        LinearLayout profileLayout = findViewById(R.id.profileLayout);
+//        profileLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+   }
 }
+

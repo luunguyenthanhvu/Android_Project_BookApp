@@ -13,13 +13,38 @@
         android:theme="@style/Theme.Android_BookApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeScreen.Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity android:name=".HomeScreen.Activity.HomeActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".HomeScreen.Activity.SearchActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".HomeScreen.Activity.FantasyActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".HomeScreen.Activity.LibraryActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".HomeScreen.Activity.BookActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".HomeScreen.Activity.NumberActivity"
+            android:exported="false">
+
         </activity>
     </application>
 
