@@ -18,7 +18,8 @@ public class EmailServiceImpl implements IEmailService {
     message.setFrom("vuluudragonslayer@gmail.com");
     message.setTo(email);
     message.setSubject("Xác thực tài khoản của bạn");
-    message.setText("Mã xác thực của bạn là: " + verificationCode);
+    message.setText("Mã xác thực của bạn là: " + verificationCode +
+        "\n" + "Bạn có thời hạn là 5 phút.");
     try {
       mailSender.send(message);
     } catch (Exception e) {
@@ -33,8 +34,9 @@ public class EmailServiceImpl implements IEmailService {
     message.setTo(email);
     message.setSubject("Đăng ký thành công");
     message.setText(
-        "Cảm ơn bạn đã đăng ký tài khoản của ứng dụng \"NLU light novels & manga\" chúng tôi sẽ mang đến cho bạn trải nghiệm mua sắm tuyệt vời nhất trong lúc sử dụng ứng dụng, "
-            + "một lần nữa cảm ơn bạn đã tin tưởng và sử dụng ứng dụng của chúng tôi để đặt light novel, manga chất lượng nhất Việt Nam.");
+        "Cảm ơn bạn đã đăng ký tài khoản của ứng dụng \"NLU light novels & manga\" chúng tôi sẽ mang đến cho bạn trải nghiệm mua sắm tuyệt vời nhất trong lúc sử dụng ứng dụng."
+            + "\n"
+            + "Một lần nữa cảm ơn bạn đã tin tưởng và sử dụng ứng dụng của chúng tôi để đặt light novel, manga chất lượng nhất Việt Nam. \uD83D\uDC27");
     try {
       mailSender.send(message);
     } catch (Exception e) {

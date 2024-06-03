@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyUtils {
 
-  public String generateVerificationCode() {
+  public String generateOtp() {
     Random random = new Random();
     return String.format("%06d", random.nextInt(999999));
   }

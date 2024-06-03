@@ -1,6 +1,6 @@
 package nlu.hcmuaf.android_bookapp.service.templates;
 
-public interface BookService {
+public interface IBookService {
 
   void loadDefaultData();
 }

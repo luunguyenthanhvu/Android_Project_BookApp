@@ -8,7 +8,7 @@ import java.util.List;
 import nlu.hcmuaf.android_bookapp.dto.json.BooksJson;
 import nlu.hcmuaf.android_bookapp.entities.Books;
 import nlu.hcmuaf.android_bookapp.repositories.BookRepository;
-import nlu.hcmuaf.android_bookapp.service.templates.BookService;
+import nlu.hcmuaf.android_bookapp.service.templates.IBookService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BookServiceImpl implements BookService {
+public class BookServiceImpl implements IBookService {
 
   @Autowired
   private ObjectMapper objectMapper;

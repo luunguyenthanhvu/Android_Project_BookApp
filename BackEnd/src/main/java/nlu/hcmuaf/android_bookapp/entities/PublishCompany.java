@@ -31,4 +31,8 @@ public class PublishCompany implements Serializable {
 
   @OneToMany(mappedBy = "publishCompany", cascade = CascadeType.ALL)
   private Set<BookDetails> bookDetails;
+
+  public PublishCompany(String companyName) {
+    this.companyName = companyName;
+  }
 }

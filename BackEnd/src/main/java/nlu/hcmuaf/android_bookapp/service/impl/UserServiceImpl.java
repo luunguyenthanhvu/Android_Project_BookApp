@@ -1,11 +1,13 @@
 package nlu.hcmuaf.android_bookapp.service.impl;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import nlu.hcmuaf.android_bookapp.config.CustomUserDetails;
 import nlu.hcmuaf.android_bookapp.config.JwtService;
 import nlu.hcmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.RegisterRequestDTO;
+import nlu.hcmuaf.android_bookapp.dto.request.VerifyRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hcmuaf.android_bookapp.entities.Roles;
@@ -16,7 +18,7 @@ import nlu.hcmuaf.android_bookapp.repositories.RoleRepository;
 import nlu.hcmuaf.android_bookapp.repositories.UserDetailRepository;
 import nlu.hcmuaf.android_bookapp.repositories.UserRepository;
 import nlu.hcmuaf.android_bookapp.service.templates.IEmailService;
-import nlu.hcmuaf.android_bookapp.service.templates.UserService;
+import nlu.hcmuaf.android_bookapp.service.templates.IUserService;
 import nlu.hcmuaf.android_bookapp.utils.MyUtils;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -29,7 +31,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
 
   @Autowired
   private UserRepository userRepository;
@@ -59,7 +61,7 @@ public class UserServiceImpl implements UserService {
       if (user.isPresent() && passwordEncoder.matches(requestDTO.getPassword(),
           user.get().getPassword())) {
 
-        if (user.get().isVerified()) {
+        if (user.get().getUserDetails().isVerified()) {
           authenticationManager.authenticate(
               new UsernamePasswordAuthenticationToken(user.get().getUsername(),
                   requestDTO.getPassword())
@@ -98,8 +100,14 @@ public class UserServiceImpl implements UserService {
     try {
       Optional<UserDetails> userDetail = userDetailRepository.findUserDetailsByEmail(
           requestDTO.getEmail());
+      Optional<Users> checkUser = userRepository.findUsersByUsername(requestDTO.getUsername());
 
-      if (!userDetail.isPresent()) {
+      if (checkUser.isPresent()) {
+        return MessageResponseDTO
+            .builder()
+            .message("Username used")
+            .build();
+      } else if (!userDetail.isPresent()) {
         requestDTO.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
         Users users = modelMapper.map(requestDTO, Users.class);
 
@@ -109,17 +117,21 @@ public class UserServiceImpl implements UserService {
             users.setRoles(role);
           }
         });
-        // set User verification code
-        users.setVerified(false);
-        users.setVerificationCode(myUtils.generateVerificationCode());
 
         UserDetails newUserDetail = new UserDetails();
         newUserDetail.setUser(users);
         newUserDetail.setEmail(requestDTO.getEmail());
+        // set User verification code
+        newUserDetail.setVerified(false);
+        String otp = myUtils.generateOtp();
+        newUserDetail.setOtp(otp);
+        newUserDetail.setOtpExpiryTime(LocalDateTime.now().plusMinutes(5));
 
         users.setCreatedDate(LocalDate.now());
         users.setUserDetails(newUserDetail);
 
+        // send email to User
+        emailService.sendVerificationCode(requestDTO.getEmail(), otp);
         userRepository.save(users);
         return MessageResponseDTO
             .builder()
@@ -140,31 +152,44 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public MessageResponseDTO verifyAccount(String email, String verifyCode) {
+  public MessageResponseDTO verifyAccount(@Validated VerifyRequestDTO requestDTO) {
     try {
-      Optional<Users> users = userRepository.findAllInfoByEmail(email);
+      Optional<Users> users = userRepository.findAllInfoByEmail(requestDTO.getEmail());
       if (users.isPresent()) {
 
-        if (users.get().isVerified()) {
+        // 1. if user verify again
+        if (users.get().getUserDetails().isVerified()) {
           return MessageResponseDTO
               .builder()
               .message("User already verified")
               .build();
         }
 
-        if (users.get().getVerificationCode() != verifyCode) {
+        // 2. if otp is expiry
+        if (users.get().getUserDetails().getOtpExpiryTime().isBefore(LocalDateTime.now())) {
+          emailService.sendVerificationCode(requestDTO.getEmail(), myUtils.generateOtp());
           return MessageResponseDTO
               .builder()
-              .message("Please enter right verify code")
+              .message("Your otp is expired! Please validate again")
               .build();
         }
 
-        userRepository.updateUserVerified(users.get().getUserId());
-        emailService.sendThankYou(users.get().getUserDetails().getEmail());
-        return MessageResponseDTO
-            .builder()
-            .message("Verified success")
-            .build();
+        // 3. if user enter wrong otp
+        if (!users.get().getUserDetails().getOtp().equals(requestDTO.getOtp())) {
+          return MessageResponseDTO
+              .builder()
+              .message("Please enter right OTP")
+              .build();
+        }
+
+        int rowsUpdated = userDetailRepository.updateUserVerified(requestDTO.getEmail());
+        if (rowsUpdated != 0) {
+          emailService.sendThankYou(users.get().getUserDetails().getEmail());
+          return MessageResponseDTO
+              .builder()
+              .message("Verified success")
+              .build();
+        }
       }
     } catch (Exception e) {
       logger.error(e.getMessage());
