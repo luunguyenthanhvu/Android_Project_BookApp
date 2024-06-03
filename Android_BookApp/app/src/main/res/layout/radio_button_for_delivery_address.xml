@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp" >
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <ImageView
+
+            android:id="@+id/imageIconLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/location_dot_solid"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="10dp"
+            />
+
+
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="226dp"
+            android:layout_height="30dp"
+            android:text="Delivery Address"
+            android:textColor="#8E24AA"
+            />
+
+        <RadioButton
+            android:id="@+id/buttonChooseAddress"
+            android:layout_width="134dp"
+            android:layout_height="wrap_content"
+            android:layout_column="3"
+            android:clickable="false"
+
+            android:text="" />
+    </TableRow>
+</TableLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"/>
+
+    <!-- Các TextView khác -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/about_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Về Chúng Tôi"
+                android:textSize="24sp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/about_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ứng dụng bán sách XYZ được phát triển với mục tiêu..."
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/about_mission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sứ mệnh của chúng tôi là..."
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/about_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Được thành lập vào năm..., XYZ đã..."
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/about_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Liên hệ với chúng tôi qua email@example.com hoặc (123) 456-7890."
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"/>
+
+            <TextView
+                android:id="@+id/about_team"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đội ngũ của chúng tôi bao gồm..."
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"/>
+
+            <!-- Thêm các phần khác nếu cần -->
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
