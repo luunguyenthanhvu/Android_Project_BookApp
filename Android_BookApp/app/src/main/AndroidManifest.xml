@@ -67,11 +67,11 @@
         <activity
             android:name=".profile.activity.ProfileActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".CartUser.Activity.MainActivity"
             android:exported="true">
@@ -94,6 +94,15 @@
             android:exported="false"></activity>
         <activity android:name=".CartUser.Activity.DiscountsActivity"
             android:exported="false"></activity>
+
+        <activity android:name=".Admin.AddBookActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
