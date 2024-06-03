@@ -83,17 +83,65 @@
         </activity>
 
         <activity android:name=".CartUser.Activity.ReviewYourOrder"
-            android:exported="false"></activity>
+            android:exported="false">
+
+        </activity>
         <activity android:name=".CartUser.Activity.MyCart"
-            android:exported="false"></activity>
+            android:exported="false">
+
+        </activity>
         <activity android:name=".CartUser.Activity.DeliveryAddress"
-            android:exported="false"></activity>
+            android:exported="false">
+
+        </activity>
         <activity android:name=".CartUser.Activity.Payment"
-            android:exported="false"></activity>
+            android:exported="false">
+
+        </activity>
         <activity android:name=".CartUser.Activity.OrderSummary"
-            android:exported="false"></activity>
+            android:exported="false">
+
+        </activity>
         <activity android:name=".CartUser.Activity.DiscountsActivity"
-            android:exported="false"></activity>
+            android:exported="false">
+
+        </activity>
+
+
+
+        <activity android:name=".HomeScreen.Activity.MainActivity"
+            android:exported="true">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+        </activity>
+
+        <activity android:name=".HomeScreen.Activity.HomeActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".HomeScreen.Activity.SearchActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".HomeScreen.Activity.FantasyActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".HomeScreen.Activity.LibraryActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".HomeScreen.Activity.BookActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".HomeScreen.Activity.NumberActivity"
+            android:exported="false">
+
+        </activity>
     </application>
 
 </manifest>

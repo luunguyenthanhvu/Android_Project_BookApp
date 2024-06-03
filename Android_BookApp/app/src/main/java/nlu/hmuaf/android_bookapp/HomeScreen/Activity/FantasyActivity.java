@@ -42,8 +42,11 @@ public class FantasyActivity extends AppCompatActivity {
                 performSearch(editText.getText().toString());
             }
         });
-        // Tìm và thêm sự kiện onClick cho chuyển đến HomeActivity
         LinearLayout homeLayout = findViewById(R.id.homeLayout);
+        LinearLayout searchLayout = findViewById(R.id.searchLayout);
+        LinearLayout libraryLayout = findViewById(R.id.libraryLayout);
+        LinearLayout profileLayout = findViewById(R.id.profileLayout);
+
         homeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +54,7 @@ public class FantasyActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        LinearLayout searchLayout = findViewById(R.id.searchLayout);
+
         searchLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,8 +63,6 @@ public class FantasyActivity extends AppCompatActivity {
             }
         });
 
-        // Tìm và thêm sự kiện onClick cho chuyển đến LibraryActivity
-        LinearLayout libraryLayout = findViewById(R.id.libraryLayout);
         libraryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,12 +71,10 @@ public class FantasyActivity extends AppCompatActivity {
             }
         });
 
-//        // Tìm và thêm sự kiện onClick cho chuyển đến ProfileActivity
-//        LinearLayout profileLayout = findViewById(R.id.profileLayout);
 //        profileLayout.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+//                Intent intent = new Intent(FantasyActivity.this, ProfileActivity.class);
 //                startActivity(intent);
 //            }
 //        });

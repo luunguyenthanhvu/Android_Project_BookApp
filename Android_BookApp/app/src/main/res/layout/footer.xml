@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="16dp"
-android:background="#EEF4FB"
+    android:background="#EEF4FB"
     android:gravity="center_vertical">
 
     <LinearLayout
@@ -23,7 +23,7 @@ android:background="#EEF4FB"
 
             android:layout_width="50dp"  android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:marginStart="4dp"
+
             android:text="Home"
             android:textSize="12sp" />
 
@@ -50,7 +50,7 @@ android:background="#EEF4FB"
         <TextView
             android:layout_width="50dp"  android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:marginStart="4dp"
+
             android:text="Search"
             android:textSize="12sp" />
 
@@ -76,7 +76,7 @@ android:background="#EEF4FB"
         <TextView
             android:layout_width="50dp"  android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:marginStart="4dp"
+
             android:text="Library"
             android:textSize="12sp" />
 
@@ -102,7 +102,7 @@ android:background="#EEF4FB"
         <TextView
             android:layout_width="50dp"  android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:marginStart="4dp"
+
             android:text="Profile"
             android:textSize="12sp" />
 

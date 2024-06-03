@@ -20,7 +20,7 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHold
     private ArrayList<String> mBookNames;
     private ArrayList<Integer> mBookImageIds; // Giả sử mỗi cuốn sách có một hình ảnh liên kết với nó
 
-    public LibraryAdapter(ArrayList<String> bookNames) {
+    public LibraryAdapter(Context context, ArrayList<String> bookNames, ArrayList<Integer> bookImageIds) {
         this.mContext = context;
         this.mBookNames = bookNames;
         this.mBookImageIds = bookImageIds;

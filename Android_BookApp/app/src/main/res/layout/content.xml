@@ -55,12 +55,11 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/imageRecyclerView"
+            android:id="@+id/rcv_Data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/recycler_item" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,7 +92,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/popular_item" />
+             />
 
 
 
