@@ -67,6 +67,7 @@
         <activity
             android:name=".profile.activity.ProfileActivity"
             android:exported="true">
+<<<<<<< HEAD
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -84,6 +85,12 @@
 
         <activity android:name=".CartUser.Activity.ReviewYourOrder"
             android:exported="false">
+=======
+<!--            <intent-filter tools:ignore="ExtraText">-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+>>>>>>> 9b2a495b867f3d70078d18bb23671cf1e8ac3ef7
 
         </activity>
         <activity android:name=".CartUser.Activity.MyCart"
