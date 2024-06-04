@@ -9,6 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
@@ -35,26 +37,17 @@ public class Books implements Serializable {
   @Column(name = "title")
   private String title;
 
-  @Column(name = "description")
+  @Column(name = "description", columnDefinition = "TEXT")
   private String description;
 
   @Column(name = "price")
   private double price;
-
-  @Column(name = "publicationDate")
-  private LocalDate publicationDate;
-
-  @Column(name = "author")
-  private String author;
 
   @Column(name = "thumbnail")
   private String thumbnail;
 
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
   private Set<BookImages> bookImages;
-
-  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-  private Set<BookGenres> bookGenres;
 
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
   private Set<CartUsers> cartUsers;
@@ -66,10 +59,18 @@ public class Books implements Serializable {
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
   private Set<BillDetails> billDetails;
 
-  @ManyToOne
-  @JoinColumn(name = "publishCompanyId")
-  private PublishCompany publishCompany;
-
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
   private Set<ShipmentDetails> shipmentDetails;
+
+  @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
+  @PrimaryKeyJoinColumn
+  private BookDetails bookDetails;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (getClass() != o.getClass()) return false;
+    Books book = (Books) o;
+    return code.equals(book.getCode());
+  }
 }

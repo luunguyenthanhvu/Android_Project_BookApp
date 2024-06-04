@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#F9EBFF" /> <!-- Màu nền của LinearLayout -->
+    <corners android:radius="10dp" /> <!-- Độ cong của các góc, thay đổi giá trị radius theo ý muốn -->
+</shape>

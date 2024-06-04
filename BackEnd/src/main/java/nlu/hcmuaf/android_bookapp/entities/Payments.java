@@ -29,4 +29,7 @@ public class Payments {
   @Enumerated(EnumType.STRING)
   private EPaymentMethod paymentMethod;
 
+  public Payments(EPaymentMethod paymentMethod) {
+    this.paymentMethod = paymentMethod;
+  }
 }

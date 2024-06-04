@@ -41,9 +41,6 @@ public class Users implements Serializable {
   @Column(name = "password")
   private String password;
 
-  @Column(name = "hash")
-  private String hash;
-
   @Column(name = "createdDate")
   private LocalDate createdDate;
 
