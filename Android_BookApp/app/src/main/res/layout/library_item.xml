@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp">
+
+    <FrameLayout
+        android:layout_width="366dp"
+        android:layout_height="150dp"
+
+        android:layout_marginTop="4dp"
+
+        android:background="#EBD5f2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/profile" />
+
+        <!-- ConstraintLayout để đặt TextView và icon -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/iconImageView"
+            android:layout_width="48dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/bell" />
+
+        <TextView
+            android:id="@+id/BookName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="15dp"
+            android:text="Book"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/AuthorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="40dp"
+
+            android:text="Ciin" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="230dp"
+            android:layout_marginTop="90dp"
+            android:text="BUY 500$" />
+
+    </FrameLayout>
+</androidx.cardview.widget.CardView>
