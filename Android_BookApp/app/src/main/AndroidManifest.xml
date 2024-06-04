@@ -75,7 +75,7 @@
             android:name=".login.ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".HomeScreen.Activity.HomeActivity"
+            android:name=".login.Login"
             android:exported="true">
 
             <intent-filter>
