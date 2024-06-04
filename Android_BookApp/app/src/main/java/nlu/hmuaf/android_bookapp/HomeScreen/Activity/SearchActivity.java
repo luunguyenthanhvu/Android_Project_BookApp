@@ -31,7 +31,7 @@ public class SearchActivity extends AppCompatActivity {
         // Danh sách các ID hình ảnh từ thư mục drawable cho author_item
         List<Integer> authorImageIds = new ArrayList<>();
         authorImageIds.add(R.drawable.bell);
-        authorImageIds.add(R.drawable.book);
+        authorImageIds.add(R.drawable.book_login);
         authorImageIds.add(R.drawable.home);
         authorImageIds.add(R.drawable.search);
         // Thêm các ID hình ảnh khác nếu cần
@@ -55,7 +55,7 @@ public class SearchActivity extends AppCompatActivity {
 
         // Danh sách các ID hình ảnh từ thư mục drawable cho bookname_item
         List<Integer> bookImageIds = new ArrayList<>();
-        bookImageIds.add(R.drawable.book);
+        bookImageIds.add(R.drawable.book_login);
         bookImageIds.add(R.drawable.border_background);
         bookImageIds.add(R.drawable.profile);
         bookImageIds.add(R.drawable.library);
@@ -81,7 +81,7 @@ public class SearchActivity extends AppCompatActivity {
         // Danh sách các ID hình ảnh từ thư mục drawable cho other_item
         List<Integer> otherImageIds = new ArrayList<>();
         otherImageIds.add(R.drawable.bell);
-        otherImageIds.add(R.drawable.book);
+        otherImageIds.add(R.drawable.book_login);
         // Thêm các ID hình ảnh khác nếu cần
 
         // Danh sách các văn bản cho other_item
