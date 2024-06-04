@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import nlu.hmuaf.android_bookapp.CartUser.Activity.MainActivity;
+import nlu.hmuaf.android_bookapp.HomeScreen.Activity.HomeActivity;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.profile.activity.AboutActivity;
 
@@ -45,7 +46,7 @@ public class Activate extends AppCompatActivity {
                 String number = activateNumber.getText().toString().trim();
                 // nếu mã xác nhận đúng
                 if (number.equals("")) {
-                    Intent intent = new Intent(Activate.this, AboutActivity.class);
+                    Intent intent = new Intent(Activate.this, HomeActivity.class);
                     startActivity(intent);
                     finish(); // Tùy chọn: đóng activity để không quay lại khi nhấn quay lại
                 } else {

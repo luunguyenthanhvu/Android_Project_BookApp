@@ -41,7 +41,7 @@
         android:hint="Mật khẩu" />
 
     <TextView
-        android:id="@+id/id_dialog"
+        android:id="@+id/login_forgot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

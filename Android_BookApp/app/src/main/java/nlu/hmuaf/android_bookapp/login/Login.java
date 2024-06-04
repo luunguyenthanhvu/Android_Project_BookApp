@@ -15,7 +15,7 @@ import nlu.hmuaf.android_bookapp.R;
 public class Login extends AppCompatActivity {
     private EditText loginMail, loginPassword;
     private Button loginButton;
-    private TextView signupRedirectText;
+    private TextView loginForgot, signupRedirectText;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +31,9 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 String email = loginMail.getText().toString().trim();
                 String password = loginPassword.getText().toString().trim();
+                if(email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(Login.this, "Vui lòng điền vào ô trống!", Toast.LENGTH_SHORT).show();
+                }
                 if (email.equals("Admin") && password.equals("123")) {
                     Intent intent = new Intent(Login.this, Activate.class);
                     startActivity(intent);
@@ -41,6 +44,17 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        // nút Quên mật khẩu?
+        loginForgot = findViewById(R.id.login_forgot);
+        loginForgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
+
+        // nút Đăng ký
         signupRedirectText = findViewById(R.id.signupRedirectText);
         signupRedirectText.setOnClickListener(new View.OnClickListener() {
             @Override

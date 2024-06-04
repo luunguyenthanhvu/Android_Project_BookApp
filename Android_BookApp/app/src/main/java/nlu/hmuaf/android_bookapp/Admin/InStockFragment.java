@@ -20,24 +20,24 @@ public class InStockFragment extends Fragment {
     private BookAdapter bookAdapter;
     private List<Book> bookList;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_in_stock, container, false);
-        recyclerView = view.findViewById(R.id.recyclerViewInStock);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        bookList = new ArrayList<>();
-        bookAdapter = new BookAdapter(bookList);
-        recyclerView.setAdapter(bookAdapter);
-
-        loadBooks();
-
-        return view;
-    }
-
-    private void loadBooks() {
-        // TODO: Tải dữ liệu sách từ cơ sở dữ liệu và cập nhật bookList
-        bookAdapter.notifyDataSetChanged();
-    }
+//    @Nullable
+//    @Override
+//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.fragment_in_stock, container, false);
+//        recyclerView = view.findViewById(R.id.recyclerViewInStock);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//
+//        bookList = new ArrayList<>();
+//        bookAdapter = new BookAdapter(bookList);
+//        recyclerView.setAdapter(bookAdapter);
+//
+//        loadBooks();
+//
+//        return view;
+//    }
+//
+//    private void loadBooks() {
+//        // TODO: Tải dữ liệu sách từ cơ sở dữ liệu và cập nhật bookList
+//        bookAdapter.notifyDataSetChanged();
+//    }
 }
