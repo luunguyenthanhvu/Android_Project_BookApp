@@ -1,5 +1,6 @@
 package nlu.hcmuaf.android_bookapp.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -16,6 +17,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name = "User_Addresses")
 public class UserAddresses implements Serializable {
+
+  private static final long serialVersionUID = 1L;
+
   @Id
   @ManyToOne
   @JoinColumn(name = "userId")
@@ -25,5 +29,8 @@ public class UserAddresses implements Serializable {
   @ManyToOne
   @JoinColumn(name = "addressId")
   private Addresses address;
+
+  @Column(name = "mainAddress")
+  private boolean mainAddress;
 
 }

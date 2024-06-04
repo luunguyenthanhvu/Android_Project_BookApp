@@ -15,4 +15,13 @@ public enum EPaymentMethod {
   public String toString() {
     return this.text;
   }
+
+  public EPaymentMethod valueOfLabel(String label) {
+    for (EPaymentMethod e : values()) {
+      if (e.text.equals(label)) {
+        return e;
+      }
+    }
+    return null;
+  }
 }
