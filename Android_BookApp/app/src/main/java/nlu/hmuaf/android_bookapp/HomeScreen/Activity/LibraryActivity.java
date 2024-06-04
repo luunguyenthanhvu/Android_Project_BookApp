@@ -36,7 +36,7 @@ public class LibraryActivity extends AppCompatActivity {
 
         // Tạo danh sách ID hình ảnh sách (giả sử bạn đã có các ID hình ảnh này)
         bookImageIds = new ArrayList<>();
-        bookImageIds.add(R.drawable.book); // Thay thế bằng các ID hình ảnh thực tế của bạn
+        bookImageIds.add(R.drawable.book_login); // Thay thế bằng các ID hình ảnh thực tế của bạn
         bookImageIds.add(R.drawable.bell);
         // Thêm các ID hình ảnh khác tương ứng với danh sách sách
 
