@@ -8,6 +8,8 @@ import nlu.hcmuaf.android_bookapp.dto.response.TokenResponseDTO;
 
 public interface IUserService {
 
+  void createDefaultAccount();
+
   TokenResponseDTO login(LoginRequestDTO requestDTO);
 
   MessageResponseDTO register(RegisterRequestDTO requestDTO);

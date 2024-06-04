@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class PublishCompanyServiceImpl implements IPublishCompanyService {
 
-  private final String[] defaultCompany = {"NXB Kim Đồng", "NXB Hà Nội"};
+  private final String[] defaultCompany = {"NXB Kim Đồng", "NXB Hà Nội", "NXB Văn Học", "Yen On",
+      "NXB Thế Giới"};
   @Autowired
   private PublishCompanyRepository publishCompanyRepository;
 
@@ -20,5 +21,10 @@ public class PublishCompanyServiceImpl implements IPublishCompanyService {
       Arrays.stream(defaultCompany)
           .forEach(s -> publishCompanyRepository.save(new PublishCompany(s)));
     }
+  }
+
+  @Override
+  public PublishCompany getPublishCompanyByCompanyName(String companyName) {
+    return publishCompanyRepository.getPublishCompanyByCompanyName(companyName).get();
   }
 }

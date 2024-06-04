@@ -37,14 +37,11 @@ public class Books implements Serializable {
   @Column(name = "title")
   private String title;
 
-  @Column(name = "description")
+  @Column(name = "description", columnDefinition = "TEXT")
   private String description;
 
   @Column(name = "price")
   private double price;
-
-  @Column(name = "publicationDate")
-  private LocalDate publicationDate;
 
   @Column(name = "thumbnail")
   private String thumbnail;
@@ -68,4 +65,12 @@ public class Books implements Serializable {
   @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
   @PrimaryKeyJoinColumn
   private BookDetails bookDetails;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (getClass() != o.getClass()) return false;
+    Books book = (Books) o;
+    return code.equals(book.getCode());
+  }
 }

@@ -38,6 +38,7 @@
       <version>1.4.7</version>
     </dependency>
 
+<!--    bind data from json to object-->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
