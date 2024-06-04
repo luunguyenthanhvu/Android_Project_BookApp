@@ -81,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Tên nhà xuất bản" />
+
             <EditText
                 android:id="@+id/etAuthor"
                 android:layout_width="match_parent"
@@ -92,6 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Mã giảm giá" />
+
             <!-- Hình ảnh Sách -->
             <TextView
                 android:layout_width="match_parent"
@@ -111,9 +113,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:src="@drawable/avatar"
                 android:text="Tải ảnh lên" />
-
-
 
             <!-- Các nút chức năng -->
             <Button
