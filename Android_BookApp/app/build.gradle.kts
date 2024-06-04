@@ -36,6 +36,7 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.circleimageview)
     implementation(libs.recyclerview)
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
