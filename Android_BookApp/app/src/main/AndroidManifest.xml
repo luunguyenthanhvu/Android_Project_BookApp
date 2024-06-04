@@ -65,7 +65,16 @@
             android:name=".profile.activity.NotificationActivity"
             android:exported="false" />
         <activity
-            android:name=".profile.activity.ProfileActivity"
+            android:name=".login.SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".login.Activate"
+            android:exported="false" />
+        <activity
+            android:name=".login.DialogPassword"
+            android:exported="false" />
+        <activity
+            android:name=".login.Login"
             android:exported="true">
 
             <intent-filter>

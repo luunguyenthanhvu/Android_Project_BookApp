@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".login.SignUp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/book"/>
+    <!-- Icon -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Đăng Ký"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/signup_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Tên tài khoản" />
+
+    <EditText
+        android:id="@+id/signup_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Email" />
+
+    <EditText
+        android:id="@+id/signup_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Mật khẩu" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="6dp"
+        android:textSize="14dp"
+        android:text="Bằng cách tạo tài khoản, bạn đồng ý với" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:text="Chính sách Bảo mật" />
+
+    <Button
+        android:id="@+id/signup_button"
+        android:layout_width="374dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Đăng Ký"
+        android:backgroundTint="#6D1683"
+        android:textColor="#FFFFFF" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="14dp"
+        android:hint="hoặc" />
+
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/socialicons"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:gravity="center">-->
+
+
+    <!--        <ImageView-->
+    <!--            android:layout_width="48dp"-->
+    <!--            android:layout_height="48dp"-->
+    <!--            android:layout_margin="20dp"-->
+    <!--            android:src="@drawable/google" />-->
+
+    <!--        <ImageView-->
+    <!--            android:layout_width="48dp"-->
+    <!--            android:layout_height="48dp"-->
+    <!--            android:layout_margin="20dp"-->
+    <!--            android:src="@drawable/fb" />-->
+
+    <!--        <ImageView-->
+    <!--            android:layout_width="48dp"-->
+    <!--            android:layout_height="48dp"-->
+    <!--            android:layout_margin="20dp"-->
+    <!--            android:src="@drawable/twitter" />-->
+    <!--    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="6dp"
+            android:text="Bạn đã có tài khoản? "
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/signup_RedirectText"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="6dp"
+            android:text="Đăng nhập"
+            android:textColor="#6D1683"
+            android:textSize="14dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
