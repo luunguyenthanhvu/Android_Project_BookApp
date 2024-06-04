@@ -92,7 +92,7 @@ public class JwtService {
   /**
    * used to generate a JWT token. It takes a username as input, creates a set of claims
    *
-   * @param username
+   * @param userDetails
    * @return token
    */
   public String generateToken(CustomUserDetails userDetails) {
