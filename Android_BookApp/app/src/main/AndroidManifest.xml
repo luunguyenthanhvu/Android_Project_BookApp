@@ -72,7 +72,7 @@
             android:name=".login.Activate"
             android:exported="false" />
         <activity
-            android:name=".login.DialogPassword"
+            android:name=".login.ForgotPassword"
             android:exported="false" />
         <activity
             android:name=".login.Login"

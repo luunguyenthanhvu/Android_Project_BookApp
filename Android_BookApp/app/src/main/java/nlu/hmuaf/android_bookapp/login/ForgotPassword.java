@@ -2,19 +2,16 @@ package nlu.hmuaf.android_bookapp.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import nlu.hmuaf.android_bookapp.CartUser.Activity.MainActivity;
 import nlu.hmuaf.android_bookapp.R;
 
-public class DialogPassword extends AppCompatActivity {
+public class ForgotPassword extends AppCompatActivity {
     private EditText email_edit_text;
     private Button send_button;
     private TextView cancel, reset;
@@ -35,7 +32,7 @@ public class DialogPassword extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DialogPassword.this, Login.class);
+                Intent intent = new Intent(ForgotPassword.this, Login.class);
                 startActivity(intent);
             }
         });
