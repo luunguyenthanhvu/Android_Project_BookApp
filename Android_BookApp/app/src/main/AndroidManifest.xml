@@ -122,10 +122,10 @@
 
         </activity>
 
-<!--        <activity android:name=".HomeScreen.Activity.HomeActivity"-->
-<!--            android:exported="false">-->
+        <!--        <activity android:name=".HomeScreen.Activity.HomeActivity"-->
+        <!--            android:exported="false">-->
 
-<!--        </activity>-->
+        <!--        </activity>-->
         <activity android:name=".HomeScreen.Activity.SearchActivity"
             android:exported="false">
 
