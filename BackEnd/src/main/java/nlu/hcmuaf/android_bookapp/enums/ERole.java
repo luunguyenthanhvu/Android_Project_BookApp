@@ -12,4 +12,13 @@ public enum ERole {
   public String toString() {
     return text;
   }
+
+  public ERole valueOfLabel(String label) {
+    for (ERole e : values()) {
+      if (e.text.equals(label)) {
+        return e;
+      }
+    }
+    return null;
+  }
 }

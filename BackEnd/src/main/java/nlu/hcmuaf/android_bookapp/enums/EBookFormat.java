@@ -1,9 +1,9 @@
 package nlu.hcmuaf.android_bookapp.enums;
 
 public enum EBookFormat {
-  HARDCOVER("HARDCOVER"),
-  PAPERBACK("PAPERBACK"),
-  BOX_SET("BOX_SET");
+  HARDCOVER("Bìa cứng"),
+  PAPERBACK("Bìa mềm"),
+  BOX_SET("Hộp");
   private final String text;
 
   private EBookFormat(String text) {
@@ -13,5 +13,14 @@ public enum EBookFormat {
   @Override
   public String toString() {
     return text;
+  }
+
+  public static EBookFormat valueOfLabel(String label) {
+    for (EBookFormat e : values()) {
+      if (e.text.equals(label)) {
+        return e;
+      }
+    }
+    return null;
   }
 }

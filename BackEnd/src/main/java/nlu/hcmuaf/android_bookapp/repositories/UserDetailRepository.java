@@ -1,6 +1,7 @@
 package nlu.hcmuaf.android_bookapp.repositories;
 
 import jakarta.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import nlu.hcmuaf.android_bookapp.entities.UserDetails;
 import org.springframework.data.jpa.repository.Modifying;
@@ -19,4 +20,10 @@ public interface UserDetailRepository extends CrudRepository<UserDetails, Long> 
   @Transactional
   @Query("UPDATE User_Details  u SET u.verified = true WHERE u.email = :email")
   int updateUserVerified(@Param("email") String email);
+
+  @Modifying
+  @Transactional
+  @Query("UPDATE User_Details u SET u.otp = :otp, u.otpExpiryTime = :otpExpiryTime WHERE u.email = :email")
+  int updateUserOtp(@Param("otp") String otp, @Param("otpExpiryTime") LocalDateTime otpExpiryTime,
+      @Param("email") String email);
 }

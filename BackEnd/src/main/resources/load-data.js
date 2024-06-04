@@ -71,7 +71,7 @@ const loadProducts = async function () {
             price: price,
             thumbnail: thumbnail,
             description: description,
-            BookImages: images,
+            bookImages: images,
             BookDetails: productinfo
           }
         };

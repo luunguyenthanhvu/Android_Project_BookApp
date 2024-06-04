@@ -68,4 +68,16 @@ public class UserDetails implements Serializable {
 
   @Column(name = "otpExpiryTime")
   private LocalDateTime otpExpiryTime;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (getClass() != o.getClass()) {
+      return false;
+    }
+    UserDetails userDetails = (UserDetails) o;
+    return email.equals(userDetails.getEmail());
+  }
 }

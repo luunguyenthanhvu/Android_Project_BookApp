@@ -2,7 +2,9 @@ package nlu.hcmuaf.android_bookapp.service.impl;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import nlu.hcmuaf.android_bookapp.config.CustomUserDetails;
 import nlu.hcmuaf.android_bookapp.config.JwtService;
 import nlu.hcmuaf.android_bookapp.dto.request.LoginRequestDTO;
@@ -10,10 +12,15 @@ import nlu.hcmuaf.android_bookapp.dto.request.RegisterRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.VerifyRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.TokenResponseDTO;
+import nlu.hcmuaf.android_bookapp.entities.Addresses;
+import nlu.hcmuaf.android_bookapp.entities.Cart;
 import nlu.hcmuaf.android_bookapp.entities.Roles;
+import nlu.hcmuaf.android_bookapp.entities.UserAddresses;
 import nlu.hcmuaf.android_bookapp.entities.UserDetails;
 import nlu.hcmuaf.android_bookapp.entities.Users;
+import nlu.hcmuaf.android_bookapp.enums.EGender;
 import nlu.hcmuaf.android_bookapp.enums.ERole;
+import nlu.hcmuaf.android_bookapp.repositories.AddressRepository;
 import nlu.hcmuaf.android_bookapp.repositories.RoleRepository;
 import nlu.hcmuaf.android_bookapp.repositories.UserDetailRepository;
 import nlu.hcmuaf.android_bookapp.repositories.UserRepository;
@@ -51,33 +58,93 @@ public class UserServiceImpl implements IUserService {
   private IEmailService emailService;
   @Autowired
   private MyUtils myUtils;
+  @Autowired
+  private AddressRepository addressRepository;
+
 
   private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
+  @Override
+  public void createDefaultAccount() {
+    try {
+      if (!userRepository.findUsersByUsername("vuluu").isPresent()) {
+        // basic info
+        Users users = new Users();
+        UserDetails userDetails = new UserDetails();
+        userDetails.setUser(users);
+        userDetails.setEmail("giaosukirito@gmail.com");
+        userDetails.setOtp(myUtils.generateOtp());
+        userDetails.setOtpExpiryTime(LocalDateTime.now().plusMinutes(5));
+        userDetails.setImg(
+            "https://res.cloudinary.com/dter3mlpl/image/upload/v1714235572/omj17wkqm1wyzmfdukcj.jpg");
+        userDetails.setVerified(true);
+        userDetails.setDob(LocalDate.of(2003, 11, 8));
+        userDetails.setFirstname("Vũ");
+        userDetails.setLastname("Lưu");
+        userDetails.setGender(EGender.MALE);
+        userDetails.setPhoneNum("0123456789");
+
+        // Address user
+        Addresses addresses = new Addresses();
+        addresses.setCity("Hồ Chí Minh");
+        addresses.setStreet("Khu Phố 6");
+        addresses.setWard("Phường Linh Trung");
+        addresses.setDistrict("Thủ Đức");
+
+        UserAddresses userAddresses = new UserAddresses(userDetails, addresses, true);
+        Set<UserAddresses> userAddressesSet = new HashSet<>();
+        userAddressesSet.add(userAddresses);
+
+        addresses.setUserAddresses(userAddressesSet);
+        userDetails.setUserAddresses(userAddressesSet);
+        users.setCreatedDate(LocalDate.now());
+        users.setRoles(roleRepository.getRolesByRoleName(ERole.ADMIN).get());
+        users.setUserDetails(userDetails);
+        // Create cart
+        Cart cart = new Cart();
+        cart.setUser(users);
+        users.setCart(cart);
+        users.setPassword(passwordEncoder.encode("vuluu123"));
+        users.setUsername("vuluu");
+
+        userRepository.save(users);
+        addressRepository.save(addresses);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 
   @Override
   public TokenResponseDTO login(LoginRequestDTO requestDTO) {
     try {
       Optional<Users> user = userRepository.findAllInfoByEmail(requestDTO.getEmail());
-      if (user.isPresent() && passwordEncoder.matches(requestDTO.getPassword(),
-          user.get().getPassword())) {
+      if (user.isPresent()) {
+        if (passwordEncoder.matches(requestDTO.getPassword(),
+            user.get().getPassword())) {
+          if (user.get().getUserDetails().isVerified()) {
+            authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(user.get().getUsername(),
+                    requestDTO.getPassword())
+            );
 
-        if (user.get().getUserDetails().isVerified()) {
-          authenticationManager.authenticate(
-              new UsernamePasswordAuthenticationToken(user.get().getUsername(),
-                  requestDTO.getPassword())
-          );
-
-          String jwtToken = jwtService.generateToken(new CustomUserDetails(user.get()));
-          return TokenResponseDTO
-              .builder()
-              .token(jwtToken)
-              .role(user.get().getRoles().getRoleName().toString())
-              .message("Login success!")
-              .build();
+            String jwtToken = jwtService.generateToken(new CustomUserDetails(user.get()));
+            return TokenResponseDTO
+                .builder()
+                .token(jwtToken)
+                .role(user.get().getRoles().getRoleName().toString())
+                .message("Login success!")
+                .build();
+          } else {
+            return TokenResponseDTO
+                .builder()
+                .message("Please verified your account!")
+                .build();
+          }
         } else {
           return TokenResponseDTO
               .builder()
-              .message("Please verified your account!")
+              .message("WRONG PASSWORD!")
               .build();
         }
       }
@@ -129,7 +196,9 @@ public class UserServiceImpl implements IUserService {
 
         users.setCreatedDate(LocalDate.now());
         users.setUserDetails(newUserDetail);
-
+        Cart cart = new Cart();
+        cart.setUser(users);
+        users.setCart(cart);
         // send email to User
         emailService.sendVerificationCode(requestDTO.getEmail(), otp);
         userRepository.save(users);
@@ -167,7 +236,10 @@ public class UserServiceImpl implements IUserService {
 
         // 2. if otp is expiry
         if (users.get().getUserDetails().getOtpExpiryTime().isBefore(LocalDateTime.now())) {
-          emailService.sendVerificationCode(requestDTO.getEmail(), myUtils.generateOtp());
+          String otp = myUtils.generateOtp();
+          userDetailRepository.updateUserOtp(otp, LocalDateTime.now().plusMinutes(5),
+              requestDTO.getEmail());
+          emailService.sendVerificationCode(requestDTO.getEmail(), otp);
           return MessageResponseDTO
               .builder()
               .message("Your otp is expired! Please validate again")

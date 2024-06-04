@@ -31,4 +31,8 @@ public class BookImages implements Serializable {
 
   @Column(name = "url")
   private String url;
+
+  public BookImages(String url) {
+    this.url = url;
+  }
 }
