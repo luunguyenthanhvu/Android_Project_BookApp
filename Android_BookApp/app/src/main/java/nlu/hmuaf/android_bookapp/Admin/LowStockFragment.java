@@ -23,13 +23,14 @@ public class LowStockFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_low_stock, container, false);
-        recyclerView = view.findViewById(R.id.recyclerViewLowStock);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        bookList = new ArrayList<>();
-        bookAdapter = new BookAdapter(bookList);
-        recyclerView.setAdapter(bookAdapter);
+        View view =null;
+//        View view = inflater.inflate(R.layout.fragment_low_stock, container, false);
+//        recyclerView = view.findViewById(R.id.recyclerViewLowStock);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//
+//        bookList = new ArrayList<>();
+//        bookAdapter = new BookAdapter(bookList);
+//        recyclerView.setAdapter(bookAdapter);
 
         return view;
     }

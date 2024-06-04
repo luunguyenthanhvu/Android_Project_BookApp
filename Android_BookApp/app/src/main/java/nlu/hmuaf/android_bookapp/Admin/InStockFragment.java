@@ -23,15 +23,16 @@ public class InStockFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_in_stock, container, false);
-        recyclerView = view.findViewById(R.id.recyclerViewInStock);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        bookList = new ArrayList<>();
-        bookAdapter = new BookAdapter(bookList);
-        recyclerView.setAdapter(bookAdapter);
-
-        loadBooks();
+        View view = null;
+//        View view = inflater.inflate(R.layout.fragment_in_stock, container, false);
+//        recyclerView = view.findViewById(R.id.recyclerViewInStock);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//
+//        bookList = new ArrayList<>();
+//        bookAdapter = new BookAdapter(bookList);
+//        recyclerView.setAdapter(bookAdapter);
+//
+//        loadBooks();
 
         return view;
     }
