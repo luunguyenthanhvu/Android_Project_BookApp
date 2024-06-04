@@ -13,7 +13,7 @@
         android:layout_height="85dp"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:src="@drawable/book"/>
+        android:src="@drawable/book_login"/>
     <!-- Icon -->
 
     <TextView
@@ -25,7 +25,6 @@
         android:text="Đăng Nhập"
         android:textSize="24sp"
         android:textStyle="bold" />
-
 
     <EditText
         android:id="@+id/login_email"
@@ -40,7 +39,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="Mật khẩu" />
-
 
     <TextView
         android:id="@+id/id_dialog"
@@ -61,8 +59,6 @@
         android:backgroundTint="#6D1683"
         android:textColor="#FFFFFF" />
 
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,22 +67,18 @@
         android:textSize="14dp"
         android:hint="hoặc" />
 
-
     <LinearLayout
         android:id="@+id/socialicons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center">
-
-
         <ImageView
             android:id="@+id/login_google"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="20dp"
             android:src="@drawable/google" />
-
         <ImageView
             android:id="@+id/login_face"
             android:layout_width="48dp"
@@ -126,6 +118,4 @@
             android:textSize="14dp" />
 
     </LinearLayout>
-
-
 </LinearLayout>

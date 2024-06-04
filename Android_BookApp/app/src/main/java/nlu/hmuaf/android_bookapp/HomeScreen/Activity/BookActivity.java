@@ -94,7 +94,7 @@ public class BookActivity extends AppCompatActivity {
             // Tùy thuộc vào tag, hiển thị ảnh tương ứng trong khung lớn
             switch (tag) {
                 case "book":
-                    bigImageView.setImageResource(R.drawable.book);
+                    bigImageView.setImageResource(R.drawable.book_login);
                     break;
                 case "bell":
                     bigImageView.setImageResource(R.drawable.bell);

@@ -38,31 +38,25 @@ public class SignUp extends AppCompatActivity {
 
                 // Giả sử đây là danh sách các username đã đăng ký, thực tế bạn sẽ kiểm tra từ cơ sở dữ liệu
                 List<String> existingUsernames = Arrays.asList("user1", "user2", "user3");
-
                 if (userName.isEmpty() && email.isEmpty() && pass.isEmpty()) {
-
                     // Kiểm tra username không được trùng
                     if (existingUsernames.contains(userName)) {
                         Toast.makeText(SignUp.this, "Username đã tồn tại", Toast.LENGTH_SHORT).show();
                         return;
                     }
-
                     // Kiểm tra email có định dạng đúng và kết thúc bằng @gmail.com
                     if (!email.matches("^[A-Za-z0-9+_.-]+@gmail\\.com$")) {
                         Toast.makeText(SignUp.this, "Email phải có định dạng @gmail.com", Toast.LENGTH_SHORT).show();
                         return;
                     }
-
                     // Kiểm tra mật khẩu có ít nhất 6 ký tự
                     if (pass.length() < 6) {
                         Toast.makeText(SignUp.this, "Mật khẩu phải có ít nhất 6 ký tự", Toast.LENGTH_SHORT).show();
                         return;
                     }
-
                     Intent intent = new Intent(SignUp.this, Login.class);
                     intent.putExtra("signup_success", "Đăng ký thành công");
                     startActivity(intent);
-
                 } else {
                     Toast.makeText(SignUp.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                 }
@@ -74,7 +68,8 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SignUp.this, Login.class);
-                startActivity(intent);            }
+                startActivity(intent);
+            }
         });
     }
 }

@@ -51,6 +51,4 @@ public class DialogPassword extends AppCompatActivity {
 
     }
 
-
-
 }

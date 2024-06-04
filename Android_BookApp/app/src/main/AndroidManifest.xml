@@ -61,6 +61,7 @@
         <activity
             android:name=".profile.activity.ReviewActivity"
             android:exported="false" />
+
         <activity
             android:name=".profile.activity.NotificationActivity"
             android:exported="false" />

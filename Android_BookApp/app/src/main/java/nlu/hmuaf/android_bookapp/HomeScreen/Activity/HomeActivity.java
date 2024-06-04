@@ -1,9 +1,7 @@
 package nlu.hmuaf.android_bookapp.HomeScreen.Activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.ImageAdapter;
-import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.PopularAdapter;
 
 import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
@@ -35,10 +32,10 @@ public class HomeActivity extends AppCompatActivity {
         private List<BookB> getListBookB() {
          List<BookB>  list = new ArrayList<>();
          list.add(new BookB(R.drawable.bell,"book 1 " , "500$"));
-            list.add(new BookB(R.drawable.book,"book 2 " , "500$"));
-            list.add(new BookB(R.drawable.book,"book 3 " , "500$"));
-            list.add(new BookB(R.drawable.book,"book 4 " , "500$"));
-            list.add(new BookB(R.drawable.book,"book 5 " , "500$"));
+            list.add(new BookB(R.drawable.book_login,"book 2 " , "500$"));
+            list.add(new BookB(R.drawable.book_login,"book 3 " , "500$"));
+            list.add(new BookB(R.drawable.book_login,"book 4 " , "500$"));
+            list.add(new BookB(R.drawable.book_login,"book 5 " , "500$"));
          return list;
         }
 
