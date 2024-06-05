@@ -31,14 +31,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Email" />
+        android:hint="Email"
+        android:singleLine="true"
+        android:imeActionLabel="Next"/>
 
     <EditText
         android:id="@+id/login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Mật khẩu" />
+        android:inputType="textPassword"
+        android:hint="Mật khẩu"
+        android:singleLine="true"
+        android:imeActionLabel="Next"/>
 
     <TextView
         android:id="@+id/login_forgot"

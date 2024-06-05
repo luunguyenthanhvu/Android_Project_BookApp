@@ -10,9 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.JsonObject;
-
-import lombok.experimental.var;
+import nlu.hmuaf.android_bookapp.HomeScreen.Activity.HomeActivity;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
@@ -25,12 +23,8 @@ import retrofit2.Response;
 public class Login extends AppCompatActivity {
     private EditText loginMail, loginPassword;
     private Button loginButton;
-<<<<<<< HEAD
-    private TextView loginForgot, signupRedirectText;
-=======
-    private TextView signupRedirectText;
+    private TextView signupRedirectText, forgotPassword;
     private BookAppApi bookAppApi;
->>>>>>> origin/main
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,35 +40,15 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 String email = loginMail.getText().toString().trim();
                 String password = loginPassword.getText().toString().trim();
-<<<<<<< HEAD
-                if(email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(Login.this, "Vui lòng điền vào ô trống!", Toast.LENGTH_SHORT).show();
-                }
-                if (email.equals("Admin") && password.equals("123")) {
-                    Intent intent = new Intent(Login.this, Activate.class);
-                    startActivity(intent);
-                    finish(); // đóng activity
-=======
-
-                if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(Login.this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
->>>>>>> origin/main
-                } else {
+                if (checkValidate()) {
                     login(email, password, savedInstanceState);
-//                    if (email.equals("Admin") && password.equals("123")) {
-//                        Intent intent = new Intent(Login.this, Activate.class);
-//                        startActivity(intent);
-//                        finish(); // đóng activity
-//                    } else {
-//                        Toast.makeText(Login.this, "Tài khoản hoặc mật khẩu sai!", Toast.LENGTH_SHORT).show();
-//                    }
                 }
             }
         });
 
-        // nút Quên mật khẩu?
-        loginForgot = findViewById(R.id.login_forgot);
-        loginForgot.setOnClickListener(new View.OnClickListener() {
+        // nút Quên mật khẩu
+        forgotPassword = findViewById(R.id.login_forgot);
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Login.this, ForgotPassword.class);
@@ -91,6 +65,7 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         // Nhận dữ liệu từ Intent từ trang Đăng ký
         Intent intent = getIntent();
@@ -118,7 +93,7 @@ public class Login extends AppCompatActivity {
                 System.out.println(responseDTO);
                 if (responseDTO.getMessage().equals("Login success!")) {
                     Toast.makeText(Login.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Login.this, Activate.class);
+                    Intent intent = new Intent(Login.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -132,4 +107,28 @@ public class Login extends AppCompatActivity {
         });
         return null;
     }
+
+    private boolean checkValidate() {
+        boolean validate = true;
+        String email = loginMail.getText().toString().trim();
+        String pass = loginPassword.getText().toString().trim();
+
+        if(email.isEmpty() || pass.isEmpty()) {
+            Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            validate = false;
+        } else if (!email.matches("^[A-Za-z0-9+_.-]+@gmail\\.com$")) {
+            showError(loginMail, "Email không hợp lệ");
+            validate = false;
+        } else if (pass.length()<7) {
+            showError(loginPassword, "Mật khẩu phải dài hơn 7 ký tự");
+            validate = false;
+        }
+        return validate;
+    }
+
+    private void showError(EditText input, String s) {
+        input.setError(s);
+        input.requestFocus();
+    }
+
 }

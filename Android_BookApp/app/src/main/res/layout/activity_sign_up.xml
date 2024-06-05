@@ -32,22 +32,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Tên tài khoản" />
+        android:hint="Tên tài khoản"
+        android:singleLine="true"
+        android:imeActionLabel="Next"/>
 
     <EditText
         android:id="@+id/signup_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Email" />
+        android:hint="Email"
+        android:singleLine="true"
+        android:imeActionLabel="Next"/>
 
     <EditText
         android:id="@+id/signup_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Mật khẩu" />
+        android:inputType="textPassword"
+        android:hint="Mật khẩu"
+        android:singleLine="true"
+        android:imeActionLabel="Next"/>
 
+    <EditText
+        android:id="@+id/signup_retype_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:inputType="textPassword"
+        android:hint="Nhập lại mật khẩu"
+        android:singleLine="true"
+        android:imeActionLabel="Next"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -129,7 +145,7 @@
             android:textSize="14dp" />
 
         <TextView
-            android:id="@+id/signup_RedirectText"
+            android:id="@+id/login_RedirectText"
             android:layout_width="80dp"
             android:layout_height="30dp"
             android:layout_marginTop="6dp"
