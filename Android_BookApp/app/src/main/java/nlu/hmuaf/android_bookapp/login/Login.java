@@ -10,12 +10,27 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.JsonObject;
+
+import lombok.experimental.var;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
+import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
+import nlu.hmuaf.android_bookapp.networking.BookAppApi;
+import nlu.hmuaf.android_bookapp.networking.BookAppService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Login extends AppCompatActivity {
     private EditText loginMail, loginPassword;
     private Button loginButton;
+<<<<<<< HEAD
     private TextView loginForgot, signupRedirectText;
+=======
+    private TextView signupRedirectText;
+    private BookAppApi bookAppApi;
+>>>>>>> origin/main
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +46,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 String email = loginMail.getText().toString().trim();
                 String password = loginPassword.getText().toString().trim();
+<<<<<<< HEAD
                 if(email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(Login.this, "Vui lòng điền vào ô trống!", Toast.LENGTH_SHORT).show();
                 }
@@ -38,8 +54,20 @@ public class Login extends AppCompatActivity {
                     Intent intent = new Intent(Login.this, Activate.class);
                     startActivity(intent);
                     finish(); // đóng activity
+=======
+
+                if (email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(Login.this, "Vui lòng nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
+>>>>>>> origin/main
                 } else {
-                    Toast.makeText(Login.this, "Tài khoản hoặc mật khẩu sai!", Toast.LENGTH_SHORT).show();
+                    login(email, password, savedInstanceState);
+//                    if (email.equals("Admin") && password.equals("123")) {
+//                        Intent intent = new Intent(Login.this, Activate.class);
+//                        startActivity(intent);
+//                        finish(); // đóng activity
+//                    } else {
+//                        Toast.makeText(Login.this, "Tài khoản hoặc mật khẩu sai!", Toast.LENGTH_SHORT).show();
+//                    }
                 }
             }
         });
@@ -74,4 +102,34 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    private TokenResponseDTO login(String email, String password, Bundle savedInstanceState) {
+        bookAppApi = BookAppService.getClient();
+        LoginRequestDTO requestDTO = LoginRequestDTO
+                .builder()
+                .email(email)
+                .password(password)
+                .build();
+
+        Call<TokenResponseDTO> call = bookAppApi.login(requestDTO);
+        call.enqueue(new Callback<TokenResponseDTO>() {
+            @Override
+            public void onResponse(Call<TokenResponseDTO> call, Response<TokenResponseDTO> response) {
+                TokenResponseDTO responseDTO = response.body();
+                System.out.println(responseDTO);
+                if (responseDTO.getMessage().equals("Login success!")) {
+                    Toast.makeText(Login.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Login.this, Activate.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TokenResponseDTO> call, Throwable t) {
+                System.out.println("Failer");
+                System.out.println(t);
+            }
+        });
+        return null;
+    }
 }
