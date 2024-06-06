@@ -1,76 +1,344 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".login.AdminHome">
 
+    <!-- Phần trên của giao diện -->
 
-    <LinearLayout
-        android:layout_width="100dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical"
-        android:weightSum="8">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical">-->
 
-        <ImageView
-            android:layout_width="67dp"
-            android:layout_height="10dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:src="@drawable/book_login"
-            android:text="01"
-            android:textSize="30dp" />
+<!--        &lt;!&ndash; RelativeLayout chứa hình ảnh hồ sơ và địa chỉ email &ndash;&gt;-->
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="10dp"
-            android:layout_weight="2"
-            android:text="Tên"
-            android:textSize="20dp" />
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/main_toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="#6D1683"-->
+<!--            android:elevation="4dp"-->
+<!--            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />-->
 
+<!--        &lt;!&ndash; TextView cho phần Mode &ndash;&gt;-->
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="10dp"
-            android:layout_weight="3"
-            android:src="@drawable/book_login"
-            android:text="Quản lý nhân viên"
-            android:textSize="20dp" />
+<!--        &lt;!&ndash; RelativeLayout chứa hình ảnh hồ sơ và địa chỉ email &ndash;&gt;-->
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:background="#F9EBFF"-->
+<!--            android:padding="16dp">-->
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="10dp"
-            android:layout_weight="4"
-            android:src="@drawable/book_login"
-            android:text="Quản lý nhân viên"
-            android:textSize="20dp" />
+<!--            <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                android:id="@+id/profile_image"-->
+<!--                android:layout_width="72dp"-->
+<!--                android:layout_height="72dp"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:background="@drawable/circle_background"-->
+<!--                android:src="@drawable/saber" />-->
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="10dp"
-            android:layout_weight="5"
-            android:src="@drawable/book_login"
-            android:text="Quản lý nhân viên"
-            android:textSize="20dp" />
+<!--            &lt;!&ndash; Tên người dùng &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/user_name"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentTop="true"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_toEndOf="@id/profile_image"-->
+<!--                android:text="Admin"-->
+<!--                android:textSize="16sp" />-->
 
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="10dp"
-            android:layout_weight="4"
-            android:src="@drawable/book_login"
-            android:text="Quản lý nhân viên"
-            android:textSize="20dp" />
+<!--            &lt;!&ndash; Email &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/user_email"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/user_name"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_toEndOf="@id/profile_image"-->
+<!--                android:text="Admin@gmail.com"-->
+<!--                android:textSize="14sp" />-->
 
-    </LinearLayout>
+<!--            <ImageView-->
+<!--                android:id="@+id/editImageView"-->
+<!--                android:layout_width="24dp"-->
+<!--                android:layout_height="24dp"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:src="@drawable/pencil" />-->
 
-    <LinearLayout
-        android:layout_width="315dp"
-        android:layout_height="match_parent">
+<!--        </RelativeLayout>-->
 
-    </LinearLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/textView2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:text="Đổi màu khung nền"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            android:textStyle="bold" />-->
 
+<!--        &lt;!&ndash; Nội dung cuộn được &ndash;&gt;-->
+<!--        <ScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_weight="1">-->
 
-</LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical">-->
+
+<!--                &lt;!&ndash; LinearLayout chứa chế độ và công tắc tối &ndash;&gt;-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/rounded_corners"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:layout_marginEnd="15dp"-->
+<!--                    android:padding="16dp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Dark mode" />-->
+<!--                    <Switch-->
+<!--                        android:id="@+id/dark_mode_switch"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content" />-->
+
+<!--                </LinearLayout>-->
+
+<!--                &lt;!&ndash; Các mục menu &ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:id="@+id/textView3"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="39dp"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:layout_marginEnd="15dp"-->
+<!--                    android:text="Tổng quan"-->
+<!--                    android:textStyle="bold" />-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:background="@drawable/rounded_corners"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:layout_marginEnd="15dp"-->
+<!--                    android:layout_marginBottom="15dp"-->
+<!--                    android:padding="16dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/notification" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/notification_label"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Thêm sản phẩm"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_marginStart="10dp"-->
+<!--                        android:layout_marginEnd="10dp"/>-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/notification_arrow"-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/arrowright" />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/rounded_corners"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="16dp"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:layout_marginEnd="15dp"-->
+<!--                    android:layout_marginBottom="15dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/star" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/my_reviews_label"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="My Reviews"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_marginStart="10dp"-->
+<!--                        android:layout_marginEnd="10dp"/>-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/reviews_arrow"-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/arrowright" />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/rounded_corners"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="16dp"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:layout_marginEnd="15dp"-->
+<!--                    android:layout_marginBottom="15dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/grocerystore" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/my_cart_label"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="My Cart"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_marginStart="10dp"-->
+<!--                        android:layout_marginEnd="10dp"/>-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/cart_arrow"-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/arrowright" />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/rounded_corners"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="16dp"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:layout_marginEnd="15dp"-->
+<!--                    android:layout_marginBottom="15dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/privacy" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/privacy_policy_label"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Privacy Policy And Terms Of Use"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_marginStart="10dp"-->
+<!--                        android:layout_marginEnd="10dp"/>-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/privacy_arrow"-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/arrowright" />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/rounded_corners"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="16dp"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:layout_marginEnd="15dp"-->
+<!--                    android:layout_marginBottom="15dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/informationbutton" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/about_label"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="About"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_marginStart="10dp"-->
+<!--                        android:layout_marginEnd="10dp"/>-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/about_arrow"-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/arrowright" />-->
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/rounded_corners"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:padding="16dp"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:layout_marginEnd="15dp"-->
+<!--                    android:layout_marginBottom="15dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/helpwebbutton" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/help_label"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Help"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background=""-->
+<!--                        android:layout_marginStart="10dp"-->
+<!--                        android:layout_marginEnd="10dp"/>-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/help_arrow"-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@drawable/arrowright" />-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--        </ScrollView>-->
+<!--    </LinearLayout>-->
+
+<!--    &lt;!&ndash; Nút Logout &ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/logout_button"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:backgroundTint="#6D1683"-->
+<!--        android:text="LOGOUT"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:layout_alignParentBottom="true" />-->
+</RelativeLayout>
