@@ -56,4 +56,7 @@ public class Bills implements Serializable {
 
   @OneToMany(mappedBy = "bill", cascade = CascadeType.ALL)
   private Set<BillDetails> billDetails;
+
+  @Column(name = "receiptDate")
+  private LocalDate receiptDate;
 }
