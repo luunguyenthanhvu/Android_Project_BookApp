@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +33,15 @@ public class BookActivity extends AppCompatActivity {
         // Thiết lập giá trị tối thiểu và tối đa cho NumberPicker
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(100);
+        TextView tvPrevious = findViewById(R.id.tv_previous);
 
+        // Đặt OnClickListener cho TextView
+        tvPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+          finish();
+            }
+        });
         // Sự kiện nhấn vào nút cộng
         buttonIncrease.setOnClickListener(new View.OnClickListener() {
             @Override

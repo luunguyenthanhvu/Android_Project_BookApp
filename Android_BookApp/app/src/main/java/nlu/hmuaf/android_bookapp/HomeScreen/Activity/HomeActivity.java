@@ -1,6 +1,10 @@
 package nlu.hmuaf.android_bookapp.HomeScreen.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,34 +14,112 @@ import java.util.List;
 
 import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.ImageAdapter;
 
+import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.OnItemClickListener;
+import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.PopularAdapter;
 import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
 
 public class HomeActivity extends AppCompatActivity {
     private RecyclerView rcv1Data;
+    private RecyclerView rcv2Data;
     private ImageAdapter imageAdapter;
+    private PopularAdapter popularAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content);
+        setContentView(R.layout.home_activity);
 
-        rcv1Data = findViewById(R.id.rcv_Data);
+        rcv1Data = findViewById(R.id.rcv1_Data);
+        rcv2Data = findViewById(R.id.rcv2_Data);
+        // Tìm TextView theo ID
+        TextView tvPrevious = findViewById(R.id.tv_previous);
+
+        // Đặt OnClickListener cho TextView
+        tvPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Do nothing or perform another action
+            }
+        });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rcv1Data.setLayoutManager(layoutManager);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rcv2Data.setLayoutManager(layoutManager2);
 
-        imageAdapter = new ImageAdapter(getListBookB());
+        imageAdapter = new ImageAdapter(getListBookB2(), new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(HomeActivity.this, BookActivity.class);
+                intent.putExtra("book_position", position);
+                startActivity(intent);
+            }
+        });
         rcv1Data.setAdapter(imageAdapter);
+
+        popularAdapter = new PopularAdapter(getListBookB(), new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(HomeActivity.this, BookActivity.class);
+                intent.putExtra("book_position", position);
+                startActivity(intent);
+            }
+        });
+        rcv2Data.setAdapter(popularAdapter);
+
+        LinearLayout homeLayout = findViewById(R.id.homeLayout);
+        LinearLayout searchLayout = findViewById(R.id.searchLayout);
+        LinearLayout libraryLayout = findViewById(R.id.libraryLayout);
+
+        // Set click listeners for footer
+        homeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to HomeActivity
+                Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        searchLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to SearchActivity
+                Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+        libraryLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to HomeActivity
+                Intent intent = new Intent(HomeActivity.this, LibraryActivity.class);
+                startActivity(intent);
+            }
+        });
     }
-        private List<BookB> getListBookB() {
+
+    private List<BookB> getListBookB2() {
+        List<BookB>  list = new ArrayList<>();
+        list.add(new BookB(R.drawable.bell,"book 1 " , "500$"));
+        list.add(new BookB(R.drawable.book_login,"book 2 " , "500$"));
+        list.add(new BookB(R.drawable.book_login,"book 3 " , "500$"));
+        list.add(new BookB(R.drawable.book_login,"book 4 " , "500$"));
+        list.add(new BookB(R.drawable.book_login,"book 5 " , "500$"));
+        return list;
+    }
+
+    private List<BookB> getListBookB() {
          List<BookB>  list = new ArrayList<>();
          list.add(new BookB(R.drawable.bell,"book 1 " , "500$"));
-            list.add(new BookB(R.drawable.book_login,"book 2 " , "500$"));
-            list.add(new BookB(R.drawable.book_login,"book 3 " , "500$"));
-            list.add(new BookB(R.drawable.book_login,"book 4 " , "500$"));
-            list.add(new BookB(R.drawable.book_login,"book 5 " , "500$"));
+            list.add(new BookB(R.drawable.book,"book 2 " , "500$"));
+            list.add(new BookB(R.drawable.apple,"book 3 " , "500$"));
+            list.add(new BookB(R.drawable.avatar,"book 4 " , "500$"));
+            list.add(new BookB(R.drawable.cart,"book 5 " , "500$"));
          return list;
         }
+
+
 
         // RecyclerView cho recycler_item
 //        RecyclerView recyclerView = findViewById(R.id.imageRecyclerView);
