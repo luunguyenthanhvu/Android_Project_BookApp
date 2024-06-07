@@ -97,7 +97,7 @@ public class UserServiceImpl implements IUserService {
 
         addresses.setUserAddresses(userAddressesSet);
         userDetails.setUserAddresses(userAddressesSet);
-        users.setCreatedDate(LocalDate.now());
+        users.setCreatedDate(LocalDate.of(2024, 12, 12));
         users.setRoles(roleRepository.getRolesByRoleName(ERole.ADMIN).get());
         users.setUserDetails(userDetails);
         // Create cart

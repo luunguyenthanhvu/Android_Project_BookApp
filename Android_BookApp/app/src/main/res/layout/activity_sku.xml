@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.InStockActivity">
+    tools:context=".Admin.SKUActivity">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -88,12 +87,19 @@
             android:text="Cài đặt lại"/>
     </LinearLayout>
 
-    <!-- Table header -->
+    <Switch
+        android:id="@+id/switchNotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/actionButtons"
+        android:padding="16dp"
+        android:text="Tiến hành đặt hàng" />
 
     <!-- RecyclerView for listing products -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/actionButtons"/>
+        android:layout_below="@id/switchNotification"
+        android:layout_marginTop="16dp"/>
 </RelativeLayout>
