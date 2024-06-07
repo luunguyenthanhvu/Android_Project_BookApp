@@ -12,59 +12,73 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.HomeScreen.Activity.BookActivity;
+import nlu.hmuaf.android_bookapp.HomeScreen.Class.Author;
+import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
 
 public class FantasyAdapter extends RecyclerView.Adapter<FantasyAdapter.FantasyViewHolder> {
 
-    private Context mContext;
-    private List<Integer> mFantasyImageIds;
-    private List<String> mFantasyNames;
+    private List<BookB> mListBookB;
+    private OnItemClickListener listener;
 
-    public FantasyAdapter(Context context, List<Integer> fantasyImageIds, List<String> fantasyNames) {
-        mContext = context;
-        mFantasyImageIds = fantasyImageIds;
-        mFantasyNames = fantasyNames;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public FantasyAdapter(List<BookB> mListBookB, OnItemClickListener listener) {
+        this.mListBookB = mListBookB;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public FantasyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.fantasy_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fantasy_item, parent, false);
         return new FantasyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FantasyViewHolder holder, int position) {
-        int imageId = mFantasyImageIds.get(position);
-        String name = mFantasyNames.get(position);
-
-        holder.imageView.setImageResource(imageId);
-        holder.textView.setText(name);
-
-        // Sự kiện onClick cho item
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Chuyển hướng tới BookActivity khi nhấn vào item
-                Intent intent = new Intent(mContext, BookActivity.class);
-                mContext.startActivity(intent);
-            }
-        });
+        BookB bookB = mListBookB.get(position);
+        if (bookB == null){
+            return;
+        }
+        holder.imgFantasy.setImageResource(bookB.getResourceid());
+        holder.nameFantasy.setText(bookB.getName());
+        holder.priceFantasy.setText(bookB.getPrice());
     }
 
     @Override
     public int getItemCount() {
-        return mFantasyImageIds.size();
+        if (mListBookB != null) {
+            return mListBookB.size();
+        }
+        return 0;
     }
 
-    public static class FantasyViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView textView;
+    public class FantasyViewHolder extends RecyclerView.ViewHolder {
+        private ImageView imgFantasy;
+        private TextView nameFantasy;
+        private TextView priceFantasy;
 
         public FantasyViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.FantasyItemImageView);
-            textView = itemView.findViewById(R.id.FantasyItemTextView);
+            imgFantasy = itemView.findViewById(R.id.FantasyItemImageView2);
+            nameFantasy = itemView.findViewById(R.id.FantasyItemTextView);
+            priceFantasy = itemView.findViewById(R.id.buttonMua);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

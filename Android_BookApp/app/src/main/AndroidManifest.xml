@@ -119,7 +119,7 @@
 
 
 
-        <activity android:name=".HomeScreen.Activity.MainActivity"
+        <activity android:name=".HomeScreen.Activity.HomeActivity"
             android:exported="true">
 
         </activity>
@@ -142,6 +142,10 @@
 
         </activity>
         <activity android:name=".HomeScreen.Activity.NumberActivity"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".HomeScreen.Activity.MainActivity"
             android:exported="false">
 
         </activity>
