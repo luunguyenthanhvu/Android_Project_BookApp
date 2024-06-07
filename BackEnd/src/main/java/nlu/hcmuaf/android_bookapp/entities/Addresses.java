@@ -44,6 +44,9 @@ public class Addresses implements Serializable {
   @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
   private Set<Shipments> shipments;
 
+  @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
+  private Set<Bills> bills;
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
