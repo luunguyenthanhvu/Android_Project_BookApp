@@ -59,4 +59,8 @@ public class Bills implements Serializable {
 
   @Column(name = "receiptDate")
   private LocalDate receiptDate;
+
+  @ManyToOne
+  @JoinColumn(name = "addressId")
+  private Addresses address;
 }
