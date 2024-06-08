@@ -1,5 +1,6 @@
 package nlu.hmuaf.android_bookapp.CartUser.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -75,7 +76,14 @@ public class OrderSummary extends AppCompatActivity {
         priceDetail.setText("Price Details "+adapter2.countQuantity()+" items");
         price.setText("Total: "+adapter2.getTotalPrice()+" VNĐ");
 
-
+        double totalPriceTemp = adapter2.getTotalPrice();
+        placeOrder.setOnClickListener(v -> {
+            Intent intent = new Intent(OrderSummary.this, OrderSuccessfully.class);
+            intent.putExtra("totalPrice",totalPriceTemp);
+            intent.putExtra("listBook",(ArrayList<Books>)listBook);
+            intent.putExtra("quantityEachBook",quantityMap);
+            startActivity(intent);
+        });
 
     }
 

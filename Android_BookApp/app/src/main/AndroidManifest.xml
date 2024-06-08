@@ -77,7 +77,7 @@
             android:name=".login.ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".login.Login"
+            android:name=".HomeScreen.Activity.HomeActivity"
             android:exported="true">
 
             <intent-filter>
@@ -119,10 +119,10 @@
 
 
 
-        <activity android:name=".HomeScreen.Activity.MainActivity"
-            android:exported="true">
+<!--        <activity android:name=".HomeScreen.Activity.MainActivity"-->
+<!--            android:exported="false">-->
 
-        </activity>
+<!--        </activity>-->
 
 
         <activity android:name=".HomeScreen.Activity.SearchActivity"
