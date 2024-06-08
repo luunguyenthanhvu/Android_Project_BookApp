@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="10dp">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+
 
         <ImageView
-            android:id="@+id/popularItemImageView"
+            android:id="@+id/img_imageB2"
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
@@ -18,29 +16,31 @@
             android:src="@drawable/bell"/>
 
         <TextView
-            android:id="@+id/popularItemTextView"
+            android:id="@+id/tv_nameB2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/popularItemImageView"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@id/img_imageB2"
             android:layout_marginTop="10dp"
-            android:text="@string/books" />
+            android:layout_alignParentStart="true"
+            android:text="@string/books"
+            android:paddingStart="5dp" /> <!-- Adjust paddingStart as needed -->
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/popularItemTextView"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_nameB2"
             android:layout_marginTop="10dp"
-            android:padding="5dp"
+            android:layout_alignParentStart="true"
+            android:padding="10dp"
             android:background="@drawable/border_background">
 
             <TextView
+                android:id="@+id/tv_priceB2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/_500"
                 android:textColor="@android:color/white" />
         </LinearLayout>
-    </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -12,56 +12,65 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.HomeScreen.Activity.FantasyActivity;
+import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
 
 public class OtherAdapter extends RecyclerView.Adapter<OtherAdapter.OtherViewHolder> {
 
-    private Context mContext;
-    private List<Integer> mOtherImageIds;
-    private List<String> mOtherNames;
-
-    public OtherAdapter(Context context, List<Integer> otherImageIds, List<String> otherNames) {
-        mContext = context;
-        mOtherImageIds = otherImageIds;
-        mOtherNames = otherNames;
+    private List<BookB> mListBookB;
+    private OnItemClickListener listener;
+    public OtherAdapter(List<BookB> mListBookB, OnItemClickListener listener) {
+        this.mListBookB = mListBookB;
+        this.listener = listener;
     }
+
 
     @NonNull
     @Override
-    public OtherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.other_item, parent, false);
-        return new OtherViewHolder(view);
+    public OtherAdapter.OtherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.other_item, parent, false);
+        return new OtherAdapter.OtherViewHolder(view);
+
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OtherViewHolder holder, int position) {
-        holder.otherImageView.setImageResource(mOtherImageIds.get(position));
-        holder.otherNameTextView.setText(mOtherNames.get(position));
+    public void onBindViewHolder(@NonNull OtherAdapter.OtherViewHolder holder, int position) {
+        BookB bookB = mListBookB.get(position);
+        if (bookB==null){
+            return;
+        }
+        holder.imgBookB.setImageResource(bookB.getResourceid());
+        holder.nameB.setText(bookB.getName());
 
-        // Sự kiện onClick cho ImageView
-        holder.otherImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Chuyển hướng tới BookActivity khi nhấn vào hình ảnh
-                Intent intent = new Intent(mContext, FantasyActivity.class);
-                mContext.startActivity(intent);
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
-        return mOtherImageIds.size();
+        if(mListBookB!=null){
+            return mListBookB.size();
+        }
+        return 0;
     }
 
-    public static class OtherViewHolder extends RecyclerView.ViewHolder {
-        ImageView otherImageView;
-        TextView otherNameTextView;
+    public class OtherViewHolder extends RecyclerView.ViewHolder{
+        private ImageView imgBookB;
+        private TextView nameB;
 
         public OtherViewHolder(@NonNull View itemView) {
             super(itemView);
-            otherImageView = itemView.findViewById(R.id.OtherItemImageView);
-            otherNameTextView = itemView.findViewById(R.id.OtherItemTextView);
-        }
-    }
-}
+            imgBookB =itemView.findViewById(R.id.OtherItemImageView);
+            nameB =itemView.findViewById(R.id.OtherItemTextView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+        }}}

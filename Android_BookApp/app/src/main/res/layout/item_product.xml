@@ -2,78 +2,86 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="8dp">
 
-    <!-- Mã sản phẩm và hiển thị mã từ DB -->
+    <!-- Left side container for all details -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        android:layout_weight="1"
         android:gravity="center_vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Mã sản phẩm và hiển thị mã từ DB -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mã sản phẩm:"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/tvProductCode"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mã sản phẩm:"
+                android:textAppearance="?attr/textAppearanceListItem" />
+
+            <TextView
+                android:id="@+id/tvProductCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceListItem" />
+        </LinearLayout>
+
+        <!-- Hình ảnh và tên sản phẩm -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="7811192512"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/imgProduct"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/tvProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceListItem" />
+        </LinearLayout>
+
+        <!-- Mức độ cần bổ sung -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvSupplementLevel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mức độ cần bổ sung hàng:"
+                android:textAppearance="?attr/textAppearanceListItem" />
+
+            <TextView
+                android:id="@+id/tvSupplementLevelData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceListItem" />
+        </LinearLayout>
     </LinearLayout>
 
-    <!-- Hình ảnh và tên sản phẩm -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:id="@+id/imgProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher" />
-
-        <TextView
-            android:id="@+id/tvProductName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Loa Mỹ Nhập Khẩu"
-            android:textAppearance="?attr/textAppearanceListItem" />
-    </LinearLayout>
-
-    <!-- Mức độ cần bổ sung và nút Sửa -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/tvSupplementLevel"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Mức độ cần bổ sung hàng:"
-            android:textAppearance="?attr/textAppearanceListItem" />
-        <TextView
-            android:id="@+id/tvSupplementLevelData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ngay lập tức"
-            android:textAppearance="?attr/textAppearanceListItem" />
-    </LinearLayout>
-
+    <!-- Nút Sửa, được chuyển sang bên phải -->
     <Button
         android:id="@+id/btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:text="Sửa"
-        android:backgroundTint="@android:color/holo_blue_light" />
+        android:layout_gravity="center_vertical"/>
+
 </LinearLayout>

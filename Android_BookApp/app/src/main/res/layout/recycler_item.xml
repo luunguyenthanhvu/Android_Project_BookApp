@@ -5,43 +5,40 @@
     android:layout_height="wrap_content"
     android:padding="10dp">
 
+    <ImageView
+        android:id="@+id/img_imageB"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"
+        android:padding="30dp"
+        android:src="@drawable/home"/>
 
+    <TextView
+        android:id="@+id/tv_nameB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_imageB"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentStart="true"
+        android:text="Books"
+        android:paddingStart="5dp" /> <!-- Adjust paddingStart as needed -->
 
-        <ImageView
-            android:id="@+id/img_imageB"
-            android:layout_width="150dp"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
-            android:scaleType="centerCrop"
-            android:padding="30dp"
-            android:src="@drawable/home"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_nameB"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentStart="true"
+        android:padding="10dp"
+        android:background="@drawable/border_background">
 
         <TextView
-            android:id="@+id/tv_nameB"
+            android:id="@+id/tv_priceB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/img_imageB"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="Books" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_nameB"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:background="@drawable/border_background">
-
-            <TextView
-                android:id="@+id/tv_priceB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/_500"
-
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-
+            android:text="@string/_500"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
 
 </RelativeLayout>

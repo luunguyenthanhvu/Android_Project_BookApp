@@ -9,7 +9,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/AuthorItemImageView"
+            android:id="@+id/img_author"
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
@@ -18,10 +18,10 @@
             android:src="@drawable/home"/>
 
         <TextView
-            android:id="@+id/AuthorItemTextView"
+            android:id="@+id/tv_authorName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/AuthorItemImageView"
+            android:layout_below="@id/img_author"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:text="AuthorName" />
