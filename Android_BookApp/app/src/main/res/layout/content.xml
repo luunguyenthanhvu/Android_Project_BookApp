@@ -55,7 +55,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_Data"
+            android:id="@+id/rcv1_Data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -87,7 +87,7 @@
                 android:gravity="end" />
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/PopularRecyclerView"
+            android:id="@+id/rcv2_Data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

@@ -1,16 +1,13 @@
 package nlu.hmuaf.android_bookapp.HomeScreen.Class;
 
-import java.io.Serializable;
-
-public class BookB implements Serializable {
-
-    private int resourceid;
+public class Author {
+    private int  resourceid;
     private String name;
-    private String price;
-    public BookB(int resourceid, String name, String price) {
+    private int age;
+    public Author(int resourceid, String name, int age) {
         this.resourceid = resourceid;
         this.name = name;
-        this.price = price;
+        this.age = age;
     }
 
     public int getResourceid() {
@@ -29,11 +26,11 @@ public class BookB implements Serializable {
         this.name = name;
     }
 
-    public String getPrice() {
-        return price;
+    public int getAge() {
+        return age;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setAge(int age) {
+        this.age = age;
     }
 }
