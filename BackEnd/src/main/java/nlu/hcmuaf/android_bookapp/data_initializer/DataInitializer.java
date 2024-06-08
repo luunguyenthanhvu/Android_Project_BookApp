@@ -4,6 +4,7 @@ import nlu.hcmuaf.android_bookapp.service.templates.IBookService;
 import nlu.hcmuaf.android_bookapp.service.templates.IPaymentService;
 import nlu.hcmuaf.android_bookapp.service.templates.IPublishCompanyService;
 import nlu.hcmuaf.android_bookapp.service.templates.IRoleService;
+import nlu.hcmuaf.android_bookapp.service.templates.IShipmentService;
 import nlu.hcmuaf.android_bookapp.service.templates.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,6 +23,8 @@ public class DataInitializer implements CommandLineRunner {
   private IBookService bookService;
   @Autowired
   private IUserService userService;
+  @Autowired
+  private IShipmentService shipmentService;
 
   @Override
   public void run(String... args) throws Exception {
@@ -39,5 +42,9 @@ public class DataInitializer implements CommandLineRunner {
 
     // Generate admin account
     userService.createDefaultAccount();
+
+    // Generate default shipment
+    shipmentService.loadDefaultData();
+
   }
 }

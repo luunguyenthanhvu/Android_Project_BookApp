@@ -12,7 +12,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -50,7 +49,7 @@ public class Books implements Serializable {
   private Set<BookImages> bookImages;
 
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-  private Set<CartUsers> cartUsers;
+  private Set<CartItems> cartUsers;
 
   @ManyToOne
   @JoinColumn(name = "discountId", nullable = true)
@@ -66,10 +65,17 @@ public class Books implements Serializable {
   @PrimaryKeyJoinColumn
   private BookDetails bookDetails;
 
+  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+  private Set<BookRating> bookRatings;
+
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (getClass() != o.getClass()) {
+      return false;
+    }
     Books book = (Books) o;
     return code.equals(book.getCode());
   }

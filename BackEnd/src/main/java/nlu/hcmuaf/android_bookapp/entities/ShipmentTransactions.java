@@ -27,7 +27,7 @@ public class ShipmentTransactions implements Serializable {
   private long id;
 
   @Column(name = "transactionDate")
-  private LocalDate localDate;
+  private LocalDate transactionDate;
 
   @Column(name = "quantityChange")
   private String quantityChange;

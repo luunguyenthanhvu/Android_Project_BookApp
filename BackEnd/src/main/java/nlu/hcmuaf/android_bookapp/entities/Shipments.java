@@ -11,6 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,7 +28,7 @@ public class Shipments implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "shipmentId")
-  private long id;
+  private long shipmentId;
 
   @Column(name = "dateAdded")
   private LocalDate dateAdded;
@@ -51,4 +52,26 @@ public class Shipments implements Serializable {
 
   @OneToMany(mappedBy = "shipment", cascade = CascadeType.ALL)
   private Set<ShipmentTransactions> shipmentTransactions;
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(shipmentId, address, user, available, dateAdded, totalQuantity);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Shipments that = (Shipments) o;
+    return available == that.available &&
+        totalQuantity == that.totalQuantity &&
+        Objects.equals(shipmentId, that.shipmentId) &&
+        Objects.equals(address, that.address) &&
+        Objects.equals(user, that.user) &&
+        Objects.equals(dateAdded, that.dateAdded);
+  }
 }
