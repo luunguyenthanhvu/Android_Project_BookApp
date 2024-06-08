@@ -90,8 +90,6 @@
 
     <!-- Table header -->
 
-
-
     <!-- RecyclerView for listing products -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductList"

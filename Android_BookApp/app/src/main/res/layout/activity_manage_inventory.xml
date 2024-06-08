@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,16 +19,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@id/toolbar"
-    >
+        android:layout_below="@id/toolbar">
 
         <!-- Tổng quan tồn kho Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@android:color/white"
-            >
+            android:background="@android:color/white">
 
             <TextView
                 android:layout_width="match_parent"
@@ -38,7 +35,7 @@
                 android:textSize="28sp"
                 android:padding="15dp"/>
 
-            <!-- Dynamically generated categories, example given below -->
+            <!-- Phân loại còn hàng -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,6 +46,7 @@
                 android:background="@drawable/rounded_corners">
 
                 <TextView
+                    android:id="@+id/tvInStock"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -58,9 +56,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="27sp"
                     android:textSize="16sp"/>
             </LinearLayout>
+
+            <!-- Phân loại đã ẩn và đã bị khóa -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,6 +70,7 @@
                 android:background="@drawable/rounded_corners">
 
                 <TextView
+                    android:id="@+id/tvHiddenProducts"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -80,9 +80,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="27sp"
                     android:textSize="16sp"/>
             </LinearLayout>
+
+            <!-- Phân loại hết hàng -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -93,18 +94,20 @@
                 android:background="@drawable/rounded_corners">
 
                 <TextView
+                    android:id="@+id/tvOutOfStock"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Phân loại hểt hàng"
+                    android:text="Phân loại hết hàng"
                     android:textSize="18sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="27sp"
                     android:textSize="16sp"/>
             </LinearLayout>
+
+            <!-- Phân loại sắp hết hàng -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,6 +118,7 @@
                 android:background="@drawable/rounded_corners">
 
                 <TextView
+                    android:id="@+id/tvLowStock"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -124,12 +128,31 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="27sp"
                     android:textSize="16sp"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:padding="15dp"
+                android:background="@drawable/rounded_corners">
 
-            <!-- Add more LinearLayouts for other categories -->
+                <TextView
+                    android:id="@+id/tvSKU"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="SKU đặt hàng"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"/>
+            </LinearLayout>
         </LinearLayout>
 
         <!-- Quản lý tồn kho Section -->
@@ -137,9 +160,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@android:color/white"
-
-          >
+            android:background="@android:color/white">
 
             <TextView
                 android:layout_width="match_parent"

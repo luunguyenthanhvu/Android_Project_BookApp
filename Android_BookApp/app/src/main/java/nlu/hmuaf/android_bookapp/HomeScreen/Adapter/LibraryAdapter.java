@@ -1,67 +1,66 @@
 package nlu.hmuaf.android_bookapp.HomeScreen.Adapter;
-
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
 
-import nlu.hmuaf.android_bookapp.HomeScreen.Activity.BookActivity;
+import java.util.List;
+
+import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
 
-public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.ViewHolder> {
+public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.LibraryViewHolder> {
 
-    private Context mContext;
-    private ArrayList<String> mBookNames;
-    private ArrayList<Integer> mBookImageIds; // Giả sử mỗi cuốn sách có một hình ảnh liên kết với nó
+    private List<BookB> books;
 
-    public LibraryAdapter(Context context, ArrayList<String> bookNames, ArrayList<Integer> bookImageIds) {
-        this.mContext = context;
-        this.mBookNames = bookNames;
-        this.mBookImageIds = bookImageIds;
+    public LibraryAdapter(List<BookB> books) {
+        this.books = books;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public LibraryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.library_item, parent, false);
-        return new ViewHolder(view);
+        return new LibraryViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bookImageView.setImageResource(mBookImageIds.get(position));
-        holder.bookNameTextView.setText(mBookNames.get(position));
-
-        // Sự kiện onClick cho ImageView
-        holder.bookImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Chuyển hướng tới BookActivity khi nhấn vào hình ảnh
-                Intent intent = new Intent(mContext, BookActivity.class);
-                mContext.startActivity(intent);
-            }
-        });
+    public void onBindViewHolder(@NonNull LibraryViewHolder holder, int position) {
+        BookB book = books.get(position);
+        holder.bind(book);
     }
 
     @Override
     public int getItemCount() {
-        return mBookNames.size();
+        return books.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView bookImageView;
-        TextView bookNameTextView;
+    public void addBook(BookB book) {
+        books.add(book);
+        notifyItemInserted(books.size() - 1);
+    }
 
-        public ViewHolder(View itemView) {
+    static class LibraryViewHolder extends RecyclerView.ViewHolder {
+
+        private ImageView bookImageView;
+        private TextView bookNameTextView;
+        private TextView bookPriceTextView;
+
+        public LibraryViewHolder(@NonNull View itemView) {
             super(itemView);
-            bookImageView = itemView.findViewById(R.id.imageView2);
-            bookNameTextView = itemView.findViewById(R.id.BookName);
+            bookImageView = itemView.findViewById(R.id.LibraryImageView);
+            bookNameTextView = itemView.findViewById(R.id.LibraryTextView);
+            bookPriceTextView = itemView.findViewById(R.id.buttonM);
+        }
+
+        public void bind(BookB book) {
+            bookImageView.setImageResource(book.getResourceid());
+            bookNameTextView.setText(book.getName());
+            bookPriceTextView.setText(book.getPrice());
         }
     }
 }

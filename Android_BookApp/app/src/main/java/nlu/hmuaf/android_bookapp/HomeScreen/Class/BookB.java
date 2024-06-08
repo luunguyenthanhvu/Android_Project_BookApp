@@ -1,6 +1,8 @@
 package nlu.hmuaf.android_bookapp.HomeScreen.Class;
 
-public class BookB {
+import java.io.Serializable;
+
+public class BookB implements Serializable {
 
     private int resourceid;
     private String name;

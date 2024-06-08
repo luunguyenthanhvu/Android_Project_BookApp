@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,107 +14,139 @@ import java.util.List;
 
 import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.AuthorAdapter;
 import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.BookAdapter;
+import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.ImageAdapter;
+import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.OnItemClickListener;
 import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.OtherAdapter;
+import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.PopularAdapter;
+import nlu.hmuaf.android_bookapp.HomeScreen.Class.Author;
+
+import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
 
 
 public class SearchActivity extends AppCompatActivity {
-
+    private RecyclerView rcvAuthor;
+    private RecyclerView rcvBook;
+    private RecyclerView rcvOther;
+    private AuthorAdapter authorAdapter;
+    private BookAdapter bookAdapter;
+    private OtherAdapter otherAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sreach_activity);  // Sử dụng layout activity_search.xml
+        TextView tvPrevious = findViewById(R.id.tv_previous);
+        rcvAuthor = findViewById(R.id.AuthorRecyclerView);
+        rcvBook = findViewById(R.id.BookNameRecyclerView);
+        rcvOther = findViewById(R.id.OtherRecyclerView);
+        // Đặt OnClickListener cho TextView
+        tvPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Kết thúc Activity hiện tại để quay lại trang trước
+                finish();
+            }
+        });
 
-        // RecyclerView cho AuthorRecyclerView
-        RecyclerView authorRecyclerView = findViewById(R.id.AuthorRecyclerView);
-        LinearLayoutManager authorLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        authorRecyclerView.setLayoutManager(authorLayoutManager);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rcvAuthor.setLayoutManager(layoutManager);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rcvBook.setLayoutManager(layoutManager2);
+        LinearLayoutManager layoutManager3 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        rcvOther.setLayoutManager(layoutManager3);
 
-        // Danh sách các ID hình ảnh từ thư mục drawable cho author_item
-        List<Integer> authorImageIds = new ArrayList<>();
-        authorImageIds.add(R.drawable.bell);
-        authorImageIds.add(R.drawable.book_login);
-        authorImageIds.add(R.drawable.home);
-        authorImageIds.add(R.drawable.search);
-        // Thêm các ID hình ảnh khác nếu cần
+        authorAdapter = new AuthorAdapter(getListAuthor(), new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(SearchActivity.this, BookActivity.class);
+                intent.putExtra("book_position", position);
+                startActivity(intent);
+            }
+        });
+        rcvAuthor.setAdapter(authorAdapter);
 
-        // Danh sách các văn bản cho author_item
-        List<String> authorNames = new ArrayList<>();
-        authorNames.add("Author 1");
-        authorNames.add("Author 2");
-        authorNames.add("Author 3");
-        authorNames.add("Author 4");
-        // Thêm các văn bản khác nếu cần
+        bookAdapter= new BookAdapter(getListBookN(), new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(SearchActivity.this, BookActivity.class);
+                intent.putExtra("book_position", position);
+                startActivity(intent);
+            }
+        });
+        rcvBook.setAdapter(bookAdapter);
 
-        // Tạo một Adapter và thiết lập cho RecyclerView
-        AuthorAdapter authorAdapter = new AuthorAdapter(this, authorImageIds, authorNames);
-        authorRecyclerView.setAdapter(authorAdapter);
+        otherAdapter= new OtherAdapter(getListOther(), new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Intent intent = new Intent(SearchActivity.this, FantasyActivity.class);
 
-        // RecyclerView cho BookNameRecyclerView
-        RecyclerView bookRecyclerView = findViewById(R.id.BookNameRecyclerView);
-        LinearLayoutManager bookLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        bookRecyclerView.setLayoutManager(bookLayoutManager);
+                intent.putExtra("book_position", position);
+                startActivity(intent);
+            }
+        });
+        rcvOther.setAdapter(otherAdapter);
 
-        // Danh sách các ID hình ảnh từ thư mục drawable cho bookname_item
-        List<Integer> bookImageIds = new ArrayList<>();
-        bookImageIds.add(R.drawable.book_login);
-        bookImageIds.add(R.drawable.border_background);
-        bookImageIds.add(R.drawable.profile);
-        bookImageIds.add(R.drawable.library);
-        // Thêm các ID hình ảnh khác nếu cần
-
-        // Danh sách các văn bản cho bookname_item
-        List<String> bookNames = new ArrayList<>();
-        bookNames.add("Book 1");
-        bookNames.add("Book 2");
-        bookNames.add("Book 3");
-        bookNames.add("Book 4");
-        // Thêm các văn bản khác nếu cần
-
-        // Tạo một Adapter và thiết lập cho RecyclerView
-        BookAdapter bookAdapter = new BookAdapter(this, bookImageIds, bookNames);
-        bookRecyclerView.setAdapter(bookAdapter);
-
-        // RecyclerView cho OtherRecyclerView
-        RecyclerView otherRecyclerView = findViewById(R.id.OtherRecyclerView);
-        LinearLayoutManager otherLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        otherRecyclerView.setLayoutManager(otherLayoutManager);
-
-        // Danh sách các ID hình ảnh từ thư mục drawable cho other_item
-        List<Integer> otherImageIds = new ArrayList<>();
-        otherImageIds.add(R.drawable.bell);
-        otherImageIds.add(R.drawable.book_login);
-        // Thêm các ID hình ảnh khác nếu cần
-
-        // Danh sách các văn bản cho other_item
-        List<String> otherNames = new ArrayList<>();
-        otherNames.add("Other 1");
-        otherNames.add("Other 2");
-        // Thêm các văn bản khác nếu cần
-
-        // Tạo một Adapter và thiết lập cho RecyclerView
-        OtherAdapter otherAdapter = new OtherAdapter(this, otherImageIds, otherNames);
-        otherRecyclerView.setAdapter(otherAdapter);
-
-        // Tìm và thêm sự kiện onClick cho chuyển đến HomeActivity
         LinearLayout homeLayout = findViewById(R.id.homeLayout);
+        LinearLayout searchLayout = findViewById(R.id.searchLayout);
+        LinearLayout libraryLayout = findViewById(R.id.libraryLayout);
+
+        // Set click listeners for footer
         homeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Navigate to HomeActivity
                 Intent intent = new Intent(SearchActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });
 
-        // Tìm và thêm sự kiện onClick cho chuyển đến LibraryActivity
-        LinearLayout libraryLayout = findViewById(R.id.libraryLayout);
+        searchLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to SearchActivity
+                Intent intent = new Intent(SearchActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
         libraryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Navigate to HomeActivity
                 Intent intent = new Intent(SearchActivity.this, LibraryActivity.class);
                 startActivity(intent);
             }
         });
+    }
+
+    private List<Author> getListAuthor() {
+        List<Author>  list = new ArrayList<>();
+        list.add(new Author(R.drawable.bell,"Author1 " , 18));
+        list.add(new Author(R.drawable.bell,"Author2 " , 18));
+        list.add(new Author(R.drawable.bell,"Author3 " , 18));
+        list.add(new Author(R.drawable.bell,"Author4 " , 18));
+        list.add(new Author(R.drawable.bell,"Author5 " , 18));
+
+        return list;
+    }
+
+    private List<BookB> getListBookN() {
+        List<BookB>  list = new ArrayList<>();
+        list.add(new BookB(R.drawable.bell,"book 1 " , "500$"));
+        list.add(new BookB(R.drawable.book,"book 2 " , "500$"));
+        list.add(new BookB(R.drawable.apple,"book 3 " , "500$"));
+        list.add(new BookB(R.drawable.avatar,"book 4 " , "500$"));
+        list.add(new BookB(R.drawable.cart,"book 5 " , "500$"));
+        return list;
+    }
+    private List<BookB> getListOther() {
+        List<BookB>  list = new ArrayList<>();
+        list.add(new BookB(R.drawable.bell,"book 1 " , "500$"));
+        list.add(new BookB(R.drawable.book,"book 2 " , "500$"));
+        list.add(new BookB(R.drawable.apple,"book 3 " , "500$"));
+        list.add(new BookB(R.drawable.avatar,"book 4 " , "500$"));
+        list.add(new BookB(R.drawable.cart,"book 5 " , "500$"));
+        return list;
+    }
 
 //        // Tìm và thêm sự kiện onClick cho chuyển đến ProfileActivity
 //        LinearLayout profileLayout = findViewById(R.id.profileLayout);
@@ -124,4 +158,4 @@ public class SearchActivity extends AppCompatActivity {
 //            }
 //        });
     }
-}
+
