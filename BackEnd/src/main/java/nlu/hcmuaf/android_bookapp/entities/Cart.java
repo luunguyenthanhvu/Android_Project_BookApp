@@ -11,6 +11,7 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,4 +40,22 @@ public class Cart implements Serializable {
 
   @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
   private Set<CartUsers> cartUsers;
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(cartId, user);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Cart cart = (Cart) o;
+    return Objects.equals(cartId, cart.cartId) &&
+        Objects.equals(user, cart.user);
+  }
 }
