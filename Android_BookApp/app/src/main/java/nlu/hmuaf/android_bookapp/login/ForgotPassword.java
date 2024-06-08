@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,7 +27,15 @@ public class ForgotPassword extends AppCompatActivity {
         send_button = findViewById(R.id.send_button);
 
         // bấm nút "Lấy lại mật khẩu"
-        // code
+        send_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkValidate()) {
+                    Toast.makeText(ForgotPassword.this, "Vui lòng kiểm tra email của bạn!", Toast.LENGTH_SHORT).show();
+                    // code thêm ở đây
+                }
+            }
+        });
 
         cancel = findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -41,11 +50,28 @@ public class ForgotPassword extends AppCompatActivity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Tạo lại activity hiện tại
-                recreate();
+                email_edit_text.setText("");
             }
         });
 
     }
 
+    private boolean checkValidate() {
+        boolean validate = true;
+        String email = email_edit_text.getText().toString().trim();
+
+        if(email.isEmpty() ) {
+            showError(email_edit_text,  "Vui lòng nhập email!");
+            validate = false;
+        } else if (!email.matches("^[A-Za-z0-9+_.-]+@gmail\\.com$")) {
+            showError(email_edit_text, "Email không hợp lệ");
+            validate = false;
+        }
+        return validate;
+    }
+
+    private void showError(EditText input, String s) {
+        input.setError(s);
+        input.requestFocus();
+    }
 }
