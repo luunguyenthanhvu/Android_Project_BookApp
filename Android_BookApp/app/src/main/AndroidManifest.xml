@@ -86,6 +86,22 @@
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
         </activity>
+        <activity android:name=".Admin.AdminHome"
+            android:exported="true">
+                        <intent-filter>
+                            <action android:name="android.intent.action.MAIN" />
+
+                            <category android:name="android.intent.category.LAUNCHER" />
+                        </intent-filter>
+        </activity>
+        <activity android:name=".Admin.ManageOrder"
+            android:exported="false">
+
+        </activity>
+        <activity android:name=".Admin.ManageAllOrder"
+            android:exported="false">
+
+        </activity>
         <activity android:name=".CartUser.Activity.MainActivity"
             android:exported="true">
 
@@ -119,7 +135,7 @@
 
 
 
-        <activity android:name=".HomeScreen.Activity.MainActivity"
+        <activity android:name=".HomeScreen.Activity.HomeActivity"
             android:exported="true">
 
         </activity>
@@ -145,6 +161,12 @@
             android:exported="false">
 
         </activity>
+        <activity android:name=".HomeScreen.Activity.MainActivity"
+            android:exported="false">
+
+        </activity>
+
+
 
 
 

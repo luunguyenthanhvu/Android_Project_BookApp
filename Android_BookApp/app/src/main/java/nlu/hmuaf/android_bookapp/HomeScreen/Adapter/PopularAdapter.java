@@ -1,67 +1,75 @@
 package nlu.hmuaf.android_bookapp.HomeScreen.Adapter;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.HomeScreen.Activity.BookActivity;
+import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
 
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularViewHolder> {
-    private Context mContext;
-    private List<Integer> mImageIds;
-    private List<String> mTexts;
+    private List<BookB> mListBookB;
+    private OnItemClickListener listener;
 
-    public PopularAdapter(Context context, List<Integer> imageIds, List<String> texts) {
-        mContext = context;
-        mImageIds = imageIds;
-        mTexts = texts;
+    public PopularAdapter(List<BookB> mListBookB, OnItemClickListener listener) {
+        this.mListBookB = mListBookB;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public PopularViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.popular_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.popular_item, parent, false);
         return new PopularViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PopularViewHolder holder, int position) {
-        int imageId = mImageIds.get(position);
-
-        holder.imageView.setImageResource(imageId);
-
-        // Sự kiện onClick cho ImageView
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Chuyển hướng tới BookActivity khi nhấn vào hình ảnh
-                Intent intent = new Intent(mContext, BookActivity.class);
-                mContext.startActivity(intent);
-            }
-        });
+        BookB bookB = mListBookB.get(position);
+        if (bookB == null) {
+            return;
+        }
+        holder.imgBookB2.setImageResource(bookB.getResourceid());
+        holder.nameB2.setText(bookB.getName());
+        holder.priceB2.setText(bookB.getPrice());
     }
 
     @Override
     public int getItemCount() {
-        return mImageIds.size();
+        if (mListBookB != null) {
+            return mListBookB.size();
+        }
+        return 0;
     }
 
-    public static class PopularViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView textView;
+    public class PopularViewHolder extends RecyclerView.ViewHolder {
+        private ImageView imgBookB2;
+        private TextView nameB2;
+        private TextView priceB2;
 
         public PopularViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.popularItemImageView);
-            textView = itemView.findViewById(R.id.popularItemTextView);
+            imgBookB2 = itemView.findViewById(R.id.img_imageB2);
+            nameB2 = itemView.findViewById(R.id.tv_nameB2);
+            priceB2 = itemView.findViewById(R.id.tv_priceB2);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

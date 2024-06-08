@@ -16,10 +16,13 @@ import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder>{
 
-    private List<BookB> mListBookB;
 
-    public ImageAdapter(List<BookB> mListBookB) {
+
+    private List<BookB> mListBookB;
+    private OnItemClickListener listener;
+    public ImageAdapter(List<BookB> mListBookB, OnItemClickListener listener) {
         this.mListBookB = mListBookB;
+        this.listener = listener;
     }
 
 
@@ -60,6 +63,17 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             imgBookB =itemView.findViewById(R.id.img_imageB);
             nameB =itemView.findViewById(R.id.tv_nameB);
             priceB =itemView.findViewById(R.id.tv_priceB);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 

@@ -12,4 +12,8 @@
     <string name="books">Book</string>
     <string name="_500">500$</string>
     <string name="authors">Authors\n</string>
+    <string name="open_nav">Open Android_BookApp</string>
+    <string name="close_nav">Close Android_BookApp</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

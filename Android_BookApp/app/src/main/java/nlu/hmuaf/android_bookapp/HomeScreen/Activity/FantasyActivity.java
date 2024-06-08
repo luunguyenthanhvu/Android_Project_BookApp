@@ -1,51 +1,64 @@
 package nlu.hmuaf.android_bookapp.HomeScreen.Activity;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.HashSet;
-import java.util.Set;
 
-import nlu.hmuaf.android_bookapp.HomeScreen.RecyclerItemClickListener;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.FantasyAdapter;
+import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
 
-public class FantasyActivity extends AppCompatActivity {
+public class FantasyActivity extends AppCompatActivity implements FantasyAdapter.OnItemClickListener {
 
-    private TextView textView;
     private EditText editText;
     private ImageView imageView;
     private RecyclerView fantasyRecyclerView;
+    private FantasyAdapter fantasyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fantasy_activity);
 
-        // Initialize the views
-        textView = findViewById(R.id.textView);
         editText = findViewById(R.id.editText);
         imageView = findViewById(R.id.imageView);
         fantasyRecyclerView = findViewById(R.id.FantasyRecyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        fantasyRecyclerView.setLayoutManager(layoutManager);
 
-        // Set up any additional functionality here
-        textView.setText("Search");
+        fantasyAdapter = new FantasyAdapter(getListFantasy(), this);
+        fantasyRecyclerView.setAdapter(fantasyAdapter);
+        TextView tvPrevious = findViewById(R.id.tv_previous);
+
+        // Đặt OnClickListener cho TextView
+        tvPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Do nothing or perform another action
+                finish();
+            }
+        });
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 performSearch(editText.getText().toString());
             }
         });
+
         LinearLayout homeLayout = findViewById(R.id.homeLayout);
         LinearLayout searchLayout = findViewById(R.id.searchLayout);
         LinearLayout libraryLayout = findViewById(R.id.libraryLayout);
-        LinearLayout profileLayout = findViewById(R.id.profileLayout);
 
         homeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,49 +83,36 @@ public class FantasyActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-//        profileLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(FantasyActivity.this, ProfileActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
-        // Assuming that the bell imageView has the id iconImageView in the RecyclerView items
-        // Attach a click listener to the bell icon
-        fantasyRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, fantasyRecyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                ImageView bellImageView = view.findViewById(R.id.iconImageView);
-                bellImageView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String itemData = "Item " + position; // Example item data
-                        saveClickedItem(itemData);
-                    }
-                });
-            }
-
-            @Override
-            public void onLongItemClick(View view, int position) {
-                // Do nothing
-            }
-        }));
     }
 
-    private void saveClickedItem(String item) {
-        SharedPreferences sharedPreferences = getSharedPreferences("ClickedItemsPrefs", MODE_PRIVATE);
-        Set<String> clickedItems = sharedPreferences.getStringSet("clickedItems", new HashSet<>());
-        clickedItems.add(item);
-        sharedPreferences.edit().putStringSet("clickedItems", clickedItems).apply();
+    private List<BookB> getListFantasy() {
+        List<BookB> list = new ArrayList<>();
+        list.add(new BookB(R.drawable.bell, "book 1 ", "500$"));
+        list.add(new BookB(R.drawable.book_login, "book 2 ", "500$"));
+        list.add(new BookB(R.drawable.book_login, "book 3 ", "500$"));
+        list.add(new BookB(R.drawable.book_login, "book 4 ", "500$"));
+        list.add(new BookB(R.drawable.book_login, "book 5 ", "500$"));
+        return list;
     }
 
     private void performSearch(String query) {
-        // Save the item (for example, in SharedPreferences or a database)
-        // For simplicity, we are using an Intent to send the data to the next Activity
         Intent intent = new Intent(FantasyActivity.this, LibraryActivity.class);
         intent.putExtra("search_query", query);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(FantasyActivity.this, BookActivity.class);
+        intent.putExtra("book_position", position);
+        startActivity(intent);
+    }
+
+    // Thêm phương thức để xử lý sự kiện khi người dùng nhấn vào hình chuông
+    public void onBellClick(int position) {
+        BookB clickedBook = getListFantasy().get(position);
+        Intent intent = new Intent(FantasyActivity.this, LibraryActivity.class);
+        intent.putExtra("clicked_book", clickedBook);
         startActivity(intent);
     }
 }

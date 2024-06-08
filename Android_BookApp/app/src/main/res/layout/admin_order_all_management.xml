@@ -1,0 +1,155 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Quản lý đơn hàng"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thêm đơn hàng"
+                android:onClick="onAddOrderClick" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID đơn hàng"
+            android:id="@+id/order_id_input"
+            android:layout_marginBottom="8dp" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/shipping_company_spinner"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên Shop"
+            android:id="@+id/shop_name"
+            android:layout_marginBottom="8dp" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/shop_name_spinner"
+            android:layout_marginBottom="8dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mã vận đơn"
+            android:id="@+id/shipping_code_input"
+            android:layout_marginBottom="8dp" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/shipping_code_input_spinner"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên sản phẩm đăng bán"
+            android:id="@+id/product_name_input"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngày tạo đơn"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên người mua"
+            android:id="@+id/buyer_name_input"
+            android:layout_marginBottom="8dp" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buyer_name_spinner"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Đơn vị vận chuyển"
+            android:id="@+id/shipping"
+            android:layout_marginBottom="8dp" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/shipping_spinner"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Ngày bắt đầu"
+                android:focusable="false"
+                android:id="@+id/start_date_input"
+                android:onClick="onStartDateClick" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Ngày kết thúc"
+                android:focusable="false"
+                android:id="@+id/end_date_input"
+                android:onClick="onEndDateClick" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phương thức thanh toán"
+            android:id="@+id/payment"
+            android:layout_marginBottom="8dp" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/payment_spinner"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đồng bộ đơn"
+            android:layout_gravity="center"
+            android:onClick="onSyncOrdersClick" />
+    </LinearLayout>
+</ScrollView>

@@ -12,12 +12,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import nlu.hmuaf.android_bookapp.CartUser.Activity.MainActivity;
+import nlu.hmuaf.android_bookapp.HomeScreen.Activity.HomeActivity;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.profile.activity.AboutActivity;
 
 public class Activate extends AppCompatActivity {
     private EditText activateNumber;
-    private Button activateLogin;
+    private Button button_login;
     private TextView sendCode, cancel, reset;
 
 
@@ -27,7 +28,7 @@ public class Activate extends AppCompatActivity {
 
         // Khởi tạo
         activateNumber = findViewById(R.id.activate_edit_text);
-        activateLogin = findViewById(R.id.activate_login);
+        button_login = findViewById(R.id.activate_login);
         sendCode = findViewById(R.id.sendCode);
 
         // Mã xác nhận chỉ được nhập số
@@ -38,14 +39,14 @@ public class Activate extends AppCompatActivity {
         // code
 
 
-        // bấm nút login
-        activateLogin.setOnClickListener(new View.OnClickListener() {
+        // bấm nút Đăng nhập
+        button_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String number = activateNumber.getText().toString().trim();
                 // nếu mã xác nhận đúng
                 if (number.equals("")) {
-                    Intent intent = new Intent(Activate.this, AboutActivity.class);
+                    Intent intent = new Intent(Activate.this, HomeActivity.class);
                     startActivity(intent);
                     finish(); // Tùy chọn: đóng activity để không quay lại khi nhấn quay lại
                 } else {
@@ -67,13 +68,29 @@ public class Activate extends AppCompatActivity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Tạo lại activity hiện tại
-                recreate();
+                activateNumber.setText("");
             }
         });
 
     }
 
+    private boolean checkValidate() {
+        boolean validate = true;
+        String number = activateNumber.getText().toString().trim();
 
+        if(number.isEmpty() ) {
+            showError(activateNumber,  "Vui lòng bấm nút Gửi!");
+            validate = false;
+        } else if(!number.matches("[0-9]")) {
+            showError(activateNumber,  "Chỉ được nhập số!");
+            validate = false;
+        }
+        return validate;
+    }
+
+    private void showError(EditText input, String s) {
+        input.setError(s);
+        input.requestFocus();
+    }
 
 }
