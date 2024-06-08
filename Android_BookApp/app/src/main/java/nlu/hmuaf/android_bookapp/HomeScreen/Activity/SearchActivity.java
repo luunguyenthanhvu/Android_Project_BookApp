@@ -22,6 +22,7 @@ import nlu.hmuaf.android_bookapp.HomeScreen.Class.Author;
 
 import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.profile.activity.LogOutActivity;
 
 
 public class SearchActivity extends AppCompatActivity {
@@ -89,7 +90,16 @@ public class SearchActivity extends AppCompatActivity {
         LinearLayout homeLayout = findViewById(R.id.homeLayout);
         LinearLayout searchLayout = findViewById(R.id.searchLayout);
         LinearLayout libraryLayout = findViewById(R.id.libraryLayout);
-
+        LinearLayout profileLayout = findViewById(R.id.profileLayout);
+        // Set click listeners for footer
+        profileLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to HomeActivity
+                Intent intent = new Intent(SearchActivity.this, LogOutActivity.class);
+                startActivity(intent);
+            }
+        });
         // Set click listeners for footer
         homeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,20 +141,20 @@ public class SearchActivity extends AppCompatActivity {
 
     private List<BookB> getListBookN() {
         List<BookB>  list = new ArrayList<>();
-        list.add(new BookB(R.drawable.bell,"book 1 " , "500$"));
-        list.add(new BookB(R.drawable.book,"book 2 " , "500$"));
-        list.add(new BookB(R.drawable.apple,"book 3 " , "500$"));
-        list.add(new BookB(R.drawable.avatar,"book 4 " , "500$"));
-        list.add(new BookB(R.drawable.cart,"book 5 " , "500$"));
+        list.add(new BookB(R.drawable.book1,"book 1 " , "500$"));
+        list.add(new BookB(R.drawable.book2,"book 2 " , "500$"));
+        list.add(new BookB(R.drawable.book3,"book 3 " , "500$"));
+        list.add(new BookB(R.drawable.book4,"book 4 " , "500$"));
+        list.add(new BookB(R.drawable.book5,"book 5 " , "500$"));
         return list;
     }
     private List<BookB> getListOther() {
         List<BookB>  list = new ArrayList<>();
-        list.add(new BookB(R.drawable.bell,"book 1 " , "500$"));
-        list.add(new BookB(R.drawable.book,"book 2 " , "500$"));
-        list.add(new BookB(R.drawable.apple,"book 3 " , "500$"));
-        list.add(new BookB(R.drawable.avatar,"book 4 " , "500$"));
-        list.add(new BookB(R.drawable.cart,"book 5 " , "500$"));
+        list.add(new BookB(R.drawable.book1,"book 1 " , "500$"));
+        list.add(new BookB(R.drawable.book2,"book 2 " , "500$"));
+        list.add(new BookB(R.drawable.book3,"book 3 " , "500$"));
+        list.add(new BookB(R.drawable.book4,"book 4 " , "500$"));
+        list.add(new BookB(R.drawable.book5,"book 5 " , "500$"));
         return list;
     }
 

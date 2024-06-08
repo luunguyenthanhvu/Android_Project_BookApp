@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.profile.activity.LogOutActivity;
 
 
 public class BookActivity extends AppCompatActivity {
@@ -79,6 +80,16 @@ public class BookActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+        LinearLayout profileLayout = findViewById(R.id.profileLayout);
+        // Set click listeners for footer
+        profileLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to HomeActivity
+                Intent intent = new Intent(BookActivity.this, LogOutActivity.class);
                 startActivity(intent);
             }
         });
