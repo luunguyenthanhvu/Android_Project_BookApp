@@ -51,7 +51,7 @@ public class Users implements Serializable {
 
   @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
   @PrimaryKeyJoinColumn
-  private Cart cart;
+  private Carts cart;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   private Set<Bills> bills;

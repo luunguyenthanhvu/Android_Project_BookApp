@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "Cart")
-public class Cart implements Serializable {
+public class Carts implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +39,7 @@ public class Cart implements Serializable {
   private Users user;
 
   @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-  private Set<CartUsers> cartUsers;
+  private Set<CartItems> cartUsers;
 
   @Override
   public int hashCode() {
@@ -54,7 +54,7 @@ public class Cart implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Cart cart = (Cart) o;
+    Carts cart = (Carts) o;
     return Objects.equals(cartId, cart.cartId) &&
         Objects.equals(user, cart.user);
   }

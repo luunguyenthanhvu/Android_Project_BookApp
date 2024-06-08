@@ -17,12 +17,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@Entity(name = "Cart_Users")
-public class CartUsers implements Serializable {
+@Entity(name = "Cart_Items")
+public class CartItems implements Serializable {
   @Id
   @ManyToOne
   @JoinColumn(name = "cartId")
-  private Cart cart;
+  private Carts cart;
 
   @Id
   @ManyToOne
