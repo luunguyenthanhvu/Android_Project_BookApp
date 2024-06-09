@@ -13,7 +13,7 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.profile_activity_about);
         DarkModeUtil.applyDarkMode(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
