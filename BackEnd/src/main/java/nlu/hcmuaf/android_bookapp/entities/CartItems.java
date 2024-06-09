@@ -9,18 +9,20 @@ import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Cart_Users")
-public class CartUsers implements Serializable {
+@EqualsAndHashCode
+@Entity(name = "Cart_Items")
+public class CartItems implements Serializable {
   @Id
   @ManyToOne
   @JoinColumn(name = "cartId")
-  private Cart cart;
+  private Carts cart;
 
   @Id
   @ManyToOne

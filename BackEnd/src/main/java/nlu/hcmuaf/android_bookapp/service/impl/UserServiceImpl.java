@@ -13,7 +13,7 @@ import nlu.hcmuaf.android_bookapp.dto.request.VerifyRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hcmuaf.android_bookapp.entities.Addresses;
-import nlu.hcmuaf.android_bookapp.entities.Cart;
+import nlu.hcmuaf.android_bookapp.entities.Carts;
 import nlu.hcmuaf.android_bookapp.entities.Roles;
 import nlu.hcmuaf.android_bookapp.entities.UserAddresses;
 import nlu.hcmuaf.android_bookapp.entities.UserDetails;
@@ -97,11 +97,11 @@ public class UserServiceImpl implements IUserService {
 
         addresses.setUserAddresses(userAddressesSet);
         userDetails.setUserAddresses(userAddressesSet);
-        users.setCreatedDate(LocalDate.of(2024, 12, 12));
+        users.setCreatedDate(LocalDate.of(2023, 1, 1));
         users.setRoles(roleRepository.getRolesByRoleName(ERole.ADMIN).get());
         users.setUserDetails(userDetails);
         // Create cart
-        Cart cart = new Cart();
+        Carts cart = new Carts();
         cart.setUser(users);
         users.setCart(cart);
         users.setPassword(passwordEncoder.encode("vuluu123"));
@@ -196,7 +196,7 @@ public class UserServiceImpl implements IUserService {
 
         users.setCreatedDate(LocalDate.now());
         users.setUserDetails(newUserDetail);
-        Cart cart = new Cart();
+        Carts cart = new Carts();
         cart.setUser(users);
         users.setCart(cart);
         // send email to User
