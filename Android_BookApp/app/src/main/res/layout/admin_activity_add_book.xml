@@ -106,18 +106,19 @@
                 android:hint="Tác giả"
                 android:inputType="text"/>
 
-
             <EditText
                 android:id="@+id/etDiscountCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Mã giảm giá" />
+
             <Button
                 android:id="@+id/btnSelectPublishers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Chọn nhà xuất bản"
                 android:layout_gravity="center_horizontal"/>
+
             <!-- Book Thumbnail -->
             <Button
                 android:id="@+id/btnUploadThumbnail"
@@ -126,6 +127,14 @@
                 android:text="Thumbnail"
                 android:layout_gravity="center_horizontal" />
 
+            <ImageView
+                android:id="@+id/ivThumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                android:scaleType="centerCrop"
+                android:background="@android:color/darker_gray" />
+
             <!-- Multiple Book Images -->
             <Button
                 android:id="@+id/btnUploadBookImages"
@@ -133,6 +142,15 @@
                 android:layout_height="wrap_content"
                 android:text="Ảnh sách"
                 android:layout_gravity="center_horizontal" />
+
+            <!-- RecyclerView for Book Images -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBookImages"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal"
+                tools:listitem="@layout/admin_item_book_image" />
 
             <!-- Action Buttons -->
             <Button
