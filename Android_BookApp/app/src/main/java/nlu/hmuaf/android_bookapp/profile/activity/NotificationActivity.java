@@ -25,7 +25,7 @@ public class NotificationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notification);
+        setContentView(R.layout.profile_activity_notification);
         DarkModeUtil.applyDarkMode(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

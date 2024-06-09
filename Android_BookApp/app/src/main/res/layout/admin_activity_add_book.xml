@@ -25,9 +25,10 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
-            <!-- Thông tin Sách Cơ Bản -->
+            <!-- Basic Book Information -->
             <EditText
                 android:id="@+id/etBookTitle"
                 android:layout_width="match_parent"
@@ -44,7 +45,12 @@
                 android:id="@+id/etBookDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mô tả" />
+                android:hint="Mô tả"
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:minLines="3"
+                android:maxLines="5"
+                android:scrollbars="vertical" />
 
             <EditText
                 android:id="@+id/etBookPrice"
@@ -53,7 +59,7 @@
                 android:hint="Giá"
                 android:inputType="numberDecimal" />
 
-            <!-- Thông tin Chi Tiết Sách -->
+            <!-- Detailed Book Information -->
             <EditText
                 android:id="@+id/etNumberOfPages"
                 android:layout_width="match_parent"
@@ -68,60 +74,67 @@
                 android:hint="Ngày xuất bản"
                 android:inputType="date" />
 
+            <!-- Existing EditText for Language -->
             <EditText
                 android:id="@+id/etLanguage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Ngôn ngữ" />
+                android:hint="Ngôn ngữ"
+                android:inputType="text"/>
 
+            <!-- New EditText for Size -->
             <EditText
-                android:id="@+id/etGenre"
+                android:id="@+id/etSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Thể loại" />
+                android:hint="Size sách"
+                android:inputType="text"/>
 
-            <!-- Nhà Xuất Bản -->
+            <!-- New EditText for Format -->
             <EditText
-                android:id="@+id/etPublisherName"
+                android:id="@+id/etFormat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tên nhà xuất bản" />
+                android:hint="Format sách"
+                android:inputType="text"/>
 
+            <!-- Continuing fields -->
             <EditText
                 android:id="@+id/etAuthor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tác giả" />
+                android:hint="Tác giả"
+                android:inputType="text"/>
+
 
             <EditText
                 android:id="@+id/etDiscountCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Mã giảm giá" />
-
-            <!-- Hình ảnh Sách -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Hình ảnh sách" />
-
-            <ImageView
-                android:id="@+id/ivBookImage"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginBottom="16dp"
-                android:scaleType="centerCrop"
-                android:background="@android:color/darker_gray" />
-
             <Button
-                android:id="@+id/btnUploadImage"
+                android:id="@+id/btnSelectPublishers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/avatar"
-                android:text="Tải ảnh lên" />
+                android:text="Chọn nhà xuất bản"
+                android:layout_gravity="center_horizontal"/>
+            <!-- Book Thumbnail -->
+            <Button
+                android:id="@+id/btnUploadThumbnail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thumbnail"
+                android:layout_gravity="center_horizontal" />
 
-            <!-- Các nút chức năng -->
+            <!-- Multiple Book Images -->
+            <Button
+                android:id="@+id/btnUploadBookImages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ảnh sách"
+                android:layout_gravity="center_horizontal" />
+
+            <!-- Action Buttons -->
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="match_parent"
@@ -135,5 +148,4 @@
                 android:text="Hủy" />
         </LinearLayout>
     </ScrollView>
-
 </RelativeLayout>

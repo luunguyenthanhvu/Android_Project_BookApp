@@ -15,7 +15,7 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile);
+        setContentView(R.layout.profile_activity_edit_profile);
         DarkModeUtil.applyDarkMode(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);

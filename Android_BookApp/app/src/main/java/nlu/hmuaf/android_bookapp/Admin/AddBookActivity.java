@@ -1,124 +1,148 @@
 package nlu.hmuaf.android_bookapp.Admin;
 
+import android.Manifest;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import android.app.AlertDialog;
+import java.util.ArrayList;
 
 import nlu.hmuaf.android_bookapp.R;
 
 public class AddBookActivity extends AppCompatActivity {
 
-    private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int PICK_THUMBNAIL_REQUEST = 1;
+    private static final int PICK_IMAGES_REQUEST = 2;
+    private static final int PERMISSIONS_REQUEST_READ_STORAGE = 101;
 
-    private EditText etBookTitle, etBookID, etBookDescription, etBookPrice;
-    private EditText etNumberOfPages, etPublicationDate, etLanguage, etGenre;
-    private EditText etPublisherName, etAuthor, etDiscountCode;
-    private ImageView ivBookImage;
-    private Button btnUploadImage, btnSave, btnCancel;
-    private Uri imageUri;
+    private EditText etBookTitle, etBookID, etBookDescription, etBookPrice, etNumberOfPages, etPublicationDate, etLanguage, etSize, etFormat, etAuthor, etDiscountCode;
+    private Button btnSelectPublishers, btnUploadThumbnail, btnUploadBookImages, btnSave, btnCancel;
+    private ArrayList<String> selectedPublishers = new ArrayList<>();
+    private String[] publisherList = {"Yen On", "A", "B", "C"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_book);
-
+        setContentView(R.layout.admin_activity_add_book);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Thêm Sách");
 
+        // Initialize all views
+        initializeViews();
+
+        btnSelectPublishers.setOnClickListener(v -> showPublisherDialog());
+        btnUploadThumbnail.setOnClickListener(v -> {
+            if (checkPermission()) {
+                openFileChooser(false);
+            } else {
+                requestStoragePermission();
+            }
+        });
+        btnUploadBookImages.setOnClickListener(v -> {
+            if (checkPermission()) {
+                openFileChooser(true);
+            } else {
+                requestStoragePermission();
+            }
+        });
+        btnSave.setOnClickListener(v -> saveBook());
+        btnCancel.setOnClickListener(v -> finish());
+    }
+
+    private void initializeViews() {
         etBookTitle = findViewById(R.id.etBookTitle);
-        etBookID = findViewById(R.id.etBookID); // Thêm EditText cho BookID
+        etBookID = findViewById(R.id.etBookID);
         etBookDescription = findViewById(R.id.etBookDescription);
         etBookPrice = findViewById(R.id.etBookPrice);
         etNumberOfPages = findViewById(R.id.etNumberOfPages);
         etPublicationDate = findViewById(R.id.etPublicationDate);
         etLanguage = findViewById(R.id.etLanguage);
-        etGenre = findViewById(R.id.etGenre);
-        etPublisherName = findViewById(R.id.etPublisherName);
-        ivBookImage = findViewById(R.id.ivBookImage);
-        btnUploadImage = findViewById(R.id.btnUploadImage);
+        etSize = findViewById(R.id.etSize);
+        etFormat = findViewById(R.id.etFormat);
         etAuthor = findViewById(R.id.etAuthor);
         etDiscountCode = findViewById(R.id.etDiscountCode);
+        btnSelectPublishers = findViewById(R.id.btnSelectPublishers);
+        btnUploadThumbnail = findViewById(R.id.btnUploadThumbnail);
+        btnUploadBookImages = findViewById(R.id.btnUploadBookImages);
         btnSave = findViewById(R.id.btnSave);
         btnCancel = findViewById(R.id.btnCancel);
-
-        btnUploadImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFileChooser();
-            }
-        });
-
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveBook();
-            }
-        });
-
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
-    private void openFileChooser() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    private boolean checkPermission() {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestStoragePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            Toast.makeText(this, "Permission needed to access photos for uploading.", Toast.LENGTH_LONG).show();
+        }
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSIONS_REQUEST_READ_STORAGE);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            imageUri = data.getData();
-            try {
-                InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                ivBookImage.setImageBitmap(selectedImage);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSIONS_REQUEST_READ_STORAGE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Permission denied. Cannot access images.", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
+    private void showPublisherDialog() {
+        boolean[] checkedItems = new boolean[publisherList.length]; // Temporary array to store checked items for dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddBookActivity.this);
+        builder.setTitle("Chọn nhà xuất bản");
+        builder.setMultiChoiceItems(publisherList, checkedItems, (dialog, which, isChecked) -> {
+            String publisher = publisherList[which];
+            if (isChecked) {
+                if (!selectedPublishers.contains(publisher)) {
+                    selectedPublishers.add(publisher);
+                }
+            } else {
+                selectedPublishers.remove(publisher);
+            }
+        });
+
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            Toast.makeText(AddBookActivity.this, "Publishers Selected: " + selectedPublishers, Toast.LENGTH_SHORT).show();
+        });
+
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void openFileChooser(boolean allowMultiple) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, allowMultiple);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), allowMultiple ? PICK_IMAGES_REQUEST : PICK_THUMBNAIL_REQUEST);
+    }
+
     private void saveBook() {
-        // Lấy dữ liệu từ các trường nhập liệu
         String title = etBookTitle.getText().toString();
-        String bookID = etBookID.getText().toString(); // Lấy dữ liệu từ trường BookID
-        String description = etBookDescription.getText().toString();
-        String price = etBookPrice.getText().toString();
-        String numberOfPages = etNumberOfPages.getText().toString();
-        String publicationDate = etPublicationDate.getText().toString();
-        String language = etLanguage.getText().toString();
-        String genre = etGenre.getText().toString();
-        String publisherName = etPublisherName.getText().toString();
-        String author = etAuthor.getText().toString();
-        String discountCode = etDiscountCode.getText().toString();
+        String authors = etAuthor.getText().toString();
 
-        // Xử lý dữ liệu và lưu vào cơ sở dữ liệu (API, SQLite, v.v.)
-        // Ví dụ sử dụng Retrofit để gọi API lưu sách
+        // Assuming you are saving the details to a local database or sending them to a server:
+        saveBookDetails(title, authors, selectedPublishers); // Implement this method based on your backend
+        Toast.makeText(this, "Sách đã được lưu cùng với các nhà xuất bản đã chọn.", Toast.LENGTH_SHORT).show();
+        finish(); // Close the activity
+    }
 
-        // Nếu lưu thành công, thông báo cho người dùng và kết thúc activity
-        Toast.makeText(this, "Sách đã được lưu", Toast.LENGTH_SHORT).show();
-        finish();
+    private void saveBookDetails(String title, String authors, ArrayList<String> publishers) {
+        // Implementation of how you save these details to your backend or database
     }
 }
