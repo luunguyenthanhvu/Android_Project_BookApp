@@ -12,59 +12,55 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.HomeScreen.Activity.FantasyActivity;
-import nlu.hmuaf.android_bookapp.HomeScreen.Class.Author;
 import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
 
-public class OtherAdapter extends RecyclerView.Adapter<OtherAdapter.OtherViewHolder> {
+public class NSXAdapter extends RecyclerView.Adapter<NSXAdapter.NSXViewHolder> {
 
-    private List<Author> mListAuthor;
+    private List<BookB> mListBookB;
     private OnItemClickListener listener;
-    public OtherAdapter(List<Author> mListAuthor, OnItemClickListener listener) {
-        this.mListAuthor = mListAuthor;
+    public NSXAdapter(List<BookB> mListBookB, OnItemClickListener listener) {
+        this.mListBookB = mListBookB;
         this.listener = listener;
     }
 
 
     @NonNull
     @Override
-    public OtherAdapter.OtherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.other_item, parent, false);
-        return new OtherAdapter.OtherViewHolder(view);
+    public NSXAdapter.NSXViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookname_item, parent, false);
+        return new NSXAdapter.NSXViewHolder(view);
 
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OtherAdapter.OtherViewHolder holder, int position) {
-        Author author = mListAuthor.get(position);
-        if (author==null){
+    public void onBindViewHolder(@NonNull NSXAdapter.NSXViewHolder holder, int position) {
+        BookB bookB = mListBookB.get(position);
+        if (bookB==null){
             return;
         }
-        holder.imgBookB.setImageResource(author.getResourceid());
-        holder.nameB.setText(author.getName());
-        holder.hotLine.setText(String.valueOf(author.getAge()));
+        holder.imgBookB.setImageResource(bookB.getResourceid());
+        holder.nameB.setText(bookB.getName());
 
     }
 
     @Override
     public int getItemCount() {
-        if(mListAuthor!=null){
-            return mListAuthor.size();
+        if(mListBookB!=null){
+            return mListBookB.size();
         }
         return 0;
     }
 
-    public class OtherViewHolder extends RecyclerView.ViewHolder{
+    public class NSXViewHolder extends RecyclerView.ViewHolder{
         private ImageView imgBookB;
         private TextView nameB;
-        private TextView hotLine;
 
-        public OtherViewHolder(@NonNull View itemView) {
+        public NSXViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgBookB =itemView.findViewById(R.id.OtherItemImageView);
-            nameB =itemView.findViewById(R.id.OtherItemTextView);
-            hotLine=itemView.findViewById(R.id.tv_hl);
+            imgBookB =itemView.findViewById(R.id.BookItemImageView);
+            nameB =itemView.findViewById(R.id.BookItemTextView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

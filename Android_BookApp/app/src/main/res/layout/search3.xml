@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -10,9 +9,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +33,6 @@
                     android:text="Search"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -67,10 +63,10 @@
                         android:layout_marginEnd="16dp"
                         android:padding="10dp"
                         android:src="@drawable/search" />
-
                 </LinearLayout>
-
             </LinearLayout>
+
+            <!-- Button Tác giả -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,99 +78,63 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tác giả"
-                    android:textSize="12sp"
-                    android:background="@android:color/transparent"
-                    android:textColor="@drawable/button_text_selector"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
                     android:onClick="showTacGiaRecyclerView" />
 
+                <!-- RecyclerView Tác giả -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/AuthorRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
+                <!-- Button Bìa cứng -->
                 <Button
                     android:id="@+id/buttonBiaCung"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Bìa cứng"
-                    android:textSize="12sp"
-                    android:background="@android:color/transparent"
-                    android:textColor="@drawable/button_text_selector"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
                     android:onClick="showBiaCungRecyclerView" />
 
+                <!-- RecyclerView Bìa cứng -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewBiaCung"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
+                <!-- Button Bìa mềm -->
                 <Button
                     android:id="@+id/buttonBiaMem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Bìa mềm"
-                    android:textSize="12sp"
-                    android:background="@android:color/transparent"
-                    android:textColor="@drawable/button_text_selector"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
                     android:onClick="showBiaMemRecyclerView" />
 
+                <!-- RecyclerView Bìa mềm -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewBiaMem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
+                <!-- Button Nhà xuất bản -->
                 <Button
                     android:id="@+id/buttonNhaXuatBan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="NXB"
-                    android:textSize="12sp"
-                    android:background="@android:color/transparent"
-                    android:textColor="@drawable/button_text_selector"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
                     android:onClick="showNhaXuatBanRecyclerView" />
+
+                <!-- RecyclerView Nhà xuất bản -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewNhaXuatBan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+
             </LinearLayout>
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/AuthorRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/author_item" />
-
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/BookNameRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/bookname_item" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/BookNameRecyclerViewM"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/bookname_item" />
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/OtherRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/other_item" />
-
         </LinearLayout>
-
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,6 +43,7 @@ public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.AuthorView
         }
         holder.imgAuthor.setImageResource(author.getResourceid());
         holder.nameAuthor.setText(author.getName());
+        holder.ageAuthor.setText(String.valueOf(author.getAge()));
 //        holder.priceB.setText(author.getAge());
     }
 
@@ -63,6 +64,7 @@ public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.AuthorView
             super(itemView);
             imgAuthor = itemView.findViewById(R.id.img_author);
             nameAuthor = itemView.findViewById(R.id.tv_authorName);
+            ageAuthor = itemView.findViewById(R.id.tv_age);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
