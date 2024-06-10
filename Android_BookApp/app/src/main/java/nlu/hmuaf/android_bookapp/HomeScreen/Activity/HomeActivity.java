@@ -34,7 +34,24 @@ public class HomeActivity extends AppCompatActivity {
         rcv2Data = findViewById(R.id.rcv2_Data);
         // Tìm TextView theo ID
         TextView tvPrevious = findViewById(R.id.tv_previous);
-
+        TextView textViewViewMore = findViewById(R.id.textViewViewMore);
+        textViewViewMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Chuyển sang trang FantasyActivity khi click vào chữ "viewMore"
+                Intent intent = new Intent(HomeActivity.this, FantasyActivity.class);
+                startActivity(intent);
+            }
+        });
+        TextView textViewViewMore2 = findViewById(R.id.textViewViewMore2);
+        textViewViewMore2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Chuyển sang trang FantasyActivity khi click vào chữ "viewMore"
+                Intent intent = new Intent(HomeActivity.this, FantasyActivity.class);
+                startActivity(intent);
+            }
+        });
         // Đặt OnClickListener cho TextView
         tvPrevious.setOnClickListener(new View.OnClickListener() {
             @Override

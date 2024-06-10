@@ -1,34 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:padding="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <FrameLayout
+        android:layout_width="366dp"
+        android:layout_height="150dp"
 
+        android:layout_marginTop="4dp"
+
+        android:background="#F9EBFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <!-- ConstraintLayout để đặt TextView và icon -->
         <ImageView
             android:id="@+id/OtherItemImageView"
-            android:layout_width="150dp"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
-            android:scaleType="centerCrop"
-            android:padding="30dp"
-            android:src="@drawable/home"/>
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/profile" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/FantasyItemImageView"
+            android:layout_width="48dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="310dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/bell" />
 
         <TextView
             android:id="@+id/OtherItemTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/OtherItemImageView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="Name" />
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="15dp"
+            android:text="Tôi là ai"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/hotline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="35dp"
+            android:text="HotLine :"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_hl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="220dp"
+            android:layout_marginTop="35dp"
+
+            android:text="1900" />
 
 
 
-
-    </RelativeLayout>
-
+    </FrameLayout>
 </androidx.cardview.widget.CardView>
