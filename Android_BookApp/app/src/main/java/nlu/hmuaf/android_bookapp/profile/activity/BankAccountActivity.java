@@ -21,7 +21,7 @@ public class BankAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bank_account);
+        setContentView(R.layout.profile_activity_bank_account);
         DarkModeUtil.applyDarkMode(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -66,7 +66,7 @@ public class BankAccountActivity extends AppCompatActivity {
     }
 
     private void addBankAccountView(String bankName, String accountNumber) {
-        View bankAccountView = getLayoutInflater().inflate(R.layout.item_bank_account, bankAccountList, false);
+        View bankAccountView = getLayoutInflater().inflate(R.layout.profile_item_bank_account, bankAccountList, false);
 
         TextView textViewBankInfo = bankAccountView.findViewById(R.id.textViewBankInfo);
         Button buttonUnlink = bankAccountView.findViewById(R.id.buttonUnlink);
@@ -85,7 +85,7 @@ public class BankAccountActivity extends AppCompatActivity {
     }
 
     private void addCardView(String cardNumber) {
-        View cardView = getLayoutInflater().inflate(R.layout.item_bank_account, bankAccountList, false);
+        View cardView = getLayoutInflater().inflate(R.layout.profile_item_bank_account, bankAccountList, false);
 
         TextView textViewCardInfo = cardView.findViewById(R.id.textViewBankInfo);
         Button buttonUnlink = cardView.findViewById(R.id.buttonUnlink);
