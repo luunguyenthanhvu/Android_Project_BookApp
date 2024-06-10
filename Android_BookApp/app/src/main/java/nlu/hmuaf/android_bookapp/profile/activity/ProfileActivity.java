@@ -2,6 +2,7 @@ package nlu.hmuaf.android_bookapp.profile.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -26,7 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
         DarkModeUtil.applyDarkMode(this);
 
 
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.profile_activity_profile);
 
         Switch darkModeSwitch = findViewById(R.id.dark_mode_switch);
         boolean isDarkMode = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("dark_mode", false);
@@ -51,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         ImageView editImageView = findViewById(R.id.editImageView);
         editImageView.setOnClickListener(new View.OnClickListener() {
@@ -132,5 +133,12 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
