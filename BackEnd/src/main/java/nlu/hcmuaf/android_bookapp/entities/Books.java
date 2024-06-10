@@ -65,7 +65,7 @@ public class Books implements Serializable {
   @PrimaryKeyJoinColumn
   private BookDetails bookDetails;
 
-  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
   private Set<BookRating> bookRatings;
 
   @Override

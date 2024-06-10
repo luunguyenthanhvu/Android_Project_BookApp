@@ -69,6 +69,9 @@ public class UserDetails implements Serializable {
   @Column(name = "otpExpiryTime")
   private LocalDateTime otpExpiryTime;
 
+  @OneToMany(mappedBy = "userDetails")
+  private Set<Ratings> ratings;
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
