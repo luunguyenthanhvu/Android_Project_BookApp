@@ -36,11 +36,11 @@
 
         <ImageView
             android:id="@+id/FantasyItemImageView"
-            android:layout_width="48dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="310dp"
             android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/bell" />
+            app:srcCompat="@drawable/heart" />
 
         <TextView
             android:id="@+id/OtherItemTextView"
@@ -67,7 +67,22 @@
 
             android:text="1900" />
 
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="55dp"
+            android:text="Address :"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="80dp"
 
+            android:text="Địa chỉ" />
 
     </FrameLayout>
 </androidx.cardview.widget.CardView>

@@ -1,7 +1,5 @@
 package nlu.hmuaf.android_bookapp.HomeScreen.Adapter;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,62 +7,69 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import java.util.List;
-
-import nlu.hmuaf.android_bookapp.HomeScreen.Activity.FantasyActivity;
-import nlu.hmuaf.android_bookapp.HomeScreen.Class.Author;
-import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
+import nlu.hmuaf.android_bookapp.HomeScreen.Class.Publisher;
 import nlu.hmuaf.android_bookapp.R;
 
 public class OtherAdapter extends RecyclerView.Adapter<OtherAdapter.OtherViewHolder> {
 
-    private List<Author> mListAuthor;
+    private List<Publisher> mListPublisher;
     private OnItemClickListener listener;
-    public OtherAdapter(List<Author> mListAuthor, OnItemClickListener listener) {
-        this.mListAuthor = mListAuthor;
+    private List<Publisher> displayList;
+    private static final int ITEMS_PER_PAGE = 10; // Số mục trên mỗi trang
+
+    public OtherAdapter(List<Publisher> mListPublisher, OnItemClickListener listener) {
+        this.mListPublisher = mListPublisher;
         this.listener = listener;
+        this.displayList = new ArrayList<>();
+        updateDisplayList(0); // Khởi tạo với trang đầu tiên
     }
 
+    public void updateDisplayList(int page) {
+        int start = page * ITEMS_PER_PAGE;
+        int end = Math.min(start + ITEMS_PER_PAGE, mListPublisher.size());
+        displayList.clear();
+        displayList.addAll(mListPublisher.subList(start, end));
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
-    public OtherAdapter.OtherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OtherViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.other_item, parent, false);
-        return new OtherAdapter.OtherViewHolder(view);
-
-
+        return new OtherViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OtherAdapter.OtherViewHolder holder, int position) {
-        Author author = mListAuthor.get(position);
-        if (author==null){
+    public void onBindViewHolder(@NonNull OtherViewHolder holder, int position) {
+        Publisher publisher = displayList.get(position);
+        if (publisher == null) {
             return;
         }
-        holder.imgBookB.setImageResource(author.getResourceid());
-        holder.nameB.setText(author.getName());
-        holder.hotLine.setText(String.valueOf(author.getAge()));
-
+        holder.imgBookB.setImageResource(publisher.getResourceid());
+        holder.nameB.setText(publisher.getName());
+        holder.hotLine.setText(String.valueOf(publisher.getHotLine()));
+        holder.address.setText(publisher.getAddress());
     }
 
     @Override
     public int getItemCount() {
-        if(mListAuthor!=null){
-            return mListAuthor.size();
-        }
-        return 0;
+        return displayList.size();
     }
 
-    public class OtherViewHolder extends RecyclerView.ViewHolder{
+    public class OtherViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgBookB;
         private TextView nameB;
         private TextView hotLine;
+        private TextView address;
 
         public OtherViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgBookB =itemView.findViewById(R.id.OtherItemImageView);
-            nameB =itemView.findViewById(R.id.OtherItemTextView);
-            hotLine=itemView.findViewById(R.id.tv_hl);
+            imgBookB = itemView.findViewById(R.id.OtherItemImageView);
+            nameB = itemView.findViewById(R.id.OtherItemTextView);
+            hotLine = itemView.findViewById(R.id.tv_hl);
+            address = itemView.findViewById(R.id.tv_address);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -77,4 +82,6 @@ public class OtherAdapter extends RecyclerView.Adapter<OtherAdapter.OtherViewHol
                     }
                 }
             });
-        }}}
+        }
+    }
+}

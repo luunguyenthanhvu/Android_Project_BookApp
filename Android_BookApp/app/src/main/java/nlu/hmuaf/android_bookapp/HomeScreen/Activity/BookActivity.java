@@ -1,6 +1,7 @@
 package nlu.hmuaf.android_bookapp.HomeScreen.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -184,6 +185,7 @@ public class BookActivity extends AppCompatActivity {
         // Thêm nút "Thêm đánh giá"
         Button buttonAddReview = new Button(this);
         buttonAddReview.setText("Thêm đánh giá");
+        buttonAddReview.setBackgroundResource(R.drawable.rounded_button); // Ví dụ: màu cam
         contentContainer.addView(buttonAddReview);
 
         // Set OnClickListener for the "Thêm đánh giá" button
