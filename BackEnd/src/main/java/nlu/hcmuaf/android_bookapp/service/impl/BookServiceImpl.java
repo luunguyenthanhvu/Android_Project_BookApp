@@ -143,4 +143,9 @@ public class BookServiceImpl implements IBookService {
   public Page<ListBookResponseDTO> getNewBookList(Pageable pageable) {
     return bookRepository.getNewBookList(pageable);
   }
+
+  @Override
+  public Page<ListBookResponseDTO> getDiscountBookList(Pageable pageable) {
+    return bookRepository.getDiscountBookList(pageable);
+  }
 }

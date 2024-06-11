@@ -9,4 +9,6 @@ public interface IBookService {
   void loadDefaultData();
 
   Page<ListBookResponseDTO> getNewBookList(Pageable pageable);
+
+  Page<ListBookResponseDTO> getDiscountBookList(Pageable pageable);
 }
