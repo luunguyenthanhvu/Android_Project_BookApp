@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import nlu.hcmuaf.android_bookapp.dto.json.BooksWrapper;
+import nlu.hcmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hcmuaf.android_bookapp.entities.BookDetails;
 import nlu.hcmuaf.android_bookapp.entities.BookImages;
 import nlu.hcmuaf.android_bookapp.entities.BookRating;
@@ -21,6 +22,8 @@ import nlu.hcmuaf.android_bookapp.service.templates.IPublishCompanyService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -134,5 +137,15 @@ public class BookServiceImpl implements IBookService {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public Page<ListBookResponseDTO> getNewBookList(Pageable pageable) {
+    return bookRepository.getNewBookList(pageable);
+  }
+
+  @Override
+  public Page<ListBookResponseDTO> getDiscountBookList(Pageable pageable) {
+    return bookRepository.getDiscountBookList(pageable);
   }
 }
