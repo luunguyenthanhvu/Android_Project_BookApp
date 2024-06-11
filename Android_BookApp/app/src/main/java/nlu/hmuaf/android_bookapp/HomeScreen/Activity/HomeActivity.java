@@ -4,13 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.ImageAdapter;
 
@@ -18,13 +23,24 @@ import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.OnItemClickListener;
 import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.PopularAdapter;
 import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.dto.json.response.PageListBookResponseJson;
+import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
+import nlu.hmuaf.android_bookapp.networking.BookAppApi;
+import nlu.hmuaf.android_bookapp.networking.BookAppService;
 import nlu.hmuaf.android_bookapp.profile.activity.LogOutActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
     private RecyclerView rcv1Data;
     private RecyclerView rcv2Data;
     private ImageAdapter imageAdapter;
     private PopularAdapter popularAdapter;
+    private BookAppApi bookAppApi;
+    private List<ListBookResponseDTO> newListBook, Book = new ArrayList<>();
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +48,11 @@ public class HomeActivity extends AppCompatActivity {
 
         rcv1Data = findViewById(R.id.rcv1_Data);
         rcv2Data = findViewById(R.id.rcv2_Data);
+        progressBar = findViewById(R.id.progressBar);
+
+        // get data from api
+        getNewBookData();
+
         // Tìm TextView theo ID
         TextView tvPrevious = findViewById(R.id.tv_previous);
         TextView textViewViewMore = findViewById(R.id.textViewViewMore);
@@ -75,7 +96,8 @@ public class HomeActivity extends AppCompatActivity {
         });
         rcv1Data.setAdapter(imageAdapter);
 
-        popularAdapter = new PopularAdapter(getListBookB(), new OnItemClickListener() {
+        // get popular book
+        popularAdapter = new PopularAdapter(newListBook, new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(HomeActivity.this, BookActivity.class);
@@ -126,97 +148,66 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    private List<BookB> getListBookB2() {
-        List<BookB>  list = new ArrayList<>();
-        list.add(new BookB(R.drawable.book1,"book 1 " , "500$"));
-        list.add(new BookB(R.drawable.book2,"book 2 " , "500$"));
-        list.add(new BookB(R.drawable.book3,"book 3 " , "500$"));
-        list.add(new BookB(R.drawable.book4,"book 4 " , "500$"));
-        list.add(new BookB(R.drawable.book5,"book 5 " , "500$"));
-        return list;
+    // get new book in shipment
+    public void getNewBookData() {
+        progressBar.setVisibility(View.VISIBLE);
+        bookAppApi = BookAppService.getClient();
+        Call<List<ListBookResponseDTO>> call = bookAppApi.getNewListBooks(0, 50);
+        call.enqueue(new Callback<List<ListBookResponseDTO>>() {
+            @Override
+            public void onResponse(Call<List<ListBookResponseDTO>> call, Response<List<ListBookResponseDTO>> response) {
+                progressBar.setVisibility(View.GONE);
+                if (response.isSuccessful()) {
+                    // Lấy danh sách sách mới từ phản hồi
+                    newListBook = (List<ListBookResponseDTO>) response.body();
+                    // Cập nhật RecyclerView với danh sách sách mới
+                    updateNewBookRecyclerView(newListBook);
+                } else {
+                    // Xử lý lỗi khi không thành công
+                    System.out.println("lỗi");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ListBookResponseDTO>> call, Throwable throwable) {
+                progressBar.setVisibility(View.GONE);
+                // Xử lý lỗi khi gọi API thất bại
+                System.out.println(throwable.getMessage());
+            }
+        });
     }
 
-    private List<BookB> getListBookB() {
-         List<BookB>  list = new ArrayList<>();
-        list.add(new BookB(R.drawable.book1,"book 1 " , "500$"));
-        list.add(new BookB(R.drawable.book2,"book 2 " , "500$"));
-        list.add(new BookB(R.drawable.book3,"book 3 " , "500$"));
-        list.add(new BookB(R.drawable.book4,"book 4 " , "500$"));
-        list.add(new BookB(R.drawable.book5,"book 5 " , "500$"));
-         return list;
+    // Phương thức này sẽ cập nhật RecyclerView với danh sách sách mới
+    private void updateNewBookRecyclerView(List<ListBookResponseDTO> newListBooks) {
+        if (popularAdapter == null) {
+            // Khởi tạo adapter nếu chưa có
+            popularAdapter = new PopularAdapter(newListBooks, new OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    // Xử lý sự kiện khi người dùng nhấn vào một sách
+                    Intent intent = new Intent(HomeActivity.this, BookActivity.class);
+                    intent.putExtra("book_position", position);
+                    startActivity(intent);
+                }
+            });
+            rcv2Data.setAdapter(popularAdapter);
+        } else {
+            // Cập nhật dữ liệu mới cho adapter và thông báo thay đổi
+            popularAdapter.updateData(newListBooks);
         }
+    }
 
 
-
-        // RecyclerView cho recycler_item
-//        RecyclerView recyclerView = findViewById(R.id.imageRecyclerView);
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-//        recyclerView.setLayoutManager(layoutManager);
-//
-//        // Danh sách các ID hình ảnh từ thư mục drawable cho recycler_item
-//        List<Integer> imageIds = new ArrayList<>();
-//        imageIds.add(R.drawable.bell);
-//        imageIds.add(R.drawable.library);
-//        // Thêm các ID hình ảnh khác nếu cần
-//        imageIds.add(R.drawable.home);
-//
-//        // Tạo một Adapter và thiết lập cho RecyclerView
-//        ImageAdapter adapter;
-//        adapter = new ImageAdapter(this, imageIds);
-//        recyclerView.setAdapter(adapter);
-//
-//
-//        // RecyclerView cho popular_item
-//        RecyclerView recyclerViewPopular = findViewById(R.id.PopularRecyclerView);
-//        LinearLayoutManager layoutManagerPopular = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-//        recyclerViewPopular.setLayoutManager(layoutManagerPopular);
-//
-//        // Danh sách các ID hình ảnh từ thư mục drawable cho popular_item
-//        List<Integer> popularImageIds = new ArrayList<>();
-//        popularImageIds.add(R.drawable.home);
-//        popularImageIds.add(R.drawable.search);
-//        // Thêm các ID hình ảnh khác nếu cần
-//
-//        // Danh sách các văn bản cho popular_item
-//        List<String> popularTexts = new ArrayList<>();
-//        popularTexts.add("Book 1");
-//        popularTexts.add("Book 2");
-//        // Thêm các văn bản khác nếu cần
-//
-//        // Tạo một Adapter và thiết lập cho RecyclerView
-//        PopularAdapter popularAdapter = new PopularAdapter(this, popularImageIds, popularTexts);
-//        recyclerViewPopular.setAdapter(popularAdapter);
-//
-//        // Tìm và thêm sự kiện onClick cho chuyển đến SearchActivity
-//        LinearLayout searchLayout = findViewById(R.id.searchLayout);
-//        searchLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        // Tìm và thêm sự kiện onClick cho chuyển đến LibraryActivity
-//        LinearLayout libraryLayout = findViewById(R.id.libraryLayout);
-//        libraryLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(HomeActivity.this, LibraryActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-////        // Tìm và thêm sự kiện onClick cho chuyển đến ProfileActivity
-////        LinearLayout profileLayout = findViewById(R.id.profileLayout);
-////        profileLayout.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View v) {
-////                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-////                startActivity(intent);
-////            }
-////        });
-   }
+    private List<BookB> getListBookB2() {
+        List<BookB> list = new ArrayList<>();
+        list.add(new BookB(R.drawable.book1, "book 1 ", "500$"));
+        list.add(new BookB(R.drawable.book2, "book 2 ", "500$"));
+        list.add(new BookB(R.drawable.book3, "book 3 ", "500$"));
+        list.add(new BookB(R.drawable.book4, "book 4 ", "500$"));
+        list.add(new BookB(R.drawable.book5, "book 5 ", "500$"));
+        return list;
+    }
+}
 
 
 

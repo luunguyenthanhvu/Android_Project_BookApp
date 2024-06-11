@@ -1,13 +1,22 @@
 package nlu.hmuaf.android_bookapp.networking;
 
+import java.util.List;
+
+import nlu.hmuaf.android_bookapp.dto.json.response.PageListBookResponseJson;
 import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
+import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface BookAppApi {
     @POST("api/v1/user/login")
     Call<TokenResponseDTO> login(@Body LoginRequestDTO loginRequestDTO);
+
+    @GET("api/books/new-book")
+    Call<List<ListBookResponseDTO>> getNewListBooks(@Query("page") int page, @Query("size") int size);
 }
