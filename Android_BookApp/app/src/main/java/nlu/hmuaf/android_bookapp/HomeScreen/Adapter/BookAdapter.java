@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.HomeScreen.Activity.FantasyActivity;
@@ -19,6 +21,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     private List<BookB> mListBookB;
     private OnItemClickListener listener;
+
     public BookAdapter(List<BookB> mListBookB, OnItemClickListener listener) {
         this.mListBookB = mListBookB;
         this.listener = listener;
@@ -37,7 +40,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     @Override
     public void onBindViewHolder(@NonNull BookAdapter.BookViewHolder holder, int position) {
         BookB bookB = mListBookB.get(position);
-        if (bookB==null){
+        if (bookB == null) {
             return;
         }
         holder.imgBookB.setImageResource(bookB.getResourceid());
@@ -47,20 +50,20 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @Override
     public int getItemCount() {
-        if(mListBookB!=null){
+        if (mListBookB != null) {
             return mListBookB.size();
         }
         return 0;
     }
 
-    public class BookViewHolder extends RecyclerView.ViewHolder{
+    public class BookViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgBookB;
         private TextView nameB;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgBookB =itemView.findViewById(R.id.BookItemImageView);
-            nameB =itemView.findViewById(R.id.BookItemTextView);
+            imgBookB = itemView.findViewById(R.id.BookItemImageView);
+            nameB = itemView.findViewById(R.id.BookItemTextView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -73,4 +76,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                     }
                 }
             });
-        }}}
+        }
+    }
+}

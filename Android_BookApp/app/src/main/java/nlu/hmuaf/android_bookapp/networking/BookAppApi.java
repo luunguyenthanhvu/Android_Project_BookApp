@@ -19,4 +19,7 @@ public interface BookAppApi {
 
     @GET("api/books/new-book")
     Call<List<ListBookResponseDTO>> getNewListBooks(@Query("page") int page, @Query("size") int size);
+
+    @GET("api/books/discount-book")
+    Call<List<ListBookResponseDTO>> getDiscountListBooks(@Query("page") int page, @Query("size") int size);
 }

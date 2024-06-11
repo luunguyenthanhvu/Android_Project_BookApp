@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     private ImageAdapter imageAdapter;
     private PopularAdapter popularAdapter;
     private BookAppApi bookAppApi;
-    private List<ListBookResponseDTO> newListBook, Book = new ArrayList<>();
+    private List<ListBookResponseDTO> newListBook, discountListBook = new ArrayList<>();
     private ProgressBar progressBar;
 
     @Override
@@ -51,6 +51,7 @@ public class HomeActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         // get data from api
+        getDiscountBookData();
         getNewBookData();
 
         // Tìm TextView theo ID
@@ -86,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rcv2Data.setLayoutManager(layoutManager2);
 
-        imageAdapter = new ImageAdapter(getListBookB2(), new OnItemClickListener() {
+        imageAdapter = new ImageAdapter(discountListBook, new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(HomeActivity.this, BookActivity.class);
@@ -96,7 +97,7 @@ public class HomeActivity extends AppCompatActivity {
         });
         rcv1Data.setAdapter(imageAdapter);
 
-        // get popular book
+        // get new book
         popularAdapter = new PopularAdapter(newListBook, new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -148,6 +149,34 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    // get discount book in shipment
+    public void getDiscountBookData() {
+        progressBar.setVisibility(View.VISIBLE);
+        bookAppApi = BookAppService.getClient();
+        Call<List<ListBookResponseDTO>> call = bookAppApi.getDiscountListBooks(0, 50);
+        call.enqueue(new Callback<List<ListBookResponseDTO>>() {
+            @Override
+            public void onResponse(Call<List<ListBookResponseDTO>> call, Response<List<ListBookResponseDTO>> response) {
+                progressBar.setVisibility(View.GONE);
+                if (response.isSuccessful()) {
+                    // Lấy danh sách sách mới từ phản hồi
+                    discountListBook = (List<ListBookResponseDTO>) response.body();
+                    // Cập nhật RecyclerView với danh sách sách mới
+                    updateDiscountListBookRecyclerView(discountListBook);
+                } else {
+                    // Xử lý lỗi khi không thành công
+                    System.out.println("lỗi");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ListBookResponseDTO>> call, Throwable throwable) {
+                // Xử lý lỗi khi gọi API thất bại
+                System.out.println(throwable.getMessage());
+            }
+        });
+    }
+
     // get new book in shipment
     public void getNewBookData() {
         progressBar.setVisibility(View.VISIBLE);
@@ -177,6 +206,23 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    private void updateDiscountListBookRecyclerView(List<ListBookResponseDTO> discountListBook) {
+        if (imageAdapter == null) {
+            imageAdapter = new ImageAdapter(discountListBook, new OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    Intent intent = new Intent(HomeActivity.this, BookActivity.class);
+                    intent.putExtra("book_position", position);
+                    startActivity(intent);
+                }
+            });
+            rcv1Data.setAdapter(imageAdapter);
+        } else {
+            // Cập nhật dữ liệu mới cho adapter và thông báo thay đổi
+            imageAdapter.updateData(discountListBook);
+        }
+    }
+
     // Phương thức này sẽ cập nhật RecyclerView với danh sách sách mới
     private void updateNewBookRecyclerView(List<ListBookResponseDTO> newListBooks) {
         if (popularAdapter == null) {
@@ -197,16 +243,6 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-
-    private List<BookB> getListBookB2() {
-        List<BookB> list = new ArrayList<>();
-        list.add(new BookB(R.drawable.book1, "book 1 ", "500$"));
-        list.add(new BookB(R.drawable.book2, "book 2 ", "500$"));
-        list.add(new BookB(R.drawable.book3, "book 3 ", "500$"));
-        list.add(new BookB(R.drawable.book4, "book 4 ", "500$"));
-        list.add(new BookB(R.drawable.book5, "book 5 ", "500$"));
-        return list;
-    }
 }
 
 
