@@ -40,6 +40,7 @@ public class HomeActivity extends AppCompatActivity {
     private BookAppApi bookAppApi;
     private List<ListBookResponseDTO> newListBook, discountListBook = new ArrayList<>();
     private ProgressBar progressBar;
+    private final int SIZE = 30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,7 +154,7 @@ public class HomeActivity extends AppCompatActivity {
     public void getDiscountBookData() {
         progressBar.setVisibility(View.VISIBLE);
         bookAppApi = BookAppService.getClient();
-        Call<List<ListBookResponseDTO>> call = bookAppApi.getDiscountListBooks(0, 50);
+        Call<List<ListBookResponseDTO>> call = bookAppApi.getDiscountListBooks(0, SIZE);
         call.enqueue(new Callback<List<ListBookResponseDTO>>() {
             @Override
             public void onResponse(Call<List<ListBookResponseDTO>> call, Response<List<ListBookResponseDTO>> response) {
@@ -181,7 +182,7 @@ public class HomeActivity extends AppCompatActivity {
     public void getNewBookData() {
         progressBar.setVisibility(View.VISIBLE);
         bookAppApi = BookAppService.getClient();
-        Call<List<ListBookResponseDTO>> call = bookAppApi.getNewListBooks(0, 50);
+        Call<List<ListBookResponseDTO>> call = bookAppApi.getNewListBooks(0, SIZE);
         call.enqueue(new Callback<List<ListBookResponseDTO>>() {
             @Override
             public void onResponse(Call<List<ListBookResponseDTO>> call, Response<List<ListBookResponseDTO>> response) {
