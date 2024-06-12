@@ -65,7 +65,7 @@ public class UserServiceImpl implements IUserService {
   private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
   @Override
-  public void createDefaultAccount() {
+  public void loadDefaultData() {
     try {
       if (!userRepository.findUsersByUsername("vuluu").isPresent()) {
         // basic info

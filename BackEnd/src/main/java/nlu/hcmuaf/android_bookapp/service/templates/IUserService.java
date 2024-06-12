@@ -6,9 +6,7 @@ import nlu.hcmuaf.android_bookapp.dto.request.VerifyRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.TokenResponseDTO;
 
-public interface IUserService {
-
-  void createDefaultAccount();
+public interface IUserService extends IDataInitializer{
 
   TokenResponseDTO login(LoginRequestDTO requestDTO);
 
