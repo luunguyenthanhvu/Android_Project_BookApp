@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.Set;
 import nlu.hcmuaf.android_bookapp.config.CustomUserDetails;
 import nlu.hcmuaf.android_bookapp.config.JwtService;
+import nlu.hcmuaf.android_bookapp.dto.request.ForgotPasswordDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.RegisterRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.VerifyRequestDTO;
@@ -65,7 +66,7 @@ public class UserServiceImpl implements IUserService {
   private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
   @Override
-  public void createDefaultAccount() {
+  public void loadDefaultData() {
     try {
       if (!userRepository.findUsersByUsername("vuluu").isPresent()) {
         // basic info
@@ -280,5 +281,27 @@ public class UserServiceImpl implements IUserService {
         .build();
   }
 
-
+  @Override
+  public MessageResponseDTO forgotPassword(ForgotPasswordDTO requestDTO) {
+    try {
+      Optional<Users> data = userRepository.findAllInfoByEmail(requestDTO.getEmail());
+      if (data.isPresent()) {
+        Users users = data.get();
+        String password = myUtils.generateRandomPassword(10);
+        users.setPassword(passwordEncoder.encode(password));
+        userRepository.save(users);
+        emailService.sendNewPass(users.getUserDetails().getEmail(), password);
+        return MessageResponseDTO
+            .builder()
+            .message("Update Pass Success")
+            .build();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return MessageResponseDTO
+        .builder()
+        .message("User not exist")
+        .build();
+  }
 }

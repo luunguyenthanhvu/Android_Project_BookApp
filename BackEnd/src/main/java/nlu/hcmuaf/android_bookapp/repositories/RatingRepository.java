@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RatingRepository extends JpaRepository<Ratings, Long> {
-
   @Query("SELECT R FROM Ratings R")
   List<Ratings> getAllBy();
 }

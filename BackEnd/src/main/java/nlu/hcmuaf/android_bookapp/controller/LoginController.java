@@ -1,6 +1,7 @@
 package nlu.hcmuaf.android_bookapp.controller;
 
 import nlu.hcmuaf.android_bookapp.config.JwtService;
+import nlu.hcmuaf.android_bookapp.dto.request.ForgotPasswordDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.RegisterRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.VerifyRequestDTO;
@@ -43,6 +44,12 @@ public class LoginController {
   public ResponseEntity<MessageResponseDTO> verifyAccount(
       @RequestBody VerifyRequestDTO requestDTO) {
     return new ResponseEntity<>(userService.verifyAccount(requestDTO), HttpStatus.OK);
+  }
+
+  @PostMapping("forgot-pass")
+  public ResponseEntity<MessageResponseDTO> forgotPassword(
+      @RequestBody ForgotPasswordDTO requestDTO) {
+    return new ResponseEntity<>(userService.forgotPassword(requestDTO), HttpStatus.OK);
   }
 
 }
