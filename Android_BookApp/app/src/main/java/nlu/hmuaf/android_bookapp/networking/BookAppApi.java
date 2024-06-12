@@ -3,6 +3,7 @@ package nlu.hmuaf.android_bookapp.networking;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.dto.json.response.PageListBookResponseJson;
+import nlu.hmuaf.android_bookapp.dto.request.ForgotPasswordDTO;
 import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.RegisterRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.VerifyRequestDTO;
@@ -25,6 +26,9 @@ public interface BookAppApi {
 
     @POST("api/v1/user/verify-account")
     Call<MessageResponseDTO> verifyAccount(@Body VerifyRequestDTO requestDTO);
+
+    @POST("api/v1/user/forgot-pass")
+    Call<MessageResponseDTO> forgotPassword(@Body ForgotPasswordDTO requestDTO);
 
     @GET("api/books/new-book")
     Call<List<ListBookResponseDTO>> getNewListBooks(@Query("page") int page, @Query("size") int size);
