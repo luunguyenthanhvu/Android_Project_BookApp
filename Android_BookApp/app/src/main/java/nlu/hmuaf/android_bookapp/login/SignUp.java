@@ -25,10 +25,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.widget.ProgressBar;
+
 public class SignUp extends AppCompatActivity {
     private EditText signupEmail, signupPassword, signupUserName, signupRetypePassword;
     private Button signupButton;
     private TextView loginRedirectText;
+    private ProgressBar progressBar; // Thêm ProgressBar
     private BookAppApi bookAppApi;
 
     @SuppressLint("MissingInflatedId")
@@ -41,8 +44,8 @@ public class SignUp extends AppCompatActivity {
         signupPassword = findViewById(R.id.signup_password);
         signupRetypePassword = findViewById(R.id.signup_retype_password);
         signupButton = findViewById(R.id.signup_button);
+        progressBar = findViewById(R.id.progress_bar); // Khởi tạo ProgressBar
 
-        // Bấm nút đăng ký
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,15 +78,24 @@ public class SignUp extends AppCompatActivity {
                 .password(pass)
                 .build();
 
+        // Hiển thị ProgressBar
+        progressBar.setVisibility(View.VISIBLE);
+        signupButton.setEnabled(false);
+
         Call<MessageResponseDTO> call = bookAppApi.register(requestDTO);
         call.enqueue(new Callback<MessageResponseDTO>() {
             @Override
             public void onResponse(Call<MessageResponseDTO> call, Response<MessageResponseDTO> response) {
+                // Ẩn ProgressBar
+                progressBar.setVisibility(View.GONE);
+                signupButton.setEnabled(true);
+
                 if (response.isSuccessful()) {
                     MessageResponseDTO responseDTO = response.body();
                     if (responseDTO.getMessage().equals("Register success!")) {
                         Toast.makeText(SignUp.this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignUp.this, Activate.class);
+                        intent.putExtra("email", email);
                         startActivity(intent);
                         finish();
                     } else if (responseDTO.getMessage().equals("Username used!")) {
@@ -98,10 +110,13 @@ public class SignUp extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MessageResponseDTO> call, Throwable throwable) {
+                // Ẩn ProgressBar
+                progressBar.setVisibility(View.GONE);
+                signupButton.setEnabled(true);
+                Toast.makeText(SignUp.this, "Lỗi kết nối!", Toast.LENGTH_SHORT).show();
                 System.out.println(throwable);
             }
         });
-
     }
 
     private boolean checkValidate() {

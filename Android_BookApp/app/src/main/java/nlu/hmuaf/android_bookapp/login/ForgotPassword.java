@@ -37,22 +37,22 @@ public class ForgotPassword extends AppCompatActivity {
             }
         });
 
-        cancel = findViewById(R.id.cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ForgotPassword.this, Login.class);
-                startActivity(intent);
-            }
-        });
-
-        reset = findViewById(R.id.reset);
-        reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                email_edit_text.setText("");
-            }
-        });
+//        cancel = findViewById(R.id.cancel);
+//        cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(ForgotPassword.this, Login.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        reset = findViewById(R.id.reset);
+//        reset.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                email_edit_text.setText("");
+//            }
+//        });
 
     }
 
