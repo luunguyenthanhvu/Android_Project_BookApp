@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/header_new1"
-    tools:context=".Admin.ManageOrder">
+    android:background="@drawable/header_new1">
 
 
     <!-- Main LinearLayout that holds everything below the toolbar -->
