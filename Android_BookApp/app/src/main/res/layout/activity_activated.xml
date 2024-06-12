@@ -12,7 +12,7 @@
         android:layout_height="85dp"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:src="@drawable/book_login"/>
+        android:src="@drawable/book_login" />
     <!-- Icon -->
 
     <TextView
@@ -31,11 +31,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center">
+
         <EditText
             android:id="@+id/activate_edit_text"
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="62dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="16dp"
             android:hint="Nhập mã xác nhận" />
 
@@ -51,5 +52,12 @@
         android:text="Xác thực tài khoản"
         android:textColor="#FFFFFF" />
 
+    <!-- Thêm ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </LinearLayout>
