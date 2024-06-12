@@ -89,16 +89,12 @@
             android:exported="true">
         </activity>
         <activity android:name=".Admin.ManageOrder"
-<<<<<<< HEAD
             android:exported="true">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
-=======
-            android:exported="false">
->>>>>>> origin/main
         </activity>
         <activity android:name=".Admin.ManageAllOrder"
             android:exported="false">
