@@ -31,6 +31,7 @@ public class ShipmentDetails implements Serializable {
   @Column(name = "quantity")
   private int quantity;
 
-  @Column(name = "status")
-  private String status;
+  @Column(name = "available")
+  private boolean available;
+
 }

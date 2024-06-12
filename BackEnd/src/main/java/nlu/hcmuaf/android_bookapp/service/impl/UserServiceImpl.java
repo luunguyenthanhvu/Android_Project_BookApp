@@ -13,7 +13,7 @@ import nlu.hcmuaf.android_bookapp.dto.request.VerifyRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hcmuaf.android_bookapp.entities.Addresses;
-import nlu.hcmuaf.android_bookapp.entities.Cart;
+import nlu.hcmuaf.android_bookapp.entities.Carts;
 import nlu.hcmuaf.android_bookapp.entities.Roles;
 import nlu.hcmuaf.android_bookapp.entities.UserAddresses;
 import nlu.hcmuaf.android_bookapp.entities.UserDetails;
@@ -97,11 +97,11 @@ public class UserServiceImpl implements IUserService {
 
         addresses.setUserAddresses(userAddressesSet);
         userDetails.setUserAddresses(userAddressesSet);
-        users.setCreatedDate(LocalDate.of(2024, 12, 12));
+        users.setCreatedDate(LocalDate.of(2023, 1, 1));
         users.setRoles(roleRepository.getRolesByRoleName(ERole.ADMIN).get());
         users.setUserDetails(userDetails);
         // Create cart
-        Cart cart = new Cart();
+        Carts cart = new Carts();
         cart.setUser(users);
         users.setCart(cart);
         users.setPassword(passwordEncoder.encode("vuluu123"));
@@ -136,6 +136,10 @@ public class UserServiceImpl implements IUserService {
                 .message("Login success!")
                 .build();
           } else {
+            String otp = myUtils.generateOtp();
+            userDetailRepository.updateUserOtp(otp, LocalDateTime.now().plusMinutes(5),
+                requestDTO.getEmail());
+            emailService.sendVerificationCode(requestDTO.getEmail(), otp);
             return TokenResponseDTO
                 .builder()
                 .message("Please verified your account!")
@@ -157,7 +161,7 @@ public class UserServiceImpl implements IUserService {
     }
     return TokenResponseDTO
         .builder()
-        .message("User not found")
+        .message("User not found!")
         .build();
   }
 
@@ -172,7 +176,7 @@ public class UserServiceImpl implements IUserService {
       if (checkUser.isPresent()) {
         return MessageResponseDTO
             .builder()
-            .message("Username used")
+            .message("Username used!")
             .build();
       } else if (!userDetail.isPresent()) {
         requestDTO.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
@@ -196,7 +200,7 @@ public class UserServiceImpl implements IUserService {
 
         users.setCreatedDate(LocalDate.now());
         users.setUserDetails(newUserDetail);
-        Cart cart = new Cart();
+        Carts cart = new Carts();
         cart.setUser(users);
         users.setCart(cart);
         // send email to User
@@ -204,7 +208,7 @@ public class UserServiceImpl implements IUserService {
         userRepository.save(users);
         return MessageResponseDTO
             .builder()
-            .message("Register success")
+            .message("Register success!")
             .build();
       }
     } catch (Exception e) {
@@ -216,7 +220,7 @@ public class UserServiceImpl implements IUserService {
     }
     return MessageResponseDTO
         .builder()
-        .message("User already exist")
+        .message("User already exist!")
         .build();
   }
 

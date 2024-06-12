@@ -16,6 +16,7 @@ import java.util.List;
 import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.LibraryAdapter;
 import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.profile.activity.LogOutActivity;
 
 public class LibraryActivity extends AppCompatActivity {
 
@@ -62,6 +63,16 @@ public class LibraryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LibraryActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+        LinearLayout profileLayout = findViewById(R.id.profileLayout);
+        // Set click listeners for footer
+        profileLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to HomeActivity
+                Intent intent = new Intent(LibraryActivity.this, LogOutActivity.class);
                 startActivity(intent);
             }
         });

@@ -4,19 +4,26 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import nlu.hcmuaf.android_bookapp.dto.json.BooksWrapper;
+import nlu.hcmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hcmuaf.android_bookapp.entities.BookDetails;
 import nlu.hcmuaf.android_bookapp.entities.BookImages;
+import nlu.hcmuaf.android_bookapp.entities.BookRating;
 import nlu.hcmuaf.android_bookapp.entities.Books;
 import nlu.hcmuaf.android_bookapp.entities.PublishCompany;
+import nlu.hcmuaf.android_bookapp.entities.Ratings;
 import nlu.hcmuaf.android_bookapp.enums.EBookFormat;
 import nlu.hcmuaf.android_bookapp.repositories.BookRepository;
+import nlu.hcmuaf.android_bookapp.repositories.RatingRepository;
 import nlu.hcmuaf.android_bookapp.service.templates.IBookService;
 import nlu.hcmuaf.android_bookapp.service.templates.IPublishCompanyService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -29,11 +36,12 @@ public class BookServiceImpl implements IBookService {
 
   @Autowired
   private BookRepository bookRepository;
-
   @Autowired
   private ModelMapper modelMapper;
   @Autowired
   private IPublishCompanyService publishCompanyService;
+  @Autowired
+  private RatingRepository ratingRepository;
 
   @Override
   public void loadDefaultData() {
@@ -103,6 +111,25 @@ public class BookServiceImpl implements IBookService {
           book.setBookImages(bookImagesSet);
           book.setBookDetails(bookDetails);
 
+          // setting rating
+          Ratings ratings = new Ratings();
+          ratings.setStar((float) (4.1 + (5.0 - 4.1) * Random.class.newInstance().nextDouble()));
+          // save rating to database
+          ratingRepository.save(ratings);
+
+          // generate book rating
+          BookRating bookRating = new BookRating();
+          bookRating.setBook(book);
+          bookRating.setRating(ratings);
+
+          // generate set Book rating
+          Set<BookRating> bookRatingSet = new HashSet<>();
+          bookRatingSet.add(bookRating);
+
+          // setting book ratings
+          ratings.setBookRatings(bookRatingSet);
+          book.setBookRatings(bookRatingSet);
+
           // save book to database
           bookRepository.save(book);
         }
@@ -110,5 +137,15 @@ public class BookServiceImpl implements IBookService {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public Page<ListBookResponseDTO> getNewBookList(Pageable pageable) {
+    return bookRepository.getNewBookList(pageable);
+  }
+
+  @Override
+  public Page<ListBookResponseDTO> getDiscountBookList(Pageable pageable) {
+    return bookRepository.getDiscountBookList(pageable);
   }
 }

@@ -1,11 +1,9 @@
 package nlu.hcmuaf.android_bookapp.entities;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,18 +13,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Cart_Users")
-public class CartUsers implements Serializable {
-  @Id
-  @ManyToOne
-  @JoinColumn(name = "cartId")
-  private Cart cart;
+@Entity(name = "Book_Ratings")
+public class BookRating {
 
   @Id
   @ManyToOne
   @JoinColumn(name = "bookId")
   private Books book;
 
-  @Column(name = "quantity")
-  private int quantity;
+  @Id
+  @ManyToOne
+  @JoinColumn(name = "ratingId")
+  private Ratings rating;
+
 }

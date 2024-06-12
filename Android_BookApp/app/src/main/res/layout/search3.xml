@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:id="@+id/textLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Search"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/sreach_bg"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="Search" />
+
+                <LinearLayout
+                    android:layout_width="54dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="47dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp"
+                        android:padding="10dp"
+                        android:src="@drawable/search" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Button Tác giả -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Button Tác giả -->
+                <Button
+                    android:id="@+id/buttonTacGia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tác giả"
+                    android:onClick="showTacGiaRecyclerView" />
+
+                <!-- RecyclerView Tác giả -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/AuthorRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <!-- Button Bìa cứng -->
+                <Button
+                    android:id="@+id/buttonBiaCung"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bìa cứng"
+                    android:onClick="showBiaCungRecyclerView" />
+
+                <!-- RecyclerView Bìa cứng -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewBiaCung"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <!-- Button Bìa mềm -->
+                <Button
+                    android:id="@+id/buttonBiaMem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bìa mềm"
+                    android:onClick="showBiaMemRecyclerView" />
+
+                <!-- RecyclerView Bìa mềm -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewBiaMem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <!-- Button Nhà xuất bản -->
+                <Button
+                    android:id="@+id/buttonNhaXuatBan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NXB"
+                    android:onClick="showNhaXuatBanRecyclerView" />
+
+                <!-- RecyclerView Nhà xuất bản -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewNhaXuatBan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
