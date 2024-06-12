@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "BookRatings")
+@Entity(name = "Book_Ratings")
 public class BookRating {
 
   @Id
@@ -25,4 +25,5 @@ public class BookRating {
   @ManyToOne
   @JoinColumn(name = "ratingId")
   private Ratings rating;
+
 }

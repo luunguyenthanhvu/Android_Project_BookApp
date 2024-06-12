@@ -1,7 +1,6 @@
 package nlu.hmuaf.android_bookapp.HomeScreen.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,25 +8,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.HomeScreen.Activity.BookActivity;
-import nlu.hmuaf.android_bookapp.HomeScreen.Class.Author;
 import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
 
 public class FantasyAdapter extends RecyclerView.Adapter<FantasyAdapter.FantasyViewHolder> {
 
-    private List<BookB> mListBookB;
+    private List<BookB> displayListFantasy;
     private OnItemClickListener listener;
-
 
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
-    public FantasyAdapter(List<BookB> mListBookB, OnItemClickListener listener) {
-        this.mListBookB = mListBookB;
+    public FantasyAdapter(List<BookB> displayListFantasy, OnItemClickListener listener) {
+        this.displayListFantasy = displayListFantasy;
         this.listener = listener;
     }
 
@@ -40,33 +37,33 @@ public class FantasyAdapter extends RecyclerView.Adapter<FantasyAdapter.FantasyV
 
     @Override
     public void onBindViewHolder(@NonNull FantasyViewHolder holder, int position) {
-        BookB bookB = mListBookB.get(position);
-        if (bookB == null){
+        BookB bookB = displayListFantasy.get(position);
+        if (bookB == null) {
             return;
         }
         holder.imgFantasy.setImageResource(bookB.getResourceid());
         holder.nameFantasy.setText(bookB.getName());
-        holder.priceFantasy.setText(bookB.getPrice());
     }
 
     @Override
     public int getItemCount() {
-        if (mListBookB != null) {
-            return mListBookB.size();
-        }
-        return 0;
+        return displayListFantasy != null ? displayListFantasy.size() : 0;
+    }
+
+    public void updateList(List<BookB> newList) {
+        displayListFantasy.clear();
+        displayListFantasy.addAll(newList);
+        notifyDataSetChanged();
     }
 
     public class FantasyViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgFantasy;
         private TextView nameFantasy;
-        private TextView priceFantasy;
 
         public FantasyViewHolder(@NonNull View itemView) {
             super(itemView);
             imgFantasy = itemView.findViewById(R.id.FantasyItemImageView2);
             nameFantasy = itemView.findViewById(R.id.FantasyItemTextView);
-            priceFantasy = itemView.findViewById(R.id.buttonMua);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

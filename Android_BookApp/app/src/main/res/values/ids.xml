@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btnCancel" type="id" />
+    <item name="etBookTitle" type="id" />
+    <item name="etBookID" type="id" />
+    <item name="etBookDescription" type="id" />
+    <item name="etBookPrice" type="id" />
+    <item name="etNumberOfPages" type="id" />
+    <item name="etPublicationDate" type="id" />
+    <item name="etLanguage" type="id" />
+    <item name="etGenre" type="id" />
+    <item name="etAuthor" type="id" />
+    <item name="etDiscountCode" type="id" />
+    <item name="btnSelectPublishers" type="id" />
+    <item name="btnUploadThumbnail" type="id" />
+    <item name="btnUploadBookImages" type="id" />
+    <item name="btnSave" type="id" />
+</resources>

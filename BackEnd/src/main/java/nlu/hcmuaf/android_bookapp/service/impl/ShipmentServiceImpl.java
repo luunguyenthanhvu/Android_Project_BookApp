@@ -80,7 +80,7 @@ public class ShipmentServiceImpl implements IShipmentService {
             quantity += randomQuantity;
             shipmentDetails.setQuantity(randomQuantity);
             shipmentDetails.setShipment(shipments);
-            shipmentDetails.setStatus("Available");
+            shipmentDetails.setAvailable(true);
             shipmentDetails.setBook(booksList.get(x));
 
             // add to Set<shipmentDetails>
