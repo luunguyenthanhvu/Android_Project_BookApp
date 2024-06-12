@@ -10,12 +10,11 @@
         android:orientation="horizontal"
         android:paddingLeft="5dp">
 
-        <ImageView
-            android:id="@+id/imageViewBookInEachBill"
-            android:layout_width="233dp"
-            android:layout_height="212dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/saber" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/listImageBook"
+            android:layout_width="257dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="match_parent"
