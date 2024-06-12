@@ -4,16 +4,15 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.CartUser.Bean.BillDetails;
-import nlu.hmuaf.android_bookapp.CartUser.Bean.Books;
 import nlu.hmuaf.android_bookapp.R;
 
 public class RecycleViewBooksInEachBillAdapter extends RecyclerView.Adapter<RecycleViewBooksInEachBillAdapter.MyViewHolder>{
@@ -50,15 +49,16 @@ public class RecycleViewBooksInEachBillAdapter extends RecyclerView.Adapter<Recy
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
-        private ImageView imageBook;
+        private ViewPager2 listImageBook;
         private TextView textViewBookName, quantity,price;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageBook = itemView.findViewById(R.id.imageViewBookInEachBill);
+            listImageBook = itemView.findViewById(R.id.listImageBook);
             textViewBookName = itemView.findViewById(R.id.textViewBookNameInEachBill);
             quantity = itemView.findViewById(R.id.textViewQuantityInEachBill);
             price = itemView.findViewById(R.id.textViewPriceInEachBill);
+
 
         }
 
