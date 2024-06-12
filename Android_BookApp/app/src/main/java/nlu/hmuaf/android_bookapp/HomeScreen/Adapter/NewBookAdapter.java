@@ -19,11 +19,11 @@ import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
 
-public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularViewHolder> {
+public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularViewHolder> {
     private List<ListBookResponseDTO> listBook;
     private OnItemClickListener listener;
 
-    public PopularAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener) {
+    public NewBookAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener) {
         this.listBook = listBook != null ? listBook : new ArrayList<>();
         this.listener = listener;
     }

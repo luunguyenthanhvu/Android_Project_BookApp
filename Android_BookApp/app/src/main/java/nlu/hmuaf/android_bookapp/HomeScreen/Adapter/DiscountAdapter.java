@@ -19,13 +19,13 @@ import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
 
-public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
+public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.ImageViewHolder> {
 
 
     private List<ListBookResponseDTO> listBook;
     private OnItemClickListener listener;
 
-    public ImageAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener) {
+    public DiscountAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener) {
         this.listBook = this.listBook = listBook != null ? listBook : new ArrayList<>();
         this.listener = listener;
     }

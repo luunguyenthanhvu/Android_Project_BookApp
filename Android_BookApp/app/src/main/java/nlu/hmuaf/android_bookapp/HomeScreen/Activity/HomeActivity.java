@@ -12,18 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
-import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.ImageAdapter;
+import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.DiscountAdapter;
 
 import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.OnItemClickListener;
-import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.PopularAdapter;
-import nlu.hmuaf.android_bookapp.HomeScreen.Class.BookB;
+import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.NewBookAdapter;
 import nlu.hmuaf.android_bookapp.R;
-import nlu.hmuaf.android_bookapp.dto.json.response.PageListBookResponseJson;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
 import nlu.hmuaf.android_bookapp.networking.BookAppService;
@@ -35,8 +30,8 @@ import retrofit2.Response;
 public class HomeActivity extends AppCompatActivity {
     private RecyclerView rcv1Data;
     private RecyclerView rcv2Data;
-    private ImageAdapter imageAdapter;
-    private PopularAdapter popularAdapter;
+    private DiscountAdapter imageAdapter;
+    private NewBookAdapter popularAdapter;
     private BookAppApi bookAppApi;
     private List<ListBookResponseDTO> newListBook, discountListBook = new ArrayList<>();
     private ProgressBar progressBar;
@@ -88,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rcv2Data.setLayoutManager(layoutManager2);
 
-        imageAdapter = new ImageAdapter(discountListBook, new OnItemClickListener() {
+        imageAdapter = new DiscountAdapter(discountListBook, new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(HomeActivity.this, BookActivity.class);
@@ -99,7 +94,7 @@ public class HomeActivity extends AppCompatActivity {
         rcv1Data.setAdapter(imageAdapter);
 
         // get new book
-        popularAdapter = new PopularAdapter(newListBook, new OnItemClickListener() {
+        popularAdapter = new NewBookAdapter(newListBook, new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Intent intent = new Intent(HomeActivity.this, BookActivity.class);
@@ -209,7 +204,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void updateDiscountListBookRecyclerView(List<ListBookResponseDTO> discountListBook) {
         if (imageAdapter == null) {
-            imageAdapter = new ImageAdapter(discountListBook, new OnItemClickListener() {
+            imageAdapter = new DiscountAdapter(discountListBook, new OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
                     Intent intent = new Intent(HomeActivity.this, BookActivity.class);
@@ -228,7 +223,7 @@ public class HomeActivity extends AppCompatActivity {
     private void updateNewBookRecyclerView(List<ListBookResponseDTO> newListBooks) {
         if (popularAdapter == null) {
             // Khởi tạo adapter nếu chưa có
-            popularAdapter = new PopularAdapter(newListBooks, new OnItemClickListener() {
+            popularAdapter = new NewBookAdapter(newListBooks, new OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
                     // Xử lý sự kiện khi người dùng nhấn vào một sách
