@@ -96,6 +96,15 @@ public class Login extends AppCompatActivity {
                     Intent intent = new Intent(Login.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
+                } else if (responseDTO.getMessage().equals("Please verified your account!")) {
+                    Toast.makeText(Login.this, "Vui lòng xác thực tài khoản!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Login.this, Activate.class);
+                    startActivity(intent);
+                    finish();
+                } else if (responseDTO.getMessage().equals("WRONG PASSWORD!")) {
+                    Toast.makeText(Login.this, "Sai mật khẩu!", Toast.LENGTH_SHORT).show();
+                } else if (responseDTO.getMessage().equals("User not found!")) {
+                    Toast.makeText(Login.this, "Không tìm thấy người dùng!", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -113,13 +122,13 @@ public class Login extends AppCompatActivity {
         String email = loginMail.getText().toString().trim();
         String pass = loginPassword.getText().toString().trim();
 
-        if(email.isEmpty() || pass.isEmpty()) {
+        if (email.isEmpty() || pass.isEmpty()) {
             Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             validate = false;
         } else if (!email.matches("^[A-Za-z0-9+_.-]+@gmail\\.com$")) {
             showError(loginMail, "Email không hợp lệ");
             validate = false;
-        } else if (pass.length()<7) {
+        } else if (pass.length() < 7) {
             showError(loginPassword, "Mật khẩu phải dài hơn 7 ký tự");
             validate = false;
         }
