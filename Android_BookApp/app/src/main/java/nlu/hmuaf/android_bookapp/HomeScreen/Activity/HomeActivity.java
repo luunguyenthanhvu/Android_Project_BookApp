@@ -20,9 +20,11 @@ import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.OnItemClickListener;
 import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.NewBookAdapter;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
+import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
 import nlu.hmuaf.android_bookapp.networking.BookAppService;
 import nlu.hmuaf.android_bookapp.profile.activity.LogOutActivity;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     private List<ListBookResponseDTO> newListBook, discountListBook = new ArrayList<>();
     private ProgressBar progressBar;
     private final int SIZE = 30;
+    private TextView welcomeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,17 @@ public class HomeActivity extends AppCompatActivity {
         rcv1Data = findViewById(R.id.rcv1_Data);
         rcv2Data = findViewById(R.id.rcv2_Data);
         progressBar = findViewById(R.id.progressBar);
+
+        welcomeTextView = findViewById(R.id.welcome_text_view);
+
+        TokenResponseDTO tokenResponse = MyUtils.getTokenResponse(this);
+
+        if (tokenResponse != null) {
+            String welcomeMessage = "Xin chào, " + tokenResponse.getUsername() + "!";
+            welcomeTextView.setText(welcomeMessage);
+        } else {
+            welcomeTextView.setText("Xin chào");
+        }
 
         // get data from api
         getDiscountBookData();

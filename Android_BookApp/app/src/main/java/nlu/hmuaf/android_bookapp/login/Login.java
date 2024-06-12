@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,11 +17,10 @@ import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
 import nlu.hmuaf.android_bookapp.networking.BookAppService;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import android.widget.ProgressBar;
 
 public class Login extends AppCompatActivity {
     private EditText loginMail, loginPassword;
@@ -104,6 +104,9 @@ public class Login extends AppCompatActivity {
                     TokenResponseDTO responseDTO = response.body();
                     System.out.println(responseDTO);
                     if (responseDTO.getMessage().equals("Login success!")) {
+                        // Lưu TokenResponseDTO vào SharedPreferences
+                        MyUtils.saveTokenResponse(Login.this, responseDTO);
+
                         Toast.makeText(Login.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, HomeActivity.class);
                         startActivity(intent);
