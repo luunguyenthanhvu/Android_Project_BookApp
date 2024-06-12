@@ -136,6 +136,10 @@ public class UserServiceImpl implements IUserService {
                 .message("Login success!")
                 .build();
           } else {
+            String otp = myUtils.generateOtp();
+            userDetailRepository.updateUserOtp(otp, LocalDateTime.now().plusMinutes(5),
+                requestDTO.getEmail());
+            emailService.sendVerificationCode(requestDTO.getEmail(), otp);
             return TokenResponseDTO
                 .builder()
                 .message("Please verified your account!")
@@ -157,7 +161,7 @@ public class UserServiceImpl implements IUserService {
     }
     return TokenResponseDTO
         .builder()
-        .message("User not found")
+        .message("User not found!")
         .build();
   }
 
@@ -172,7 +176,7 @@ public class UserServiceImpl implements IUserService {
       if (checkUser.isPresent()) {
         return MessageResponseDTO
             .builder()
-            .message("Username used")
+            .message("Username used!")
             .build();
       } else if (!userDetail.isPresent()) {
         requestDTO.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
@@ -204,7 +208,7 @@ public class UserServiceImpl implements IUserService {
         userRepository.save(users);
         return MessageResponseDTO
             .builder()
-            .message("Register success")
+            .message("Register success!")
             .build();
       }
     } catch (Exception e) {
@@ -216,7 +220,7 @@ public class UserServiceImpl implements IUserService {
     }
     return MessageResponseDTO
         .builder()
-        .message("User already exist")
+        .message("User already exist!")
         .build();
   }
 

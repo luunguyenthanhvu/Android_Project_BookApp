@@ -19,14 +19,14 @@ public class BookController {
 
   @GetMapping("/new-book")
   public List<ListBookResponseDTO> getNewListBook(
-      @PageableDefault(size = 50)
+      @PageableDefault(size = 30)
       Pageable pageable) {
     return bookService.getNewBookList(pageable).getContent();
   }
 
   @GetMapping("/discount-book")
   public List<ListBookResponseDTO> getDiscountListBook(
-      @PageableDefault(size = 50)
+      @PageableDefault(size = 30)
       Pageable pageable) {
     return bookService.getDiscountBookList(pageable).getContent();
   }
