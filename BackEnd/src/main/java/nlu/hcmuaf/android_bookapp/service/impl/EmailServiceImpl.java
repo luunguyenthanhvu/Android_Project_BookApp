@@ -43,4 +43,19 @@ public class EmailServiceImpl implements IEmailService {
       System.err.println("Cant send email");
     }
   }
+
+  @Override
+  public void sendNewPass(String email, String pass) {
+    SimpleMailMessage message = new SimpleMailMessage();
+    message.setFrom("vuluudragonslayer@gmail.com");
+    message.setTo(email);
+    message.setSubject("Đặt lại mật khẩu thành công");
+    message.setText
+        ("Mật khẩu mới của bạn là: " + pass);
+    try {
+      mailSender.send(message);
+    } catch (Exception e) {
+      System.err.println("Cant send email" + e.getMessage());
+    }
+  }
 }

@@ -14,7 +14,7 @@ public class PaymentServiceImpl implements IPaymentService {
   private PaymentRepository paymentRepository;
 
   @Override
-  public void loadDefaultPayment() {
+  public void loadDefaultData() {
     if (paymentRepository.getAllBy().isEmpty()) {
       for (EPaymentMethod method : EPaymentMethod.values()) {
         Payments payments = new Payments(method);

@@ -16,7 +16,7 @@ public class RoleServiceImpl implements IRoleService {
   private RoleRepository roleRepository;
 
   @Override
-  public void loadDefaultRole() {
+  public void loadDefaultData() {
     if (roleRepository.getAllBy().isEmpty()) {
       List<Roles> rolesList = new ArrayList<>();
       rolesList.add(new Roles(ERole.ADMIN));
