@@ -2,6 +2,8 @@ package nlu.hcmuaf.android_bookapp.service.impl;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.transaction.Transaction;
+import jakarta.transaction.Transactional;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -44,6 +46,7 @@ public class BookServiceImpl implements IBookService {
   private RatingRepository ratingRepository;
 
   @Override
+  @Transactional(rollbackOn = Exception.class)
   public void loadDefaultData() {
     try {
       if (bookRepository.getAllBy().isEmpty()) {

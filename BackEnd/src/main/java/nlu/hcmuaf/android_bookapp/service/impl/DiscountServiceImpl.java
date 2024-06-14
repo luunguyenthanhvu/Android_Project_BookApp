@@ -1,5 +1,6 @@
 package nlu.hcmuaf.android_bookapp.service.impl;
 
+import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import nlu.hcmuaf.android_bookapp.entities.Books;
@@ -20,6 +21,7 @@ public class DiscountServiceImpl implements IDiscountService {
   private BookRepository bookRepository;
 
   @Override
+  @Transactional(rollbackOn = Exception.class)
   public void loadDefaultData() {
     try {
       List<Discounts> data = discountRepository.getAllBy();
