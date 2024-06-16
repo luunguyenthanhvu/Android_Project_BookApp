@@ -2,10 +2,12 @@ package nlu.hmuaf.android_bookapp.profile.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -29,7 +31,7 @@ public class EditAddressActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Eddit Address");
+        getSupportActionBar().setTitle("Edit Address");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
@@ -66,31 +68,50 @@ public class EditAddressActivity extends AppCompatActivity {
         });
 
         saveButton.setOnClickListener(v -> {
-            // Cập nhật địa chỉ và trả kết quả về AddressActivity
-            String[] nameParts = editName.getText().toString().split(" ");
-            String firstName = nameParts[0];
-            String lastName = nameParts.length > 1 ? nameParts[1] : "";
-            address.getUser().setFirstName(firstName);
-            address.getUser().setLastName(lastName);
-            address.getUser().setPhoneNum(editPhone.getText().toString());
-            address.setStreet(editStreet.getText().toString());
-            address.setCity(editCity.getText().toString());
-            address.setDistrict(editDistrict.getText().toString());
-            address.setWard(editWard.getText().toString());
+            if (validateInput()) {
+                // Update address and return result to AddressActivity
+                String[] nameParts = editName.getText().toString().split(" ");
+                String firstName = nameParts[0];
+                String lastName = nameParts.length > 1 ? nameParts[1] : "";
+                address.getUser().setFirstName(firstName);
+                address.getUser().setLastName(lastName);
+                address.getUser().setPhoneNum(editPhone.getText().toString());
+                address.setStreet(editStreet.getText().toString());
+                address.setCity(editCity.getText().toString());
+                address.setDistrict(editDistrict.getText().toString());
+                address.setWard(editWard.getText().toString());
 
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("updatedAddress", address);
-            setResult(RESULT_OK, resultIntent);
-            finish();
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("updatedAddress", address);
+                setResult(RESULT_OK, resultIntent);
+                finish();
+            }
         });
 
         deleteButton.setOnClickListener(v -> {
-            // Xóa địa chỉ và trả kết quả về AddressActivity
+            // Delete address and return result to AddressActivity
             Intent resultIntent = new Intent();
             resultIntent.putExtra("deletedAddress", address);
             setResult(RESULT_OK, resultIntent);
             finish();
         });
+    }
+
+    private boolean validateInput() {
+        if (editName.getText().toString().isEmpty() || editPhone.getText().toString().isEmpty() ||
+                editCity.getText().toString().isEmpty() || editDistrict.getText().toString().isEmpty() ||
+                editWard.getText().toString().isEmpty() || editStreet.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (editPhone.getText().toString().length() != 10 || !Patterns.PHONE.matcher(editPhone.getText().toString()).matches()) {
+            editPhone.setError("Phone number must be exactly 10 digits");
+            editPhone.requestFocus();
+            return false;
+        }
+
+        return true;
     }
 
     @Override

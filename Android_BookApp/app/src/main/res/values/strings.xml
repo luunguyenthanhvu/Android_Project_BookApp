@@ -18,4 +18,26 @@
     <string name="close_nav">Close Android_BookApp</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="edit_profile">Edit Profile</string>
+    <string name="info_saved">Information has been saved</string>
+    <string name="error_empty_fields">Please fill in all fields</string>
+    <string name="error_name_required">Name is required</string>
+    <string name="error_gender_required">Gender is required</string>
+    <string name="error_birthdate_required">Birthdate is required</string>
+    <string name="error_invalid_phone">Invalid phone number</string>
+    <string name="error_invalid_email">Invalid email address</string>
+    <string name="select_gender">Select Gender</string>
+    <string name="pick_birthdate">Pick Birthdate</string>
+    <string name="error_password_empty">Password fields cannot be empty</string>
+    <string name="error_password_length">New password must be longer than 7 characters</string>
+    <string name="error_password_mismatch">New passwords do not match</string>
+    <string name="error_contact_name_required">Contact Name is required</string>
+    <string name="error_valid_phone_required">Valid Phone Number is required</string>
+    <string name="error_city_required">City is required</string>
+    <string name="error_district_required">District is required</string>
+    <string name="error_ward_required">Ward is required</string>
+    <string name="error_street_address_required">Street Address is required</string>
+    <string name="error_phone_length">Phone number must be exactly 10 digits</string>
+    <string name="error_fill_all_fields">Please fill in all fields</string>
 </resources>

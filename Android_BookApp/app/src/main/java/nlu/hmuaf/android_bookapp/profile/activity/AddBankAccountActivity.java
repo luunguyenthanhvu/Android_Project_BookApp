@@ -49,9 +49,7 @@ public class AddBankAccountActivity extends AppCompatActivity {
                 boolean isDefault = switchDefaultAccount.isChecked();
 
                 // Check user input
-                if (bankName.isEmpty() || branchName.isEmpty() || accountNumber.isEmpty() || accountHolderName.isEmpty()) {
-                    Toast.makeText(AddBankAccountActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                } else {
+                if (validateInput(bankName, branchName, accountNumber, accountHolderName)) {
                     // Return to BankAccountActivity and update the account list
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("BANK_NAME", bankName);
@@ -64,6 +62,40 @@ public class AddBankAccountActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean validateInput(String bankName, String branchName, String accountNumber, String accountHolderName) {
+        if (bankName.isEmpty()) {
+            editTextBankName.setError("Bank Name is required");
+            editTextBankName.requestFocus();
+            return false;
+        }
+
+        if (branchName.isEmpty()) {
+            editTextBranchName.setError("Branch Name is required");
+            editTextBranchName.requestFocus();
+            return false;
+        }
+
+        if (accountNumber.isEmpty()) {
+            editTextAccountNumber.setError("Account Number is required");
+            editTextAccountNumber.requestFocus();
+            return false;
+        }
+
+        if (!accountNumber.matches("\\d+")) {
+            editTextAccountNumber.setError("Account Number must be numeric");
+            editTextAccountNumber.requestFocus();
+            return false;
+        }
+
+        if (accountHolderName.isEmpty()) {
+            editTextAccountHolderName.setError("Account Holder Name is required");
+            editTextAccountHolderName.requestFocus();
+            return false;
+        }
+
+        return true;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package nlu.hmuaf.android_bookapp.Admin;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -24,7 +25,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import nlu.hmuaf.android_bookapp.R;
 
@@ -37,7 +40,7 @@ public class AddBookActivity extends AppCompatActivity {
 
     private EditText etBookTitle, etBookID, etBookDescription, etBookPrice, etNumberOfPages, etPublicationDate, etLanguage, etSize, etFormat, etAuthor, etDiscountCode;
     private Button btnSelectPublishers, btnUploadThumbnail, btnUploadBookImages, btnSave, btnCancel;
-    private ImageView ivThumbnail;
+    private ImageView ivThumbnail, ivPublicationDate;
     private RecyclerView rvBookImages;
     private BookImagesAdapter adapter;
     private List<Uri> imageUris = new ArrayList<>();
@@ -77,6 +80,9 @@ public class AddBookActivity extends AppCompatActivity {
         rvBookImages.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         adapter = new BookImagesAdapter(this, imageUris);
         rvBookImages.setAdapter(adapter);
+
+        // Set up publication date picker dialog
+        ivPublicationDate.setOnClickListener(v -> showDatePickerDialog());
     }
 
     private void initializeViews() {
@@ -98,6 +104,20 @@ public class AddBookActivity extends AppCompatActivity {
         btnCancel = findViewById(R.id.btnCancel);
         ivThumbnail = findViewById(R.id.ivThumbnail);
         rvBookImages = findViewById(R.id.rvBookImages);
+        ivPublicationDate = findViewById(R.id.ivPublicationDate);
+    }
+
+    private void showDatePickerDialog() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, year1, month1, dayOfMonth) -> etPublicationDate.setText(String.format("%04d-%02d-%02d", year1, month1 + 1, dayOfMonth)),
+                year, month, day);
+        datePickerDialog.show();
     }
 
     private boolean checkPermission() {
@@ -207,16 +227,99 @@ public class AddBookActivity extends AppCompatActivity {
     }
 
     private void saveBook() {
-        String title = etBookTitle.getText().toString();
-        String authors = etAuthor.getText().toString();
+        String title = etBookTitle.getText().toString().trim();
+        String id = etBookID.getText().toString().trim();
+        String description = etBookDescription.getText().toString().trim();
+        String price = etBookPrice.getText().toString().trim();
+        String pages = etNumberOfPages.getText().toString().trim();
+        String publicationDate = etPublicationDate.getText().toString().trim();
+        String language = etLanguage.getText().toString().trim();
+        String size = etSize.getText().toString().trim();
+        String format = etFormat.getText().toString().trim();
+        String author = etAuthor.getText().toString().trim();
+        String discountCode = etDiscountCode.getText().toString().trim();
+
+        if (!validateInput(title, id, description, price, pages, publicationDate, language, size, format, author, discountCode)) {
+            return;
+        }
 
         // Assuming you are saving the details to a local database or sending them to a server:
-        saveBookDetails(title, authors, selectedPublishers); // Implement this method based on your backend
+        saveBookDetails(title, id, description, price, pages, publicationDate, language, size, format, author, discountCode, selectedPublishers);
         Toast.makeText(this, "Sách đã được lưu cùng với các nhà xuất bản đã chọn.", Toast.LENGTH_SHORT).show();
         finish(); // Close the activity
     }
 
-    private void saveBookDetails(String title, String authors, ArrayList<String> publishers) {
+    private boolean validateInput(String title, String id, String description, String price, String pages, String publicationDate, String language, String size, String format, String author, String discountCode) {
+        if (title.isEmpty()) {
+            etBookTitle.setError("Tên sách là bắt buộc");
+            etBookTitle.requestFocus();
+            return false;
+        }
+
+        if (id.isEmpty()) {
+            etBookID.setError("ID sách là bắt buộc");
+            etBookID.requestFocus();
+            return false;
+        }
+
+        if (description.isEmpty()) {
+            etBookDescription.setError("Mô tả là bắt buộc");
+            etBookDescription.requestFocus();
+            return false;
+        }
+
+        if (price.isEmpty() || !Pattern.matches("\\d+(\\.\\d{1,2})?", price)) {
+            etBookPrice.setError("Giá không hợp lệ");
+            etBookPrice.requestFocus();
+            return false;
+        }
+
+        if (pages.isEmpty() || !Pattern.matches("\\d+", pages)) {
+            etNumberOfPages.setError("Số trang phải là số");
+            etNumberOfPages.requestFocus();
+            return false;
+        }
+
+        if (publicationDate.isEmpty()) {
+            etPublicationDate.setError("Ngày xuất bản là bắt buộc");
+            etPublicationDate.requestFocus();
+            return false;
+        }
+
+        if (language.isEmpty()) {
+            etLanguage.setError("Ngôn ngữ là bắt buộc");
+            etLanguage.requestFocus();
+            return false;
+        }
+
+        if (size.isEmpty()) {
+            etSize.setError("Kích thước là bắt buộc");
+            etSize.requestFocus();
+            return false;
+        }
+
+        if (format.isEmpty()) {
+            etFormat.setError("Định dạng là bắt buộc");
+            etFormat.requestFocus();
+            return false;
+        }
+
+        if (author.isEmpty()) {
+            etAuthor.setError("Tác giả là bắt buộc");
+            etAuthor.requestFocus();
+            return false;
+        }
+
+        if (discountCode.isEmpty()) {
+            etDiscountCode.setError("Mã giảm giá là bắt buộc");
+            etDiscountCode.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void saveBookDetails(String title, String id, String description, String price, String pages, String publicationDate, String language, String size, String format, String author, String discountCode, ArrayList<String> publishers) {
         // Implementation of how you save these details to your backend or database
     }
 }
