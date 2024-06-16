@@ -22,10 +22,18 @@ import nlu.hmuaf.android_bookapp.utils.MyUtils;
 public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularViewHolder> {
     private List<ListBookResponseDTO> listBook;
     private OnItemClickListener listener;
+    private OnPriceClickListener priceClickListener;
 
-    public NewBookAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener) {
+
+//    Interface bắt sự kiện khi nút giá tiền được bấm vào để add vào giỏ hàng
+    public interface OnPriceClickListener {
+        void onPriceClick(int position);
+    }
+
+    public NewBookAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener,OnPriceClickListener priceClickListener) {
         this.listBook = listBook != null ? listBook : new ArrayList<>();
         this.listener = listener;
+        this.priceClickListener = priceClickListener;
     }
 
     @NonNull
@@ -90,6 +98,18 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
+//            Nút price giá gốc nhận sự kiển để bỏ vào giỏ hàng
+            priceB2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (priceClickListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            priceClickListener.onPriceClick(position);
                         }
                     }
                 }

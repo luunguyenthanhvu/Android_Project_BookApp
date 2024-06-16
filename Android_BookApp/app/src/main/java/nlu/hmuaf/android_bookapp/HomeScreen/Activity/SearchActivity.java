@@ -1,10 +1,15 @@
     package nlu.hmuaf.android_bookapp.HomeScreen.Activity;
 
+    import android.app.Activity;
     import android.content.Intent;
+    import android.graphics.Color;
+    import android.graphics.Typeface;
     import android.os.Bundle;
     import android.util.TypedValue;
     import android.view.View;
     import android.widget.Button;
+    import android.widget.FrameLayout;
+    import android.widget.ImageView;
     import android.widget.LinearLayout;
     import android.widget.TextView;
     import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +42,7 @@
         private TextView tvPageNumber;
         private int currentPage = 0;
         private static final int ITEMS_PER_PAGE = 10;
+        private int quantityBookInCart = 0;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +103,7 @@
                 public void onItemClick(int position) {
                     Intent intent = new Intent(SearchActivity.this, BookActivity.class);
                     intent.putExtra("book_position", position);
+                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     startActivity(intent);
                 }
             });
@@ -107,6 +114,7 @@
                 public void onItemClick(int position) {
                     Intent intent = new Intent(SearchActivity.this, BookActivity.class);
                     intent.putExtra("book_position", position);
+                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     startActivity(intent);
                 }
             });
@@ -117,6 +125,7 @@
                 public void onItemClick(int position) {
                     Intent intent = new Intent(SearchActivity.this, FantasyActivity.class);
                     intent.putExtra("book_position", position);
+                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     startActivity(intent);
                 }
             });
@@ -140,6 +149,7 @@
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(SearchActivity.this, HomeActivity.class);
+                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     startActivity(intent);
                 }
             });
@@ -148,6 +158,7 @@
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(SearchActivity.this, SearchActivity.class);
+                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     startActivity(intent);
                 }
             });
@@ -156,6 +167,7 @@
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(SearchActivity.this, LibraryActivity.class);
+                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     startActivity(intent);
                 }
             });
@@ -241,6 +253,10 @@
             });
 
             updateRecyclerView();
+//            Cập nhập số lượng sách trong giỏ hàng
+            updateQuantityBookInCart();
+//            Đổi màu icon navigation hiện tại
+            checkCurrentActivity();
         }
 
         private void updateRecyclerView() {
@@ -328,6 +344,38 @@
             list.add(new Publisher(R.drawable.book5, "NXB Ye On", "123/2 Nguyễn Thị Minh Khai TpHCM", "1900 8088"));
             list.add(new Publisher(R.drawable.book1, "NXB Thế Giới", "123/2 Nguyễn Thị Minh Khai TpHCM", "1900 8088"));
             return list;
+        }
+        //    Cập nhập số sách trong giỏ hàng
+        private void updateQuantityBookInCart(){
+            quantityBookInCart = getIntent().getIntExtra("quantityBookInCart", 0);
+            FrameLayout cartActionInclude = findViewById(R.id.cartItem);
+            TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
+            quantityTextView.setText(String.valueOf(quantityBookInCart));
+            quantityTextView.setVisibility(quantityBookInCart == 0 ? View.GONE : View.VISIBLE);
+        }
+        public int getQuantityBookInCart() {
+            return quantityBookInCart;
+        }
+
+        public void setQuantityBookInCart(int quantityBookInCart) {
+            this.quantityBookInCart = quantityBookInCart;
+        }
+
+        public void checkCurrentActivity() {
+            Activity currentActivity = (Activity) this;
+            if (currentActivity instanceof SearchActivity) {
+                // Đây là HomeActivity
+                LinearLayout homeLayout = findViewById(R.id.searchLayout);
+                ImageView imageView = homeLayout.findViewById(R.id.searchIcon);
+                TextView textView = homeLayout.findViewById(R.id.txt_searchIcon);
+
+                String colorString = "#B868E9";
+                int color = Color.parseColor(colorString);
+                imageView.setColorFilter(color);
+                textView.setTextColor(color);
+                textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
+                textView.setTextSize(14);
+            }
         }
     }
 
