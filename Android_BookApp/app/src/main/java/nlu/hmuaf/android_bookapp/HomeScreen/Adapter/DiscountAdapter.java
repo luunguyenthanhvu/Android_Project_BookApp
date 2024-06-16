@@ -25,9 +25,16 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.ImageV
     private List<ListBookResponseDTO> listBook;
     private OnItemClickListener listener;
 
-    public DiscountAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener) {
+    private OnPriceClickListener priceClickListener;
+
+    public interface OnPriceClickListener {
+        void onPriceClick(int position);
+    }
+
+    public DiscountAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener, OnPriceClickListener priceClickListener) {
         this.listBook = this.listBook = listBook != null ? listBook : new ArrayList<>();
         this.listener = listener;
+        this.priceClickListener = priceClickListener;
     }
 
 
@@ -97,6 +104,19 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.ImageV
                     }
                 }
             });
+            //            Nút price giá gốc nhận sự kiển để bỏ vào giỏ hàng
+            priceB.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (priceClickListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            priceClickListener.onPriceClick(position);
+                        }
+                    }
+                }
+            });
+
         }
     }
 

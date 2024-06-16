@@ -1,11 +1,17 @@
 package nlu.hmuaf.android_bookapp.HomeScreen.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,10 +20,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import nlu.hmuaf.android_bookapp.CartUser.Activity.MyCart;
 import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.DiscountAdapter;
-
-import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.OnItemClickListener;
 import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.NewBookAdapter;
+import nlu.hmuaf.android_bookapp.HomeScreen.Adapter.OnItemClickListener;
+
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
@@ -36,12 +43,16 @@ public class HomeActivity extends AppCompatActivity {
     private List<ListBookResponseDTO> newListBook, discountListBook = new ArrayList<>();
     private ProgressBar progressBar;
     private final int SIZE = 30;
+    private int quantityBookInCart = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
-
+//        Cập nhập số lượng sách trong giỏ hàng
+        updateCartQuantityFromOtherActivity();
         rcv1Data = findViewById(R.id.rcv1_Data);
         rcv2Data = findViewById(R.id.rcv2_Data);
         progressBar = findViewById(R.id.progressBar);
@@ -88,7 +99,16 @@ public class HomeActivity extends AppCompatActivity {
             public void onItemClick(int position) {
                 Intent intent = new Intent(HomeActivity.this, BookActivity.class);
                 intent.putExtra("book_position", position);
+                intent.putExtra("quantityBookInCart", quantityBookInCart);
                 startActivity(intent);
+            }
+        }, new DiscountAdapter.OnPriceClickListener() {
+            //            Khi nhấn vào giá tiền giảm giá thì sách sẽ được vào giỏ hàng
+            @Override
+            public void onPriceClick(int position) {
+                ListBookResponseDTO selectedBook = discountListBook.get(position);
+                quantityBookInCart++;
+                updateCartQuantity(quantityBookInCart);
             }
         });
         rcv1Data.setAdapter(imageAdapter);
@@ -99,7 +119,17 @@ public class HomeActivity extends AppCompatActivity {
             public void onItemClick(int position) {
                 Intent intent = new Intent(HomeActivity.this, BookActivity.class);
                 intent.putExtra("book_position", position);
+                intent.putExtra("quantityBookInCart", quantityBookInCart);
                 startActivity(intent);
+            }
+        }, new NewBookAdapter.OnPriceClickListener() {
+//            Khi nhấn vào giá tiền thì sách sẽ được vào giỏ hàng
+            @Override
+            public void onPriceClick(int position) {
+                ListBookResponseDTO selectedBook = newListBook.get(position);
+                quantityBookInCart++;
+                updateCartQuantity(quantityBookInCart);
+
             }
         });
         rcv2Data.setAdapter(popularAdapter);
@@ -122,6 +152,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Navigate to HomeActivity
                 Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+                intent.putExtra("quantityBookInCart", getQuantityBookInCart());
                 startActivity(intent);
             }
         });
@@ -131,6 +162,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Navigate to SearchActivity
                 Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+                intent.putExtra("quantityBookInCart", getQuantityBookInCart());
                 startActivity(intent);
             }
         });
@@ -139,11 +171,27 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Navigate to HomeActivity
                 Intent intent = new Intent(HomeActivity.this, LibraryActivity.class);
+                intent.putExtra("quantityBookInCart", getQuantityBookInCart());
                 startActivity(intent);
             }
         });
-
+//        Xử lý sách đã chọn mua vào giỏ hàng
+        FrameLayout cartActionInclude = findViewById(R.id.cartItem);
+        TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
+        quantityTextView.setText(String.valueOf(quantityBookInCart));
+        quantityTextView.setVisibility(quantityBookInCart == 0 ? View.GONE : View.VISIBLE);
+        cartActionInclude.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, MyCart.class);
+                startActivity(intent);
+            }
+        });
+//        Kiểm tra activity hiện tại để đổi màu icon ở navigation
+        checkCurrentActivity();
     }
+
+
 
     // get discount book in shipment
     public void getDiscountBookData() {
@@ -208,8 +256,16 @@ public class HomeActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(int position) {
                     Intent intent = new Intent(HomeActivity.this, BookActivity.class);
+                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     intent.putExtra("book_position", position);
                     startActivity(intent);
+                }
+            }, new DiscountAdapter.OnPriceClickListener() {
+                @Override
+                public void onPriceClick(int position) {
+                    ListBookResponseDTO selectedBook = discountListBook.get(position);
+                    quantityBookInCart++;
+                    updateCartQuantity(quantityBookInCart);
                 }
             });
             rcv1Data.setAdapter(imageAdapter);
@@ -228,8 +284,17 @@ public class HomeActivity extends AppCompatActivity {
                 public void onItemClick(int position) {
                     // Xử lý sự kiện khi người dùng nhấn vào một sách
                     Intent intent = new Intent(HomeActivity.this, BookActivity.class);
+                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     intent.putExtra("book_position", position);
                     startActivity(intent);
+                }
+            }, new NewBookAdapter.OnPriceClickListener() {
+                @Override
+                public void onPriceClick(int position) {
+                    ListBookResponseDTO selectedBook = newListBooks.get(position);
+                    quantityBookInCart++;
+                    updateCartQuantity(quantityBookInCart);
+                    // Xử lý thêm sách vào giỏ hàng hoặc bất kỳ hành động nào khác
                 }
             });
             rcv2Data.setAdapter(popularAdapter);
@@ -238,9 +303,42 @@ public class HomeActivity extends AppCompatActivity {
             popularAdapter.updateData(newListBooks);
         }
     }
+    private void updateCartQuantity(int quantityBookInCart) {
+        quantityBookInCart = quantityBookInCart;
+        FrameLayout cartActionInclude = findViewById(R.id.cartItem);
+        TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
+        quantityTextView.setText(String.valueOf(quantityBookInCart));
+        quantityTextView.setVisibility(quantityBookInCart == 0 ? View.GONE : View.VISIBLE);
+    }
+    private void updateCartQuantityFromOtherActivity() {
+        setQuantityBookInCart(getIntent().getIntExtra("quantityBookInCart", 0));
+        FrameLayout cartActionInclude = findViewById(R.id.cartItem);
+        TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
+        quantityTextView.setText(String.valueOf(getQuantityBookInCart()));
+        quantityTextView.setVisibility(getQuantityBookInCart() == 0 ? View.GONE : View.VISIBLE);
+    }
+    public int getQuantityBookInCart() {
+        return quantityBookInCart;
+    }
+
+    public void setQuantityBookInCart(int quantityBookInCart) {
+        this.quantityBookInCart = quantityBookInCart;
+    }
+    public void checkCurrentActivity() {
+        Activity currentActivity = (Activity) this;
+        if (currentActivity instanceof HomeActivity) {
+            // Đây là HomeActivity
+            LinearLayout homeLayout = findViewById(R.id.homeLayout);
+            ImageView imageView = homeLayout.findViewById(R.id.homeIcon);
+            TextView textView = homeLayout.findViewById(R.id.txt_homeIcon);
+
+            String colorString = "#B868E9";
+            int color = Color.parseColor(colorString);
+            imageView.setColorFilter(color);
+            textView.setTextColor(color);
+            textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
+            textView.setTextSize(14);
+        }
+    }
 
 }
-
-
-
-
