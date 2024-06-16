@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.Set;
 import nlu.hcmuaf.android_bookapp.config.CustomUserDetails;
 import nlu.hcmuaf.android_bookapp.config.JwtService;
+import nlu.hcmuaf.android_bookapp.dto.request.ForgotPasswordDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.RegisterRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.VerifyRequestDTO;
@@ -65,7 +66,7 @@ public class UserServiceImpl implements IUserService {
   private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
   @Override
-  public void createDefaultAccount() {
+  public void loadDefaultData() {
     try {
       if (!userRepository.findUsersByUsername("vuluu").isPresent()) {
         // basic info
@@ -132,10 +133,15 @@ public class UserServiceImpl implements IUserService {
             return TokenResponseDTO
                 .builder()
                 .token(jwtToken)
+                .username(user.get().getUsername())
                 .role(user.get().getRoles().getRoleName().toString())
                 .message("Login success!")
                 .build();
           } else {
+            String otp = myUtils.generateOtp();
+            userDetailRepository.updateUserOtp(otp, LocalDateTime.now().plusMinutes(5),
+                requestDTO.getEmail());
+            emailService.sendVerificationCode(requestDTO.getEmail(), otp);
             return TokenResponseDTO
                 .builder()
                 .message("Please verified your account!")
@@ -157,7 +163,7 @@ public class UserServiceImpl implements IUserService {
     }
     return TokenResponseDTO
         .builder()
-        .message("User not found")
+        .message("User not found!")
         .build();
   }
 
@@ -172,7 +178,7 @@ public class UserServiceImpl implements IUserService {
       if (checkUser.isPresent()) {
         return MessageResponseDTO
             .builder()
-            .message("Username used")
+            .message("Username used!")
             .build();
       } else if (!userDetail.isPresent()) {
         requestDTO.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
@@ -204,7 +210,7 @@ public class UserServiceImpl implements IUserService {
         userRepository.save(users);
         return MessageResponseDTO
             .builder()
-            .message("Register success")
+            .message("Register success!")
             .build();
       }
     } catch (Exception e) {
@@ -216,7 +222,7 @@ public class UserServiceImpl implements IUserService {
     }
     return MessageResponseDTO
         .builder()
-        .message("User already exist")
+        .message("User already exist!")
         .build();
   }
 
@@ -276,5 +282,27 @@ public class UserServiceImpl implements IUserService {
         .build();
   }
 
-
+  @Override
+  public MessageResponseDTO forgotPassword(ForgotPasswordDTO requestDTO) {
+    try {
+      Optional<Users> data = userRepository.findAllInfoByEmail(requestDTO.getEmail());
+      if (data.isPresent()) {
+        Users users = data.get();
+        String password = myUtils.generateRandomPassword(10);
+        users.setPassword(passwordEncoder.encode(password));
+        userRepository.save(users);
+        emailService.sendNewPass(users.getUserDetails().getEmail(), password);
+        return MessageResponseDTO
+            .builder()
+            .message("Update Pass Success")
+            .build();
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return MessageResponseDTO
+        .builder()
+        .message("User not exist")
+        .build();
+  }
 }

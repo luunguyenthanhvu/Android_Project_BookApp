@@ -1,6 +1,7 @@
 package nlu.hcmuaf.android_bookapp.controller;
 
 import nlu.hcmuaf.android_bookapp.config.JwtService;
+import nlu.hcmuaf.android_bookapp.dto.request.ForgotPasswordDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.RegisterRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.VerifyRequestDTO;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,12 +46,10 @@ public class LoginController {
     return new ResponseEntity<>(userService.verifyAccount(requestDTO), HttpStatus.OK);
   }
 
-  @GetMapping("test")
-  public ResponseEntity<MessageResponseDTO> test(
-      @RequestBody MessageResponseDTO messageResponseDTO) {
-    return new ResponseEntity<>(
-        MessageResponseDTO.builder().message("DJT me langw coc day nhu dau buoi").build(),
-        HttpStatus.OK);
+  @PostMapping("forgot-pass")
+  public ResponseEntity<MessageResponseDTO> forgotPassword(
+      @RequestBody ForgotPasswordDTO requestDTO) {
+    return new ResponseEntity<>(userService.forgotPassword(requestDTO), HttpStatus.OK);
   }
 
 }

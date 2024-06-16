@@ -1,12 +1,14 @@
 <resources>
+    <string name="page_number">Page %1$d</string>
+
     <string name="app_name">Android_BookApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="previous"><![CDATA[<]]></string>
-    <string name="new_books">New Books</string>
-    <string name="view_more">View more</string>
-    <string name="popular">Popular\n</string>
-    <string name="view_more1">View More\n</string>
+    <string name="discountBook">Đang giảm giá</string>
+    <string name="view_more">Xem thêm</string>
+    <string name="newBook">Sách mới\n</string>
+    <string name="view_more1">Xem thêm\n</string>
     <string name="author_l_ng_c_c">lăng cọc</string>
     <string name="NMTDQ">Hạnh phúc trong tầm với đã không còn tới khi vắng em trong đời. Tìm đến chân trời mới vẫn thương một thời, giờ đã xa ngàn khơi. Ngày đó ta lầm lỡ bỏ mặc nhau hững hờ, để tiếng yêu rạn vỡ rồi thời gian xóa mờ. Mãi vô tình đến bây giờ nhận ra hai đứa không còn nhau. Cuộc sống luôn vội vã với bao nghiệt ngã, xô cuốn ta miệt mài. Một bước chân trượt ngã đã trôi thật dài, lạc mất nhau ngày mai. Còn mãi khung trời đó, mình gặp nhau lúc đầu. Ngày tháng hoa mộng đó cùng niềm vui nỗi sầu sẽ ghi lại biết bao điều để nhớ một thời ta đã yêu.\n\nThì thôi ta đã lỡ lìa xa bến bờ, đời lênh đênh sóng vỗ buồn trôi lững lờ. Cuộn mình trong nỗi nhớ cho đến bao giờ mình mới quên ngày xưa. Thì thôi ta đã hết, chờ nhau sẽ về. Mùa xuân nay đã chết vàng phai não nề, để lại bao hối tiếc ghi khắc tên người, gọi mãi trong đêm buồn. Hạnh phúc trong tầm với đã không còn tới khi vắng em trong đời. Tìm đến chân trời mới vẫn thương một thời, giờ đã xa ngàn khơi. Ngày đó ta lầm lỡ bỏ mặc nhau hững hờ, để tiếng yêu rạn vỡ rồi thời gian xóa mờ. Mãi vô tình đến bây giờ nhận ra hai đứa không còn nhau. Cuộc sống luôn vội vã với bao nghiệt ngã, xô cuốn ta miệt mài. Một bước chân trượt ngã đã trôi thật dài, lạc mất nhau ngày mai.\n\nCòn mãi khung trời đó, mình gặp nhau lúc đầu. Ngày tháng hoa mộng đó cùng niềm vui nỗi sầu sẽ ghi lại biết bao điều để nhớ một thời ta đã yêu. Thì thôi ta đã lỡ lìa xa bến bờ, đời lênh đênh sóng vỗ buồn trôi lững lờ. Cuộn mình trong nỗi nhớ cho đến bao giờ mình mới quên ngày xưa. Thì thôi ta đã hết, chờ nhau sẽ về. Mùa xuân nay đã chết vàng phai não nề, để lại bao hối tiếc ghi khắc tên người, gọi mãi trong đêm buồn. Để lại bao hối tiếc ghi khắc tên người, gọi mãi trong đêm buồn.</string>
     <string name="books">Book</string>

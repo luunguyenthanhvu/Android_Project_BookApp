@@ -20,10 +20,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.widget.ProgressBar;
+
 public class Login extends AppCompatActivity {
     private EditText loginMail, loginPassword;
     private Button loginButton;
     private TextView signupRedirectText, forgotPassword;
+    private ProgressBar progressBar; // Thêm ProgressBar
     private BookAppApi bookAppApi;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class Login extends AppCompatActivity {
         loginMail = findViewById(R.id.login_email);
         loginPassword = findViewById(R.id.login_password);
         loginButton = findViewById(R.id.login_button);
+        progressBar = findViewById(R.id.progress_bar); // Khởi tạo ProgressBar
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +45,7 @@ public class Login extends AppCompatActivity {
                 String email = loginMail.getText().toString().trim();
                 String password = loginPassword.getText().toString().trim();
                 if (checkValidate()) {
-                    login(email, password, savedInstanceState);
+                    login(email, password);
                 }
             }
         });
@@ -66,7 +70,6 @@ public class Login extends AppCompatActivity {
             }
         });
 
-
         // Nhận dữ liệu từ Intent từ trang Đăng ký
         Intent intent = getIntent();
         String message = intent.getStringExtra("signup_success");
@@ -77,7 +80,7 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    private TokenResponseDTO login(String email, String password, Bundle savedInstanceState) {
+    private void login(String email, String password) {
         bookAppApi = BookAppService.getClient();
         LoginRequestDTO requestDTO = LoginRequestDTO
                 .builder()
@@ -85,27 +88,52 @@ public class Login extends AppCompatActivity {
                 .password(password)
                 .build();
 
+        // Hiển thị ProgressBar
+        progressBar.setVisibility(View.VISIBLE);
+        loginButton.setEnabled(false);
+
         Call<TokenResponseDTO> call = bookAppApi.login(requestDTO);
         call.enqueue(new Callback<TokenResponseDTO>() {
             @Override
             public void onResponse(Call<TokenResponseDTO> call, Response<TokenResponseDTO> response) {
-                TokenResponseDTO responseDTO = response.body();
-                System.out.println(responseDTO);
-                if (responseDTO.getMessage().equals("Login success!")) {
-                    Toast.makeText(Login.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Login.this, HomeActivity.class);
-                    startActivity(intent);
-                    finish();
+                // Ẩn ProgressBar
+                progressBar.setVisibility(View.GONE);
+                loginButton.setEnabled(true);
+
+                if (response.isSuccessful()) {
+                    TokenResponseDTO responseDTO = response.body();
+                    System.out.println(responseDTO);
+                    if (responseDTO.getMessage().equals("Login success!")) {
+                        Toast.makeText(Login.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Login.this, HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else if (responseDTO.getMessage().equals("Please verified your account!")) {
+                        Toast.makeText(Login.this, "Vui lòng xác thực tài khoản!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Login.this, Activate.class);
+                        startActivity(intent);
+                        finish();
+                    } else if (responseDTO.getMessage().equals("WRONG PASSWORD!")) {
+                        Toast.makeText(Login.this, "Sai mật khẩu!", Toast.LENGTH_SHORT).show();
+                    } else if (responseDTO.getMessage().equals("User not found!")) {
+                        Toast.makeText(Login.this, "Không tìm thấy người dùng!", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(Login.this, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<TokenResponseDTO> call, Throwable t) {
+                // Ẩn ProgressBar
+                progressBar.setVisibility(View.GONE);
+                loginButton.setEnabled(true);
+
+                Toast.makeText(Login.this, "Đã xảy ra lỗi, vui lòng thử lại!", Toast.LENGTH_SHORT).show();
                 System.out.println("Failer");
                 System.out.println(t);
             }
         });
-        return null;
     }
 
     private boolean checkValidate() {
@@ -113,13 +141,13 @@ public class Login extends AppCompatActivity {
         String email = loginMail.getText().toString().trim();
         String pass = loginPassword.getText().toString().trim();
 
-        if(email.isEmpty() || pass.isEmpty()) {
+        if (email.isEmpty() || pass.isEmpty()) {
             Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             validate = false;
         } else if (!email.matches("^[A-Za-z0-9+_.-]+@gmail\\.com$")) {
             showError(loginMail, "Email không hợp lệ");
             validate = false;
-        } else if (pass.length()<7) {
+        } else if (pass.length() < 7) {
             showError(loginPassword, "Mật khẩu phải dài hơn 7 ký tự");
             validate = false;
         }
@@ -130,5 +158,4 @@ public class Login extends AppCompatActivity {
         input.setError(s);
         input.requestFocus();
     }
-
 }

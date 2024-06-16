@@ -40,7 +40,7 @@ public class SecurityConfig {
     httpSecurity
         .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(auth -> auth // ủy quyền
-            .requestMatchers("/api/user/login").permitAll() // ai cũng có thể truy cập
+            .requestMatchers("/api/books/**").permitAll() // ai cũng có thể truy cập
             .requestMatchers("/api/v1/user/**").permitAll() // ai cũng có thể truy cập
             .requestMatchers("/api/v1/user/test")
             .hasAnyAuthority(ERole.USER.name()) // Chỉ user

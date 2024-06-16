@@ -38,8 +38,8 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:text="@string/new_books"
-                android:layout_marginBottom="30dp"/>
+                android:text="@string/discountBook"
+                android:layout_marginBottom="10dp"/>
 
             <View
                 android:layout_width="0dp"
@@ -47,6 +47,7 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/textViewViewMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/view_more"
@@ -72,8 +73,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:text="@string/popular"
-                android:layout_marginBottom="30dp"/>
+                android:text="@string/newBook" />
 
             <View
                 android:layout_width="0dp"
@@ -81,6 +81,7 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/textViewViewMore2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/view_more1"
@@ -91,10 +92,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginBottom="30dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
              />
-
-
 
     </LinearLayout>
 
