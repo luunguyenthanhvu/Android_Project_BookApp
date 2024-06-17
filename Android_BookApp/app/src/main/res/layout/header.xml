@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:background="#EEF4FB"
     android:padding="16dp">
@@ -19,8 +20,43 @@
         android:layout_weight="1" />
 
     <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="22dp"
+        android:layout_height="40dp"
         android:src="@drawable/bell" />
+    <FrameLayout
+        android:id="@+id/cartItem"
+        android:background="?attr/selectableItemBackground"
+        android:clipToPadding="false"
+        android:focusable="true"
+        android:padding="16dp"
+        android:layout_width="44dp"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center"
+            android:background="#EEF4FB"
+            app:srcCompat="@drawable/grocerystore"
+
+            />
+
+        <TextView
+            android:id="@+id/cart_badge_text_view"
+            style="@style/TextAppearance.MaterialComponents.Caption"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="-16dp"
+            android:layout_marginEnd="-13dp"
+            android:background="@drawable/badge_shape"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/white">
+
+        </TextView>
+    </FrameLayout>
+
+
 
 </LinearLayout>
