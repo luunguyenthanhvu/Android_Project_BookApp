@@ -7,9 +7,14 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,9 +44,11 @@ public class AddBookActivity extends AppCompatActivity {
     private static final int PERMISSIONS_REQUEST_READ_IMAGES = 102;
 
     private EditText etBookTitle, etBookID, etBookDescription, etBookPrice, etNumberOfPages, etPublicationDate, etLanguage, etSize, etFormat, etAuthor, etDiscountCode;
-    private Button btnSelectPublishers, btnUploadThumbnail, btnUploadBookImages, btnSave, btnCancel;
+    private Button btnUploadThumbnail, btnUploadBookImages, btnSave, btnCancel;
     private ImageView ivThumbnail, ivPublicationDate;
     private RecyclerView rvBookImages;
+    private Spinner spinnerPublishers;
+    private TextView tvSelectedPublishers;
     private BookImagesAdapter adapter;
     private List<Uri> imageUris = new ArrayList<>();
     private ArrayList<String> selectedPublishers = new ArrayList<>();
@@ -59,7 +66,26 @@ public class AddBookActivity extends AppCompatActivity {
         // Initialize all views
         initializeViews();
 
-        btnSelectPublishers.setOnClickListener(v -> showPublisherDialog());
+        // Setup spinner
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, publisherList);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPublishers.setAdapter(spinnerAdapter);
+
+        spinnerPublishers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedPublisher = publisherList[position];
+                if (!selectedPublishers.contains(selectedPublisher)) {
+                    selectedPublishers.add(selectedPublisher);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+
         btnUploadThumbnail.setOnClickListener(v -> {
             if (checkPermission()) {
                 openFileChooser(false, PICK_THUMBNAIL_REQUEST);
@@ -67,6 +93,7 @@ public class AddBookActivity extends AppCompatActivity {
                 requestStoragePermission();
             }
         });
+
         btnUploadBookImages.setOnClickListener(v -> {
             if (checkPermission()) {
                 openFileChooser(true, PICK_IMAGES_REQUEST);
@@ -74,6 +101,7 @@ public class AddBookActivity extends AppCompatActivity {
                 requestStoragePermission();
             }
         });
+
         btnSave.setOnClickListener(v -> saveBook());
         btnCancel.setOnClickListener(v -> finish());
 
@@ -97,7 +125,6 @@ public class AddBookActivity extends AppCompatActivity {
         etFormat = findViewById(R.id.etFormat);
         etAuthor = findViewById(R.id.etAuthor);
         etDiscountCode = findViewById(R.id.etDiscountCode);
-        btnSelectPublishers = findViewById(R.id.btnSelectPublishers);
         btnUploadThumbnail = findViewById(R.id.btnUploadThumbnail);
         btnUploadBookImages = findViewById(R.id.btnUploadBookImages);
         btnSave = findViewById(R.id.btnSave);
@@ -105,6 +132,8 @@ public class AddBookActivity extends AppCompatActivity {
         ivThumbnail = findViewById(R.id.ivThumbnail);
         rvBookImages = findViewById(R.id.rvBookImages);
         ivPublicationDate = findViewById(R.id.ivPublicationDate);
+        spinnerPublishers = findViewById(R.id.spinnerPublishers);
+        tvSelectedPublishers = findViewById(R.id.tvSelectedPublishers);
     }
 
     private void showDatePickerDialog() {
@@ -168,30 +197,6 @@ public class AddBookActivity extends AppCompatActivity {
         }
     }
 
-    private void showPublisherDialog() {
-        boolean[] checkedItems = new boolean[publisherList.length]; // Temporary array to store checked items for dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(AddBookActivity.this);
-        builder.setTitle("Chọn nhà xuất bản");
-        builder.setMultiChoiceItems(publisherList, checkedItems, (dialog, which, isChecked) -> {
-            String publisher = publisherList[which];
-            if (isChecked) {
-                if (!selectedPublishers.contains(publisher)) {
-                    selectedPublishers.add(publisher);
-                }
-            } else {
-                selectedPublishers.remove(publisher);
-            }
-        });
-
-        builder.setPositiveButton("OK", (dialog, which) -> {
-            Toast.makeText(AddBookActivity.this, "Publishers Selected: " + selectedPublishers, Toast.LENGTH_SHORT).show();
-        });
-
-        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
     private void openFileChooser(boolean allowMultiple, int requestCode) {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
@@ -211,6 +216,7 @@ public class AddBookActivity extends AppCompatActivity {
                 }
             } else if (requestCode == PICK_IMAGES_REQUEST) {
                 // Handle multiple image selection
+                imageUris.clear(); // Reset the list of images
                 if (data.getClipData() != null) {
                     int count = data.getClipData().getItemCount();
                     for (int i = 0; i < count; i++) {

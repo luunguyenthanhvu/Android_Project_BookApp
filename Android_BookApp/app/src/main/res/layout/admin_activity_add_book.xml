@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar"
-        android:padding="16dp">
+       >
 
         <LinearLayout
             android:orientation="vertical"
@@ -129,12 +129,30 @@
                 android:layout_height="wrap_content"
                 android:hint="Mã giảm giá" />
 
-            <Button
-                android:id="@+id/btnSelectPublishers"
-                android:layout_width="wrap_content"
+            <!-- Publisher Selection in a Horizontal Layout -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chọn nhà xuất bản"
-                android:layout_gravity="center_horizontal"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:id="@+id/tvSelectedPublishers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nhà xuất bản:"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/spinnerPublishers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"/>
+            </LinearLayout>
 
             <!-- Book Thumbnail -->
             <Button
