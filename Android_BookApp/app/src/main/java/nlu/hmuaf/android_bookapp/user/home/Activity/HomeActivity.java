@@ -1,5 +1,7 @@
 package nlu.hmuaf.android_bookapp.user.home.Activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,7 +12,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +23,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import nlu.hmuaf.android_bookapp.animation.add_to_cart.CircleAnimation;
+import nlu.hmuaf.android_bookapp.room.repository.CartItemDao;
 import nlu.hmuaf.android_bookapp.user.cart_user.Activity.MyCart;
 import nlu.hmuaf.android_bookapp.user.home.Adapter.DiscountAdapter;
 import nlu.hmuaf.android_bookapp.user.home.Adapter.NewBookAdapter;
@@ -46,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
     private final int SIZE = 30;
     private int quantityBookInCart = 0;
     private TextView welcomeTextView;
+    private CartItemDao cartItemDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +71,8 @@ public class HomeActivity extends AppCompatActivity {
         if (tokenResponse != null) {
             String welcomeMessage = "Xin chào, " + tokenResponse.getUsername() + "!";
             welcomeTextView.setText(welcomeMessage);
+            //get cart from database
+
         } else {
             welcomeTextView.setText("Xin chào");
         }
@@ -114,12 +123,14 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }, new DiscountAdapter.OnPriceClickListener() {
-            //            Khi nhấn vào giá tiền giảm giá thì sách sẽ được vào giỏ hàng
+            //Khi bấm vào giá tiền thì thêm vào giỏ hàng
             @Override
             public void onPriceClick(int position) {
                 ListBookResponseDTO selectedBook = discountListBook.get(position);
-                quantityBookInCart++;
-                updateCartQuantity(quantityBookInCart);
+                System.out.println(selectedBook);
+//                quantityBookInCart++;
+//                updateCartQuantity(quantityBookInCart);
+
             }
         });
         rcv1Data.setAdapter(imageAdapter);
@@ -134,12 +145,13 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }, new NewBookAdapter.OnPriceClickListener() {
-//            Khi nhấn vào giá tiền thì sách sẽ được vào giỏ hàng
+            //            Khi nhấn vào giá tiền thì sách sẽ được vào giỏ hàng
             @Override
             public void onPriceClick(int position) {
                 ListBookResponseDTO selectedBook = newListBook.get(position);
-                quantityBookInCart++;
-                updateCartQuantity(quantityBookInCart);
+                System.out.println(selectedBook);
+//                quantityBookInCart++;
+//                updateCartQuantity(quantityBookInCart);
 
             }
         });
@@ -201,7 +213,6 @@ public class HomeActivity extends AppCompatActivity {
 //        Kiểm tra activity hiện tại để đổi màu icon ở navigation
         checkCurrentActivity();
     }
-
 
 
     // get discount book in shipment
@@ -272,11 +283,19 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             }, new DiscountAdapter.OnPriceClickListener() {
+                // của Tú
                 @Override
                 public void onPriceClick(int position) {
                     ListBookResponseDTO selectedBook = discountListBook.get(position);
                     quantityBookInCart++;
                     updateCartQuantity(quantityBookInCart);
+
+                    // add animation
+                    ImageView imageView = findImageViewForBook(selectedBook);
+                    System.out.println("start animation");
+                    if (imageView != null) {
+                        makeFlyAnimation(imageView);
+                    }
                 }
             });
             rcv1Data.setAdapter(imageAdapter);
@@ -314,6 +333,7 @@ public class HomeActivity extends AppCompatActivity {
             popularAdapter.updateData(newListBooks);
         }
     }
+
     private void updateCartQuantity(int quantityBookInCart) {
         quantityBookInCart = quantityBookInCart;
         FrameLayout cartActionInclude = findViewById(R.id.cartItem);
@@ -321,6 +341,7 @@ public class HomeActivity extends AppCompatActivity {
         quantityTextView.setText(String.valueOf(quantityBookInCart));
         quantityTextView.setVisibility(quantityBookInCart == 0 ? View.GONE : View.VISIBLE);
     }
+
     private void updateCartQuantityFromOtherActivity() {
         setQuantityBookInCart(getIntent().getIntExtra("quantityBookInCart", 0));
         FrameLayout cartActionInclude = findViewById(R.id.cartItem);
@@ -328,6 +349,7 @@ public class HomeActivity extends AppCompatActivity {
         quantityTextView.setText(String.valueOf(getQuantityBookInCart()));
         quantityTextView.setVisibility(getQuantityBookInCart() == 0 ? View.GONE : View.VISIBLE);
     }
+
     public int getQuantityBookInCart() {
         return quantityBookInCart;
     }
@@ -335,6 +357,7 @@ public class HomeActivity extends AppCompatActivity {
     public void setQuantityBookInCart(int quantityBookInCart) {
         this.quantityBookInCart = quantityBookInCart;
     }
+
     public void checkCurrentActivity() {
         Activity currentActivity = (Activity) this;
         if (currentActivity instanceof HomeActivity) {
@@ -350,6 +373,53 @@ public class HomeActivity extends AppCompatActivity {
             textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
             textView.setTextSize(14);
         }
+    }
+
+    private ImageView findImageViewForBook(ListBookResponseDTO selectedBook) {
+        // start find
+        for (int i = 0; i < rcv1Data.getChildCount(); i++) {
+            View childView = rcv1Data.getChildAt(i);
+            RecyclerView.ViewHolder viewHolder = rcv1Data.findContainingViewHolder(childView);
+            if (viewHolder instanceof DiscountAdapter.ImageViewHolder) {
+                DiscountAdapter.ImageViewHolder imageViewHolder = (DiscountAdapter.ImageViewHolder) viewHolder;
+                if (discountListBook != null && imageViewHolder.getAdapterPosition() != RecyclerView.NO_POSITION) {
+                    ListBookResponseDTO book = discountListBook.get(imageViewHolder.getAdapterPosition());
+                    System.out.println(book);
+                    if (book != null && book.getBookId() == selectedBook.getBookId()) {
+                        System.out.println("ok");
+                        return imageViewHolder.getImgBook();
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    private void makeFlyAnimation(ImageView targetView) {
+        FrameLayout destView = findViewById(R.id.cartItem);
+
+        CircleAnimation animation = new CircleAnimation();
+        animation.attachActivity(this).setTargetView(targetView).setMoveDuration(1000).setDestView(destView).setAnimationListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                // Optional: Perform actions when animation starts
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                Toast.makeText(HomeActivity.this, "Continue Shopping...", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+                // Optional: Handle animation cancellation
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+                // Optional: Handle animation repeat
+            }
+        }).startAnimation();
     }
 
 }

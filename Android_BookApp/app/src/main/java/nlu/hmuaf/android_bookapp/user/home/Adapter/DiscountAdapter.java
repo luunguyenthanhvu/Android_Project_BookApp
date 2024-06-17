@@ -37,7 +37,6 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.ImageV
         this.priceClickListener = priceClickListener;
     }
 
-
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -116,7 +115,10 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.ImageV
                     }
                 }
             });
+        }
 
+        public ImageView getImgBook() {
+            return imgBook;
         }
     }
 

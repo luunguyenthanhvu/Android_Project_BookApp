@@ -19,11 +19,12 @@ public interface CartItemDao {
     @Update
     void update(CartItem cartItem);
 
-    @Query("DELETE FROM Cart_Items WHERE productId = :productId")
-    void deleteCartItemByProductId(long productId);
+    @Query("DELETE FROM Cart_Items WHERE bookId = :bookId")
+    void deleteCartItemByProductId(long bookId);
 
     @Query("SELECT * FROM Cart_Items WHERE username = :username")
     List<CartItem> getCartItemByUsername(String username);
 
-
+    @Query("UPDATE cart_items SET quantity = quantity + :quantity WHERE bookId = :bookId AND username = :username")
+    void updateQuantity(long bookId, int quantity, String username);
 }

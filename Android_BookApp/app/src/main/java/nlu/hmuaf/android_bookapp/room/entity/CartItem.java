@@ -17,10 +17,9 @@ public class CartItem {
     @PrimaryKey(autoGenerate = true)
     private long id;
     private String username;
-    private long productId;
-    private String productName;
+    private long bookId;
+    private String title;
     private String thumbnail;
-
     /**
      * Cart quantity
      */
