@@ -40,4 +40,11 @@
     <string name="error_street_address_required">Street Address is required</string>
     <string name="error_phone_length">Phone number must be exactly 10 digits</string>
     <string name="error_fill_all_fields">Please fill in all fields</string>
+
+    <string-array name="locations_array">
+        <item>Kho A</item>
+        <item>Kho B</item>
+        <item>Kho C</item>
+    </string-array>
+
 </resources>

@@ -143,6 +143,7 @@
                         android:padding="8dp" />
 
                     <TextView
+                        android:id="@+id/manage_inventory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Quản Lý Tồn Kho"

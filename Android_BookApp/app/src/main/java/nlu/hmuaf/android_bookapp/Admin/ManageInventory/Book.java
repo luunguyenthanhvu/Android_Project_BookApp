@@ -1,10 +1,10 @@
-package nlu.hmuaf.android_bookapp.Admin;
+package nlu.hmuaf.android_bookapp.Admin.ManageInventory;
 
 import java.io.Serializable;
 
 public class Book implements Serializable {
     private String title;
-    private String bookID;  // Thay đổi tên trường thành bookID
+    private String bookID;
     private String description;
     private double price;
     private int numberOfPages;
@@ -16,8 +16,10 @@ public class Book implements Serializable {
     private String discountCode;
     private int quantity;
     private String imageUrl;
+    private String status;
+    private String storageLocation;
+    private boolean preOrder; // Thêm thuộc tính này
 
-    // Getters and Setters
 
     public String getTitle() {
         return title;
@@ -121,5 +123,28 @@ public class Book implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStorageLocation() {
+        return storageLocation;
+    }
+
+    public void setStorageLocation(String storageLocation) {
+        this.storageLocation = storageLocation;
+    }
+    public boolean isPreOrder() {
+        return preOrder;
+    }
+
+    public void setPreOrder(boolean preOrder) {
+        this.preOrder = preOrder;
     }
 }
