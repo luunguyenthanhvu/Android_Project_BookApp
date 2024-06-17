@@ -1,4 +1,4 @@
-    package nlu.hmuaf.android_bookapp.user.HomeScreen.Activity;
+    package nlu.hmuaf.android_bookapp.user.home.Activity;
 
     import android.app.Activity;
     import android.content.Intent;
@@ -19,13 +19,13 @@
     import androidx.recyclerview.widget.RecyclerView;
     import java.util.ArrayList;
     import java.util.List;
-    import nlu.hmuaf.android_bookapp.user.HomeScreen.Adapter.AuthorAdapter;
-    import nlu.hmuaf.android_bookapp.user.HomeScreen.Adapter.BookAdapter;
-    import nlu.hmuaf.android_bookapp.user.HomeScreen.Adapter.BookMAdapter;
-    import nlu.hmuaf.android_bookapp.user.HomeScreen.Adapter.OnItemClickListener;
-    import nlu.hmuaf.android_bookapp.user.HomeScreen.Adapter.OtherAdapter;
-    import nlu.hmuaf.android_bookapp.user.HomeScreen.Class.BookB;
-    import nlu.hmuaf.android_bookapp.user.HomeScreen.Class.Publisher;
+    import nlu.hmuaf.android_bookapp.user.home.Adapter.AuthorAdapter;
+    import nlu.hmuaf.android_bookapp.user.home.Adapter.BookAdapter;
+    import nlu.hmuaf.android_bookapp.user.home.Adapter.BookMAdapter;
+    import nlu.hmuaf.android_bookapp.user.home.Adapter.OnItemClickListener;
+    import nlu.hmuaf.android_bookapp.user.home.Adapter.OtherAdapter;
+    import nlu.hmuaf.android_bookapp.user.home.Class.BookB;
+    import nlu.hmuaf.android_bookapp.user.home.Class.Publisher;
     import nlu.hmuaf.android_bookapp.R;
     import nlu.hmuaf.android_bookapp.user.profile.activity.LogOutActivity;
 

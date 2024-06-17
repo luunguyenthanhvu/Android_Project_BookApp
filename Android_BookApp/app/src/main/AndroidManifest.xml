@@ -121,29 +121,29 @@
         <activity android:name=".user.cart_user.Activity.DiscountsActivity"
             android:exported="false">
         </activity>
-        <activity android:name=".user.HomeScreen.Activity.HomeActivity"
+        <activity android:name=".user.home.Activity.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".user.HomeScreen.Activity.SearchActivity"
+        <activity android:name=".user.home.Activity.SearchActivity"
             android:exported="false">
         </activity>
-        <activity android:name=".user.HomeScreen.Activity.FantasyActivity"
+        <activity android:name=".user.home.Activity.FantasyActivity"
             android:exported="false">
         </activity>
-        <activity android:name=".user.HomeScreen.Activity.LibraryActivity"
+        <activity android:name=".user.home.Activity.LibraryActivity"
             android:exported="false">
         </activity>
-        <activity android:name=".user.HomeScreen.Activity.BookActivity"
+        <activity android:name=".user.home.Activity.BookActivity"
             android:exported="false">
         </activity>
-        <activity android:name=".user.HomeScreen.Activity.NumberActivity"
+        <activity android:name=".user.home.Activity.NumberActivity"
             android:exported="false">
         </activity>
-        <activity android:name=".user.HomeScreen.Activity.MainActivity"
+        <activity android:name=".user.home.Activity.MainActivity"
             android:exported="false">
         </activity>
         <activity android:name=".user.profile.activity.ProfileActivity"

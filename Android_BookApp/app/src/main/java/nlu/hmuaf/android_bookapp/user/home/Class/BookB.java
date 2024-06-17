@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.HomeScreen.Class;
+package nlu.hmuaf.android_bookapp.user.home.Class;
 
 import java.io.Serializable;
 

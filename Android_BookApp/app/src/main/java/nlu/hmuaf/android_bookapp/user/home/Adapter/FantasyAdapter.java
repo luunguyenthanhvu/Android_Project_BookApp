@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.HomeScreen.Adapter;
+package nlu.hmuaf.android_bookapp.user.home.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.HomeScreen.Class.BookB;
+import nlu.hmuaf.android_bookapp.user.home.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
 
 public class FantasyAdapter extends RecyclerView.Adapter<FantasyAdapter.FantasyViewHolder> {

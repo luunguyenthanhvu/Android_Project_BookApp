@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import nlu.hmuaf.android_bookapp.user.HomeScreen.Activity.HomeActivity;
+import nlu.hmuaf.android_bookapp.user.home.Activity.HomeActivity;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;

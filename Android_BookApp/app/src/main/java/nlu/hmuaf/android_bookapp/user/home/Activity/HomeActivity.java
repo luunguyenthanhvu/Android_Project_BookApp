@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.HomeScreen.Activity;
+package nlu.hmuaf.android_bookapp.user.home.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.user.cart_user.Activity.MyCart;
-import nlu.hmuaf.android_bookapp.user.HomeScreen.Adapter.DiscountAdapter;
-import nlu.hmuaf.android_bookapp.user.HomeScreen.Adapter.NewBookAdapter;
-import nlu.hmuaf.android_bookapp.user.HomeScreen.Adapter.OnItemClickListener;
+import nlu.hmuaf.android_bookapp.user.home.Adapter.DiscountAdapter;
+import nlu.hmuaf.android_bookapp.user.home.Adapter.NewBookAdapter;
+import nlu.hmuaf.android_bookapp.user.home.Adapter.OnItemClickListener;
 
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;

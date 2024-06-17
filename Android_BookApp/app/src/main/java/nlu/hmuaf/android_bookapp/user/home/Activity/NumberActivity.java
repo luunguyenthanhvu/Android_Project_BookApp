@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.HomeScreen.Activity;
+package nlu.hmuaf.android_bookapp.user.home.Activity;
 import android.os.Bundle;
 import android.widget.NumberPicker;
 import android.widget.TextView;

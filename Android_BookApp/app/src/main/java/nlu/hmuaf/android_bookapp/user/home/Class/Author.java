@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.HomeScreen.Class;
+package nlu.hmuaf.android_bookapp.user.home.Class;
 
 public class Author {
     private int  resourceid;

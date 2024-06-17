@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.HomeScreen;
+package nlu.hmuaf.android_bookapp.user.home;
 
 import android.content.Context;
 import android.view.GestureDetector;

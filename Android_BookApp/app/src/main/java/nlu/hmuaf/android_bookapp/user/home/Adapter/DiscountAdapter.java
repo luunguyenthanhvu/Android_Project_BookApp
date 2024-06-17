@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.HomeScreen.Adapter;
+package nlu.hmuaf.android_bookapp.user.home.Adapter;
 
 import android.graphics.Paint;
 import android.view.LayoutInflater;
@@ -19,41 +19,45 @@ import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
 
-public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularViewHolder> {
+public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.ImageViewHolder> {
+
+
     private List<ListBookResponseDTO> listBook;
     private OnItemClickListener listener;
+
     private OnPriceClickListener priceClickListener;
 
-
-//    Interface bắt sự kiện khi nút giá tiền được bấm vào để add vào giỏ hàng
     public interface OnPriceClickListener {
         void onPriceClick(int position);
     }
 
-    public NewBookAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener,OnPriceClickListener priceClickListener) {
-        this.listBook = listBook != null ? listBook : new ArrayList<>();
+    public DiscountAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener, OnPriceClickListener priceClickListener) {
+        this.listBook = this.listBook = listBook != null ? listBook : new ArrayList<>();
         this.listener = listener;
         this.priceClickListener = priceClickListener;
     }
 
+
     @NonNull
     @Override
-    public PopularViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.popular_item, parent, false);
-        return new PopularViewHolder(view);
+    public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, false);
+        return new ImageViewHolder(view);
+
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PopularViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         ListBookResponseDTO book = listBook.get(position);
         if (book == null) {
             return;
         }
-        Picasso.get().load(book.getThumbnail()).into(holder.imgBookB2);
-        holder.nameB2.setText(book.getTitle());
+        Picasso.get().load(book.getThumbnail()).into(holder.imgBook);
+        holder.nameB.setText(book.getTitle());
         if (book.getDiscount() != 0.0) {
             double originalPrice = book.getOriginalPrice();
-            holder.priceB2.setText(MyUtils.convertToVND(book.getDiscountedPrice()));
+            holder.priceB.setText(MyUtils.convertToVND(book.getDiscountedPrice()));
 
             //setting discount
             holder.tvDiscount.setText((int) (book.getDiscount() * 100) + "%");
@@ -64,7 +68,7 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
             holder.originalPrice.setVisibility(View.VISIBLE);
             holder.originalPrice.setPaintFlags(holder.originalPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         } else {
-            holder.priceB2.setText(MyUtils.convertToVND(book.getOriginalPrice()));
+            holder.priceB.setText(MyUtils.convertToVND(book.getOriginalPrice()));
             holder.tvDiscount.setVisibility(View.GONE);
             holder.originalPrice.setVisibility(View.GONE);
         }
@@ -78,19 +82,17 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
         return 0;
     }
 
-    public class PopularViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imgBookB2;
-        private TextView nameB2, priceB2, tvDiscount, originalPrice;
+    public class ImageViewHolder extends RecyclerView.ViewHolder {
+        private ImageView imgBook;
+        private TextView nameB, priceB, tvDiscount, originalPrice;
 
-
-        public PopularViewHolder(@NonNull View itemView) {
+        public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgBookB2 = itemView.findViewById(R.id.img_imageB2);
-            nameB2 = itemView.findViewById(R.id.tv_nameB2);
-            priceB2 = itemView.findViewById(R.id.tv_priceB2);
-            tvDiscount = itemView.findViewById(R.id.tv_discount);
-            originalPrice = itemView.findViewById(R.id.originalPrice);
-
+            imgBook = itemView.findViewById(R.id.img_imageB2);
+            nameB = itemView.findViewById(R.id.tv_nameB2);
+            priceB = itemView.findViewById(R.id.tv_priceB2);
+            tvDiscount = itemView.findViewById(R.id.tv_discountB2);
+            originalPrice = itemView.findViewById(R.id.originalPriceB2);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -102,8 +104,8 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
                     }
                 }
             });
-//            Nút price giá gốc nhận sự kiển để bỏ vào giỏ hàng
-            priceB2.setOnClickListener(new View.OnClickListener() {
+            //            Nút price giá gốc nhận sự kiển để bỏ vào giỏ hàng
+            priceB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (priceClickListener != null) {
@@ -114,6 +116,7 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
                     }
                 }
             });
+
         }
     }
 

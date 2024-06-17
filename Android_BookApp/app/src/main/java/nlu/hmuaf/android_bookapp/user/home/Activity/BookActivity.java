@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.HomeScreen.Activity;
+package nlu.hmuaf.android_bookapp.user.home.Activity;
 
 import android.content.Intent;
 import android.graphics.Typeface;
