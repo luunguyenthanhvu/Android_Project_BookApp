@@ -27,7 +27,6 @@ public class BookActivity extends AppCompatActivity {
     private int quantityBookInCart = 0;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +81,6 @@ public class BookActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookActivity.this, HomeActivity.class);
-                intent.putExtra("quantityBookInCart", quantityBookInCart);
                 startActivity(intent);
 
             }
@@ -94,7 +92,6 @@ public class BookActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookActivity.this, SearchActivity.class);
-                intent.putExtra("quantityBookInCart", quantityBookInCart);
                 startActivity(intent);
             }
         });
@@ -113,7 +110,6 @@ public class BookActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BookActivity.this, LibraryActivity.class);
-                intent.putExtra("quantityBookInCart", quantityBookInCart);
                 startActivity(intent);
             }
         });
@@ -146,8 +142,6 @@ public class BookActivity extends AppCompatActivity {
                 showDanhGiaContent();
             }
         });
-//        Cập nhập số sách trong giỏ hàng
-        updateQuantityBookInCart();
     }
 
     private void updateButtonStates(Button selectedButton) {
@@ -168,7 +162,6 @@ public class BookActivity extends AppCompatActivity {
         // Tăng khoảng cách giữa chữ và gạch chân
         selectedButton.setPadding(0, 0, 0, 8); // Điều chỉnh giá trị cuối cùng tăng hoặc giảm khoảng cách dưới chữ
     }
-
 
 
     private void showMoTaContent() {
@@ -262,18 +255,6 @@ public class BookActivity extends AppCompatActivity {
                 bigImageView.setImageResource(R.drawable.profile);
                 break;
         }
-    }
-//    Cập nhập số sách trong giỏ hàng
-    private void updateQuantityBookInCart(){
-        quantityBookInCart = getIntent().getIntExtra("quantityBookInCart", 0);
-        FrameLayout cartActionInclude = findViewById(R.id.cartItem);
-        TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
-        quantityTextView.setText(String.valueOf(quantityBookInCart));
-        quantityTextView.setVisibility(quantityBookInCart == 0 ? View.GONE : View.VISIBLE);
-    }
-
-    public int getQuantityBookInCart() {
-        return quantityBookInCart;
     }
 
     public void setQuantityBookInCart(int quantityBookInCart) {

@@ -101,8 +101,6 @@
                 @Override
                 public void onItemClick(int position) {
                     Intent intent = new Intent(SearchActivity.this, BookActivity.class);
-                    intent.putExtra("book_position", position);
-                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     startActivity(intent);
                 }
             });
@@ -112,8 +110,6 @@
                 @Override
                 public void onItemClick(int position) {
                     Intent intent = new Intent(SearchActivity.this, BookActivity.class);
-                    intent.putExtra("book_position", position);
-                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     startActivity(intent);
                 }
             });
@@ -123,8 +119,6 @@
                 @Override
                 public void onItemClick(int position) {
                     Intent intent = new Intent(SearchActivity.this, FantasyActivity.class);
-                    intent.putExtra("book_position", position);
-                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     startActivity(intent);
                 }
             });
@@ -148,7 +142,6 @@
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(SearchActivity.this, HomeActivity.class);
-                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     startActivity(intent);
                 }
             });
@@ -157,7 +150,6 @@
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(SearchActivity.this, SearchActivity.class);
-                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     startActivity(intent);
                 }
             });
@@ -166,7 +158,6 @@
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(SearchActivity.this, LibraryActivity.class);
-                    intent.putExtra("quantityBookInCart", quantityBookInCart);
                     startActivity(intent);
                 }
             });
@@ -252,8 +243,6 @@
             });
 
             updateRecyclerView();
-//            Cập nhập số lượng sách trong giỏ hàng
-            updateQuantityBookInCart();
 //            Đổi màu icon navigation hiện tại
             checkCurrentActivity();
         }
@@ -345,13 +334,6 @@
             return list;
         }
         //    Cập nhập số sách trong giỏ hàng
-        private void updateQuantityBookInCart(){
-            quantityBookInCart = getIntent().getIntExtra("quantityBookInCart", 0);
-            FrameLayout cartActionInclude = findViewById(R.id.cartItem);
-            TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
-            quantityTextView.setText(String.valueOf(quantityBookInCart));
-            quantityTextView.setVisibility(quantityBookInCart == 0 ? View.GONE : View.VISIBLE);
-        }
         public int getQuantityBookInCart() {
             return quantityBookInCart;
         }

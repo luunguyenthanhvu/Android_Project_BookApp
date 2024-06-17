@@ -23,7 +23,7 @@ import nlu.hmuaf.android_bookapp.user.home.Activity.HomeActivity;
 
 public class CircleAnimation {
     private static final int DEFAULT_DURATION = 1000;
-    private static final int DEFAULT_DURATION_DISAPPEAR = 200;
+    private static final int DEFAULT_DURATION_DISAPPEAR = 100;
     private View mTarget;
     private View mDest;
 

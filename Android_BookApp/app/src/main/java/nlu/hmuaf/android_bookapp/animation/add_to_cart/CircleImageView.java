@@ -53,7 +53,6 @@ public class CircleImageView extends AppCompatImageView {
 
     public CircleImageView(Context context) {
         super(context);
-
         init();
     }
 

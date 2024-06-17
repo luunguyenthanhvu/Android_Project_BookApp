@@ -25,12 +25,12 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
     private OnPriceClickListener priceClickListener;
 
 
-//    Interface bắt sự kiện khi nút giá tiền được bấm vào để add vào giỏ hàng
+    //    Interface bắt sự kiện khi nút giá tiền được bấm vào để add vào giỏ hàng
     public interface OnPriceClickListener {
         void onPriceClick(int position);
     }
 
-    public NewBookAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener,OnPriceClickListener priceClickListener) {
+    public NewBookAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener, OnPriceClickListener priceClickListener) {
         this.listBook = listBook != null ? listBook : new ArrayList<>();
         this.listener = listener;
         this.priceClickListener = priceClickListener;
@@ -114,6 +114,10 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
                     }
                 }
             });
+        }
+
+        public ImageView getImgBook() {
+            return imgBookB2;
         }
     }
 
