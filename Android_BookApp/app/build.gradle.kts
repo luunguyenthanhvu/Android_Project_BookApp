@@ -62,4 +62,6 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-core:2.7.2")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.7.2")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.7.2")
+
+    implementation("androidx.room:room-rxjava2:2.6.1")
 }
