@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import nlu.hmuaf.android_bookapp.Admin.ManageInventory.AddBookActivity;
 import nlu.hmuaf.android_bookapp.Admin.ManageInventory.ManageInventoryActivity;
 import nlu.hmuaf.android_bookapp.R;
 
@@ -70,7 +71,15 @@ public class AdminHome extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        // Chọn Thêm sản phẩm
+        TextView add_product = findViewById(R.id.add_product);
+        add_product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminHome.this, AddBookActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Chọn doanh thu
         navSalesManagement = findViewById(R.id.nav_sales_mangagement);

@@ -192,6 +192,7 @@
                             android:padding="8dp" />
 
                         <TextView
+                            android:id="@+id/add_product"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Thêm sản phẩm"
