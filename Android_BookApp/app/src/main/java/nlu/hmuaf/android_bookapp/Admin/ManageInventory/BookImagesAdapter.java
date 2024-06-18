@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.Admin;
+package nlu.hmuaf.android_bookapp.Admin.ManageInventory;
 
 import android.content.Context;
 import android.net.Uri;

@@ -21,6 +21,10 @@ public class Address implements Serializable {
         this.isDefault = isDefault;
     }
 
+    public Address() {
+
+    }
+
     // Getters and setters
     public int getAddressId() {
         return addressId;

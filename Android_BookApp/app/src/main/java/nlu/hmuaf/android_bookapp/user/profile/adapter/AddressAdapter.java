@@ -31,7 +31,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
     @NonNull
     @Override
     public AddressViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_address, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.profile_item_address, parent, false);
         return new AddressViewHolder(view);
     }
 
@@ -43,7 +43,6 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, EditAddressActivity.class);
             intent.putExtra("address", address);
-            intent.putExtra("addressList", new ArrayList<>(addressList)); // Truyền danh sách địa chỉ
             ((AddressActivity) context).startActivityForResult(intent, 1);
         });
     }

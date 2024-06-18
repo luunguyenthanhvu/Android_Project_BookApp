@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.Admin;
+package nlu.hmuaf.android_bookapp.Admin.ManageInventory;
 
 import android.os.Bundle;
 import android.view.MenuItem;

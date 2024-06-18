@@ -12,6 +12,9 @@ import androidx.appcompat.widget.Toolbar;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.profile.DarkModeUtil;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class AddCardActivity extends AppCompatActivity {
     private EditText editTextCardNumber;
     private EditText editTextExpiryDate;
@@ -29,7 +32,7 @@ public class AddCardActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Add Card");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // Thiết lập nút quay lại
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         editTextCardNumber = findViewById(R.id.editTextCardNumber);
         editTextExpiryDate = findViewById(R.id.editTextExpiryDate);
@@ -42,7 +45,7 @@ public class AddCardActivity extends AppCompatActivity {
         buttonComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Lấy thông tin người dùng nhập
+                // Get user input
                 String cardNumber = editTextCardNumber.getText().toString().trim();
                 String expiryDate = editTextExpiryDate.getText().toString().trim();
                 String cvv = editTextCVV.getText().toString().trim();
@@ -50,11 +53,9 @@ public class AddCardActivity extends AppCompatActivity {
                 String billingAddress = editTextBillingAddress.getText().toString().trim();
                 String postalCode = editTextPostalCode.getText().toString().trim();
 
-                // Kiểm tra thông tin nhập vào
-                if (cardNumber.isEmpty() || expiryDate.isEmpty() || cvv.isEmpty() || cardHolderName.isEmpty() || billingAddress.isEmpty() || postalCode.isEmpty()) {
-                    Toast.makeText(AddCardActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Quay lại BankAccountActivity và cập nhật danh sách thẻ
+                // Check user input
+                if (validateInput(cardNumber, expiryDate, cvv, cardHolderName, billingAddress, postalCode)) {
+                    // Return to previous activity and update card list
                     Intent resultIntent = new Intent();
                     resultIntent.putExtra("CARD_NUMBER", cardNumber);
                     setResult(RESULT_OK, resultIntent);
@@ -62,6 +63,85 @@ public class AddCardActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean validateInput(String cardNumber, String expiryDate, String cvv, String cardHolderName, String billingAddress, String postalCode) {
+        if (cardNumber.isEmpty()) {
+            editTextCardNumber.setError("Card Number is required");
+            editTextCardNumber.requestFocus();
+            return false;
+        }
+
+        if (!isValidCardNumber(cardNumber)) {
+            editTextCardNumber.setError("Invalid card number");
+            editTextCardNumber.requestFocus();
+            return false;
+        }
+
+        if (expiryDate.isEmpty()) {
+            editTextExpiryDate.setError("Expiry Date is required");
+            editTextExpiryDate.requestFocus();
+            return false;
+        }
+
+        if (!isValidExpiryDate(expiryDate)) {
+            editTextExpiryDate.setError("Invalid expiry date (MM/YY)");
+            editTextExpiryDate.requestFocus();
+            return false;
+        }
+
+        if (cvv.isEmpty()) {
+            editTextCVV.setError("CVV is required");
+            editTextCVV.requestFocus();
+            return false;
+        }
+
+        if (!cvv.matches("\\d{3,4}")) {
+            editTextCVV.setError("CVV must be 3 or 4 digits");
+            editTextCVV.requestFocus();
+            return false;
+        }
+
+        if (cardHolderName.isEmpty()) {
+            editTextCardHolderName.setError("Card Holder Name is required");
+            editTextCardHolderName.requestFocus();
+            return false;
+        }
+
+        if (billingAddress.isEmpty()) {
+            editTextBillingAddress.setError("Billing Address is required");
+            editTextBillingAddress.requestFocus();
+            return false;
+        }
+    // mã bưu chnh
+        if (postalCode.isEmpty()) {
+            editTextPostalCode.setError("Postal Code is required");
+            editTextPostalCode.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+    // nhập đủ 16 số
+    private boolean isValidCardNumber(String cardNumber) {
+        int nDigits = cardNumber.length();
+        int nSum = 0;
+        boolean isSecond = false;
+        for (int i = nDigits - 1; i >= 0; i--) {
+            int d = cardNumber.charAt(i) - '0';
+            if (isSecond) d = d * 2;
+            nSum += d / 10;
+            nSum += d % 10;
+            isSecond = !isSecond;
+        }
+        return (nSum % 10 == 0);
+    }
+
+    private boolean isValidExpiryDate(String expiryDate) {
+        // Check if expiry date matches the format MM/YY
+        Pattern pattern = Pattern.compile("(0[1-9]|1[0-2])/[0-9]{2}");
+        Matcher matcher = pattern.matcher(expiryDate);
+        return matcher.matches();
     }
 
     @Override
