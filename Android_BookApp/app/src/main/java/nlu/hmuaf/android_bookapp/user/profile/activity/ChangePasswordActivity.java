@@ -37,14 +37,28 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 String newPwd = newPassword.getText().toString();
                 String confirmNewPwd = confirmNewPassword.getText().toString();
 
-                if (newPwd.equals(confirmNewPwd)) {
+                if (validatePassword(newPwd, confirmNewPwd)) {
                     // Call method to change password
                     Toast.makeText(ChangePasswordActivity.this, "Password changed successfully", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(ChangePasswordActivity.this, "New passwords do not match", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private boolean validatePassword(String newPwd, String confirmNewPwd) {
+        if (newPwd.isEmpty() || confirmNewPwd.isEmpty()) {
+            Toast.makeText(this, "Password fields cannot be empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (newPwd.length() <= 7) {
+            Toast.makeText(this, "New password must be longer than 7 characters", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (!newPwd.equals(confirmNewPwd)) {
+            Toast.makeText(this, "New passwords do not match", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     @Override

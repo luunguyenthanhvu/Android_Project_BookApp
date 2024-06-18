@@ -23,6 +23,10 @@ public class User implements Serializable {
         this.createdDate = createdDate;
     }
 
+    public User() {
+
+    }
+
     // Getters and setters
     public int getUserId() {
         return userId;

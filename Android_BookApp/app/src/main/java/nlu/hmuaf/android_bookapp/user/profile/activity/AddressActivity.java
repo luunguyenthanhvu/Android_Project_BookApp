@@ -47,7 +47,6 @@ public class AddressActivity extends AppCompatActivity {
 
         findViewById(R.id.addAddressButton).setOnClickListener(view -> {
             Intent intent = new Intent(AddressActivity.this, EditAddressActivity.class);
-            intent.putExtra("addressList", new ArrayList<>(addressList)); // Truyền danh sách địa chỉ
             startActivityForResult(intent, EDIT_ADDRESS_REQUEST_CODE);
         });
     }
@@ -65,38 +64,76 @@ public class AddressActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == EDIT_ADDRESS_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            Address newAddress = (Address) data.getSerializableExtra("newAddress");
             Address updatedAddress = (Address) data.getSerializableExtra("updatedAddress");
-            updateAddressList(updatedAddress);
+            Address deletedAddress = (Address) data.getSerializableExtra("deletedAddress");
+
+            if (newAddress != null) {
+                if (newAddress.isDefault()) {
+                    clearDefaultAddress();
+                }
+                addressList.add(newAddress);
+                adapter.notifyItemInserted(addressList.size() - 1);
+            }
+            if (updatedAddress != null) {
+                int index = findAddressIndexById(updatedAddress.getAddressId());
+                if (index != -1) {
+                    if (updatedAddress.isDefault()) {
+                        clearDefaultAddress();
+                    }
+                    addressList.set(index, updatedAddress);
+                    adapter.notifyItemChanged(index);
+                }
+            }
+            if (deletedAddress != null) {
+                int index = findAddressIndexById(deletedAddress.getAddressId());
+                if (index != -1) {
+                    boolean wasDefault = addressList.get(index).isDefault();
+                    addressList.remove(index);
+                    adapter.notifyItemRemoved(index);
+                    if (wasDefault && !addressList.isEmpty()) {
+                        addressList.get(0).setDefault(true);
+                        adapter.notifyItemChanged(0);
+                    }
+                }
+            }
+
+            adapter.notifyDataSetChanged();
         }
     }
 
-    private void updateAddressList(Address updatedAddress) {
-        for (int i = 0; i < addressList.size(); i++) {
-            if (addressList.get(i).getAddressId() == updatedAddress.getAddressId()) {
-                addressList.set(i, updatedAddress);
-                adapter.notifyItemChanged(i);
-            } else if (updatedAddress.isDefault()) {
-                addressList.get(i).setDefault(false);
-                adapter.notifyItemChanged(i);
+    private void clearDefaultAddress() {
+        for (Address addr : addressList) {
+            if (addr.isDefault()) {
+                addr.setDefault(false);
             }
         }
+    }
+
+    private int findAddressIndexById(int addressId) {
+        for (int i = 0; i < addressList.size(); i++) {
+            if (addressList.get(i).getAddressId() == addressId) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private void loadAddresses() {
         User user1 = new User(1, 1, "tuongminh", "password", "hash", "2023-01-01");
         user1.setFirstName("Tường");
         user1.setLastName("Minh");
-        user1.setPhoneNum("1234567");
+        user1.setPhoneNum("1234567890");
 
         Address address1 = new Address(1, "TP. Hồ Chí Minh", "Thủ Đức", "Linh Trung", "Đại Học Nông Lâm, Cư Xá E", true);
         address1.setUser(user1);
         addressList.add(address1);
 
-        Address address2 = new Address(1, "TP. Hồ Chí Minh", "Thủ Đức", "Linh Trung", "Đại Học Nông Lâm, Cư Xá E", false);
+        Address address2 = new Address(2, "TP. Hồ Chí Minh", "Thủ Đức", "Linh Trung", "Đại Học Nông Lâm, Cư Xá E", false);
         address2.setUser(user1);
         addressList.add(address2);
 
-        Address address3 = new Address(1, "TP. Hồ Chí Minh", "Thủ Đức", "Linh Trung", "Đại Học Nông Lâm, Cư Xá E", false);
+        Address address3 = new Address(3, "TP. Hồ Chí Minh", "Thủ Đức", "Linh Trung", "Đại Học Nông Lâm, Cư Xá E", false);
         address3.setUser(user1);
         addressList.add(address3);
     }

@@ -96,6 +96,7 @@
                     android:background="#E0E0E0"/>
 
                 <!-- Gender -->
+                <!-- Gender -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -118,6 +119,7 @@
                         android:textSize="16sp"
                         android:textColor="@android:color/holo_red_light"/>
                     <ImageView
+                        android:id="@+id/arrow_gender"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/arrowright"/>
@@ -128,6 +130,7 @@
                     android:layout_height="1dp"
                     android:background="#E0E0E0"/>
 
+                <!-- Birthdate -->
                 <!-- Birthdate -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -149,12 +152,16 @@
                         android:layout_height="wrap_content"
                         android:hint="Set now"
                         android:textSize="16sp"
-                        android:textColor="@android:color/holo_red_light"/>
+                        android:textColor="@android:color/holo_red_light"
+                        android:focusable="false"
+                        android:clickable="false"/>
                     <ImageView
+                        android:id="@+id/arrow_birthdate"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/arrowright"/>
                 </LinearLayout>
+
 
                 <View
                     android:layout_width="match_parent"
@@ -181,6 +188,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="Set now"
+                        android:inputType="numberDecimal"
                         android:textSize="16sp"
                         android:textColor="@android:color/holo_red_light"/>
                     <ImageView

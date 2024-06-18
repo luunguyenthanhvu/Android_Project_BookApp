@@ -1,8 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.SKUActivity">
+    tools:context=".Admin.ManageInventorDetailActivity">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -19,87 +20,97 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/toolbar">
+        android:layout_below="@id/toolbar"
+        android:padding="16dp">
 
         <!-- Tên sản phẩm -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Tên sản phẩm"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/etProductName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:hint="Nhập tên sản phẩm"/>
+                android:hint="Nhập tên sản phẩm"
+                android:textSize="16sp"/>
         </LinearLayout>
 
         <!-- Vị trí kho -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Vị trí kho"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:textSize="16sp"/>
 
-            <EditText
-                android:id="@+id/etStorageLocation"
+            <Spinner
+                android:id="@+id/spinnerStorageLocation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:hint="Nhập vị trí kho"/>
+                android:layout_weight="1"
+                android:layout_marginLeft="8dp"/>
+                />
+        </LinearLayout>
+
+        <!-- Buttons for search and reset -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tìm kiếm"
+                android:textSize="16sp"/>
+
+            <Button
+                android:id="@+id/btnReset"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cài đặt lại"
+                android:textSize="16sp"/>
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Buttons for search and reset -->
-    <LinearLayout
-        android:id="@+id/actionButtons"
+    <!-- Tab Layout -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/inputFields">
-
-        <Button
-            android:id="@+id/btnSearch"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Tìm kiếm"/>
-
-        <Button
-            android:id="@+id/btnReset"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Cài đặt lại"/>
-    </LinearLayout>
-
-    <Switch
-        android:id="@+id/switchNotification"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/actionButtons"
-        android:padding="16dp"
-        android:text="Tiến hành đặt hàng" />
+        android:layout_below="@id/inputFields"
+        app:tabIndicatorColor="@color/teal_200"
+        app:tabIndicatorHeight="4dp"
+        app:tabSelectedTextColor="@color/teal_200"
+        app:tabTextColor="@color/black"/>
 
     <!-- RecyclerView for listing products -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/switchNotification"
+        android:layout_below="@id/tab_layout"
         android:layout_marginTop="16dp"/>
 </RelativeLayout>

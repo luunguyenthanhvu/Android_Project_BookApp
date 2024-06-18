@@ -1,14 +1,20 @@
-package nlu.hmuaf.android_bookapp.Admin;
+package nlu.hmuaf.android_bookapp.Admin.ManageInventory;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,7 +30,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import nlu.hmuaf.android_bookapp.R;
 
@@ -36,9 +44,11 @@ public class AddBookActivity extends AppCompatActivity {
     private static final int PERMISSIONS_REQUEST_READ_IMAGES = 102;
 
     private EditText etBookTitle, etBookID, etBookDescription, etBookPrice, etNumberOfPages, etPublicationDate, etLanguage, etSize, etFormat, etAuthor, etDiscountCode;
-    private Button btnSelectPublishers, btnUploadThumbnail, btnUploadBookImages, btnSave, btnCancel;
-    private ImageView ivThumbnail;
+    private Button btnUploadThumbnail, btnUploadBookImages, btnSave, btnCancel;
+    private ImageView ivThumbnail, ivPublicationDate;
     private RecyclerView rvBookImages;
+    private Spinner spinnerPublishers;
+    private TextView tvSelectedPublishers;
     private BookImagesAdapter adapter;
     private List<Uri> imageUris = new ArrayList<>();
     private ArrayList<String> selectedPublishers = new ArrayList<>();
@@ -56,7 +66,26 @@ public class AddBookActivity extends AppCompatActivity {
         // Initialize all views
         initializeViews();
 
-        btnSelectPublishers.setOnClickListener(v -> showPublisherDialog());
+        // Setup spinner
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, publisherList);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerPublishers.setAdapter(spinnerAdapter);
+
+        spinnerPublishers.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedPublisher = publisherList[position];
+                if (!selectedPublishers.contains(selectedPublisher)) {
+                    selectedPublishers.add(selectedPublisher);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+
         btnUploadThumbnail.setOnClickListener(v -> {
             if (checkPermission()) {
                 openFileChooser(false, PICK_THUMBNAIL_REQUEST);
@@ -64,6 +93,7 @@ public class AddBookActivity extends AppCompatActivity {
                 requestStoragePermission();
             }
         });
+
         btnUploadBookImages.setOnClickListener(v -> {
             if (checkPermission()) {
                 openFileChooser(true, PICK_IMAGES_REQUEST);
@@ -71,12 +101,16 @@ public class AddBookActivity extends AppCompatActivity {
                 requestStoragePermission();
             }
         });
+
         btnSave.setOnClickListener(v -> saveBook());
         btnCancel.setOnClickListener(v -> finish());
 
         rvBookImages.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         adapter = new BookImagesAdapter(this, imageUris);
         rvBookImages.setAdapter(adapter);
+
+        // Set up publication date picker dialog
+        ivPublicationDate.setOnClickListener(v -> showDatePickerDialog());
     }
 
     private void initializeViews() {
@@ -91,13 +125,28 @@ public class AddBookActivity extends AppCompatActivity {
         etFormat = findViewById(R.id.etFormat);
         etAuthor = findViewById(R.id.etAuthor);
         etDiscountCode = findViewById(R.id.etDiscountCode);
-        btnSelectPublishers = findViewById(R.id.btnSelectPublishers);
         btnUploadThumbnail = findViewById(R.id.btnUploadThumbnail);
         btnUploadBookImages = findViewById(R.id.btnUploadBookImages);
         btnSave = findViewById(R.id.btnSave);
         btnCancel = findViewById(R.id.btnCancel);
         ivThumbnail = findViewById(R.id.ivThumbnail);
         rvBookImages = findViewById(R.id.rvBookImages);
+        ivPublicationDate = findViewById(R.id.ivPublicationDate);
+        spinnerPublishers = findViewById(R.id.spinnerPublishers);
+        tvSelectedPublishers = findViewById(R.id.tvSelectedPublishers);
+    }
+
+    private void showDatePickerDialog() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, year1, month1, dayOfMonth) -> etPublicationDate.setText(String.format("%04d-%02d-%02d", year1, month1 + 1, dayOfMonth)),
+                year, month, day);
+        datePickerDialog.show();
     }
 
     private boolean checkPermission() {
@@ -148,30 +197,6 @@ public class AddBookActivity extends AppCompatActivity {
         }
     }
 
-    private void showPublisherDialog() {
-        boolean[] checkedItems = new boolean[publisherList.length]; // Temporary array to store checked items for dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(AddBookActivity.this);
-        builder.setTitle("Chọn nhà xuất bản");
-        builder.setMultiChoiceItems(publisherList, checkedItems, (dialog, which, isChecked) -> {
-            String publisher = publisherList[which];
-            if (isChecked) {
-                if (!selectedPublishers.contains(publisher)) {
-                    selectedPublishers.add(publisher);
-                }
-            } else {
-                selectedPublishers.remove(publisher);
-            }
-        });
-
-        builder.setPositiveButton("OK", (dialog, which) -> {
-            Toast.makeText(AddBookActivity.this, "Publishers Selected: " + selectedPublishers, Toast.LENGTH_SHORT).show();
-        });
-
-        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
     private void openFileChooser(boolean allowMultiple, int requestCode) {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
@@ -191,6 +216,7 @@ public class AddBookActivity extends AppCompatActivity {
                 }
             } else if (requestCode == PICK_IMAGES_REQUEST) {
                 // Handle multiple image selection
+                imageUris.clear(); // Reset the list of images
                 if (data.getClipData() != null) {
                     int count = data.getClipData().getItemCount();
                     for (int i = 0; i < count; i++) {
@@ -207,16 +233,99 @@ public class AddBookActivity extends AppCompatActivity {
     }
 
     private void saveBook() {
-        String title = etBookTitle.getText().toString();
-        String authors = etAuthor.getText().toString();
+        String title = etBookTitle.getText().toString().trim();
+        String id = etBookID.getText().toString().trim();
+        String description = etBookDescription.getText().toString().trim();
+        String price = etBookPrice.getText().toString().trim();
+        String pages = etNumberOfPages.getText().toString().trim();
+        String publicationDate = etPublicationDate.getText().toString().trim();
+        String language = etLanguage.getText().toString().trim();
+        String size = etSize.getText().toString().trim();
+        String format = etFormat.getText().toString().trim();
+        String author = etAuthor.getText().toString().trim();
+        String discountCode = etDiscountCode.getText().toString().trim();
+
+        if (!validateInput(title, id, description, price, pages, publicationDate, language, size, format, author, discountCode)) {
+            return;
+        }
 
         // Assuming you are saving the details to a local database or sending them to a server:
-        saveBookDetails(title, authors, selectedPublishers); // Implement this method based on your backend
+        saveBookDetails(title, id, description, price, pages, publicationDate, language, size, format, author, discountCode, selectedPublishers);
         Toast.makeText(this, "Sách đã được lưu cùng với các nhà xuất bản đã chọn.", Toast.LENGTH_SHORT).show();
         finish(); // Close the activity
     }
 
-    private void saveBookDetails(String title, String authors, ArrayList<String> publishers) {
+    private boolean validateInput(String title, String id, String description, String price, String pages, String publicationDate, String language, String size, String format, String author, String discountCode) {
+        if (title.isEmpty()) {
+            etBookTitle.setError("Tên sách là bắt buộc");
+            etBookTitle.requestFocus();
+            return false;
+        }
+
+        if (id.isEmpty()) {
+            etBookID.setError("ID sách là bắt buộc");
+            etBookID.requestFocus();
+            return false;
+        }
+
+        if (description.isEmpty()) {
+            etBookDescription.setError("Mô tả là bắt buộc");
+            etBookDescription.requestFocus();
+            return false;
+        }
+
+        if (price.isEmpty() || !Pattern.matches("\\d+(\\.\\d{1,2})?", price)) {
+            etBookPrice.setError("Giá không hợp lệ");
+            etBookPrice.requestFocus();
+            return false;
+        }
+
+        if (pages.isEmpty() || !Pattern.matches("\\d+", pages)) {
+            etNumberOfPages.setError("Số trang phải là số");
+            etNumberOfPages.requestFocus();
+            return false;
+        }
+
+        if (publicationDate.isEmpty()) {
+            etPublicationDate.setError("Ngày xuất bản là bắt buộc");
+            etPublicationDate.requestFocus();
+            return false;
+        }
+
+        if (language.isEmpty()) {
+            etLanguage.setError("Ngôn ngữ là bắt buộc");
+            etLanguage.requestFocus();
+            return false;
+        }
+
+        if (size.isEmpty()) {
+            etSize.setError("Kích thước là bắt buộc");
+            etSize.requestFocus();
+            return false;
+        }
+
+        if (format.isEmpty()) {
+            etFormat.setError("Định dạng là bắt buộc");
+            etFormat.requestFocus();
+            return false;
+        }
+
+        if (author.isEmpty()) {
+            etAuthor.setError("Tác giả là bắt buộc");
+            etAuthor.requestFocus();
+            return false;
+        }
+
+        if (discountCode.isEmpty()) {
+            etDiscountCode.setError("Mã giảm giá là bắt buộc");
+            etDiscountCode.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void saveBookDetails(String title, String id, String description, String price, String pages, String publicationDate, String language, String size, String format, String author, String discountCode, ArrayList<String> publishers) {
         // Implementation of how you save these details to your backend or database
     }
 }

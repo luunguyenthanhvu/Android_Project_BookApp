@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.ManageInventoryActivity">
+    tools:context=".Admin.ManageInventory.ManageInventoryActivity">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@id/toolbar">
+        android:layout_below="@id/toolbar"
+      >
 
         <!-- Tổng quan tồn kho Section -->
         <LinearLayout
@@ -54,9 +55,12 @@
                     android:textSize="18sp"/>
 
                 <TextView
+                    android:id="@+id/tvInStockCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"/>
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="18sp"
+                    android:gravity="end"/>
             </LinearLayout>
 
             <!-- Phân loại đã ẩn và đã bị khóa -->
@@ -78,9 +82,12 @@
                     android:textSize="18sp"/>
 
                 <TextView
+                    android:id="@+id/tvHiddenProductsCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"/>
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="18sp"
+                    android:gravity="end"/>
             </LinearLayout>
 
             <!-- Phân loại hết hàng -->
@@ -102,9 +109,12 @@
                     android:textSize="18sp"/>
 
                 <TextView
+                    android:id="@+id/tvOutOfStockCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"/>
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="18sp"
+                    android:gravity="end"/>
             </LinearLayout>
 
             <!-- Phân loại sắp hết hàng -->
@@ -126,11 +136,15 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/tvLowStockCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"/>
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="18sp"
+                    android:gravity="end"/>
             </LinearLayout>
 
+            <!-- SKU đặt hàng -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,9 +163,12 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/tvSKUCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"/>
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="18sp"
+                    android:gravity="end"/>
             </LinearLayout>
         </LinearLayout>
 

@@ -3,24 +3,25 @@ package nlu.hmuaf.android_bookapp.user.profile.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import java.util.List;
-
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.profile.Class.Address;
+import nlu.hmuaf.android_bookapp.user.profile.Class.User;
 
 public class EditAddressActivity extends AppCompatActivity {
 
     private EditText editName, editPhone, editStreet, editCity, editDistrict, editWard;
     private Switch defaultSwitch;
     private Address address;
-    private List<Address> addressList;
+    private boolean isNew = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class EditAddressActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Eddit Address");
+        getSupportActionBar().setTitle("Edit Address");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
@@ -44,9 +45,9 @@ public class EditAddressActivity extends AppCompatActivity {
         Button saveButton = findViewById(R.id.saveButton);
 
         address = (Address) getIntent().getSerializableExtra("address");
-        addressList = (List<Address>) getIntent().getSerializableExtra("addressList");
+        isNew = (address == null);
 
-        if (address != null) {
+        if (!isNew) {
             editName.setText(address.getUser().getFirstName() + " " + address.getUser().getLastName());
             editPhone.setText(address.getUser().getPhoneNum());
             editCity.setText(address.getCity());
@@ -54,43 +55,80 @@ public class EditAddressActivity extends AppCompatActivity {
             editWard.setText(address.getWard());
             editStreet.setText(address.getStreet());
             defaultSwitch.setChecked(address.isDefault());
+        } else {
+            address = new Address();
+            address.setUser(new User());
+            defaultSwitch.setChecked(false);
         }
 
-        defaultSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                for (Address addr : addressList) {
-                    addr.setDefault(false);
-                }
-                address.setDefault(true);
+        saveButton.setOnClickListener(v -> {
+            if (validateInput()) {
+                String[] nameParts = editName.getText().toString().split(" ");
+                String firstName = nameParts.length > 0 ? nameParts[0] : "";
+                String lastName = nameParts.length > 1 ? nameParts[1] : "";
+
+                address.getUser().setFirstName(firstName);
+                address.getUser().setLastName(lastName);
+                address.getUser().setPhoneNum(editPhone.getText().toString());
+                address.setCity(editCity.getText().toString());
+                address.setDistrict(editDistrict.getText().toString());
+                address.setWard(editWard.getText().toString());
+                address.setStreet(editStreet.getText().toString());
+                address.setDefault(defaultSwitch.isChecked());
+
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra(isNew ? "newAddress" : "updatedAddress", address);
+                setResult(RESULT_OK, resultIntent);
+                finish();
             }
         });
 
-        saveButton.setOnClickListener(v -> {
-            // Cập nhật địa chỉ và trả kết quả về AddressActivity
-            String[] nameParts = editName.getText().toString().split(" ");
-            String firstName = nameParts[0];
-            String lastName = nameParts.length > 1 ? nameParts[1] : "";
-            address.getUser().setFirstName(firstName);
-            address.getUser().setLastName(lastName);
-            address.getUser().setPhoneNum(editPhone.getText().toString());
-            address.setStreet(editStreet.getText().toString());
-            address.setCity(editCity.getText().toString());
-            address.setDistrict(editDistrict.getText().toString());
-            address.setWard(editWard.getText().toString());
-
-            Intent resultIntent = new Intent();
-            resultIntent.putExtra("updatedAddress", address);
-            setResult(RESULT_OK, resultIntent);
-            finish();
-        });
-
+        deleteButton.setVisibility(isNew ? View.GONE : View.VISIBLE);
         deleteButton.setOnClickListener(v -> {
-            // Xóa địa chỉ và trả kết quả về AddressActivity
             Intent resultIntent = new Intent();
             resultIntent.putExtra("deletedAddress", address);
             setResult(RESULT_OK, resultIntent);
             finish();
         });
+    }
+
+    private boolean validateInput() {
+        if (editName.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Name is required", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (!editName.getText().toString().matches("^[\\p{L} .'-]+$")) {
+            Toast.makeText(this, "Invalid name. Only letters and certain special characters (spaces, hyphens) are allowed.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (editPhone.getText().toString().isEmpty() || !editPhone.getText().toString().matches("^\\d{10}$")) {
+            Toast.makeText(this, "Invalid phone number. It must be exactly 10 digits.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (editCity.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "City is required", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (editDistrict.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "District is required", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (editWard.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Ward is required", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (editStreet.getText().toString().trim().isEmpty()) {
+            Toast.makeText(this, "Street is required", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 
     @Override
