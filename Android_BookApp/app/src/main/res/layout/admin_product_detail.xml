@@ -282,7 +282,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cập nhật"
-                android:backgroundTint="@android:color/holo_blue_dark"
+                android:backgroundTint="@android:color/holo_purple"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="16dp"/>
         </LinearLayout>

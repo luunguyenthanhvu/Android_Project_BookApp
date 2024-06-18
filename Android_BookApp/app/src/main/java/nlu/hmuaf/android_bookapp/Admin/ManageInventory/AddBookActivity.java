@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -88,7 +90,7 @@ public class AddBookActivity extends AppCompatActivity {
 
         btnUploadThumbnail.setOnClickListener(v -> {
             if (checkPermission()) {
-                openFileChooser(false, PICK_THUMBNAIL_REQUEST);
+                openImagePicker(false, PICK_THUMBNAIL_REQUEST); // Chỉ cho phép chọn một hình
             } else {
                 requestStoragePermission();
             }
@@ -96,18 +98,20 @@ public class AddBookActivity extends AppCompatActivity {
 
         btnUploadBookImages.setOnClickListener(v -> {
             if (checkPermission()) {
-                openFileChooser(true, PICK_IMAGES_REQUEST);
+                openImagePicker(true, PICK_IMAGES_REQUEST); // Cho phép chọn nhiều hình
             } else {
                 requestStoragePermission();
             }
         });
 
+
         btnSave.setOnClickListener(v -> saveBook());
         btnCancel.setOnClickListener(v -> finish());
 
-        rvBookImages.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        rvBookImages.setLayoutManager(new GridLayoutManager(this, 3)); // Thay '3' bằng số cột bạn muốn
         adapter = new BookImagesAdapter(this, imageUris);
         rvBookImages.setAdapter(adapter);
+
 
         // Set up publication date picker dialog
         ivPublicationDate.setOnClickListener(v -> showDatePickerDialog());
@@ -197,26 +201,27 @@ public class AddBookActivity extends AppCompatActivity {
         }
     }
 
-    private void openFileChooser(boolean allowMultiple, int requestCode) {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, allowMultiple);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), requestCode);
+    private void openImagePicker(boolean allowMultiple, int requestCode) {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*"); // Chọn loại dữ liệu là hình ảnh
+        if (allowMultiple && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        }
+        startActivityForResult(intent, requestCode);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == PICK_THUMBNAIL_REQUEST) {
-                // Handle single image selection (thumbnail)
                 Uri selectedImageUri = data.getData();
                 if (selectedImageUri != null) {
                     Glide.with(this).load(selectedImageUri).into(ivThumbnail);
                 }
             } else if (requestCode == PICK_IMAGES_REQUEST) {
-                // Handle multiple image selection
-                imageUris.clear(); // Reset the list of images
+                imageUris.clear();
                 if (data.getClipData() != null) {
                     int count = data.getClipData().getItemCount();
                     for (int i = 0; i < count; i++) {
@@ -231,6 +236,7 @@ public class AddBookActivity extends AppCompatActivity {
             }
         }
     }
+
 
     private void saveBook() {
         String title = etBookTitle.getText().toString().trim();
@@ -327,5 +333,13 @@ public class AddBookActivity extends AppCompatActivity {
 
     private void saveBookDetails(String title, String id, String description, String price, String pages, String publicationDate, String language, String size, String format, String author, String discountCode, ArrayList<String> publishers) {
         // Implementation of how you save these details to your backend or database
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

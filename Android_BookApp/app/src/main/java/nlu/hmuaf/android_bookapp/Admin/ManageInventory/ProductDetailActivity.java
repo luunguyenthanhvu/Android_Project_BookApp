@@ -1,5 +1,6 @@
 package nlu.hmuaf.android_bookapp.Admin.ManageInventory;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -7,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import nlu.hmuaf.android_bookapp.R;
@@ -46,7 +48,11 @@ public class ProductDetailActivity extends AppCompatActivity {
         setupButtonListeners();
 
         btnUpdate.setOnClickListener(v -> {
-            // Logic cho nút cập nhật, có thể mở một Activity khác để chỉnh sửa thông tin
+            // Logic cho nút cập nhật
+            Toast.makeText(ProductDetailActivity.this, "Đã cập nhật sản phẩm thành công", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ProductDetailActivity.this, ManageInventorDetailActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 

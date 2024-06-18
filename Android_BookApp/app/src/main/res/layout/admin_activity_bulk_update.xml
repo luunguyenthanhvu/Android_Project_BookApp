@@ -13,34 +13,34 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         android:layout_alignParentTop="true"/>
 
-    <!-- Main LinearLayout that holds everything below the toolbar -->
+    <!-- Main content below the toolbar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_below="@id/toolbar"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:layout_above="@+id/btnComplete">
 
         <TextView
             android:id="@+id/tvNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/toolbar"
             android:text="Vui lòng đăng tải tập tin với đầy đủ thông tin để hoàn thành quy trình cập nhật hàng loạt"
             android:padding="10dp"
             android:textStyle="bold"
             android:textSize="16sp"/>
 
+        <!-- History Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvNote"
-            android:orientation="vertical"
             android:background="@drawable/rounded_corners"
+            android:orientation="vertical"
             android:padding="16dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="358dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:padding="10dp"
@@ -49,8 +49,8 @@
 
             <ImageView
                 android:id="@+id/imgFileUpload"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_width="349dp"
+                android:layout_height="65dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/rounded_corners"
@@ -64,12 +64,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
-                android:backgroundTint="@android:color/holo_blue_light"
+                android:backgroundTint="@android:color/holo_purple"
                 android:padding="10dp"
                 android:text="Chọn tập tin"
                 android:textColor="@android:color/white" />
         </LinearLayout>
-        <!-- History Section -->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,6 +121,33 @@
                 android:textSize="14sp"/>
         </LinearLayout>
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/fileListLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_marginTop="16dp">
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnComplete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@android:color/holo_purple"
+        android:padding="10dp"
+        android:text="Hoàn thành"
+        android:textColor="@android:color/white" />
+
 </RelativeLayout>
