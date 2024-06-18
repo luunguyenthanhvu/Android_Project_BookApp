@@ -5,18 +5,27 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.profile.DarkModeUtil;
+import nlu.hmuaf.android_bookapp.user.profile.adapter.BankAccountAdapter;
+import nlu.hmuaf.android_bookapp.user.profile.adapter.CardAdapter;
 
 public class BankAccountActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_ADD_ACCOUNT = 1;
     private static final int REQUEST_CODE_ADD_CARD = 2;
-    private LinearLayout bankAccountList;
+    private RecyclerView recyclerViewBankAccounts;
+    private RecyclerView recyclerViewCards;
+    private BankAccountAdapter bankAccountAdapter;
+    private CardAdapter cardAdapter;
+    private List<String> bankAccountList;  // Updated to use List<String>
+    private List<String> cardList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +35,34 @@ public class BankAccountActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Bank Account/Card");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // Thiết lập nút quay lại
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        bankAccountList = findViewById(R.id.bankAccountList);
+        recyclerViewBankAccounts = findViewById(R.id.recyclerViewBankAccounts);
+        recyclerViewCards = findViewById(R.id.recyclerViewCards);
+        recyclerViewBankAccounts.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewCards.setLayoutManager(new LinearLayoutManager(this));
+
+        bankAccountList = new ArrayList<>();
+        cardList = new ArrayList<>();
+
+        bankAccountAdapter = new BankAccountAdapter(bankAccountList, new BankAccountAdapter.OnBankAccountUnlinkListener() {
+            @Override
+            public void onUnlink(String accountDetails) {
+                bankAccountList.remove(accountDetails);
+                bankAccountAdapter.notifyDataSetChanged();
+            }
+        });
+
+        cardAdapter = new CardAdapter(cardList, new CardAdapter.OnCardUnlinkListener() {
+            @Override
+            public void onUnlink(String cardNumber) {
+                cardList.remove(cardNumber);
+                cardAdapter.notifyDataSetChanged();
+            }
+        });
+
+        recyclerViewBankAccounts.setAdapter(bankAccountAdapter);
+        recyclerViewCards.setAdapter(cardAdapter);
 
         LinearLayout addNewCard = findViewById(R.id.addNewCard);
         LinearLayout addNewBankAccount = findViewById(R.id.addNewBankAccount);
@@ -44,7 +78,7 @@ public class BankAccountActivity extends AppCompatActivity {
         addNewBankAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BankAccountActivity.this, BankUserInforActivity.class);
+                Intent intent = new Intent(BankAccountActivity.this, AddBankAccountActivity.class);
                 startActivityForResult(intent, REQUEST_CODE_ADD_ACCOUNT);
             }
         });
@@ -54,53 +88,14 @@ public class BankAccountActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_ADD_ACCOUNT && resultCode == RESULT_OK && data != null) {
-            String bankName = data.getStringExtra("BANK_NAME");
-            String accountNumber = data.getStringExtra("ACCOUNT_NUMBER");
-
-            addBankAccountView(bankName, accountNumber);
+            String accountDetails = data.getStringExtra("BANK_ACCOUNT_DETAILS");
+            bankAccountList.add(accountDetails);
+            bankAccountAdapter.notifyDataSetChanged();
         } else if (requestCode == REQUEST_CODE_ADD_CARD && resultCode == RESULT_OK && data != null) {
             String cardNumber = data.getStringExtra("CARD_NUMBER");
-
-            addCardView(cardNumber);
+            cardList.add(cardNumber);
+            cardAdapter.notifyDataSetChanged();
         }
-    }
-
-    private void addBankAccountView(String bankName, String accountNumber) {
-        View bankAccountView = getLayoutInflater().inflate(R.layout.profile_item_bank_account, bankAccountList, false);
-
-        TextView textViewBankInfo = bankAccountView.findViewById(R.id.textViewBankInfo);
-        Button buttonUnlink = bankAccountView.findViewById(R.id.buttonUnlink);
-
-        String bankInfo = bankName + " *" + accountNumber.substring(accountNumber.length() - 4);
-        textViewBankInfo.setText(bankInfo);
-
-        buttonUnlink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bankAccountList.removeView(bankAccountView);
-            }
-        });
-
-        bankAccountList.addView(bankAccountView);
-    }
-
-    private void addCardView(String cardNumber) {
-        View cardView = getLayoutInflater().inflate(R.layout.profile_item_bank_account, bankAccountList, false);
-
-        TextView textViewCardInfo = cardView.findViewById(R.id.textViewBankInfo);
-        Button buttonUnlink = cardView.findViewById(R.id.buttonUnlink);
-
-        String cardInfo = "Card *" + cardNumber.substring(cardNumber.length() - 4);
-        textViewCardInfo.setText(cardInfo);
-
-        buttonUnlink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bankAccountList.removeView(cardView);
-            }
-        });
-
-        bankAccountList.addView(cardView);
     }
 
     @Override

@@ -188,6 +188,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="Set now"
+                        android:inputType="numberDecimal"
                         android:textSize="16sp"
                         android:textColor="@android:color/holo_red_light"/>
                     <ImageView

@@ -36,6 +36,13 @@
                 android:padding="8dp"
                 android:textStyle="bold"/>
 
+            <!-- RecyclerView cho Credit/Debit Card -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewCards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"/>
+
             <!-- Add New Card Button -->
             <LinearLayout
                 android:id="@+id/addNewCard"
@@ -65,6 +72,13 @@
                 android:textSize="18sp"
                 android:padding="8dp"
                 android:textStyle="bold"/>
+
+            <!-- RecyclerView cho Bank Account -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewBankAccounts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"/>
 
             <!-- Add New Bank Account Button -->
             <LinearLayout

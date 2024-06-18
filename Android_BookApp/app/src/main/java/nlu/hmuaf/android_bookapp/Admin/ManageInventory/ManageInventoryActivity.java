@@ -205,7 +205,7 @@ public class ManageInventoryActivity extends AppCompatActivity {
         book5.setAuthor("Future Author");
         book5.setDiscountCode("PRE20");
         book5.setQuantity(0);
-        book5.setImageUrl("preorder");
+        book5.setImageUrl("avatar");
         book5.setStatus("Pre Order");
         book5.setPreOrder(true);
 
