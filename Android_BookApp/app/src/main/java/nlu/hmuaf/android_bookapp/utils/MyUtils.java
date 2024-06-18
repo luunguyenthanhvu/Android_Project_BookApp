@@ -41,7 +41,6 @@ public class MyUtils {
         SharedPreferences sharedPreferences = context.getSharedPreferences("BookAppPrefs", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString("TokenResponseDTO", null);
-        System.out.println(json);
         return gson.fromJson(json, TokenResponseDTO.class);
     }
 

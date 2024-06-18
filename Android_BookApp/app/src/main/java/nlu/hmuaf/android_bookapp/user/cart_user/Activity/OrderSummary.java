@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import nlu.hmuaf.android_bookapp.room.entity.CartItem;
 import nlu.hmuaf.android_bookapp.user.cart_user.Adapter.RecycleViewBookChosenAdapter;
 import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Address;
 import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Books;
@@ -30,14 +31,15 @@ public class OrderSummary extends AppCompatActivity {
     private StepView stepView;
     private List<String> listStepView = new ArrayList<>();
     private RecyclerView recyclerView;
-     private TextView address;
+    private TextView address;
 
-     private TextView paymentMethod;
-     private ImageButton changePaymentMethod;
-     private TextView priceDetail;
-     private TextView price;
-     private Button placeOrder;
-    private List<Books> listBook = new ArrayList<>();
+    private TextView paymentMethod;
+    private ImageButton changePaymentMethod;
+    private TextView priceDetail;
+    private TextView price;
+    private Button placeOrder;
+    private List<CartItem> listBook = new ArrayList<>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -54,7 +56,7 @@ public class OrderSummary extends AppCompatActivity {
 
         stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
         stepView.go(3, true);
-        stepView.done( true);
+        stepView.done(true);
 
         recyclerView = findViewById(R.id.recycleViewBook);
         address = findViewById(R.id.textViewAddress);
@@ -63,25 +65,25 @@ public class OrderSummary extends AppCompatActivity {
         price = findViewById(R.id.tv_price);
         placeOrder = findViewById(R.id.buttonPlaceOrder);
 
-        listBook =(ArrayList<Books>) getIntent().getSerializableExtra("listBook");
-        HashMap<Integer,Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("quantityMap");
-        RecycleViewBookChosenAdapter adapter2 = new RecycleViewBookChosenAdapter(this, listBook,quantityMap);
+        listBook = (ArrayList<CartItem>) getIntent().getSerializableExtra("listBook");
+        HashMap<Integer, Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("quantityMap");
+        RecycleViewBookChosenAdapter adapter2 = new RecycleViewBookChosenAdapter(this, listBook, quantityMap);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager2);
         recyclerView.setAdapter(adapter2);
 
         Address address1 = (Address) getIntent().getSerializableExtra("address");
-        address.setText(address1.getStreet()+", "+address1.getWard()+", "+address1.getDistrict()+", "+address1.getCity());
+        address.setText(address1.getStreet() + ", " + address1.getWard() + ", " + address1.getDistrict() + ", " + address1.getCity());
         paymentMethod.setText(getIntent().getStringExtra("paymentMethod"));
-        priceDetail.setText("Price Details "+adapter2.countQuantity()+" items");
-        price.setText("Total: "+adapter2.getTotalPrice()+" VNĐ");
+        priceDetail.setText("Price Details " + adapter2.countQuantity() + " items");
+        price.setText("Total: " + adapter2.getTotalPrice() + " VNĐ");
 
         double totalPriceTemp = adapter2.getTotalPrice();
         placeOrder.setOnClickListener(v -> {
             Intent intent = new Intent(OrderSummary.this, OrderSuccessfully.class);
-            intent.putExtra("totalPrice",totalPriceTemp);
-            intent.putExtra("listBook",(ArrayList<Books>)listBook);
-            intent.putExtra("quantityEachBook",quantityMap);
+            intent.putExtra("totalPrice", totalPriceTemp);
+            intent.putExtra("listBook", (ArrayList<CartItem>) listBook);
+            intent.putExtra("quantityEachBook", quantityMap);
             startActivity(intent);
         });
 

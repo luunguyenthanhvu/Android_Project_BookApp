@@ -12,7 +12,14 @@
         android:padding="30dp"
         android:scaleType="centerCrop"
         android:src="@drawable/bell" />
-
+    <ImageView
+        android:id="@+id/img_copyB2"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:padding="30dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bell" />
     <TextView
         android:id="@+id/tv_nameB2"
         android:layout_width="wrap_content"

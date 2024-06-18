@@ -2,6 +2,7 @@ package nlu.hmuaf.android_bookapp.room.service;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -17,12 +18,17 @@ public class CartService {
     private CartItemDao cartItemDao;
     private ExecutorService executorService;
     public int cartSize = 0;
+    public List<CartItem> cartItems = new ArrayList<>();
 
     public CartService(Context context) {
         AppDatabase db = DatabaseClient.getInstance(context).getAppDatabase();
         cartItemDao = db.cartItemDao();
         executorService = Executors.newSingleThreadExecutor();
         getCartQuantity(MyUtils.getTokenResponse(context).getUsername());
+//        checkUserCart(MyUtils.getTokenResponse(context).getUsername());
+//        if (!cartItems.isEmpty()) {
+//            cartItems.forEach(s -> System.out.println(s));
+//        }
     }
 
     private void getCartQuantity(String username) {
@@ -42,6 +48,26 @@ public class CartService {
         });
     }
 
+    public void checkUserCart(String username) {
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    cartItems = cartItemDao.getCartItemByUsername(username);
+                    cartItems = cartItems.isEmpty() ? new ArrayList<>() : cartItems;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public List<CartItem> getUserCart(String username) {
+        System.out.println("Cart user nè");
+        System.out.println(cartItemDao.getCartItemByUsername(username));
+        return cartItemDao.getCartItemByUsername(username);
+    }
+
     public void updateProductCart(final String username, final ListBookResponseDTO item, final int quantity) {
         executorService.execute(new Runnable() {
             @Override
@@ -59,6 +85,10 @@ public class CartService {
                                 .thumbnail(item.getThumbnail())
                                 .availableQuantity(item.getQuantity())
                                 .username(username)
+                                .originalPrice(item.getOriginalPrice())
+                                .discountedPrice(item.getDiscountedPrice())
+                                .averageRating(item.getAverageRating())
+                                .discount(item.getDiscount())
                                 .build());
                     }
                     cartSize = cartItemDao.getCartItemByUsername(username).size();

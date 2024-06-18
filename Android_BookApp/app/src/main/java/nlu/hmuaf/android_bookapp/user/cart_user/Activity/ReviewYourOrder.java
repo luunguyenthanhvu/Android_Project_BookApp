@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import nlu.hmuaf.android_bookapp.room.entity.CartItem;
 import nlu.hmuaf.android_bookapp.user.cart_user.Adapter.RecycleViewBookChosenAdapter;
 import nlu.hmuaf.android_bookapp.user.cart_user.Adapter.RecycleViewBookForMyCartAdapter;
 import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Books;
@@ -29,10 +30,9 @@ public class ReviewYourOrder extends AppCompatActivity {
     private Toolbar toolbar;
 
     private RecyclerView recycleListBookChosen;
-    private List<Books> listBook = new ArrayList<>();
+    private List<CartItem> listBook = new ArrayList<>();
 
     private Button btn_continue;
-
 
 
     @Override
@@ -43,7 +43,7 @@ public class ReviewYourOrder extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar2);
         recycleListBookChosen = findViewById(R.id.listBookChosen);
 
-        listBook = (ArrayList<Books>)getIntent().getSerializableExtra("listBookChoose");
+        listBook = (ArrayList<CartItem>) getIntent().getSerializableExtra("listBookChoose");
 
         RecycleViewBookForMyCartAdapter adapter = new RecycleViewBookForMyCartAdapter(this, listBook);
         recycleListBookChosen.setAdapter(adapter);
@@ -52,7 +52,7 @@ public class ReviewYourOrder extends AppCompatActivity {
         recycleListBookChosen.setAdapter(adapter);
 
 
-        btn_continue =findViewById(R.id.button3);
+        btn_continue = findViewById(R.id.button3);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -64,9 +64,9 @@ public class ReviewYourOrder extends AppCompatActivity {
         stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
         stepView.go(0, true);
 
-        listBook =(ArrayList<Books>) getIntent().getSerializableExtra("listBookChoose");
-        HashMap<Integer,Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("selectedQuantities");
-        RecycleViewBookChosenAdapter adapter2 = new RecycleViewBookChosenAdapter(this, listBook,quantityMap);
+        listBook = (ArrayList<CartItem>) getIntent().getSerializableExtra("listBookChoose");
+        HashMap<Integer, Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("selectedQuantities");
+        RecycleViewBookChosenAdapter adapter2 = new RecycleViewBookChosenAdapter(this, listBook, quantityMap);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recycleListBookChosen.setLayoutManager(linearLayoutManager2);
         recycleListBookChosen.setAdapter(adapter2);
@@ -76,13 +76,14 @@ public class ReviewYourOrder extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ReviewYourOrder.this, DeliveryAddress.class);
-                intent.putExtra("listBookChoose", (ArrayList<Books>)listBook);
+                intent.putExtra("listBookChoose", (ArrayList<CartItem>) listBook);
                 intent.putExtra("selectedQuantities", quantityMap);
                 startActivity(intent);
             }
         });
 
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

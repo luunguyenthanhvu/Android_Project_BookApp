@@ -20,23 +20,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Books;
+import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
+import nlu.hmuaf.android_bookapp.room.entity.CartItem;
 import nlu.hmuaf.android_bookapp.user.cart_user.Dialog.AlertExceedQuantityDialog;
 import nlu.hmuaf.android_bookapp.user.cart_user.Dialog.AlertQuantityTo0Dialog;
 import nlu.hmuaf.android_bookapp.R;
 
-public class RecycleViewBookForMyCartAdapter  extends RecyclerView.Adapter<RecycleViewBookForMyCartAdapter.MyViewHolder>{
+public class RecycleViewBookForMyCartAdapter extends RecyclerView.Adapter<RecycleViewBookForMyCartAdapter.MyViewHolder> {
     private Activity context;
 
-    private List<Books> listBook;
+    private List<CartItem> listBook;
     private SparseBooleanArray checkBoxStates;
     private SparseIntArray quantityStates;
-    public RecycleViewBookForMyCartAdapter(Activity context, List<Books> list) {
+
+    public RecycleViewBookForMyCartAdapter(Activity context, List<CartItem> list) {
         this.listBook = list;
         this.context = context;
         this.checkBoxStates = new SparseBooleanArray(list.size());
         this.quantityStates = new SparseIntArray(list.size());
     }
+
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         private CheckBox checkBoxBook;
@@ -64,6 +67,7 @@ public class RecycleViewBookForMyCartAdapter  extends RecyclerView.Adapter<Recyc
 
 
     }
+
     @NonNull
     @Override
     public RecycleViewBookForMyCartAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -78,29 +82,35 @@ public class RecycleViewBookForMyCartAdapter  extends RecyclerView.Adapter<Recyc
     public void onBindViewHolder(@NonNull RecycleViewBookForMyCartAdapter.MyViewHolder holder, int position) {
         // Thiết lập các giá trị ban đầu
         holder.textViewBookDetail.setText(listBook.get(position).getTitle());
-        holder.price.setText(String.valueOf(listBook.get(position).getPrice()));
-        holder.priceConfirm.setText(String.valueOf(listBook.get(position).getPrice()));
+//    holder.price.setText(String.valueOf(listBook.get(position).getPrice()));
+//    holder.priceConfirm.setText(String.valueOf(listBook.get(position).getPrice()));
         holder.imageViewBook.setImageResource(R.drawable.saber);
         holder.checkBoxBook.setChecked(checkBoxStates.get(position, false));
         holder.checkBoxBook.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            checkBoxStates.put(position, isChecked);
+            int currentPosition = holder.getAdapterPosition();
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                checkBoxStates.put(currentPosition, isChecked);
+            }
         });
         quantityStates.put(position, 1);
 
-//        Xử lý trươờng hợp người dùng nhập số lượng trực tiếp
+        // Xử lý trường hợp người dùng nhập số lượng trực tiếp
         holder.quantityBook.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                int currentPosition = holder.getAdapterPosition();
+                if (currentPosition == RecyclerView.NO_POSITION) {
+                    return;
+                }
+
                 String quantityText = s.toString();
                 if (quantityText.isEmpty()) {
                     // Nếu văn bản rỗng, thiết lập giá trị mặc định là 1
@@ -126,9 +136,9 @@ public class RecycleViewBookForMyCartAdapter  extends RecyclerView.Adapter<Recyc
                     dialog.show();
                     holder.quantityBook.setText(String.valueOf(100));
                 }
-                if(quantity >0 || quantity <=100){
-                    holder.priceConfirm.setText(String.valueOf(quantity * listBook.get(position).getPrice()));
-                    quantityStates.put(position, quantity);
+                if (quantity > 0 || quantity <= 100) {
+                    holder.priceConfirm.setText(String.valueOf(quantity * listBook.get(currentPosition).getOriginalPrice()));
+                    quantityStates.put(currentPosition, quantity);
                 }
             }
         });
@@ -140,11 +150,11 @@ public class RecycleViewBookForMyCartAdapter  extends RecyclerView.Adapter<Recyc
                 int currentPosition = holder.getAdapterPosition();
                 if (currentPosition != RecyclerView.NO_POSITION) {
                     int quantity = Integer.parseInt(holder.quantityBook.getText().toString());
-                    if (quantity >= 1) {
+                    if (quantity > 1) {
                         quantity--;
                         holder.quantityBook.setText(String.valueOf(quantity));
 
-                        holder.priceConfirm.setText(String.valueOf(quantity * listBook.get(currentPosition).getPrice()));
+                        holder.priceConfirm.setText(String.valueOf(quantity * listBook.get(currentPosition).getOriginalPrice()));
                         quantityStates.put(currentPosition, quantity);
                     } else {
                         AlertQuantityTo0Dialog dialog = new AlertQuantityTo0Dialog(context);
@@ -166,7 +176,7 @@ public class RecycleViewBookForMyCartAdapter  extends RecyclerView.Adapter<Recyc
                         quantity++;
 
                         holder.quantityBook.setText(String.valueOf(quantity));
-                        holder.priceConfirm.setText(String.valueOf(quantity * listBook.get(currentPosition).getPrice()));
+                        holder.priceConfirm.setText(String.valueOf(quantity * listBook.get(currentPosition).getOriginalPrice()));
                         quantityStates.put(currentPosition, quantity);
                     } else {
                         AlertExceedQuantityDialog dialog = new AlertExceedQuantityDialog(context);
@@ -183,17 +193,24 @@ public class RecycleViewBookForMyCartAdapter  extends RecyclerView.Adapter<Recyc
     public int getItemCount() {
         return listBook.size();
     }
-    public List<Books> getSelectedBooks() {
-        List<Books> selectedBooks = new ArrayList<>();
+
+    public List<CartItem> getSelectedCartItem() {
+        List<CartItem> selectedCartItem = new ArrayList<>();
         for (int i = 0; i < listBook.size(); i++) {
             if (checkBoxStates.get(i, false)) {
-                selectedBooks.add(listBook.get(i));
+                selectedCartItem.add(listBook.get(i));
             }
         }
-        return selectedBooks;
+        return selectedCartItem;
     }
 
     public SparseIntArray getQuantityStates() {
         return quantityStates;
+    }
+
+    public void updateData(List<CartItem> newCartItem) {
+        this.listBook.clear();
+        this.listBook.addAll(newCartItem);
+        notifyDataSetChanged();
     }
 }
