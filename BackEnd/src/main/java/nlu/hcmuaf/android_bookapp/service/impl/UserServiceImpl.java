@@ -133,7 +133,9 @@ public class UserServiceImpl implements IUserService {
             return TokenResponseDTO
                 .builder()
                 .token(jwtToken)
+                .username(user.get().getUsername())
                 .role(user.get().getRoles().getRoleName().toString())
+                .username(user.get().getUsername())
                 .message("Login success!")
                 .build();
           } else {

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -12,10 +11,9 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentTop="true"/>
 
+    <!-- Scrollable content area -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,6 +25,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- User information inputs -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Full Name"
+                android:textSize="14sp"
+                android:padding="8dp"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Full Name"
+                android:padding="8dp"
+                android:id="@+id/editTextFullName"
+                android:background="@drawable/edit_text_background"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ID Number"
+                android:textSize="14sp"
+                android:padding="8dp"
+                android:textColor="#000000"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter ID Number"
+                android:padding="8dp"
+                android:id="@+id/editTextIDNumber"
+                android:background="@drawable/edit_text_background"
+                android:inputType="number"/>
+
+            <!-- Bank account inputs -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +71,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Select Bank"
+                android:hint="Enter Bank Name"
                 android:padding="8dp"
                 android:id="@+id/editTextBankName"
                 android:background="@drawable/edit_text_background"/>
@@ -73,45 +106,10 @@
                 android:hint="Enter Account Number"
                 android:padding="8dp"
                 android:id="@+id/editTextAccountNumber"
-                android:background="@drawable/edit_text_background"/>
+                android:background="@drawable/edit_text_background"
+                android:inputType="number"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Account Holder Name"
-                android:textSize="14sp"
-                android:padding="8dp"
-                android:textColor="#000000"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Full Name"
-                android:padding="8dp"
-                android:id="@+id/editTextAccountHolderName"
-                android:background="@drawable/edit_text_background"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Set as Default Bank Account"
-                    android:textSize="14sp"
-                    android:padding="8dp"
-                    android:textColor="#000000"/>
-
-                <Switch
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/switchDefaultAccount"/>
-            </LinearLayout>
-
+            <!-- Complete button -->
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

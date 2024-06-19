@@ -39,6 +39,7 @@
                 android:id="@+id/editTextCardNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
                 android:hint="Card Number"
                 android:padding="8dp"
                 android:background="@drawable/edit_text_background"/>
@@ -61,6 +62,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="CVV Code"
+                    android:inputType="numberDecimal"
                     android:layout_weight="1"
                     android:padding="8dp"
                     android:id="@+id/editTextCVV"
@@ -95,6 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Postal Code"
+                android:inputType="numberDecimal"
                 android:padding="8dp"
                 android:id="@+id/editTextPostalCode"
                 android:background="@drawable/edit_text_background"/>

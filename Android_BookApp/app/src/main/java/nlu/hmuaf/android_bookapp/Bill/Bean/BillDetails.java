@@ -1,8 +1,12 @@
+
+
 package nlu.hmuaf.android_bookapp.Bill.Bean;
+
 
 import java.io.Serializable;
 
-import nlu.hmuaf.android_bookapp.CartUser.Bean.Books;
+import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Books;
+
 
 public class BillDetails implements Serializable {
     private Books book;
