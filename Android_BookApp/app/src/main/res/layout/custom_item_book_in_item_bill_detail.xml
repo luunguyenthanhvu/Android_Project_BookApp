@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Giá tiền : 109000đ"
+                android:text="Thành tiền : 109000đ"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 

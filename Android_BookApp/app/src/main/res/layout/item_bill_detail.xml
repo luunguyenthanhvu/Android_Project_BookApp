@@ -87,7 +87,6 @@
                         app:srcCompat="@drawable/book_detail_for_detail_bill" />
 
                     <TextView
-                        android:textColor="@color/black"
                         android:id="@+id/textView26"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -96,41 +95,16 @@
                         android:text="Chi tiết sách"
                         android:textAlignment="textStart"
                         android:textAllCaps="false"
+                        android:textColor="@color/black"
                         android:textSize="17sp"
                         android:textStyle="bold" />
+
                 </LinearLayout>
 
-                <TextView
-                    android:textColor="@color/black"
-                    android:id="@+id/txt_bookName"
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Thám tử đã chết tập 7"
-                    android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:layout_height="wrap_content" />
 
-                <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="match_parent"
-                    android:layout_height="136dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    app:srcCompat="@drawable/saber" />
-
-                <TextView
-                    android:id="@+id/txt_quantityBook_InBillDetail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Số lượng: 1"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:id="@+id/textView21"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Thành tiền: 120000 đ"
-                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout

@@ -1,5 +1,5 @@
 
-package nlu.hmuaf.android_bookapp.user.cart_user.Enum;
+package nlu.hmuaf.android_bookapp.user.bill.Enum;
 
 
 public enum EBillStatus {
