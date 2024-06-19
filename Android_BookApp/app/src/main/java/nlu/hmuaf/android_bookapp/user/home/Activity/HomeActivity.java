@@ -15,11 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.animation.add_to_cart.CircleAnimation;
@@ -48,10 +51,10 @@ public class HomeActivity extends AppCompatActivity {
     private List<ListBookResponseDTO> newListBook, discountListBook = new ArrayList<>();
     private ProgressBar progressBar;
     private final int SIZE = 30;
-    private int quantityBookInCart = 0;
     private TextView welcomeTextView;
     private CartService cartService;
-    TokenResponseDTO tokenResponse;
+    private TokenResponseDTO tokenResponse;
+    private TextView cartBadgeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +63,19 @@ public class HomeActivity extends AppCompatActivity {
         rcv1Data = findViewById(R.id.rcv1_Data);
         rcv2Data = findViewById(R.id.rcv2_Data);
         progressBar = findViewById(R.id.progressBar);
+        // get the barget text view
+        cartBadgeTextView = findViewById(R.id.cart_badge_text_view);
+
+        // get the cart service
         cartService = new CartService(getApplicationContext());
 
+        // đăng ký sự kiện observe để render lại sự thay đổi của giỏ hàng
+        cartService.getCartSizeLiveData().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer cartSize) {
+                updateCartQuantity(cartSize);
+            }
+        });
         welcomeTextView = findViewById(R.id.welcome_text_view);
 
         tokenResponse = MyUtils.getTokenResponse(this);
@@ -124,8 +138,6 @@ public class HomeActivity extends AppCompatActivity {
             public void onPriceClick(int position) {
                 ListBookResponseDTO selectedBook = discountListBook.get(position);
                 cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
-                updateCartQuantity(cartService.getQuantityCart());
-
                 // add animation
                 ImageView imageView = findImageViewForDiscountBook(selectedBook);
                 if (imageView != null) {
@@ -146,7 +158,6 @@ public class HomeActivity extends AppCompatActivity {
             public void onPriceClick(int position) {
                 ListBookResponseDTO selectedBook = newListBook.get(position);
                 cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
-                updateCartQuantity(cartService.getQuantityCart());
 
                 // add animation
                 ImageView imageView = findImageViewForNewBook(selectedBook);
@@ -201,19 +212,46 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 //        Xử lý sách đã chọn mua vào giỏ hàng
-        FrameLayout cartActionInclude = findViewById(R.id.cartItem);
-        TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
-        quantityTextView.setText(String.valueOf(quantityBookInCart));
-        quantityTextView.setVisibility(quantityBookInCart == 0 ? View.GONE : View.VISIBLE);
-        cartActionInclude.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, MyCart.class);
-                startActivity(intent);
-            }
-        });
+//        FrameLayout cartActionInclude = findViewById(R.id.cartItem);
+//        TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
+//        quantityTextView.setText(String.valueOf(quantityBookInCart));
+//        quantityTextView.setVisibility(View.VISIBLE);
+//        cartActionInclude.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(HomeActivity.this, MyCart.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        // lấy số lượng sách trong giỏ hàng
+        updateCartQuantity();
 //        Kiểm tra activity hiện tại để đổi màu icon ở navigation
         checkCurrentActivity();
+    }
+
+    private void updateCartQuantity() {
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            // Lấy số lượng sản phẩm trong giỏ hàng từ cơ sở dữ liệu
+            int quantityBookInCart = cartService.getUserCart(tokenResponse.getUsername()).size();
+
+            // Cập nhật giao diện người dùng
+            runOnUiThread(() -> {
+                // Tìm và cập nhật TextView hiển thị số lượng sản phẩm trong giỏ hàng
+                FrameLayout cartActionInclude = findViewById(R.id.cartItem);
+                TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
+                quantityTextView.setText(String.valueOf(quantityBookInCart));
+                quantityTextView.setVisibility(View.VISIBLE);
+                cartActionInclude.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(HomeActivity.this, MyCart.class);
+                        startActivity(intent);
+                    }
+                });
+            });
+        });
     }
 
 
@@ -288,7 +326,6 @@ public class HomeActivity extends AppCompatActivity {
                 public void onPriceClick(int position) {
                     ListBookResponseDTO selectedBook = discountListBook.get(position);
                     cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
-                    updateCartQuantity(cartService.getQuantityCart());
 
                     // add animation
                     ImageView imageView = findImageViewForDiscountBook(selectedBook);
@@ -320,7 +357,6 @@ public class HomeActivity extends AppCompatActivity {
                 public void onPriceClick(int position) {
                     ListBookResponseDTO selectedBook = newListBooks.get(position);
                     cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
-                    updateCartQuantity(cartService.getQuantityCart());
 
                     // add animation
                     ImageView imageView = findImageViewForNewBook(selectedBook);
@@ -336,12 +372,11 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    private void updateCartQuantity(int quantityBookInCart) {
-        quantityBookInCart = quantityBookInCart;
+    private void updateCartQuantity(int cartSize) {
         FrameLayout cartActionInclude = findViewById(R.id.cartItem);
         TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
-        quantityTextView.setText(String.valueOf(quantityBookInCart));
-        quantityTextView.setVisibility(quantityBookInCart == 0 ? View.GONE : View.VISIBLE);
+        quantityTextView.setText(String.valueOf(cartSize));
+        quantityTextView.setVisibility(View.VISIBLE);
     }
 
     public void checkCurrentActivity() {

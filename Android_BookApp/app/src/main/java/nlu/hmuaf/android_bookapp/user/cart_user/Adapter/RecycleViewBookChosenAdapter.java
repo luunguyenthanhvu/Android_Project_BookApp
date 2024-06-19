@@ -14,15 +14,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.R;
-import nlu.hmuaf.android_bookapp.room.entity.CartItem;
+import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 
 public class RecycleViewBookChosenAdapter extends RecyclerView.Adapter<RecycleViewBookChosenAdapter.MyViewHolder> {
     private Activity context;
 
-    private List<CartItem> listBook;
+    private List<CartItems> listBook;
     private HashMap<Integer, Integer> quantityBookChosen;
 
-    public RecycleViewBookChosenAdapter(Activity context, List<CartItem> list, HashMap<Integer, Integer> quantityBookChosen) {
+    public RecycleViewBookChosenAdapter(Activity context, List<CartItems> list, HashMap<Integer, Integer> quantityBookChosen) {
         this.listBook = list;
         this.context = context;
         this.quantityBookChosen = quantityBookChosen;

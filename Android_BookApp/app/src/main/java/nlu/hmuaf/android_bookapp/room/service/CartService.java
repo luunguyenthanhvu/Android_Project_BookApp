@@ -2,6 +2,9 @@ package nlu.hmuaf.android_bookapp.room.service;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -10,42 +13,24 @@ import java.util.concurrent.Executors;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.room.client.DatabaseClient;
 import nlu.hmuaf.android_bookapp.room.database.AppDatabase;
-import nlu.hmuaf.android_bookapp.room.entity.CartItem;
+import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.room.repository.CartItemDao;
-import nlu.hmuaf.android_bookapp.utils.MyUtils;
 
 public class CartService {
     private CartItemDao cartItemDao;
     private ExecutorService executorService;
-    public int cartSize = 0;
-    public List<CartItem> cartItems = new ArrayList<>();
+    public List<CartItems> cartItems = new ArrayList<>();
+    private MutableLiveData<Integer> cartSizeLiveData = new MutableLiveData<>();
+
+    // Hàm này để trả về LiveData để activity có thể lắng nghe sự thay đổi trong giỏ hàng
+    public LiveData<Integer> getCartSizeLiveData() {
+        return cartSizeLiveData;
+    }
 
     public CartService(Context context) {
         AppDatabase db = DatabaseClient.getInstance(context).getAppDatabase();
         cartItemDao = db.cartItemDao();
         executorService = Executors.newSingleThreadExecutor();
-        getCartQuantity(MyUtils.getTokenResponse(context).getUsername());
-//        checkUserCart(MyUtils.getTokenResponse(context).getUsername());
-//        if (!cartItems.isEmpty()) {
-//            cartItems.forEach(s -> System.out.println(s));
-//        }
-    }
-
-    private void getCartQuantity(String username) {
-        executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    if (username != null) {
-                        cartSize = cartItemDao.getCartItemByUsername(username).size();
-                    } else {
-                        cartSize = 0;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
     public void checkUserCart(String username) {
@@ -62,10 +47,25 @@ public class CartService {
         });
     }
 
-    public List<CartItem> getUserCart(String username) {
-        System.out.println("Cart user nè");
-        System.out.println(cartItemDao.getCartItemByUsername(username));
+    public List<CartItems> getUserCart(String username) {
         return cartItemDao.getCartItemByUsername(username);
+    }
+
+    public void updateQuantity(String username, long bookId, int quantity) {
+        executorService.execute(() -> {
+            try {
+                CartItems item = cartItemDao.getById(bookId);
+                if (quantity <= item.getAvailableQuantity()) {
+                    cartItemDao.updateQuantity(bookId, quantity, username);
+                } else {
+                    cartItemDao.updateQuantity(bookId, item.getAvailableQuantity(), username);
+                }
+                int cartSize = cartItemDao.getCartItemByUsername(username).size();
+                cartSizeLiveData.postValue(cartSize);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void updateProductCart(final String username, final ListBookResponseDTO item, final int quantity) {
@@ -73,12 +73,17 @@ public class CartService {
             @Override
             public void run() {
                 try {
-                    List<CartItem> listItem = cartItemDao.getCartItemByUsername(username);
+                    List<CartItems> listItem = cartItemDao.getCartItemByUsername(username);
                     if (isProductInCart(listItem, item.getBookId())) {
-                        cartItemDao.updateQuantity(item.getBookId(), quantity, username);
-                        listItem.forEach(s -> System.out.println(s));
+                        int cartQuantity = item.getQuantity();
+                        if (cartQuantity + quantity <= item.getQuantity()) {
+                            cartQuantity += quantity;
+                        } else {
+                            cartQuantity = item.getQuantity();
+                        }
+                        cartItemDao.updateQuantity(item.getBookId(), cartQuantity, username);
                     } else {
-                        cartItemDao.insert(CartItem.builder()
+                        cartItemDao.insert(CartItems.builder()
                                 .title(item.getTitle())
                                 .quantity(quantity)
                                 .bookId(item.getBookId())
@@ -91,7 +96,8 @@ public class CartService {
                                 .discount(item.getDiscount())
                                 .build());
                     }
-                    cartSize = cartItemDao.getCartItemByUsername(username).size();
+                    int cartSize = cartItemDao.getCartItemByUsername(username).size();
+                    cartSizeLiveData.postValue(cartSize);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -99,13 +105,9 @@ public class CartService {
         });
     }
 
-    private boolean isProductInCart(List<CartItem> cartItems, long bookId) {
+    private boolean isProductInCart(List<CartItems> cartItems, long bookId) {
         if (cartItems.isEmpty()) return false;
         return cartItems.stream().anyMatch(cartItem -> cartItem.getBookId() == bookId);
-    }
-
-    public int getQuantityCart() {
-        return cartSize;
     }
 
 }

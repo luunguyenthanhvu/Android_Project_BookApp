@@ -20,10 +20,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.room.entity.CartItem;
+import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.user.cart_user.Adapter.RecycleViewBookChosenAdapter;
 import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Address;
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Books;
 import nlu.hmuaf.android_bookapp.R;
 
 public class OrderSummary extends AppCompatActivity {
@@ -38,7 +37,7 @@ public class OrderSummary extends AppCompatActivity {
     private TextView priceDetail;
     private TextView price;
     private Button placeOrder;
-    private List<CartItem> listBook = new ArrayList<>();
+    private List<CartItems> listBook = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,7 +64,7 @@ public class OrderSummary extends AppCompatActivity {
         price = findViewById(R.id.tv_price);
         placeOrder = findViewById(R.id.buttonPlaceOrder);
 
-        listBook = (ArrayList<CartItem>) getIntent().getSerializableExtra("listBook");
+        listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBook");
         HashMap<Integer, Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("quantityMap");
         RecycleViewBookChosenAdapter adapter2 = new RecycleViewBookChosenAdapter(this, listBook, quantityMap);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -82,7 +81,7 @@ public class OrderSummary extends AppCompatActivity {
         placeOrder.setOnClickListener(v -> {
             Intent intent = new Intent(OrderSummary.this, OrderSuccessfully.class);
             intent.putExtra("totalPrice", totalPriceTemp);
-            intent.putExtra("listBook", (ArrayList<CartItem>) listBook);
+            intent.putExtra("listBook", (ArrayList<CartItems>) listBook);
             intent.putExtra("quantityEachBook", quantityMap);
             startActivity(intent);
         });
