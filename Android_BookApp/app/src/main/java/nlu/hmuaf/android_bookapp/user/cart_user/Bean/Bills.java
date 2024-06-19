@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 
-import nlu.hmuaf.android_bookapp.Bill.Enum.EBillStatus;
+import nlu.hmuaf.android_bookapp.user.bill.Enum.EBillStatus;
 
 
 

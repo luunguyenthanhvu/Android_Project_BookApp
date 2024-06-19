@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 
 
-import nlu.hmuaf.android_bookapp.Bill.Activity.MyBill;
-import nlu.hmuaf.android_bookapp.Bill.Enum.EBillStatus;
+import nlu.hmuaf.android_bookapp.user.bill.Activity.MyBill;
+import nlu.hmuaf.android_bookapp.user.bill.Enum.EBillStatus;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Bills;
 import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Books;

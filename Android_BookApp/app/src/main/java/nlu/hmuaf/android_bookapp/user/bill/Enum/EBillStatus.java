@@ -1,5 +1,5 @@
 
-package nlu.hmuaf.android_bookapp.Bill.Enum;
+package nlu.hmuaf.android_bookapp.user.bill.Enum;
 
 
 public enum EBillStatus {

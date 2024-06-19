@@ -1,11 +1,11 @@
 
-package nlu.hmuaf.android_bookapp.Bill.Bean;
+package nlu.hmuaf.android_bookapp.user.bill.Bean;
 
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import nlu.hmuaf.android_bookapp.Bill.Enum.EBillStatus;
+import nlu.hmuaf.android_bookapp.user.bill.Enum.EBillStatus;
 import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Discounts;
 import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Payments;
 import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Users;
