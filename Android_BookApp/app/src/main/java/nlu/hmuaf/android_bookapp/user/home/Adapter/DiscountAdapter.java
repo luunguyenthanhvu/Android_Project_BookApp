@@ -32,19 +32,16 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.ImageV
     }
 
     public DiscountAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener, OnPriceClickListener priceClickListener) {
-        this.listBook = this.listBook = listBook != null ? listBook : new ArrayList<>();
+        this.listBook = listBook != null ? listBook : new ArrayList<>();
         this.listener = listener;
         this.priceClickListener = priceClickListener;
     }
-
 
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, false);
         return new ImageViewHolder(view);
-
-
     }
 
     @Override
@@ -54,6 +51,7 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.ImageV
             return;
         }
         Picasso.get().load(book.getThumbnail()).into(holder.imgBook);
+        Picasso.get().load(book.getThumbnail()).into(holder.imgCopyB2);
         holder.nameB.setText(book.getTitle());
         if (book.getDiscount() != 0.0) {
             double originalPrice = book.getOriginalPrice();
@@ -84,11 +82,13 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.ImageV
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgBook;
+        private ImageView imgCopyB2;
         private TextView nameB, priceB, tvDiscount, originalPrice;
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
             imgBook = itemView.findViewById(R.id.img_imageB2);
+            imgCopyB2 = itemView.findViewById(R.id.img_copyB2);
             nameB = itemView.findViewById(R.id.tv_nameB2);
             priceB = itemView.findViewById(R.id.tv_priceB2);
             tvDiscount = itemView.findViewById(R.id.tv_discountB2);
@@ -116,7 +116,10 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.ImageV
                     }
                 }
             });
+        }
 
+        public ImageView getImgBook() {
+            return imgBook;
         }
     }
 

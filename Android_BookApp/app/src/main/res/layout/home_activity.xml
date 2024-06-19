@@ -1,41 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/header_layout"
+            layout="@layout/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
+
+
+        <include
+            android:id="@+id/content_layout"
+            layout="@layout/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/footer_layout"
+            android:layout_below="@id/header_layout"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="-5dp"
+            android:visibility="visible">
+
+        </include>
+
+        <include
+            android:id="@+id/footer_layout"
+            layout="@layout/footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+    <!-- ProgressBar ở giữa màn hình -->
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_gravity="center"
         android:visibility="gone" />
-    <include
-        android:id="@+id/header_layout"
-        layout="@layout/header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" />
-
-
-    <include
-        android:id="@+id/content_layout"
-        layout="@layout/content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/footer_layout"
-        android:layout_below="@id/header_layout"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="-5dp"
-        android:visibility="visible">
-
-    </include>
-
-    <include
-        android:id="@+id/footer_layout"
-        layout="@layout/footer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
-
-
-</RelativeLayout>
+</FrameLayout>
