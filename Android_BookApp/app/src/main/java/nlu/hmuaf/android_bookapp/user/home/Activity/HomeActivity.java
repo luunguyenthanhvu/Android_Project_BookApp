@@ -151,7 +151,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onPriceClick(int position) {
                 if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                     ListBookResponseDTO selectedBook = discountListBook.get(position);
-                    cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
+                    cartService.updateProductCart(tokenResponse.getUserId(), selectedBook, 1);
                     // add animation
                     ImageView imageView = findImageViewForDiscountBook(selectedBook);
                     if (imageView != null) {
@@ -173,7 +173,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onPriceClick(int position) {
                 if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                     ListBookResponseDTO selectedBook = newListBook.get(position);
-                    cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
+                    cartService.updateProductCart(tokenResponse.getUserId(), selectedBook, 1);
 
                     // add animation
                     ImageView imageView = findImageViewForNewBook(selectedBook);
@@ -241,7 +241,7 @@ public class HomeActivity extends AppCompatActivity {
             Executor executor = Executors.newSingleThreadExecutor();
             executor.execute(() -> {
                 // Lấy số lượng sản phẩm trong giỏ hàng từ cơ sở dữ liệu
-                int quantityBookInCart = cartService.getUserCart(tokenResponse.getUsername()).size();
+                int quantityBookInCart = cartService.getUserCart(tokenResponse.getUserId()).size();
 
                 // Cập nhật giao diện người dùng
                 runOnUiThread(() -> {
@@ -332,7 +332,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void onPriceClick(int position) {
                     if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                         ListBookResponseDTO selectedBook = discountListBook.get(position);
-                        cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
+                        cartService.updateProductCart(tokenResponse.getUserId(), selectedBook, 1);
 
                         // add animation
                         ImageView imageView = findImageViewForDiscountBook(selectedBook);
@@ -365,7 +365,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void onPriceClick(int position) {
                     if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                         ListBookResponseDTO selectedBook = newListBooks.get(position);
-                        cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
+                        cartService.updateProductCart(tokenResponse.getUserId(), selectedBook, 1);
 
                         // add animation
                         ImageView imageView = findImageViewForNewBook(selectedBook);
