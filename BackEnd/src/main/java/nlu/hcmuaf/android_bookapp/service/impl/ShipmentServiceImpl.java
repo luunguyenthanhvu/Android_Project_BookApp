@@ -77,7 +77,7 @@ public class ShipmentServiceImpl implements IShipmentService {
             ShipmentDetails shipmentDetails = new ShipmentDetails();
             // set quantity for each book
             int randomQuantity = (int) (Math.random() * 50);
-            quantity += randomQuantity;
+            quantity += randomQuantity < 20 ? randomQuantity += 20 : randomQuantity;
             shipmentDetails.setQuantity(randomQuantity);
             shipmentDetails.setShipment(shipments);
             shipmentDetails.setAvailable(true);

@@ -19,7 +19,7 @@ import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 public class CartItems implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private long id;
-    private String username;
+    private long userId;
     private long bookId;
     private String title;
     private String thumbnail;
@@ -36,8 +36,8 @@ public class CartItems implements Serializable {
     private double discountedPrice;
     private Double discount;
 
-    public CartItems(String username, long bookId, String title, String thumbnail, int quantity, int availableQuantity, Double averageRating, double originalPrice, double discountedPrice, Double discount) {
-        this.username = username;
+    public CartItems(long userId, long bookId, String title, String thumbnail, int quantity, int availableQuantity, Double averageRating, double originalPrice, double discountedPrice, Double discount) {
+        this.userId = userId;
         this.bookId = bookId;
         this.title = title;
         this.thumbnail = thumbnail;
@@ -48,6 +48,7 @@ public class CartItems implements Serializable {
         this.discountedPrice = (discount != null) ? originalPrice * (1 - discount) : 0.0;
         this.discount = (discount != null) ? discount : 0.0;
     }
+
     public CartItems(ListBookResponseDTO dto) {
         this.thumbnail = dto.getThumbnail();
     }

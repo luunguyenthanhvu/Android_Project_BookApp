@@ -92,7 +92,7 @@ public class MyCart extends AppCompatActivity {
     private void getCartItemData() {
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
-            listBook = cartService.getUserCart(MyUtils.getTokenResponse(getApplicationContext()).getUsername());
+            listBook = cartService.getUserCart(MyUtils.getTokenResponse(getApplicationContext()).getUserId());
 
             runOnUiThread(() -> {
                 adapter.updateData(listBook);
