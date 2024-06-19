@@ -75,14 +75,18 @@ public class CartService {
                 try {
                     List<CartItems> listItem = cartItemDao.getCartItemByUsername(username);
                     if (isProductInCart(listItem, item.getBookId())) {
-                        int cartQuantity = item.getQuantity();
-                        if (cartQuantity + quantity <= item.getQuantity()) {
-                            cartQuantity += quantity;
-                        } else {
+                        int cartQuantity = getCartItem(listItem, item.getBookId()).getQuantity();
+                        // Kiểm tra nếu tổng cartQuantity hiện tại và quantity mới thêm vào lớn hơn item.getQuantity()
+                        if (cartQuantity + quantity > item.getQuantity()) {
+                            // Nếu lớn hơn, chỉ cập nhật thành item.getQuantity()
                             cartQuantity = item.getQuantity();
+                        } else {
+                            // Nếu nhỏ hơn hoặc bằng, cộng thêm quantity mới vào cartQuantity
+                            cartQuantity += quantity;
                         }
                         cartItemDao.updateQuantity(item.getBookId(), cartQuantity, username);
                     } else {
+                        // Nếu sản phẩm chưa có trong giỏ hàng, thêm mới
                         cartItemDao.insert(CartItems.builder()
                                 .title(item.getTitle())
                                 .quantity(quantity)
@@ -96,6 +100,7 @@ public class CartService {
                                 .discount(item.getDiscount())
                                 .build());
                     }
+                    // Sau khi cập nhật hoặc thêm mới, cập nhật lại LiveData
                     int cartSize = cartItemDao.getCartItemByUsername(username).size();
                     cartSizeLiveData.postValue(cartSize);
                 } catch (Exception e) {
@@ -105,9 +110,19 @@ public class CartService {
         });
     }
 
+
     private boolean isProductInCart(List<CartItems> cartItems, long bookId) {
         if (cartItems.isEmpty()) return false;
         return cartItems.stream().anyMatch(cartItem -> cartItem.getBookId() == bookId);
+    }
+
+    private CartItems getCartItem(List<CartItems> cartItems, long bookId) {
+        for (CartItems cartItem : cartItems) {
+            if (cartItem.getBookId() == bookId) {
+                return cartItem;
+            }
+        }
+        return null;
     }
 
 }

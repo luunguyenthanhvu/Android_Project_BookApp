@@ -76,6 +76,7 @@ public class HomeActivity extends AppCompatActivity {
                 updateCartQuantity(cartSize);
             }
         });
+
         welcomeTextView = findViewById(R.id.welcome_text_view);
 
         tokenResponse = MyUtils.getTokenResponse(this);
@@ -121,6 +122,18 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        FrameLayout cartActionInclude = findViewById(R.id.cartItem);
+        cartActionInclude.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
+                    Intent intent = new Intent(HomeActivity.this, MyCart.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rcv1Data.setLayoutManager(layoutManager);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -136,12 +149,14 @@ public class HomeActivity extends AppCompatActivity {
             //Khi bấm vào giá tiền thì thêm vào giỏ hàng
             @Override
             public void onPriceClick(int position) {
-                ListBookResponseDTO selectedBook = discountListBook.get(position);
-                cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
-                // add animation
-                ImageView imageView = findImageViewForDiscountBook(selectedBook);
-                if (imageView != null) {
-                    makeFlyAnimation(imageView);
+                if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
+                    ListBookResponseDTO selectedBook = discountListBook.get(position);
+                    cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
+                    // add animation
+                    ImageView imageView = findImageViewForDiscountBook(selectedBook);
+                    if (imageView != null) {
+                        makeFlyAnimation(imageView);
+                    }
                 }
             }
         });
@@ -156,13 +171,15 @@ public class HomeActivity extends AppCompatActivity {
         }, new NewBookAdapter.OnPriceClickListener() {
             @Override
             public void onPriceClick(int position) {
-                ListBookResponseDTO selectedBook = newListBook.get(position);
-                cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
+                if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
+                    ListBookResponseDTO selectedBook = newListBook.get(position);
+                    cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
 
-                // add animation
-                ImageView imageView = findImageViewForNewBook(selectedBook);
-                if (imageView != null) {
-                    makeFlyAnimation(imageView);
+                    // add animation
+                    ImageView imageView = findImageViewForNewBook(selectedBook);
+                    if (imageView != null) {
+                        makeFlyAnimation(imageView);
+                    }
                 }
             }
         });
@@ -206,24 +223,13 @@ public class HomeActivity extends AppCompatActivity {
         libraryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigate to HomeActivity
-                Intent intent = new Intent(HomeActivity.this, LibraryActivity.class);
-                startActivity(intent);
+                if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
+                    // Navigate to HomeActivity
+                    Intent intent = new Intent(HomeActivity.this, LibraryActivity.class);
+                    startActivity(intent);
+                }
             }
         });
-//        Xử lý sách đã chọn mua vào giỏ hàng
-//        FrameLayout cartActionInclude = findViewById(R.id.cartItem);
-//        TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
-//        quantityTextView.setText(String.valueOf(quantityBookInCart));
-//        quantityTextView.setVisibility(View.VISIBLE);
-//        cartActionInclude.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(HomeActivity.this, MyCart.class);
-//                startActivity(intent);
-//            }
-//        });
-
         // lấy số lượng sách trong giỏ hàng
         updateCartQuantity();
 //        Kiểm tra activity hiện tại để đổi màu icon ở navigation
@@ -231,27 +237,27 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void updateCartQuantity() {
-        Executor executor = Executors.newSingleThreadExecutor();
-        executor.execute(() -> {
-            // Lấy số lượng sản phẩm trong giỏ hàng từ cơ sở dữ liệu
-            int quantityBookInCart = cartService.getUserCart(tokenResponse.getUsername()).size();
+        if (MyUtils.getTokenResponse(this) != null) {
+            Executor executor = Executors.newSingleThreadExecutor();
+            executor.execute(() -> {
+                // Lấy số lượng sản phẩm trong giỏ hàng từ cơ sở dữ liệu
+                int quantityBookInCart = cartService.getUserCart(tokenResponse.getUsername()).size();
 
-            // Cập nhật giao diện người dùng
-            runOnUiThread(() -> {
-                // Tìm và cập nhật TextView hiển thị số lượng sản phẩm trong giỏ hàng
-                FrameLayout cartActionInclude = findViewById(R.id.cartItem);
-                TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
-                quantityTextView.setText(String.valueOf(quantityBookInCart));
-                quantityTextView.setVisibility(View.VISIBLE);
-                cartActionInclude.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(HomeActivity.this, MyCart.class);
-                        startActivity(intent);
-                    }
+                // Cập nhật giao diện người dùng
+                runOnUiThread(() -> {
+                    // Tìm và cập nhật TextView hiển thị số lượng sản phẩm trong giỏ hàng
+                    FrameLayout cartActionInclude = findViewById(R.id.cartItem);
+                    TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
+                    quantityTextView.setText(String.valueOf(quantityBookInCart));
+                    quantityTextView.setVisibility(View.VISIBLE);
                 });
             });
-        });
+        } else {
+            FrameLayout cartActionInclude = findViewById(R.id.cartItem);
+            TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
+            quantityTextView.setText(String.valueOf(0));
+            quantityTextView.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -324,13 +330,15 @@ public class HomeActivity extends AppCompatActivity {
                 // của Tú
                 @Override
                 public void onPriceClick(int position) {
-                    ListBookResponseDTO selectedBook = discountListBook.get(position);
-                    cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
+                    if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
+                        ListBookResponseDTO selectedBook = discountListBook.get(position);
+                        cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
 
-                    // add animation
-                    ImageView imageView = findImageViewForDiscountBook(selectedBook);
-                    if (imageView != null) {
-                        makeFlyAnimation(imageView);
+                        // add animation
+                        ImageView imageView = findImageViewForDiscountBook(selectedBook);
+                        if (imageView != null) {
+                            makeFlyAnimation(imageView);
+                        }
                     }
                 }
             });
@@ -355,13 +363,15 @@ public class HomeActivity extends AppCompatActivity {
             }, new NewBookAdapter.OnPriceClickListener() {
                 @Override
                 public void onPriceClick(int position) {
-                    ListBookResponseDTO selectedBook = newListBooks.get(position);
-                    cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
+                    if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
+                        ListBookResponseDTO selectedBook = newListBooks.get(position);
+                        cartService.updateProductCart(tokenResponse.getUsername(), selectedBook, 1);
 
-                    // add animation
-                    ImageView imageView = findImageViewForNewBook(selectedBook);
-                    if (imageView != null) {
-                        makeFlyAnimation(imageView);
+                        // add animation
+                        ImageView imageView = findImageViewForNewBook(selectedBook);
+                        if (imageView != null) {
+                            makeFlyAnimation(imageView);
+                        }
                     }
                 }
             });
