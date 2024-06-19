@@ -122,6 +122,18 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        FrameLayout cartActionInclude = findViewById(R.id.cartItem);
+        cartActionInclude.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
+                    Intent intent = new Intent(HomeActivity.this, MyCart.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rcv1Data.setLayoutManager(layoutManager);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -238,15 +250,6 @@ public class HomeActivity extends AppCompatActivity {
                     TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
                     quantityTextView.setText(String.valueOf(quantityBookInCart));
                     quantityTextView.setVisibility(View.VISIBLE);
-                    cartActionInclude.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
-                                Intent intent = new Intent(HomeActivity.this, MyCart.class);
-                                startActivity(intent);
-                            }
-                        }
-                    });
                 });
             });
         } else {
