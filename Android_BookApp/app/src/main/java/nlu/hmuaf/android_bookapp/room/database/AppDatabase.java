@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase;
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.room.repository.CartItemDao;
 
-@Database(entities = {CartItems.class}, version = 2, exportSchema = false)
+@Database(entities = {CartItems.class}, version = 3, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract CartItemDao cartItemDao();
 }
