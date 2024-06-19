@@ -58,7 +58,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        MyUtils.deleteTokenResponse(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         rcv1Data = findViewById(R.id.rcv1_Data);
@@ -242,8 +241,10 @@ public class HomeActivity extends AppCompatActivity {
                     cartActionInclude.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(HomeActivity.this, MyCart.class);
-                            startActivity(intent);
+                            if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
+                                Intent intent = new Intent(HomeActivity.this, MyCart.class);
+                                startActivity(intent);
+                            }
                         }
                     });
                 });
