@@ -1,21 +1,18 @@
-package nlu.hmuaf.android_bookapp.CartUser.Adapter;
+package nlu.hmuaf.android_bookapp.Bill.Adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.HashMap;
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.CartUser.Bean.Bills;
-import nlu.hmuaf.android_bookapp.CartUser.Bean.Books;
+import nlu.hmuaf.android_bookapp.Bill.Bean.Bills;
 import nlu.hmuaf.android_bookapp.R;
 
 public class RecycleViewListBillAdapter  extends RecyclerView.Adapter<RecycleViewListBillAdapter.MyViewHolder> {

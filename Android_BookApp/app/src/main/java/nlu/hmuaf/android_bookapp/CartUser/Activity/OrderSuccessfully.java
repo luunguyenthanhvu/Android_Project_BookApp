@@ -15,13 +15,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.CartUser.Bean.BillDetails;
-import nlu.hmuaf.android_bookapp.CartUser.Bean.Bills;
+import nlu.hmuaf.android_bookapp.Bill.Activity.MyBill;
+import nlu.hmuaf.android_bookapp.Bill.Bean.Bills;
 import nlu.hmuaf.android_bookapp.CartUser.Bean.Books;
 import nlu.hmuaf.android_bookapp.CartUser.Bean.Users;
-import nlu.hmuaf.android_bookapp.CartUser.Enum.EBillStatus;
+import nlu.hmuaf.android_bookapp.Bill.Enum.EBillStatus;
 import nlu.hmuaf.android_bookapp.R;
-import nlu.hmuaf.android_bookapp.profile.Class.User;
 
 public class OrderSuccessfully extends AppCompatActivity {
   private TextView price;

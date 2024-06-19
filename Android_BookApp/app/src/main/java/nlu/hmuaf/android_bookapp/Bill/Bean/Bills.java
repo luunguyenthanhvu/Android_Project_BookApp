@@ -1,11 +1,12 @@
-package nlu.hmuaf.android_bookapp.CartUser.Bean;
+package nlu.hmuaf.android_bookapp.Bill.Bean;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-import nlu.hmuaf.android_bookapp.CartUser.Enum.EBillStatus;
-import nlu.hmuaf.android_bookapp.profile.Class.User;
+import nlu.hmuaf.android_bookapp.Bill.Enum.EBillStatus;
+import nlu.hmuaf.android_bookapp.CartUser.Bean.Discounts;
+import nlu.hmuaf.android_bookapp.CartUser.Bean.Payments;
+import nlu.hmuaf.android_bookapp.CartUser.Bean.Users;
 
 public class Bills implements Serializable {
     private long billId;

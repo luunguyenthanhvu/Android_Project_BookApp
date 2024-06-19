@@ -1,18 +1,15 @@
-package nlu.hmuaf.android_bookapp.CartUser.Activity;
+package nlu.hmuaf.android_bookapp.Bill.Activity;
 
 import android.os.Bundle;
-import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.CartUser.Adapter.RecycleViewListBillAdapter;
-import nlu.hmuaf.android_bookapp.CartUser.Bean.Bills;
+import nlu.hmuaf.android_bookapp.Bill.Bean.Bills;
 import nlu.hmuaf.android_bookapp.R;
 
 public class MyBill extends AppCompatActivity {

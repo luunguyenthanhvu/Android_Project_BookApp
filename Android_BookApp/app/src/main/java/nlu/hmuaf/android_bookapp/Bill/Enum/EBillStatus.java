@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.CartUser.Enum;
+package nlu.hmuaf.android_bookapp.Bill.Enum;
 
 public enum EBillStatus {
     CONFIRMING("Chờ xác nhận"), PREPARING("Đang chuẩn bị"),
