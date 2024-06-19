@@ -33,12 +33,12 @@ public class CartService {
         executorService = Executors.newSingleThreadExecutor();
     }
 
-    public void checkUserCart(String username) {
+    public void checkUserCart(Long userId) {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    cartItems = cartItemDao.getCartItemByUsername(username);
+                    cartItems = cartItemDao.getCartItemByUserId(userId);
                     cartItems = cartItems.isEmpty() ? new ArrayList<>() : cartItems;
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -47,20 +47,20 @@ public class CartService {
         });
     }
 
-    public List<CartItems> getUserCart(String username) {
-        return cartItemDao.getCartItemByUsername(username);
+    public List<CartItems> getUserCart(Long userId) {
+        return cartItemDao.getCartItemByUserId(userId);
     }
 
-    public void updateQuantity(String username, long bookId, int quantity) {
+    public void updateQuantity(Long userId, long bookId, int quantity) {
         executorService.execute(() -> {
             try {
                 CartItems item = cartItemDao.getById(bookId);
                 if (quantity <= item.getAvailableQuantity()) {
-                    cartItemDao.updateQuantity(bookId, quantity, username);
+                    cartItemDao.updateQuantity(bookId, quantity, userId);
                 } else {
-                    cartItemDao.updateQuantity(bookId, item.getAvailableQuantity(), username);
+                    cartItemDao.updateQuantity(bookId, item.getAvailableQuantity(), userId);
                 }
-                int cartSize = cartItemDao.getCartItemByUsername(username).size();
+                int cartSize = cartItemDao.getCartItemByUserId(userId).size();
                 cartSizeLiveData.postValue(cartSize);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -68,12 +68,12 @@ public class CartService {
         });
     }
 
-    public void updateProductCart(final String username, final ListBookResponseDTO item, final int quantity) {
+    public void updateProductCart(final Long userId, final ListBookResponseDTO item, final int quantity) {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
                 try {
-                    List<CartItems> listItem = cartItemDao.getCartItemByUsername(username);
+                    List<CartItems> listItem = cartItemDao.getCartItemByUserId(userId);
                     if (isProductInCart(listItem, item.getBookId())) {
                         int cartQuantity = getCartItem(listItem, item.getBookId()).getQuantity();
                         // Kiểm tra nếu tổng cartQuantity hiện tại và quantity mới thêm vào lớn hơn item.getQuantity()
@@ -84,7 +84,7 @@ public class CartService {
                             // Nếu nhỏ hơn hoặc bằng, cộng thêm quantity mới vào cartQuantity
                             cartQuantity += quantity;
                         }
-                        cartItemDao.updateQuantity(item.getBookId(), cartQuantity, username);
+                        cartItemDao.updateQuantity(item.getBookId(), cartQuantity, userId);
                     } else {
                         // Nếu sản phẩm chưa có trong giỏ hàng, thêm mới
                         cartItemDao.insert(CartItems.builder()
@@ -93,7 +93,7 @@ public class CartService {
                                 .bookId(item.getBookId())
                                 .thumbnail(item.getThumbnail())
                                 .availableQuantity(item.getQuantity())
-                                .username(username)
+                                .userId(userId)
                                 .originalPrice(item.getOriginalPrice())
                                 .discountedPrice(item.getDiscountedPrice())
                                 .averageRating(item.getAverageRating())
@@ -101,7 +101,7 @@ public class CartService {
                                 .build());
                     }
                     // Sau khi cập nhật hoặc thêm mới, cập nhật lại LiveData
-                    int cartSize = cartItemDao.getCartItemByUsername(username).size();
+                    int cartSize = cartItemDao.getCartItemByUserId(userId).size();
                     cartSizeLiveData.postValue(cartSize);
                 } catch (Exception e) {
                     e.printStackTrace();

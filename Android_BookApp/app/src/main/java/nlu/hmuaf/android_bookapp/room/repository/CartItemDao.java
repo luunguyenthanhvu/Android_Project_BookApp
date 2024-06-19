@@ -21,11 +21,11 @@ public interface CartItemDao {
     @Query("DELETE FROM Cart_Items WHERE bookId = :bookId")
     void deleteCartItemByProductId(long bookId);
 
-    @Query("SELECT * FROM Cart_Items WHERE username = :username")
-    List<CartItems> getCartItemByUsername(String username);
+    @Query("SELECT * FROM Cart_Items WHERE userId = :userId")
+    List<CartItems> getCartItemByUserId(long userId);
 
-    @Query("UPDATE Cart_Items SET quantity = :quantity WHERE bookId = :bookId AND username = :username")
-    void updateQuantity(long bookId, int quantity, String username);
+    @Query("UPDATE Cart_Items SET quantity = :quantity WHERE bookId = :bookId AND userId = :userId")
+    void updateQuantity(long bookId, int quantity, long userId);
 
     @Query("SELECT * FROM Cart_Items WHERE bookId = :bookId")
     CartItems getById(long bookId);
