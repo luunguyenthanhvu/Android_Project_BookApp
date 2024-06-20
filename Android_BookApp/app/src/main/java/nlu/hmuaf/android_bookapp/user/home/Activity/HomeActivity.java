@@ -27,6 +27,7 @@ import java.util.concurrent.Executors;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.animation.add_to_cart.CircleAnimation;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
+import nlu.hmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
 import nlu.hmuaf.android_bookapp.networking.BookAppService;
@@ -65,6 +66,9 @@ public class HomeActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         // get the barget text view
         cartBadgeTextView = findViewById(R.id.cart_badge_text_view);
+        // get data from api
+        getDiscountBookData();
+        getNewBookData();
 
         // get the cart service
         cartService = new CartService(getApplicationContext());
@@ -84,15 +88,9 @@ public class HomeActivity extends AppCompatActivity {
         if (tokenResponse != null) {
             String welcomeMessage = "Xin chào, " + tokenResponse.getUsername() + "!";
             welcomeTextView.setText(welcomeMessage);
-            //get cart from database
-
         } else {
             welcomeTextView.setText("Xin chào");
         }
-
-        // get data from api
-        getDiscountBookData();
-        getNewBookData();
 
         // Tìm TextView theo ID
         TextView tvPrevious = findViewById(R.id.tv_previous);
@@ -151,7 +149,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onPriceClick(int position) {
                 if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                     ListBookResponseDTO selectedBook = discountListBook.get(position);
-                    cartService.updateProductCart(tokenResponse.getUserId(), selectedBook, 1);
+                    cartService.updateProductCart(tokenResponse, selectedBook, 1);
                     // add animation
                     ImageView imageView = findImageViewForDiscountBook(selectedBook);
                     if (imageView != null) {
@@ -173,7 +171,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onPriceClick(int position) {
                 if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                     ListBookResponseDTO selectedBook = newListBook.get(position);
-                    cartService.updateProductCart(tokenResponse.getUserId(), selectedBook, 1);
+                    cartService.updateProductCart(tokenResponse, selectedBook, 1);
 
                     // add animation
                     ImageView imageView = findImageViewForNewBook(selectedBook);
@@ -305,7 +303,7 @@ public class HomeActivity extends AppCompatActivity {
                     updateNewBookRecyclerView(newListBook);
                 } else {
                     // Xử lý lỗi khi không thành công
-                    System.out.println("lỗi");
+                    System.out.println("lỗi lấy data");
                 }
             }
 
@@ -332,7 +330,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void onPriceClick(int position) {
                     if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                         ListBookResponseDTO selectedBook = discountListBook.get(position);
-                        cartService.updateProductCart(tokenResponse.getUserId(), selectedBook, 1);
+                        cartService.updateProductCart(tokenResponse, selectedBook, 1);
 
                         // add animation
                         ImageView imageView = findImageViewForDiscountBook(selectedBook);
@@ -365,7 +363,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void onPriceClick(int position) {
                     if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                         ListBookResponseDTO selectedBook = newListBooks.get(position);
-                        cartService.updateProductCart(tokenResponse.getUserId(), selectedBook, 1);
+                        cartService.updateProductCart(tokenResponse, selectedBook, 1);
 
                         // add animation
                         ImageView imageView = findImageViewForNewBook(selectedBook);

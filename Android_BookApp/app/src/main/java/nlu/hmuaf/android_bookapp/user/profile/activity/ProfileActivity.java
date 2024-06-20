@@ -13,20 +13,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
+import nlu.hmuaf.android_bookapp.dto.response.MessageResponseDTO;
+import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
+import nlu.hmuaf.android_bookapp.networking.BookAppApi;
+import nlu.hmuaf.android_bookapp.networking.BookAppService;
+import nlu.hmuaf.android_bookapp.room.service.CartService;
 import nlu.hmuaf.android_bookapp.user.cart_user.Activity.MyCart;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.user.home.Activity.HomeActivity;
+import nlu.hmuaf.android_bookapp.user.login.Login;
 import nlu.hmuaf.android_bookapp.user.profile.DarkModeUtil;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
+    private CartService cartService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         DarkModeUtil.applyDarkMode(this);
-
-
+        cartService = new CartService(getApplicationContext());
         setContentView(R.layout.profile_activity_profile);
 
         Switch darkModeSwitch = findViewById(R.id.dark_mode_switch);
@@ -45,8 +57,6 @@ public class ProfileActivity extends AppCompatActivity {
         // Phần còn lại của mã
 
 
-
-
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
@@ -63,15 +73,15 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-            ImageView notificationImageView = findViewById(R.id.notification_arrow);
-            notificationImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Chuyển hướng sang Activity NotificationActivity
-                    Intent intent = new Intent(ProfileActivity.this, NotificationActivity.class);
-                    startActivity(intent);
-                }
-            });
+        ImageView notificationImageView = findViewById(R.id.notification_arrow);
+        notificationImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Chuyển hướng sang Activity NotificationActivity
+                Intent intent = new Intent(ProfileActivity.this, NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ImageView reviewImageView = findViewById(R.id.reviews_arrow);
         reviewImageView.setOnClickListener(new View.OnClickListener() {
@@ -127,12 +137,12 @@ public class ProfileActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileActivity.this, LogOutActivity.class);
-                startActivity(intent);
-                finish();
+                // Xóa token và chuyển hướng đến màn hình đăng nhập
+                clearTokenAndRedirectToLogin();
             }
         });
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -140,5 +150,20 @@ public class ProfileActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void clearTokenAndRedirectToLogin() {
+        TokenResponseDTO token = MyUtils.getTokenResponse(getApplicationContext());
+        // Trước đó update cart server
+        cartService.syncCartWithServer(token, "Logout");
+        // Xóa token từ SharedPreferences hoặc nơi lưu trữ token
+        MyUtils.deleteTokenResponse(ProfileActivity.this);
+
+
+        // Chuyển hướng đến màn hình đăng nhập
+        Intent intent = new Intent(ProfileActivity.this, Login.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }

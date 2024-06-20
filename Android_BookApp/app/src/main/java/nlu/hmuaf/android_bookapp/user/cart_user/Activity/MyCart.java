@@ -48,7 +48,6 @@ public class MyCart extends AppCompatActivity {
         listBookInACart = findViewById(R.id.listViewBookInCart);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         cartService = new CartService(getApplicationContext());
         adapter = new RecycleViewBookForMyCartAdapter(this, listBook, cartService);
         // Initialize adapter globally

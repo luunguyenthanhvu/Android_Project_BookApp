@@ -48,8 +48,4 @@ public class CartItems implements Serializable {
         this.discountedPrice = (discount != null) ? originalPrice * (1 - discount) : 0.0;
         this.discount = (discount != null) ? discount : 0.0;
     }
-
-    public CartItems(ListBookResponseDTO dto) {
-        this.thumbnail = dto.getThumbnail();
-    }
 }
