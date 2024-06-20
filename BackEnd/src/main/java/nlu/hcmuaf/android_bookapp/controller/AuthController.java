@@ -12,14 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/user")
-public class LoginController {
+@RequestMapping("/api/v1/auth")
+public class AuthController {
 
   @Autowired
   private AuthenticationManager authenticationManager;
@@ -52,4 +53,9 @@ public class LoginController {
     return new ResponseEntity<>(userService.forgotPassword(requestDTO), HttpStatus.OK);
   }
 
+  @GetMapping("test")
+  public ResponseEntity<MessageResponseDTO> test() {
+    return new ResponseEntity<>(
+        MessageResponseDTO.builder().message("Tesst security success").build(), HttpStatus.OK);
+  }
 }

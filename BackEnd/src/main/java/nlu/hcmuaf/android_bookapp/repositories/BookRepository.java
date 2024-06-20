@@ -17,7 +17,7 @@ public interface BookRepository extends JpaRepository<Books, Long> {
   List<Books> getAllBy();
 
   @Query(
-      "SELECT new nlu.hcmuaf.android_bookapp.dto.response.ListBookResponseDTO(b.bookId, b.thumbnail, b.title, bd.author, AVG(br.rating.star), b.price, sd.quantity, dc.percent)"
+      "SELECT new nlu.hcmuaf.android_bookapp.dto.response.ListBookResponseDTO(b.bookId, b.thumbnail, b.title, bd.author, AVG(br.rating.star), b.price, SUM(sd.quantity), dc.percent) "
           +
           "FROM Books b " +
           "LEFT JOIN b.bookDetails bd " +
@@ -31,7 +31,7 @@ public interface BookRepository extends JpaRepository<Books, Long> {
   Page<ListBookResponseDTO> getNewBookList(Pageable pageable);
 
   @Query(
-      "SELECT new nlu.hcmuaf.android_bookapp.dto.response.ListBookResponseDTO(b.bookId, b.thumbnail, b.title, bd.author, AVG(br.rating.star), b.price, sd.quantity, dc.percent)"
+      "SELECT new nlu.hcmuaf.android_bookapp.dto.response.ListBookResponseDTO(b.bookId, b.thumbnail, b.title, bd.author, AVG(br.rating.star), b.price, SUM(sd.quantity), dc.percent)"
           +
           "FROM Books b " +
           "LEFT JOIN b.bookDetails bd " +
@@ -40,7 +40,8 @@ public interface BookRepository extends JpaRepository<Books, Long> {
           "LEFT JOIN sd.shipment s " +
           "LEFT JOIN b.discounts dc " +
           "WHERE dc.percent > 0 " +
-          "GROUP BY b.bookId, b.thumbnail, b.title, bd.author, b.price, sd.quantity, dc.percent " +
+          "GROUP BY b.bookId, b.thumbnail, b.title, bd.author, b.price, sd.quantity,  dc.percent "
+          +
           "ORDER BY s.dateAdded DESC"
   )
   Page<ListBookResponseDTO> getDiscountBookList(Pageable pageable);

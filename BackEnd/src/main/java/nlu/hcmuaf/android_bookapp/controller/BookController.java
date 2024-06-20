@@ -2,6 +2,7 @@ package nlu.hcmuaf.android_bookapp.controller;
 
 import java.util.List;
 import nlu.hcmuaf.android_bookapp.dto.response.ListBookResponseDTO;
+import nlu.hcmuaf.android_bookapp.repositories.BookRepository;
 import nlu.hcmuaf.android_bookapp.service.templates.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,8 @@ public class BookController {
 
   @Autowired
   private IBookService bookService;
+  @Autowired
+  private BookRepository repository;
 
   @GetMapping("/new-book")
   public List<ListBookResponseDTO> getNewListBook(
@@ -30,5 +33,4 @@ public class BookController {
       Pageable pageable) {
     return bookService.getDiscountBookList(pageable).getContent();
   }
-
 }
