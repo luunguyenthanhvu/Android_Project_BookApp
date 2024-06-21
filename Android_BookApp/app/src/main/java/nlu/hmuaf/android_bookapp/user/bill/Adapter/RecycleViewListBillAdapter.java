@@ -1,5 +1,6 @@
 
-package nlu.hmuaf.android_bookapp.user.cart_user.Adapter;
+package nlu.hmuaf.android_bookapp.user.bill.Adapter;
+
 
 import android.app.Activity;
 import android.view.LayoutInflater;

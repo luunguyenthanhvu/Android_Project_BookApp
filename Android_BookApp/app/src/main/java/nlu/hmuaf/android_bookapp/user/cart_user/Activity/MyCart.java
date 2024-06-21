@@ -73,7 +73,7 @@ public class MyCart extends AppCompatActivity {
                 }
 
                 intent.putExtra("selectedQuantities", quantityMap);
-//                intent.putExtra("listBookChoose", (ArrayList<CartItems>) selectedBooks);
+                intent.putExtra("listBookChoose", (ArrayList<CartItems>) selectedBooks);
                 startActivity(intent);
             }
         });
