@@ -20,6 +20,9 @@ import androidx.lifecycle.Observer;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.dto.response.BookDetailResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
@@ -49,11 +52,13 @@ public class BookActivity extends AppCompatActivity {
     private BookDetailResponseDTO bookDetailResponseDTO = new BookDetailResponseDTO();
     private LinearLayout smallImagesContainer;
     private CartService cartService;
+    private TextView cartBadgeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_activity);
+        cartBadgeTextView = findViewById(R.id.cart_badge_text_view);
         // get the cart service
         cartService = new CartService(getApplicationContext());
 
@@ -181,6 +186,8 @@ public class BookActivity extends AppCompatActivity {
                 showDanhGiaContent();
             }
         });
+        // get cart quantity
+        updateCartQuantity();
     }
 
     private void updateButtonStates(Button selectedButton) {
@@ -371,5 +378,29 @@ public class BookActivity extends AppCompatActivity {
         TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
         quantityTextView.setText(String.valueOf(cartSize));
         quantityTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void updateCartQuantity() {
+        if (MyUtils.getTokenResponse(this) != null) {
+            Executor executor = Executors.newSingleThreadExecutor();
+            executor.execute(() -> {
+                // Lấy số lượng sản phẩm trong giỏ hàng từ cơ sở dữ liệu
+                int quantityBookInCart = cartService.getUserCart(MyUtils.getTokenResponse(getApplicationContext()).getUserId()).size();
+
+                // Cập nhật giao diện người dùng
+                runOnUiThread(() -> {
+                    // Tìm và cập nhật TextView hiển thị số lượng sản phẩm trong giỏ hàng
+                    FrameLayout cartActionInclude = findViewById(R.id.cartItem);
+                    TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
+                    quantityTextView.setText(String.valueOf(quantityBookInCart));
+                    quantityTextView.setVisibility(View.VISIBLE);
+                });
+            });
+        } else {
+            FrameLayout cartActionInclude = findViewById(R.id.cartItem);
+            TextView quantityTextView = cartActionInclude.findViewById(R.id.cart_badge_text_view);
+            quantityTextView.setText(String.valueOf(0));
+            quantityTextView.setVisibility(View.VISIBLE);
+        }
     }
 }
