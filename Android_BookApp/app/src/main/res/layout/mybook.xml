@@ -22,54 +22,32 @@
                     android:id="@+id/smallImagesContainer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <!--                    &lt;!&ndash; ImageView cho 3 hình nhỏ &ndash;&gt;-->
-                    <!--                    <ImageView-->
-                    <!--                        android:id="@+id/imageViewBook"-->
-                    <!--                        android:layout_width="50dp"-->
-                    <!--                        android:layout_height="50dp"-->
-                    <!--                        android:adjustViewBounds="true"-->
-                    <!--                        android:onClick="onSmallImageClick"-->
-                    <!--                        android:scaleType="centerCrop"-->
-                    <!--                        android:src="@drawable/book_login"-->
-                    <!--                        android:tag="book" />-->
-
-                    <!--                    <ImageView-->
-                    <!--                        android:id="@+id/imageViewBell"-->
-                    <!--                        android:layout_width="50dp"-->
-                    <!--                        android:layout_height="50dp"-->
-                    <!--                        android:adjustViewBounds="true"-->
-                    <!--                        android:onClick="onSmallImageClick"-->
-                    <!--                        android:scaleType="centerCrop"-->
-                    <!--                        android:src="@drawable/bell"-->
-                    <!--                        android:tag="bell" />-->
-
-                    <!--                    <ImageView-->
-                    <!--                        android:id="@+id/imageViewProfile"-->
-                    <!--                        android:layout_width="50dp"-->
-                    <!--                        android:layout_height="50dp"-->
-                    <!--                        android:adjustViewBounds="true"-->
-                    <!--                        android:onClick="onSmallImageClick"-->
-                    <!--                        android:scaleType="centerCrop"-->
-                    <!--                        android:src="@drawable/profile"-->
-                    <!--                        android:tag="profile" />-->
-                </LinearLayout>
+                    android:orientation="vertical"></LinearLayout>
 
                 <!-- LinearLayout chứa hình lớn -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-                    <!-- ImageView cho hình lớn -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
                     <ImageView
                         android:id="@+id/bigImageView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="410dp"
+                        android:layout_height="400dp"
                         android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
+                        android:paddingRight="10dp"
+                        android:scaleType="fitCenter"
                         android:src="@drawable/book_login" />
-                </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/bigImageViewCopy"
+                        android:layout_width="410dp"
+                        android:layout_height="400dp"
+                        android:adjustViewBounds="true"
+                        android:paddingRight="10dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/book_login" />
+                </FrameLayout>
+
 
             </LinearLayout>
 
@@ -99,9 +77,20 @@
                     android:layout_width="247dp"
                     android:layout_height="wrap_content">
 
+                    <TextView
+                        android:id="@+id/tv_priceB2"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/_500"
+                        android:textColor="@color/purple_200"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
                     <LinearLayout
-                        android:id="@+id/priceLayout"
-                        android:layout_width="75dp"
+                        android:id="@+id/priceDcLayout"
+                        android:layout_width="10dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/border_background"
@@ -109,23 +98,14 @@
                         android:padding="10dp">
 
                         <TextView
-                            android:id="@+id/tv_priceB2"
+                            android:id="@+id/tv_discountB2"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/_500"
-                            android:textColor="@android:color/white" />
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="50%"
+                            android:textColor="@color/white" />
                     </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tv_discountB2"
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="50%"
-                        android:textColor="@color/purple_700" />
 
                     <TextView
                         android:id="@+id/originalPriceB2"
@@ -239,22 +219,33 @@
 
                     <Button
                         android:id="@+id/buttonDecrease"
-                        android:layout_width="58dp"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:text="-" />
+                        android:backgroundTint="@color/purple_200"
+                        android:backgroundTintMode="add"
+                        android:text="-"
+                        android:textColor="@color/white" />
 
                     <NumberPicker
                         android:id="@+id/numberPicker"
                         android:layout_width="52dp"
                         android:layout_height="38dp"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp" />
+                        android:layout_marginRight="10dp"
+                        android:descendantFocusability="blocksDescendants"
+                        android:editable="false"
+                        android:focusable="false" />
+
 
                     <Button
                         android:id="@+id/buttonIncrease"
-                        android:layout_width="56dp"
+                        android:layout_width="40dp"
                         android:layout_height="wrap_content"
-                        android:text="+" />
+                        android:backgroundTint="@color/purple_200"
+                        android:backgroundTintMode="add"
+                        android:text="+"
+                        android:textColor="@color/white" />
+
 
                 </LinearLayout>
 
@@ -263,12 +254,22 @@
                     android:layout_height="0dp"
                     android:layout_weight="1" />
 
-                <Button
-                    android:id="@+id/buttonPurchase"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:text="Mua" />
+                    android:layout_marginRight="50dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/add_product"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="20dp"
+                        app:srcCompat="@drawable/grocerystore"
+                        app:tint="@color/purple_200" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout

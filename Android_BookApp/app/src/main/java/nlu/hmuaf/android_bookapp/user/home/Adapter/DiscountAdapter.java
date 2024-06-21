@@ -31,7 +31,7 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.ImageV
         void onPriceClick(int position);
     }
 
-    public DiscountAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener imageClickListener, OnPriceClickListener priceClickListener) {
+    public DiscountAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener, OnPriceClickListener priceClickListener) {
         this.listBook = listBook != null ? listBook : new ArrayList<>();
         this.listener = listener;
         this.priceClickListener = priceClickListener;
