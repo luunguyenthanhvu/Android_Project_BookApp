@@ -47,4 +47,12 @@ public class BookDetails {
 
   @Column(name = "numPage")
   private int numPage;
+
+  @Override
+  public String toString() {
+    return ("Loại sản phẩm : " + eBookFormat.toString() + "\n" +
+        "Kích thước : " + size + "\n" +
+        "Số trang : " + numPage + "\n" +
+        "Tác giả : " + author + "\n");
+  }
 }

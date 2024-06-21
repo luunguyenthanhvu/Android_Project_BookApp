@@ -7,12 +7,15 @@ import nlu.hcmuaf.android_bookapp.dto.request.RegisterRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.VerifyRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.TokenResponseDTO;
+import nlu.hcmuaf.android_bookapp.entities.Books;
+import nlu.hcmuaf.android_bookapp.repositories.BookRepository;
 import nlu.hcmuaf.android_bookapp.service.templates.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +33,8 @@ public class AuthController {
 
   @Autowired
   private IUserService userService;
+  @Autowired
+  private BookRepository bookRepository;
 
   @PostMapping("login")
   public ResponseEntity<TokenResponseDTO> login(@RequestBody LoginRequestDTO requestDTO) {
@@ -53,9 +58,9 @@ public class AuthController {
     return new ResponseEntity<>(userService.forgotPassword(requestDTO), HttpStatus.OK);
   }
 
-  @GetMapping("test")
-  public ResponseEntity<MessageResponseDTO> test() {
-    return new ResponseEntity<>(
-        MessageResponseDTO.builder().message("Tesst security success").build(), HttpStatus.OK);
+  @GetMapping("test/{bookId}")
+  public ResponseEntity<Books> test(@PathVariable("bookId") long
+      bookId) {
+    return ResponseEntity.ok(bookRepository.getBooksByBookId(bookId).get());
   }
 }
