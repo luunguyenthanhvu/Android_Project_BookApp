@@ -2,13 +2,14 @@ package nlu.hcmuaf.android_bookapp.service.impl;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.transaction.Transaction;
 import jakarta.transaction.Transactional;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 import nlu.hcmuaf.android_bookapp.dto.json.BooksWrapper;
+import nlu.hcmuaf.android_bookapp.dto.response.BookDetailResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hcmuaf.android_bookapp.entities.BookDetails;
 import nlu.hcmuaf.android_bookapp.entities.BookImages;
@@ -17,6 +18,8 @@ import nlu.hcmuaf.android_bookapp.entities.Books;
 import nlu.hcmuaf.android_bookapp.entities.PublishCompany;
 import nlu.hcmuaf.android_bookapp.entities.Ratings;
 import nlu.hcmuaf.android_bookapp.enums.EBookFormat;
+import nlu.hcmuaf.android_bookapp.repositories.BookDetailsRepository;
+import nlu.hcmuaf.android_bookapp.repositories.BookImageRepository;
 import nlu.hcmuaf.android_bookapp.repositories.BookRepository;
 import nlu.hcmuaf.android_bookapp.repositories.RatingRepository;
 import nlu.hcmuaf.android_bookapp.service.templates.IBookService;
@@ -44,6 +47,10 @@ public class BookServiceImpl implements IBookService {
   private IPublishCompanyService publishCompanyService;
   @Autowired
   private RatingRepository ratingRepository;
+  @Autowired
+  private BookImageRepository bookImageRepository;
+  @Autowired
+  private BookDetailsRepository bookDetailsRepository;
 
   @Override
   @Transactional(rollbackOn = Exception.class)
@@ -74,7 +81,9 @@ public class BookServiceImpl implements IBookService {
           bookDetails.setSize(booksWrapper.getBooks().getBookDetails().getSize());
           bookDetails.setNumPage(
               Integer.valueOf(booksWrapper.getBooks().getBookDetails().getNumPage()));
-          bookDetails.setAuthor(booksWrapper.getBooks().getBookDetails().getAuthor());
+          String formattedAuthors = booksWrapper.getBooks().getBookDetails().getAuthor()
+              .replace("\n", ", ");
+          bookDetails.setAuthor(formattedAuthors);
 
           // set publish company for each book
           String bookWrapperCompany = booksWrapper.getBooks().getBookDetails().getPublishCompany()
@@ -151,4 +160,19 @@ public class BookServiceImpl implements IBookService {
   public Page<ListBookResponseDTO> getDiscountBookList(Pageable pageable) {
     return bookRepository.getDiscountBookList(pageable);
   }
+
+  @Override
+  public BookDetailResponseDTO getBookDetailsByBookId(long bookId) {
+    Optional<BookDetailResponseDTO> optional = bookRepository.getBooksDetailsByBookId(bookId);
+    if (optional.isPresent()) {
+      var data = optional.get();
+      List<String> bookImages = bookImageRepository.getAllByBookImageByBookId(bookId);
+      data.setImg(bookImages.toArray(new String[0]));
+      Optional<BookDetails> bookDetails = bookDetailsRepository.getAllByBookId(bookId);
+      data.setDetails(bookDetails.get().toString());
+      return data;
+    }
+    return null;
+  }
+
 }
