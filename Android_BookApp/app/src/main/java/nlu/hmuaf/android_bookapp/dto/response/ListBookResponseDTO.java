@@ -18,11 +18,11 @@ public class ListBookResponseDTO {
     private Double averageRating;
     private double originalPrice;
     private double discountedPrice;
-    private int quantity;
+    private Long quantity;
     private Double discount;
 
     public ListBookResponseDTO(long bookId, String thumbnail, String title, String author,
-                               Double averageRating, double originalPrice, int quantity, Double discount) {
+                               Double averageRating, double originalPrice,  Long quantity, Double discount) {
         this.bookId = bookId;
         this.thumbnail = thumbnail;
         this.title = title;

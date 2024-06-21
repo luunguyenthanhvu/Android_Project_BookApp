@@ -27,6 +27,7 @@ import java.util.concurrent.Executors;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.animation.add_to_cart.CircleAnimation;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
+import nlu.hmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
 import nlu.hmuaf.android_bookapp.networking.BookAppService;
@@ -65,6 +66,9 @@ public class HomeActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         // get the barget text view
         cartBadgeTextView = findViewById(R.id.cart_badge_text_view);
+        // get data from api
+        getDiscountBookData();
+        getNewBookData();
 
         // get the cart service
         cartService = new CartService(getApplicationContext());
@@ -84,15 +88,9 @@ public class HomeActivity extends AppCompatActivity {
         if (tokenResponse != null) {
             String welcomeMessage = "Xin chào, " + tokenResponse.getUsername() + "!";
             welcomeTextView.setText(welcomeMessage);
-            //get cart from database
-
         } else {
             welcomeTextView.setText("Xin chào");
         }
-
-        // get data from api
-        getDiscountBookData();
-        getNewBookData();
 
         // Tìm TextView theo ID
         TextView tvPrevious = findViewById(R.id.tv_previous);
@@ -142,16 +140,19 @@ public class HomeActivity extends AppCompatActivity {
         imageAdapter = new DiscountAdapter(discountListBook, new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                ListBookResponseDTO selectedBook = discountListBook.get(position);
                 Intent intent = new Intent(HomeActivity.this, BookActivity.class);
+                intent.putExtra("BOOK_ID", selectedBook.getBookId());
                 startActivity(intent);
             }
+
         }, new DiscountAdapter.OnPriceClickListener() {
             //Khi bấm vào giá tiền thì thêm vào giỏ hàng
             @Override
             public void onPriceClick(int position) {
                 if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                     ListBookResponseDTO selectedBook = discountListBook.get(position);
-                    cartService.updateProductCart(tokenResponse.getUserId(), selectedBook, 1);
+                    cartService.updateProductCart(tokenResponse, selectedBook, 1);
                     // add animation
                     ImageView imageView = findImageViewForDiscountBook(selectedBook);
                     if (imageView != null) {
@@ -165,7 +166,9 @@ public class HomeActivity extends AppCompatActivity {
         popularAdapter = new NewBookAdapter(newListBook, new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                ListBookResponseDTO selectedBook = newListBook.get(position);
                 Intent intent = new Intent(HomeActivity.this, BookActivity.class);
+                intent.putExtra("BOOK_ID", selectedBook.getBookId());
                 startActivity(intent);
             }
         }, new NewBookAdapter.OnPriceClickListener() {
@@ -173,7 +176,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onPriceClick(int position) {
                 if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                     ListBookResponseDTO selectedBook = newListBook.get(position);
-                    cartService.updateProductCart(tokenResponse.getUserId(), selectedBook, 1);
+                    cartService.updateProductCart(tokenResponse, selectedBook, 1);
 
                     // add animation
                     ImageView imageView = findImageViewForNewBook(selectedBook);
@@ -230,10 +233,13 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
+
         // lấy số lượng sách trong giỏ hàng
         updateCartQuantity();
-//        Kiểm tra activity hiện tại để đổi màu icon ở navigation
+
+        //        Kiểm tra activity hiện tại để đổi màu icon ở navigation
         checkCurrentActivity();
+
     }
 
     private void updateCartQuantity() {
@@ -305,7 +311,7 @@ public class HomeActivity extends AppCompatActivity {
                     updateNewBookRecyclerView(newListBook);
                 } else {
                     // Xử lý lỗi khi không thành công
-                    System.out.println("lỗi");
+                    System.out.println("lỗi lấy data");
                 }
             }
 
@@ -323,7 +329,9 @@ public class HomeActivity extends AppCompatActivity {
             imageAdapter = new DiscountAdapter(discountListBook, new OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
+                    ListBookResponseDTO selectedBook = discountListBook.get(position);
                     Intent intent = new Intent(HomeActivity.this, BookActivity.class);
+                    intent.putExtra("BOOK_ID", selectedBook.getBookId());
                     startActivity(intent);
                 }
             }, new DiscountAdapter.OnPriceClickListener() {
@@ -332,7 +340,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void onPriceClick(int position) {
                     if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                         ListBookResponseDTO selectedBook = discountListBook.get(position);
-                        cartService.updateProductCart(tokenResponse.getUserId(), selectedBook, 1);
+                        cartService.updateProductCart(tokenResponse, selectedBook, 1);
 
                         // add animation
                         ImageView imageView = findImageViewForDiscountBook(selectedBook);
@@ -356,8 +364,10 @@ public class HomeActivity extends AppCompatActivity {
             popularAdapter = new NewBookAdapter(newListBooks, new OnItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
+                    ListBookResponseDTO selectedBook = newListBooks.get(position);
                     // Xử lý sự kiện khi người dùng nhấn vào một sách
                     Intent intent = new Intent(HomeActivity.this, BookActivity.class);
+                    intent.putExtra("BOOK_ID", selectedBook.getBookId());
                     startActivity(intent);
                 }
             }, new NewBookAdapter.OnPriceClickListener() {
@@ -365,7 +375,7 @@ public class HomeActivity extends AppCompatActivity {
                 public void onPriceClick(int position) {
                     if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                         ListBookResponseDTO selectedBook = newListBooks.get(position);
-                        cartService.updateProductCart(tokenResponse.getUserId(), selectedBook, 1);
+                        cartService.updateProductCart(tokenResponse, selectedBook, 1);
 
                         // add animation
                         ImageView imageView = findImageViewForNewBook(selectedBook);

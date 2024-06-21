@@ -180,7 +180,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/star" />
+                    android:src="@drawable/star5" />
 
                 <TextView
                     android:id="@+id/my_reviews_label"

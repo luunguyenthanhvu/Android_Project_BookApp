@@ -104,7 +104,7 @@ public class DiscountAdapter extends RecyclerView.Adapter<DiscountAdapter.ImageV
                     }
                 }
             });
-            //            Nút price giá gốc nhận sự kiển để bỏ vào giỏ hàng
+            // Nút price giá gốc nhận sự kiển để bỏ vào giỏ hàng
             priceB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

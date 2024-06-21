@@ -156,7 +156,7 @@ public class RecycleViewBookForMyCartAdapter extends RecyclerView.Adapter<Recycl
                 } else {
                     holder.priceConfirm.setText(MyUtils.convertToVND(quantity * priceToShow));
                     quantityStates.put(currentPosition, quantity);
-                    cartService.updateQuantity(MyUtils.getTokenResponse(context).getUserId(), currentItem.getBookId(), quantity);
+                    cartService.updateQuantity(MyUtils.getTokenResponse(context), currentItem.getBookId(), quantity);
                 }
             }
         });
