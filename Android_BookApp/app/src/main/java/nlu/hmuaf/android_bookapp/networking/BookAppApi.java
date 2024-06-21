@@ -8,6 +8,7 @@ import nlu.hmuaf.android_bookapp.dto.request.ForgotPasswordDTO;
 import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.RegisterRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.VerifyRequestDTO;
+import nlu.hmuaf.android_bookapp.dto.response.BookDetailResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
@@ -48,4 +49,7 @@ public interface BookAppApi {
 
     @POST("api/v1/user/cart/update/{userId}")
     Call<Void> updateUserCart(@Path("userId") long userId, @Body List<CartItemRequestDTO> cartItems);
+
+    @GET("api/books/book-details/{bookId}")
+    Call<BookDetailResponseDTO> getBookDetailByBookId(@Path("bookId") long bookId);
 }
