@@ -31,7 +31,7 @@ public class BooksSpecifications implements Specification<Books> {
       }
     } else if (criteria.getKey().equalsIgnoreCase("publisher")) {
       Join<Books, BookDetails> bookDetailsJoin = root.join("bookDetails");
-      Join<BookDetails, PublishCompany> publishCompanyJoin = root.join("publishCompany");
+      Join<BookDetails, PublishCompany> publishCompanyJoin = bookDetailsJoin.join("publishCompany");
       if (criteria.getOperation().equalsIgnoreCase(":")) {
         return builder.equal(publishCompanyJoin.get("companyName"), criteria.getValue().toString());
       }

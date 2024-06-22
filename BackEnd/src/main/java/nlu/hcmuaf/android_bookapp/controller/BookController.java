@@ -44,7 +44,7 @@ public class BookController {
     return ResponseEntity.ok(bookService.getBookDetailsByBookId(bookId));
   }
 
-  @GetMapping
+  @GetMapping("/get-books")
   public ResponseEntity<List<ListBookResponseDTO>> findBooks(
       @RequestParam(required = false) String coverType,
       @RequestParam(required = false) String publisher,
