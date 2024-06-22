@@ -124,7 +124,7 @@
         <activity android:name=".user.cart_user.Activity.DiscountsActivity"
             android:exported="false">
         </activity>
-        <activity android:name=".user.home.Activity.HomeActivity"
+        <activity android:name=".user.home.Activity.BookActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -140,7 +140,7 @@
         <activity android:name=".user.home.Activity.LibraryActivity"
             android:exported="false">
         </activity>
-        <activity android:name=".user.home.Activity.BookActivity"
+        <activity android:name=".user.home.Activity.HomeActivity"
             android:exported="false">
         </activity>
         <activity android:name=".user.home.Activity.NumberActivity"
