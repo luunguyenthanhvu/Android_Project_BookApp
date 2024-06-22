@@ -10,28 +10,33 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/name_user"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
-            android:text="Tên tài khoản"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="160dp"
-            android:paddingBottom="5dp"
-            android:text="Trạng thái"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/name_user"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="5dp"
+                android:text="Tên tài khoản"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:text="Trạng thái"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
-
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -64,20 +69,20 @@
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Số lượng: 1" />
+                android:text="Số lượng: ?" />
 
             <TextView
                 android:id="@+id/product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Giá: ??? đ" />
+                android:text="Giá: ??? " />
 
             <TextView
                 android:id="@+id/product_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tổng giá: ??? đ"
+                android:text="Tổng giá: ??? "
                 android:textColor="@color/black"
                 android:layout_marginTop="5dp" />
         </LinearLayout>
@@ -91,18 +96,20 @@
 
         <TextView
             android:id="@+id/name_order"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"
+            android:layout_weight="1"
             android:text="Mã đơn hàng"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/id_product_code"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="180dp"
+            android:gravity="right"
+            android:layout_weight="1"
             android:paddingBottom="5dp"
             android:text="11111111"
             android:textSize="16sp"
@@ -113,14 +120,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="7dp"
-        android:layout_marginLeft="70dp"
-        android:orientation="horizontal">
+        android:layout_gravity="end"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:padding="7dp">
+
         <Button
-            android:id="@+id/delete_button"
+            android:id="@+id/get_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
             android:backgroundTint="@color/light_blue_A400"
@@ -131,7 +139,6 @@
             android:id="@+id/get_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/light_blue_A400"
             android:text="Cái gí đó?"

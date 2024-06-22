@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
     android:background="@drawable/header_new1"
-    tools:context=".Admin.AdminHome">
+    tools:context=".Admin.Home">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -59,8 +59,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="230dp"
-                android:text="Đăng xuất"
-                android:onClick="onAddOrderClick" />
+                android:onClick="onAddOrderClick"
+                android:text="Đăng xuất" />
 
         </RelativeLayout>
 
@@ -90,90 +90,34 @@
                 <!-- Lập menu cho tổng quan -->
 
                 <LinearLayout
-                android:layout_width="375dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="375dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:background="@color/white"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:text="Quản Lý Đơn Hàng"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <ImageView
-                        android:id="@+id/nav_order_management"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@drawable/arrow_undernew" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/order_management_submenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <TextView
-                        android:id="@+id/list_order_submenu"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Danh sách đơn hàng"
-                        android:textColor="@color/purple_500"
-                        android:textSize="16dp"
-                        android:padding="8dp" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Thêm đơn hàng"
-                        android:textColor="@color/purple_500"
-                        android:textSize="16dp"
-                        android:padding="8dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="Quản lý đơn hàng"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Quản Lý Tồn Kho"
-                        android:textColor="@color/purple_500"
-                        android:textSize="16dp"
-                        android:padding="8dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:text="Quản Lý Sản Phẩm"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <ImageView
-                        android:id="@+id/nav_product_management"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@drawable/arrow_undernew" />
-                </LinearLayout>
-
-                <LinearLayout
-                        android:id="@+id/product_management_submenu"
+                        <ImageView
+                            android:id="@+id/nav_order_management"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:src="@drawable/arrow_dropdown" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/order_management_submenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -182,80 +126,141 @@
                         android:paddingEnd="16dp">
 
                         <TextView
-                            android:id="@+id/list_product_submenu"
+                            android:id="@+id/list_order_submenu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Danh sách sản phẩm"
+                            android:text="Danh sách đơn hàng"
                             android:textColor="@color/purple_500"
                             android:textSize="16dp"
                             android:padding="8dp" />
 
                         <TextView
+                            android:id="@+id/list_addOrder_submenu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Thêm sản phẩm"
+                            android:text="Thêm đơn hàng"
+                            android:textColor="@color/purple_500"
+                            android:textSize="16dp"
+                            android:padding="8dp" />
+
+                        <TextView
+                            android:id="@+id/list_inStock_submenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Quản Lý Tồn Kho"
                             android:textColor="@color/purple_500"
                             android:textSize="16dp"
                             android:padding="8dp" />
                     </LinearLayout>
 
-                <TextView
-                    android:id="@+id/nav_sales_mangagement"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:text="Doanh thu"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="Quản lý sản phẩm"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:id="@+id/nav_product_management"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:src="@drawable/arrow_dropdown" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/product_management_submenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp">
+
+                            <TextView
+                                android:id="@+id/list_product_submenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Danh sách sản phẩm"
+                                android:textColor="@color/purple_500"
+                                android:textSize="16dp"
+                                android:padding="8dp" />
+
+                            <TextView
+                                android:id="@+id/list_addProduct_submenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Thêm sản phẩm"
+                                android:textColor="@color/purple_500"
+                                android:textSize="16dp"
+                                android:padding="8dp" />
+                        </LinearLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/nav_sales_mangagement"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
-                        android:text="Quản Lý Sản Phẩm"
+                        android:text="Doanh thu"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
-                    <ImageView
-                        android:id="@+id/nav_user_management"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@drawable/arrow_undernew" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/user_management_submenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Danhh sách người dùng"
-                        android:textColor="@color/purple_500"
-                        android:textSize="16dp"
-                        android:padding="8dp" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:text="Quản lý người dùng"
+                            android:textColor="@color/black"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:id="@+id/nav_user_management"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:src="@drawable/arrow_dropdown" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/user_management_submenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Thêm nguời dùng"
-                        android:textColor="@color/purple_500"
-                        android:textSize="16dp"
-                        android:padding="8dp" />
-                </LinearLayout>
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp">
 
-            </LinearLayout>
+                        <TextView
+                            android:id="@+id/list_user_submenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Danhh sách người dùng"
+                            android:textColor="@color/purple_500"
+                            android:textSize="16dp"
+                            android:padding="8dp" />
+
+                        <TextView
+                            android:id="@+id/list_addUser_submenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Thêm nguời dùng"
+                            android:textColor="@color/purple_500"
+                            android:textSize="16dp"
+                            android:padding="8dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
             </LinearLayout>
 
         </ScrollView>

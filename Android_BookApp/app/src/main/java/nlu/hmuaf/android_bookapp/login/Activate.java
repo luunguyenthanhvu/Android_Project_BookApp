@@ -29,7 +29,6 @@ public class Activate extends AppCompatActivity {
         // Khởi tạo
         activateNumber = findViewById(R.id.activate_edit_text);
         button_login = findViewById(R.id.activate_login);
-        sendCode = findViewById(R.id.sendCode);
 
         // Mã xác nhận chỉ được nhập số
         activateNumber.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -55,22 +54,7 @@ public class Activate extends AppCompatActivity {
             }
         });
 
-        cancel = findViewById(R.id.cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Activate.this, Login.class);
-                startActivity(intent);
-            }
-        });
 
-        reset = findViewById(R.id.reset);
-        reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activateNumber.setText("");
-            }
-        });
 
     }
 

@@ -1,6 +1,8 @@
-package nlu.hmuaf.android_bookapp.Admin;
+package nlu.hmuaf.android_bookapp.Admin.order.bean;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
     private String userName;
     private String productName;
     private String productImageUrl;
@@ -9,9 +11,12 @@ public class Order {
     private String total;
     private String status;
 
-    private static String productCode;
+    private String productId;
 
-    public Order(String userName, String productName, String productImageUrl, int quantity, String price, String total, String status, String productCode) {
+    public Order() {
+
+    }
+    public Order(String userName, String productName, String productImageUrl, int quantity, String price, String total, String status, String productId) {
         this.userName = userName;
         this.productName = productName;
         this.productImageUrl = productImageUrl;
@@ -19,7 +24,7 @@ public class Order {
         this.price = price;
         this.total = total;
         this.status = status;
-        this.productCode = productCode;
+        this.productId = productId;
     }
 
     public String getUserName() {
@@ -78,11 +83,11 @@ public class Order {
         this.status = status;
     }
 
-    public String getProductCode() {
-        return productCode;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 }
