@@ -44,10 +44,6 @@ public class LogOutActivity extends AppCompatActivity {
         });
 
         // Phần còn lại của mã
-
-
-
-
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 

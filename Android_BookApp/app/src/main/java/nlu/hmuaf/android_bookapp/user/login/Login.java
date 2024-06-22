@@ -11,6 +11,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
+
+import nlu.hmuaf.android_bookapp.room.entity.CartItems;
+import nlu.hmuaf.android_bookapp.room.service.CartService;
 import nlu.hmuaf.android_bookapp.user.home.Activity.HomeActivity;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
@@ -28,11 +32,12 @@ public class Login extends AppCompatActivity {
     private TextView signupRedirectText, forgotPassword;
     private ProgressBar progressBar; // Thêm ProgressBar
     private BookAppApi bookAppApi;
+    private CartService cartService;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        cartService = new CartService(getApplicationContext());
         // Khởi tạo
         loginMail = findViewById(R.id.login_email);
         loginPassword = findViewById(R.id.login_password);
@@ -106,7 +111,7 @@ public class Login extends AppCompatActivity {
                     if (responseDTO.getMessage().equals("Login success!")) {
                         // Lưu TokenResponseDTO vào SharedPreferences
                         MyUtils.saveTokenResponse(Login.this, responseDTO);
-
+                        cartService.syncCartWithServer(responseDTO, "Login");
                         Toast.makeText(Login.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, HomeActivity.class);
                         startActivity(intent);

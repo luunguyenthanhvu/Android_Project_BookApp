@@ -10,11 +10,12 @@
         android:orientation="horizontal"
         android:paddingLeft="5dp">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/listImageBook"
-            android:layout_width="257dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+        <ImageView
+            android:id="@+id/imgViewBookInEachBillDetail"
+            android:layout_width="253dp"
+            android:layout_height="173dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/saber" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,7 +26,7 @@
             android:paddingTop="30dp">
 
             <TextView
-                android:id="@+id/textViewBookNameInEachBill"
+                android:id="@+id/textViewBookNameInEachBillDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Thám tử đã chết tập 7"
@@ -33,7 +34,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textViewQuantityInEachBill"
+                android:id="@+id/textViewQuantityInEachBillDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -42,7 +43,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textViewPriceInEachBill"
+                android:id="@+id/textViewPriceBaseOnQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

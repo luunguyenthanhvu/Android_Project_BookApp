@@ -13,23 +13,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.HashMap;
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Books;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 
-public class RecycleViewBookChosenAdapter extends RecyclerView.Adapter<RecycleViewBookChosenAdapter.MyViewHolder>{
+public class RecycleViewBookChosenAdapter extends RecyclerView.Adapter<RecycleViewBookChosenAdapter.MyViewHolder> {
     private Activity context;
 
-    private List<Books> listBook;
-    private HashMap<Integer, Integer> quantityBookChosen ;
+    private List<CartItems> listBook;
+    private HashMap<Integer, Integer> quantityBookChosen;
 
-    public RecycleViewBookChosenAdapter(Activity context, List<Books> list,HashMap<Integer, Integer> quantityBookChosen) {
+    public RecycleViewBookChosenAdapter(Activity context, List<CartItems> list, HashMap<Integer, Integer> quantityBookChosen) {
         this.listBook = list;
         this.context = context;
-        this.quantityBookChosen=quantityBookChosen;
+        this.quantityBookChosen = quantityBookChosen;
     }
-    class MyViewHolder extends RecyclerView.ViewHolder{
+
+    class MyViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageBook;
-        private TextView textViewBookName, quantity,price,finalPrice;
+        private TextView textViewBookName, quantity, price, finalPrice;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -47,28 +48,30 @@ public class RecycleViewBookChosenAdapter extends RecyclerView.Adapter<RecycleVi
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_book_chosen, parent, false);
         return new RecycleViewBookChosenAdapter.MyViewHolder(view);
     }
+
     @Override
-    public void onBindViewHolder(@NonNull RecycleViewBookChosenAdapter.MyViewHolder holder, int position){
+    public void onBindViewHolder(@NonNull RecycleViewBookChosenAdapter.MyViewHolder holder, int position) {
 //        holder.imageBook.setImageResource(R.drawable.saber);
         holder.textViewBookName.setText(listBook.get(position).getTitle());
-        holder.quantity.setText("Số lượng: "+String.valueOf(quantityBookChosen.get(position)));
-        holder.price.setText(String.valueOf("Đơn giá: "+listBook.get(position).getPrice())+" VNĐ");
-        holder.finalPrice.setText(String.valueOf("Tổng tiền: "+quantityBookChosen.get(position) * listBook.get(position).getPrice())+" VNĐ");
+        holder.quantity.setText("Số lượng: " + String.valueOf(quantityBookChosen.get(position)));
+        holder.price.setText(String.valueOf("Đơn giá: " + listBook.get(position).getOriginalPrice()) + " VNĐ");
+        holder.finalPrice.setText(String.valueOf("Tổng tiền: " + quantityBookChosen.get(position) * listBook.get(position).getDiscountedPrice()) + " VNĐ");
     }
-
 
 
     @Override
     public int getItemCount() {
         return listBook.size();
     }
+
     public double getTotalPrice() {
         double total = 0;
         for (int i = 0; i < listBook.size(); i++) {
-            total += listBook.get(i).getPrice() * quantityBookChosen.get(i);
+            total += listBook.get(i).getDiscountedPrice() * quantityBookChosen.get(i);
         }
         return total;
     }
+
     public int countQuantity() {
         int total = 0;
         for (int i = 0; i < listBook.size(); i++) {

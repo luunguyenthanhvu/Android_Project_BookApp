@@ -24,13 +24,12 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
     private OnItemClickListener listener;
     private OnPriceClickListener priceClickListener;
 
-
-//    Interface bắt sự kiện khi nút giá tiền được bấm vào để add vào giỏ hàng
+    // Interface bắt sự kiện khi nút giá tiền được bấm vào để add vào giỏ hàng
     public interface OnPriceClickListener {
         void onPriceClick(int position);
     }
 
-    public NewBookAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener,OnPriceClickListener priceClickListener) {
+    public NewBookAdapter(List<ListBookResponseDTO> listBook, OnItemClickListener listener, OnPriceClickListener priceClickListener) {
         this.listBook = listBook != null ? listBook : new ArrayList<>();
         this.listener = listener;
         this.priceClickListener = priceClickListener;
@@ -44,18 +43,20 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PopularViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final PopularViewHolder holder, int position) {
         ListBookResponseDTO book = listBook.get(position);
         if (book == null) {
             return;
         }
         Picasso.get().load(book.getThumbnail()).into(holder.imgBookB2);
+        Picasso.get().load(book.getThumbnail()).into(holder.imgCopyB2);
+
         holder.nameB2.setText(book.getTitle());
         if (book.getDiscount() != 0.0) {
             double originalPrice = book.getOriginalPrice();
             holder.priceB2.setText(MyUtils.convertToVND(book.getDiscountedPrice()));
 
-            //setting discount
+            // setting discount
             holder.tvDiscount.setText((int) (book.getDiscount() * 100) + "%");
             holder.tvDiscount.setVisibility(View.VISIBLE);
 
@@ -68,6 +69,18 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
             holder.tvDiscount.setVisibility(View.GONE);
             holder.originalPrice.setVisibility(View.GONE);
         }
+
+        holder.imgCopyB2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    int position = holder.getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(position);
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -80,12 +93,13 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
 
     public class PopularViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgBookB2;
+        private ImageView imgCopyB2;
         private TextView nameB2, priceB2, tvDiscount, originalPrice;
-
 
         public PopularViewHolder(@NonNull View itemView) {
             super(itemView);
             imgBookB2 = itemView.findViewById(R.id.img_imageB2);
+            imgCopyB2 = itemView.findViewById(R.id.img_copyB2);
             nameB2 = itemView.findViewById(R.id.tv_nameB2);
             priceB2 = itemView.findViewById(R.id.tv_priceB2);
             tvDiscount = itemView.findViewById(R.id.tv_discount);
@@ -102,7 +116,8 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
                     }
                 }
             });
-//            Nút price giá gốc nhận sự kiển để bỏ vào giỏ hàng
+
+            // Nút price giá gốc nhận sự kiện để bỏ vào giỏ hàng
             priceB2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -115,6 +130,10 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
                 }
             });
         }
+
+        public ImageView getImgBook() {
+            return imgBookB2;
+        }
     }
 
     public void updateData(List<ListBookResponseDTO> newBookList) {
@@ -123,3 +142,4 @@ public class NewBookAdapter extends RecyclerView.Adapter<NewBookAdapter.PopularV
         notifyDataSetChanged();
     }
 }
+

@@ -1,18 +1,24 @@
+
 package nlu.hmuaf.android_bookapp.user.cart_user.Adapter;
+
 
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.BillDetails;
+
+import nlu.hmuaf.android_bookapp.user.bill.Bean.BillDetails;
+
+
+
 import nlu.hmuaf.android_bookapp.R;
 
 public class RecycleViewBooksInEachBillAdapter extends RecyclerView.Adapter<RecycleViewBooksInEachBillAdapter.MyViewHolder>{
@@ -49,15 +55,15 @@ public class RecycleViewBooksInEachBillAdapter extends RecyclerView.Adapter<Recy
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
-        private ViewPager2 listImageBook;
+        private ImageView imageViewBook;
         private TextView textViewBookName, quantity,price;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            listImageBook = itemView.findViewById(R.id.listImageBook);
-            textViewBookName = itemView.findViewById(R.id.textViewBookNameInEachBill);
-            quantity = itemView.findViewById(R.id.textViewQuantityInEachBill);
-            price = itemView.findViewById(R.id.textViewPriceInEachBill);
+            imageViewBook = itemView.findViewById(R.id.imgViewBookInEachBillDetail);
+            textViewBookName = itemView.findViewById(R.id.textViewBookNameInEachBillDetail);
+            quantity = itemView.findViewById(R.id.textViewQuantityInEachBillDetail);
+            price = itemView.findViewById(R.id.textViewPriceBaseOnQuantity);
 
 
         }

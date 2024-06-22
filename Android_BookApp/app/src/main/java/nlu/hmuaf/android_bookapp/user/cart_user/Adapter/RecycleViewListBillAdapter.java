@@ -1,3 +1,4 @@
+
 package nlu.hmuaf.android_bookapp.user.cart_user.Adapter;
 
 import android.app.Activity;
@@ -12,8 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Bills;
+
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Bills;
 
 public class RecycleViewListBillAdapter  extends RecyclerView.Adapter<RecycleViewListBillAdapter.MyViewHolder> {
     private Activity context;

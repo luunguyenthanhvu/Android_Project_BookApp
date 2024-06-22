@@ -39,7 +39,7 @@ public class Carts implements Serializable {
   private Users user;
 
   @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-  private Set<CartItems> cartUsers;
+  private Set<CartItems> cartItems;
 
   @Override
   public int hashCode() {
