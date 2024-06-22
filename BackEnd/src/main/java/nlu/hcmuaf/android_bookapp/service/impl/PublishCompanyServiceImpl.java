@@ -16,7 +16,7 @@ public class PublishCompanyServiceImpl implements IPublishCompanyService {
   private PublishCompanyRepository publishCompanyRepository;
 
   @Override
-  public void loadDefaultPublishCompany() {
+  public void loadDefaultData() {
     if (publishCompanyRepository.getAllBy().isEmpty()) {
       Arrays.stream(defaultCompany)
           .forEach(s -> publishCompanyRepository.save(new PublishCompany(s)));

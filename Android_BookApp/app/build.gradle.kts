@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "nlu.hmuaf.android_bookapp"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -62,4 +62,8 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-core:2.7.2")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.7.2")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.7.2")
+
+    implementation("androidx.room:room-rxjava2:2.6.1")
+    implementation("androidx.room:room-runtime:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
 }

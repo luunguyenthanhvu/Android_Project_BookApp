@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="330dp"
-    android:paddingVertical="10dp"
-    android:paddingHorizontal="5dp">
+    android:layout_height="340dp"
+    android:paddingHorizontal="5dp"
+    android:paddingVertical="10dp">
 
     <ImageView
         android:id="@+id/img_imageB2"
@@ -12,7 +12,14 @@
         android:padding="30dp"
         android:scaleType="centerCrop"
         android:src="@drawable/bell" />
-
+    <ImageView
+        android:id="@+id/img_copyB2"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:padding="30dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bell" />
     <TextView
         android:id="@+id/tv_nameB2"
         android:layout_width="wrap_content"
@@ -60,8 +67,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="50%"
-            android:textColor="@color/purple_700"
-            />
+            android:textColor="@color/purple_700" />
     </LinearLayout>
 
     <TextView
@@ -69,15 +75,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/priceLayoutTop"
+        android:layout_alignParentEnd="false"
         android:layout_centerHorizontal="false"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:ellipsize="end"
         android:maxWidth="150dp"
         android:paddingStart="10dp"
         android:paddingEnd="5dp"
-        android:textColor="@color/black_overlay"
         android:text="@string/books"
-        android:layout_alignParentEnd="false"
-        android:layout_marginEnd="10dp"
-        />
+        android:textColor="@color/black_overlay" />
 </RelativeLayout>

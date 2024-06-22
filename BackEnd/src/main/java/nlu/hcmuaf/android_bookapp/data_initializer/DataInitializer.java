@@ -32,19 +32,19 @@ public class DataInitializer implements CommandLineRunner {
   @Override
   public void run(String... args) throws Exception {
     // Generate default role
-    roleService.loadDefaultRole();
+    roleService.loadDefaultData();
 
     // Generate default company
-    publishCompanyService.loadDefaultPublishCompany();
+    publishCompanyService.loadDefaultData();
 
     // Generate default payment
-    paymentService.loadDefaultPayment();
+    paymentService.loadDefaultData();
 
     // Generate default books
     bookService.loadDefaultData();
 
     // Generate admin account
-    userService.createDefaultAccount();
+    userService.loadDefaultData();
 
     // Generate default shipment
     shipmentService.loadDefaultData();

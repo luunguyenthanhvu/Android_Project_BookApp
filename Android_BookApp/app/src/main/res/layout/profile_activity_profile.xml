@@ -87,244 +87,246 @@
             android:layout_marginEnd="15dp"
             android:textStyle="bold" />
 
-        <!-- Nội dung cuộn được -->
-        <ScrollView
+        <!-- LinearLayout chứa chế độ và công tắc tối -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corners"
+            android:orientation="horizontal"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Dark mode" />
+            <Switch
+                android:id="@+id/dark_mode_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="General"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Nội dung cuộn được -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_below="@id/linearLayout"
+        android:layout_above="@id/logout_button">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Các mục menu -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/rounded_corners"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/notification" />
+
+                <TextView
+                    android:id="@+id/notification_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Notification"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"/>
+
+                <ImageView
+                    android:id="@+id/notification_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrowright" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:background="@drawable/rounded_corners"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp">
 
-                <!-- LinearLayout chứa chế độ và công tắc tối -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_corners"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:padding="16dp">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/star5" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Dark mode" />
-                    <Switch
-                        android:id="@+id/dark_mode_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-                <!-- Các mục menu -->
                 <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="39dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:text="General"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/my_reviews_label"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/rounded_corners"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:padding="16dp">
+                    android:text="My Reviews"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"/>
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/notification" />
-
-                    <TextView
-                        android:id="@+id/notification_label"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Notification"
-                        android:layout_weight="1"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"/>
-
-                    <ImageView
-                        android:id="@+id/notification_arrow"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/arrowright" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_corners"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="15dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/star" />
-
-                    <TextView
-                        android:id="@+id/my_reviews_label"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="My Reviews"
-                        android:layout_weight="1"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"/>
-
-                    <ImageView
-                        android:id="@+id/reviews_arrow"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/arrowright" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_corners"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="15dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/grocerystore" />
-
-                    <TextView
-                        android:id="@+id/my_cart_label"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="My Cart"
-                        android:layout_weight="1"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"/>
-
-                    <ImageView
-                        android:id="@+id/cart_arrow"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/arrowright" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_corners"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="15dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/privacy" />
-
-                    <TextView
-                        android:id="@+id/privacy_policy_label"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Privacy Policy And Terms Of Use"
-                        android:layout_weight="1"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"/>
-
-                    <ImageView
-                        android:id="@+id/privacy_arrow"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/arrowright" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_corners"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="15dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/informationbutton" />
-
-                    <TextView
-                        android:id="@+id/about_label"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="About"
-                        android:layout_weight="1"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"/>
-
-                    <ImageView
-                        android:id="@+id/about_arrow"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/arrowright" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_corners"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="15dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/helpwebbutton" />
-
-                    <TextView
-                        android:id="@+id/help_label"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Help"
-                        android:layout_weight="1"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"/>
-
-                    <ImageView
-                        android:id="@+id/help_arrow"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/arrowright" />
-                </LinearLayout>
+                <ImageView
+                    android:id="@+id/reviews_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrowright" />
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corners"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/grocerystore" />
+
+                <TextView
+                    android:id="@+id/my_cart_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="My Cart"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"/>
+
+                <ImageView
+                    android:id="@+id/cart_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrowright" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corners"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/privacy" />
+
+                <TextView
+                    android:id="@+id/privacy_policy_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Privacy Policy And Terms Of Use"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"/>
+
+                <ImageView
+                    android:id="@+id/privacy_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrowright" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corners"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/informationbutton" />
+
+                <TextView
+                    android:id="@+id/about_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="About"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"/>
+
+                <ImageView
+                    android:id="@+id/about_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrowright" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corners"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/helpwebbutton" />
+
+                <TextView
+                    android:id="@+id/help_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Help"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"/>
+
+                <ImageView
+                    android:id="@+id/help_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrowright" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <!-- Nút Logout -->
     <Button

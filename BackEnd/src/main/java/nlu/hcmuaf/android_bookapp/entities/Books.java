@@ -3,6 +3,7 @@ package nlu.hcmuaf.android_bookapp.entities;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -45,10 +46,10 @@ public class Books implements Serializable {
   @Column(name = "thumbnail")
   private String thumbnail;
 
-  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Set<BookImages> bookImages;
 
-  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Set<CartItems> cartUsers;
 
   @ManyToOne
@@ -61,11 +62,11 @@ public class Books implements Serializable {
   @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
   private Set<ShipmentDetails> shipmentDetails;
 
-  @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
+  @OneToOne(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @PrimaryKeyJoinColumn
   private BookDetails bookDetails;
 
-  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
   private Set<BookRating> bookRatings;
 
   @Override

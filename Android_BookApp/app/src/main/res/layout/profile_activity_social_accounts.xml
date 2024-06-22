@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -16,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:contentInsetStartWithNavigation="0dp"/>
+        android:contentInsetStartWithNavigation="0dp" />
 
     <!-- Content -->
     <LinearLayout
@@ -49,6 +48,42 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/facebookLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LINK"
+                android:textSize="16sp"
+                android:textColor="@android:color/holo_red_light" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+        <!-- Google Account -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/social" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Link Google Account"
+                android:textSize="16sp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/googleLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LINK"
@@ -83,6 +118,7 @@
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/instagramLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LINK"
@@ -95,7 +131,7 @@
             android:layout_height="1dp"
             android:background="#E0E0E0" />
 
-        <!-- Linked Account -->
+        <!-- Tiktok Account -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,19 +143,55 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/link" />
+                android:src="@drawable/tiktok" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Linked Account"
+                android:text="Link Tiktok Account"
                 android:textSize="16sp"
                 android:layout_weight="1" />
 
             <TextView
+                android:id="@+id/tiktokLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="UNLINK"
+                android:text="LINK"
+                android:textSize="16sp"
+                android:textColor="@android:color/holo_red_light" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+        <!-- Youtube Account -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/youtube" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Link Youtube Account"
+                android:textSize="16sp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/youtubeLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LINK"
                 android:textSize="16sp"
                 android:textColor="@android:color/holo_red_light" />
         </LinearLayout>

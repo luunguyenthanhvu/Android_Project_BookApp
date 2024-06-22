@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.AddBookActivity">
+    tools:context=".Admin.ManageInventory.AddBookActivity">
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar"
-        android:padding="16dp">
+       >
 
         <LinearLayout
             android:orientation="vertical"
@@ -67,12 +67,29 @@
                 android:hint="Số trang"
                 android:inputType="number" />
 
-            <EditText
-                android:id="@+id/etPublicationDate"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Ngày xuất bản"
-                android:inputType="date" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/etPublicationDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Ngày xuất bản"
+                    android:layout_weight="1"
+                    android:inputType="text"
+                    android:focusable="false"
+                    android:clickable="true" />
+
+                <ImageView
+                    android:id="@+id/ivPublicationDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@android:drawable/ic_menu_my_calendar"
+                    android:contentDescription="Select Date"/>
+            </LinearLayout>
 
             <!-- Existing EditText for Language -->
             <EditText
@@ -112,12 +129,31 @@
                 android:layout_height="wrap_content"
                 android:hint="Mã giảm giá" />
 
-            <Button
-                android:id="@+id/btnSelectPublishers"
-                android:layout_width="wrap_content"
+            <!-- Publisher Selection in a Horizontal Layout -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chọn nhà xuất bản"
-                android:layout_gravity="center_horizontal"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:id="@+id/tvSelectedPublishers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nhà xuất bản:"
+                    android:textSize="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/spinnerPublishers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"/>
+            </LinearLayout>
 
             <!-- Book Thumbnail -->
             <Button
@@ -129,11 +165,12 @@
 
             <ImageView
                 android:id="@+id/ivThumbnail"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="200dp"
                 android:layout_marginBottom="16dp"
+                android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:background="@android:color/darker_gray" />
+               />
 
             <!-- Multiple Book Images -->
             <Button

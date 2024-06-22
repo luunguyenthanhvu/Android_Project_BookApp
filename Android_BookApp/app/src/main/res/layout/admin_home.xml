@@ -110,6 +110,7 @@
                             android:textColor="@color/black"
                             android:textSize="18sp" />
 
+<<<<<<< HEAD
                         <ImageView
                             android:id="@+id/nav_order_management"
                             android:layout_width="35dp"
@@ -118,6 +119,41 @@
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/order_management_submenu"
+=======
+                    <TextView
+                        android:id="@+id/manage_inventory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Quản Lý Tồn Kho"
+                        android:textColor="@color/purple_500"
+                        android:textSize="16dp"
+                        android:padding="8dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:text="Quản Lý Sản Phẩm"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/nav_product_management"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/arrow_undernew" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/product_management_submenu"
+>>>>>>> origin/main
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -135,7 +171,11 @@
                             android:padding="8dp" />
 
                         <TextView
+<<<<<<< HEAD
                             android:id="@+id/list_addOrder_submenu"
+=======
+                            android:id="@+id/add_product"
+>>>>>>> origin/main
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Thêm đơn hàng"

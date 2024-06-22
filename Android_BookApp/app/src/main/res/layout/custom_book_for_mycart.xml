@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_discount"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
+    android:background="@drawable/background_discount"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="133dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -19,129 +19,143 @@
             android:id="@+id/checkBoxBook"
             android:layout_width="65dp"
             android:layout_height="29dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/imageViewBook"
             android:layout_width="100dp"
-            android:layout_height="101dp"
-            android:layout_marginLeft="10dp"
+            android:layout_height="130dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/saber" />
 
-        <TextView
-            android:id="@+id/textViewBookDetail"
-            android:layout_width="106dp"
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="5"
-            android:text="Sách A"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/imageButtonDecreaseBook"
-            android:layout_width="70dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="20"
-            android:background="@color/white"
-            android:src="@drawable/circle_minus_solid"
-            tools:srcCompat="@drawable/circle_minus_solid" />
-
-        <EditText
-            android:id="@+id/quantityBook"
-            android:layout_width="94dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number"
-            android:text="1"
-            android:textColor="@color/black" />
+            android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/imageButtonIncreaseBook"
-            android:layout_width="70dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="20"
-            android:background="@color/white"
-            android:src="@drawable/circle_plus_solid"
-            tools:srcCompat="@drawable/circle_plus_solid" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textViewBookDetail"
+                android:layout_width="184dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Thám tử đã chết tập 7"
+                android:textColor="@color/black" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textViewPrice"
-            android:layout_width="83dp"
-            android:layout_height="17dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="2"
-            android:textColor="@color/black"
-            android:text="TextView" />
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textViewPriceConfirm"
-            android:layout_width="87dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="2"
-            android:text="TextView"
-            android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="Đơn giá: "
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textViewPrice"
+                    android:layout_width="83dp"
+                    android:layout_height="17dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_weight="2"
+                    android:text="TextView"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imageButtonDecreaseBook"
+                    android:layout_width="70dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="20"
+                    android:background="@color/white"
+                    android:src="@drawable/circle_minus_solid"
+                    tools:srcCompat="@drawable/circle_minus_solid" />
+
+                <EditText
+                    android:id="@+id/quantityBook"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="1"
+                    android:textColor="@color/black" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonIncreaseBook"
+                    android:layout_width="70dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="20"
+                    android:background="@color/white"
+                    android:src="@drawable/circle_plus_solid"
+                    tools:srcCompat="@drawable/circle_plus_solid" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tổng tiền:"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textViewPriceConfirm"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2"
+                    android:text="TextView"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/imageButtonDeleteBook"
             android:layout_width="66dp"
             android:layout_height="32dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="50dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:background="@color/white"
             android:src="@drawable/trash_solid"
             tools:srcCompat="@drawable/trash_solid" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:text="Đon giá" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="104dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Số tiền"
-            android:textColor="@color/black" />
     </LinearLayout>
 
 </LinearLayout>

@@ -12,10 +12,41 @@
     <string name="author_l_ng_c_c">lăng cọc</string>
     <string name="NMTDQ">Hạnh phúc trong tầm với đã không còn tới khi vắng em trong đời. Tìm đến chân trời mới vẫn thương một thời, giờ đã xa ngàn khơi. Ngày đó ta lầm lỡ bỏ mặc nhau hững hờ, để tiếng yêu rạn vỡ rồi thời gian xóa mờ. Mãi vô tình đến bây giờ nhận ra hai đứa không còn nhau. Cuộc sống luôn vội vã với bao nghiệt ngã, xô cuốn ta miệt mài. Một bước chân trượt ngã đã trôi thật dài, lạc mất nhau ngày mai. Còn mãi khung trời đó, mình gặp nhau lúc đầu. Ngày tháng hoa mộng đó cùng niềm vui nỗi sầu sẽ ghi lại biết bao điều để nhớ một thời ta đã yêu.\n\nThì thôi ta đã lỡ lìa xa bến bờ, đời lênh đênh sóng vỗ buồn trôi lững lờ. Cuộn mình trong nỗi nhớ cho đến bao giờ mình mới quên ngày xưa. Thì thôi ta đã hết, chờ nhau sẽ về. Mùa xuân nay đã chết vàng phai não nề, để lại bao hối tiếc ghi khắc tên người, gọi mãi trong đêm buồn. Hạnh phúc trong tầm với đã không còn tới khi vắng em trong đời. Tìm đến chân trời mới vẫn thương một thời, giờ đã xa ngàn khơi. Ngày đó ta lầm lỡ bỏ mặc nhau hững hờ, để tiếng yêu rạn vỡ rồi thời gian xóa mờ. Mãi vô tình đến bây giờ nhận ra hai đứa không còn nhau. Cuộc sống luôn vội vã với bao nghiệt ngã, xô cuốn ta miệt mài. Một bước chân trượt ngã đã trôi thật dài, lạc mất nhau ngày mai.\n\nCòn mãi khung trời đó, mình gặp nhau lúc đầu. Ngày tháng hoa mộng đó cùng niềm vui nỗi sầu sẽ ghi lại biết bao điều để nhớ một thời ta đã yêu. Thì thôi ta đã lỡ lìa xa bến bờ, đời lênh đênh sóng vỗ buồn trôi lững lờ. Cuộn mình trong nỗi nhớ cho đến bao giờ mình mới quên ngày xưa. Thì thôi ta đã hết, chờ nhau sẽ về. Mùa xuân nay đã chết vàng phai não nề, để lại bao hối tiếc ghi khắc tên người, gọi mãi trong đêm buồn. Để lại bao hối tiếc ghi khắc tên người, gọi mãi trong đêm buồn.</string>
     <string name="books">Book</string>
+    <string name="tonKho">Tồn kho: </string>
     <string name="_500">500$</string>
+    <string name="access">Đánh giá: 4.5 </string>
     <string name="authors">Authors\n</string>
     <string name="open_nav">Open Android_BookApp</string>
     <string name="close_nav">Close Android_BookApp</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="edit_profile">Edit Profile</string>
+    <string name="info_saved">Information has been saved</string>
+    <string name="error_empty_fields">Please fill in all fields</string>
+    <string name="error_name_required">Name is required</string>
+    <string name="error_gender_required">Gender is required</string>
+    <string name="error_birthdate_required">Birthdate is required</string>
+    <string name="error_invalid_phone">Invalid phone number</string>
+    <string name="error_invalid_email">Invalid email address</string>
+    <string name="select_gender">Select Gender</string>
+    <string name="pick_birthdate">Pick Birthdate</string>
+    <string name="error_password_empty">Password fields cannot be empty</string>
+    <string name="error_password_length">New password must be longer than 7 characters</string>
+    <string name="error_password_mismatch">New passwords do not match</string>
+    <string name="error_contact_name_required">Contact Name is required</string>
+    <string name="error_valid_phone_required">Valid Phone Number is required</string>
+    <string name="error_city_required">City is required</string>
+    <string name="error_district_required">District is required</string>
+    <string name="error_ward_required">Ward is required</string>
+    <string name="error_street_address_required">Street Address is required</string>
+    <string name="error_phone_length">Phone number must be exactly 10 digits</string>
+    <string name="error_fill_all_fields">Please fill in all fields</string>
+
+    <string-array name="locations_array">
+        <item>Kho A</item>
+        <item>Kho B</item>
+        <item>Kho C</item>
+    </string-array>
+
 </resources>

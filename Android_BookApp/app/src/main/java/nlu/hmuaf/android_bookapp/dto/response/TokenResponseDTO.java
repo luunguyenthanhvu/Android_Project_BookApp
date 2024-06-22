@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class TokenResponseDTO {
-
-  private String token;
-  private String role;
-  private String message;
+    private long userId;
+    private String token;
+    private String role;
+    private String username;
+    private String message;
 }
