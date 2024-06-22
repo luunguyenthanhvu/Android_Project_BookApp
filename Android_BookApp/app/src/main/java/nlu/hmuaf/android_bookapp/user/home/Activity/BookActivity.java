@@ -262,6 +262,7 @@ public class BookActivity extends AppCompatActivity {
         contentContainer.removeAllViews();
         TextView textView = new TextView(this);
         textView.setText(bookDetailResponseDTO.getDescription());
+        textView.setPadding(0,0,0,20);
         contentContainer.addView(textView);
     }
 
