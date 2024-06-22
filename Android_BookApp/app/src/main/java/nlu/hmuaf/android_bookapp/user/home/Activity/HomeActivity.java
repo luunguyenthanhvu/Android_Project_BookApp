@@ -93,7 +93,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         // Tìm TextView theo ID
-        TextView tvPrevious = findViewById(R.id.tv_previous);
+        ImageView tvPrevious = findViewById(R.id.tv_previous);
         TextView textViewViewMore = findViewById(R.id.textViewViewMore);
         textViewViewMore.setOnClickListener(new View.OnClickListener() {
             @Override
