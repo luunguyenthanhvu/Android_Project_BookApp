@@ -3,11 +3,13 @@ package nlu.hcmuaf.android_bookapp.service.impl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
+import java.util.stream.Collectors;
 import nlu.hcmuaf.android_bookapp.dto.json.BooksWrapper;
 import nlu.hcmuaf.android_bookapp.dto.response.BookDetailResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.ListBookResponseDTO;
@@ -24,11 +26,14 @@ import nlu.hcmuaf.android_bookapp.repositories.BookRepository;
 import nlu.hcmuaf.android_bookapp.repositories.RatingRepository;
 import nlu.hcmuaf.android_bookapp.service.templates.IBookService;
 import nlu.hcmuaf.android_bookapp.service.templates.IPublishCompanyService;
+import nlu.hcmuaf.android_bookapp.specifications.SearchCriteria;
+import nlu.hcmuaf.android_bookapp.specifications.entity_specification.BooksSpecifications;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -175,4 +180,31 @@ public class BookServiceImpl implements IBookService {
     return null;
   }
 
+  @Override
+  public List<ListBookResponseDTO> findBooks(String coverType, String publisher,
+      Pageable pageable) {
+    List<Specification<Books>> specs = new ArrayList<>();
+    if (coverType != null && !coverType.isEmpty()) {
+      specs.add(new BooksSpecifications(new SearchCriteria("coverType", ":", coverType)));
+    }
+    if (publisher != null && !publisher.isEmpty()) {
+      specs.add(new BooksSpecifications(new SearchCriteria("publisher", ":", publisher)));
+    }
+    Specification<Books> finalSpec = specs.stream().reduce(Specification::and).orElse(null);
+    List<Books> booksPage = bookRepository.findAll(finalSpec, pageable).getContent();
+
+    return booksPage.stream()
+        .map(book -> new ListBookResponseDTO(
+            book.getBookId(),
+            book.getThumbnail(),
+            book.getTitle(),
+            book.getBookDetails().getAuthor(),
+            book.getBookRatings().stream().mapToDouble(r -> r.getRating().getStar()).average()
+                .orElse(0.0),
+            book.getPrice(),
+            book.getShipmentDetails().stream().mapToLong(sd -> sd.getQuantity()).sum(),
+            book.getDiscounts().getPercent()
+        ))
+        .collect(Collectors.toList());
+  }
 }
