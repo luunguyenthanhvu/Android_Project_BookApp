@@ -1,6 +1,8 @@
 package nlu.hmuaf.android_bookapp.user.profile.Class;
 
-public class UserDetails {
+import java.io.Serializable;
+
+public class UserDetails implements Serializable {
     private int userId;
     private String firstName;
     private String lastName;
