@@ -162,10 +162,6 @@
         </activity>
         <activity android:name=".Admin.ManageInventory.ManageInventoryActivity"
             android:exported="true">
-<!--                                                <intent-filter>-->
-<!--                                                    <action android:name="android.intent.action.MAIN" />-->
-<!--                                                    <category android:name="android.intent.category.LAUNCHER" />-->
-<!--                                                </intent-filter>-->
         </activity>
 
         <activity android:name=".Admin.ManageInventory.ProductDetailActivity"
@@ -177,6 +173,9 @@
         </activity>
         <activity android:name=".Admin.ManageInventory.ManageInventorDetailActivity"
             android:exported="false">
+        </activity>
+        <activity android:name=".user.bill.Activity.MyBill"
+            android:exported="true">
         </activity>
     </application>
 </manifest>

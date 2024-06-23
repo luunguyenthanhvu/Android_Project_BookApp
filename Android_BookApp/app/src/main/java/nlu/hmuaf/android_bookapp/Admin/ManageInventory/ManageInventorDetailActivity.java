@@ -80,18 +80,12 @@ public class ManageInventorDetailActivity extends AppCompatActivity {
     }
 
     private void updateTabTitles() {
-        if (tabLayout.getTabAt(0) != null) // For "Tất cả"
-            tabLayout.getTabAt(0).setText("Tất cả (" + allBooks.size() + ")");
-        if (tabLayout.getTabAt(1) != null) // For "Còn hàng"
-            tabLayout.getTabAt(1).setText("Còn hàng (" + getBooksForStatus("In Stock").size() + ")");
-        if (tabLayout.getTabAt(2) != null) // For "Đã ẩn"
-            tabLayout.getTabAt(2).setText("Đã ẩn (" + getBooksForStatus("Hidden").size() + ")");
-        if (tabLayout.getTabAt(3) != null) // For "Hết hàng"
-            tabLayout.getTabAt(3).setText("Hết hàng (" + getBooksForStatus("Out of Stock").size() + ")");
-        if (tabLayout.getTabAt(4) != null) // For "Sắp hết hàng"
-            tabLayout.getTabAt(4).setText("Sắp hết hàng (" + getBooksForStatus("Low Stock").size() + ")");
-        if (tabLayout.getTabAt(5) != null) // For "SKU đặt hàng"
-            tabLayout.getTabAt(5).setText("SKU đặt hàng (" + getBooksForPreOrder().size() + ")");
+        tabLayout.getTabAt(0).setText("Tất cả (" + getBooksForTab(0).size() + ")");
+        tabLayout.getTabAt(1).setText("Còn hàng (" + getBooksForTab(1).size() + ")");
+        tabLayout.getTabAt(2).setText("Đã ẩn (" + getBooksForTab(2).size() + ")");
+        tabLayout.getTabAt(3).setText("Hết hàng (" + getBooksForTab(3).size() + ")");
+        tabLayout.getTabAt(4).setText("Sắp hết hàng (" + getBooksForTab(4).size() + ")");
+        tabLayout.getTabAt(5).setText("SKU đặt hàng (" + getBooksForTab(5).size() + ")");
     }
 
     private List<Book> getBooksForStatus(String status) {
