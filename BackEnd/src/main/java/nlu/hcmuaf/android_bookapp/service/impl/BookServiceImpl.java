@@ -181,9 +181,20 @@ public class BookServiceImpl implements IBookService {
   }
 
   @Override
-  public List<ListBookResponseDTO> findBooks(String coverType, String publisher,
+  public List<ListBookResponseDTO> findBooks(String title, String bookType, String coverType,
+      String publisher,
       Pageable pageable) {
     List<Specification<Books>> specs = new ArrayList<>();
+    if (title != null && !title.isEmpty()) {
+      specs.add(new BooksSpecifications(new SearchCriteria("title", ":", title)));
+    }
+    if (bookType != null && !bookType.isEmpty()) {
+      if (bookType.equalsIgnoreCase("newBook")) {
+        specs.add(new BooksSpecifications(new SearchCriteria("newBook")));
+      } else if (bookType.equalsIgnoreCase("discountBook")) {
+        specs.add(new BooksSpecifications(new SearchCriteria("discountBook")));
+      }
+    }
     if (coverType != null && !coverType.isEmpty()) {
       specs.add(new BooksSpecifications(new SearchCriteria("coverType", ":", coverType)));
     }
@@ -191,20 +202,43 @@ public class BookServiceImpl implements IBookService {
       specs.add(new BooksSpecifications(new SearchCriteria("publisher", ":", publisher)));
     }
     Specification<Books> finalSpec = specs.stream().reduce(Specification::and).orElse(null);
-    List<Books> booksPage = bookRepository.findAll(finalSpec, pageable).getContent();
+    List<Books> booksPage;
+    if (finalSpec != null) {
+      booksPage = bookRepository.findAll(finalSpec, pageable).getContent();
+    } else {
+      booksPage = bookRepository.findAll(pageable)
+          .getContent(); // Nếu không có tiêu chí, lấy tất cả
+    }
 
     return booksPage.stream()
-        .map(book -> new ListBookResponseDTO(
-            book.getBookId(),
-            book.getThumbnail(),
-            book.getTitle(),
-            book.getBookDetails().getAuthor(),
-            book.getBookRatings().stream().mapToDouble(r -> r.getRating().getStar()).average()
-                .orElse(0.0),
-            book.getPrice(),
-            book.getShipmentDetails().stream().mapToLong(sd -> sd.getQuantity()).sum(),
-            book.getDiscounts().getPercent()
-        ))
+        .map(book -> {
+          // Tính trung bình rating
+          Double averageRating = book.getBookRatings().stream()
+              .mapToDouble(r -> r.getRating().getStar())
+              .average()
+              .orElse(0.0);
+
+          // Tổng số lượng shipment details
+          Long totalQuantity = book.getShipmentDetails().stream()
+              .mapToLong(sd -> sd.getQuantity())
+              .sum();
+
+          // Lấy percent từ Discounts, nếu null thì mặc định là 0.0
+          Double discountPercent = Optional.ofNullable(book.getDiscounts())
+              .map(discounts -> discounts.getPercent())
+              .orElse(0.0);
+
+          return new ListBookResponseDTO(
+              book.getBookId(),
+              book.getThumbnail(),
+              book.getTitle(),
+              book.getBookDetails().getAuthor(),
+              averageRating,
+              book.getPrice(),
+              totalQuantity,
+              discountPercent
+          );
+        })
         .collect(Collectors.toList());
   }
 }

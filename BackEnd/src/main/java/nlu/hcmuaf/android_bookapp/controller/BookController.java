@@ -46,11 +46,14 @@ public class BookController {
 
   @GetMapping("/get-books")
   public ResponseEntity<List<ListBookResponseDTO>> findBooks(
+      @RequestParam(required = false) String title,
+      @RequestParam(required = false) String bookType,
       @RequestParam(required = false) String coverType,
       @RequestParam(required = false) String publisher,
       @RequestParam(defaultValue = "0") int page,
-      @RequestParam(defaultValue = "10") int size) {
+      @RequestParam(defaultValue = "15") int size) {
     PageRequest pageRequest = PageRequest.of(page, size);
-    return ResponseEntity.ok(bookService.findBooks(coverType, publisher, pageRequest));
+    return ResponseEntity.ok(
+        bookService.findBooks(title, bookType, coverType, publisher, pageRequest));
   }
 }

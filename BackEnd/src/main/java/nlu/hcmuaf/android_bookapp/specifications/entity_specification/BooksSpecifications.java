@@ -5,9 +5,13 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.SetJoin;
 import nlu.hcmuaf.android_bookapp.entities.BookDetails;
 import nlu.hcmuaf.android_bookapp.entities.Books;
+import nlu.hcmuaf.android_bookapp.entities.Discounts;
 import nlu.hcmuaf.android_bookapp.entities.PublishCompany;
+import nlu.hcmuaf.android_bookapp.entities.ShipmentDetails;
+import nlu.hcmuaf.android_bookapp.entities.Shipments;
 import nlu.hcmuaf.android_bookapp.enums.EBookFormat;
 import nlu.hcmuaf.android_bookapp.specifications.SearchCriteria;
 import org.springframework.data.jpa.domain.Specification;
@@ -23,6 +27,21 @@ public class BooksSpecifications implements Specification<Books> {
   @Override
   public Predicate toPredicate
       (Root<Books> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+    if (criteria.getKey().equalsIgnoreCase("title")) {
+      return builder.like(root.get(criteria.getKey()), "%" + criteria.getValue() + "%");
+    }
+
+    if (criteria.getKey().equalsIgnoreCase("newBook")) {
+      SetJoin<Books, ShipmentDetails> shipmentDetailsJoin = root.joinSet("shipmentDetails");
+      // Join từ ShipmentDetails tới Shipments
+      Join<ShipmentDetails, Shipments> shipmentJoin = shipmentDetailsJoin.join("shipment");
+      query.orderBy(builder.desc(shipmentJoin.get("dateAdded")));
+      return builder.isNotNull(shipmentJoin.get("dateAdded"));
+    } else if (criteria.getKey().equalsIgnoreCase("discountBook")) {
+      Join<Books, Discounts> discountsJoin = root.join("discounts");
+      return builder.isNotNull(discountsJoin);
+    }
+
     if (criteria.getKey().equalsIgnoreCase("coverType")) {
       Join<Books, BookDetails> bookDetailsJoin = root.join("bookDetails");
       if (criteria.getOperation().equalsIgnoreCase(":")) {
