@@ -131,6 +131,7 @@ public class OrderDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Xử lý back-end
+                // code thêm ở đây
                 Toast.makeText(OrderDetail.this, "Đã cập nhật trạng thái đơn hàng thành công", Toast.LENGTH_SHORT).show();
                 navigateToOrderList();
             }
@@ -142,6 +143,7 @@ public class OrderDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Xử lý back-end
+                // code thêm ở đây
                 Toast.makeText(OrderDetail.this, "Đã xóa đơn hàng thành công", Toast.LENGTH_SHORT).show();
                 navigateToOrderList();
             }
