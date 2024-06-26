@@ -40,7 +40,7 @@ public class LibraryActivity extends AppCompatActivity {
 
         libraryAdapter = new LibraryAdapter(new ArrayList<>());
         recyclerViewLibrary.setAdapter(libraryAdapter);
-        TextView tvPrevious = findViewById(R.id.tv_previous);
+        ImageView tvPrevious = findViewById(R.id.tv_previous);
 
         // Đặt OnClickListener cho TextView
         tvPrevious.setOnClickListener(new View.OnClickListener() {

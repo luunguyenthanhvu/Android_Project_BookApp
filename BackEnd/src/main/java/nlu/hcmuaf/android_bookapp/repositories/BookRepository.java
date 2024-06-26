@@ -8,16 +8,19 @@ import nlu.hcmuaf.android_bookapp.entities.Books;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookRepository extends JpaRepository<Books, Long> {
+public interface BookRepository extends JpaRepository<Books, Long>,
+    JpaSpecificationExecutor<Books> {
 
   @Query("SELECT B FROM Books B")
   List<Books> getAllBy();
-@Query("SELECT B FROM Books B WHERE B.bookId = :bookId")
+
+  @Query("SELECT B FROM Books B WHERE B.bookId = :bookId")
   Optional<Books> getBooksByBookId(@Param("bookId") long bookId);
 
   @Query(

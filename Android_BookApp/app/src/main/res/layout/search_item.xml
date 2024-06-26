@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@drawable/border_black"
+    app:cardCornerRadius="20dp">
+
+    <FrameLayout
+        android:layout_width="400dp"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/img_imageB2"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/profile" />
+
+        <ImageView
+            android:id="@+id/img_copyB2"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/profile" />
+
+        <!-- ConstraintLayout để đặt TextView và icon -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/wishList"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="340dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/heart" />
+
+        <TextView
+            android:id="@+id/tv_nameB2"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="15dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="Sword Art Online 26: Unital Ring V - Bản Đặc Biệt - Tặng Kèm Bookmark PVC + Mini Shikishi Keyholder"
+            android:textAlignment="inherit"
+            android:textColor="#6D1683"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/AuthorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="60dp"
+            android:text="Ciin" />
+
+        <TextView
+            android:id="@+id/tv_priceB2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="85dp"
+            android:gravity="center_vertical"
+            android:text="100.000đ"
+            android:textColor="@color/purple_200"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/priceDcLayout"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="240dp"
+            android:layout_marginTop="85dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_background"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tv_discountB2"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="50%"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/originalPriceB2"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="110dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxWidth="150dp"
+            android:text="100.000đ"
+            android:textColor="@color/black_overlay" />
+
+        <ImageView
+            android:id="@+id/cart"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="320dp"
+            android:layout_marginTop="95dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/AuthorName"
+            app:srcCompat="@drawable/grocerystore"
+            app:tint="@color/purple_200" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="130dp">
+
+            <TextView
+                android:id="@+id/star"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxWidth="150dp"
+                android:paddingEnd="5dp"
+                android:text="@string/access" />
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/star"
+                app:tint="@color/yellow">
+
+            </ImageView>
+        </LinearLayout>
+    </FrameLayout>
+</androidx.cardview.widget.CardView>

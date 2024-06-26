@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Format sách -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="Format sách"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupFormat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radioButtonBiaCung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bìa cứng" />
+
+        <RadioButton
+            android:id="@+id/radioButtonBiaMem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bìa mềm" />
+    </RadioGroup>
+
+    <!-- Sách mới -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="Loại sách"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupLoaiSach"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radioButtonSachMoi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sách mới" />
+
+        <RadioButton
+            android:id="@+id/radioButtonGiamGia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sách đang giảm giá" />
+    </RadioGroup>
+
+    <!-- Nhà xuất bản -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="Nhà xuất bản"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupNxb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radioButtonNxbKimDong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhà xuất bản Kim Đồng" />
+
+        <RadioButton
+            android:id="@+id/radioButtonNxbTre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhà xuất bản Trẻ" />
+
+        <RadioButton
+            android:id="@+id/radioButtonNxbHaNoi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhà xuất bản Hà Nội" />
+
+        <RadioButton
+            android:id="@+id/radioButtonNxbVanHoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhà xuất bản Văn Học" />
+
+        <RadioButton
+            android:id="@+id/radioButtonNxbTheGioi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhà xuất bản Thế Giới" />
+
+        <RadioButton
+            android:id="@+id/radioButtonYenOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhà xuất bản Yen On" />
+    </RadioGroup>
+</LinearLayout>

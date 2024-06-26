@@ -111,7 +111,7 @@ public class BookActivity extends AppCompatActivity {
             }
         });
         smallImagesContainer = findViewById(R.id.smallImagesContainer);
-        TextView tvPrevious = findViewById(R.id.tv_previous);
+        ImageView tvPrevious = findViewById(R.id.tv_previous);
 
         // Đặt OnClickListener cho TextView
         tvPrevious.setOnClickListener(new View.OnClickListener() {
@@ -262,6 +262,7 @@ public class BookActivity extends AppCompatActivity {
         contentContainer.removeAllViews();
         TextView textView = new TextView(this);
         textView.setText(bookDetailResponseDTO.getDescription());
+        textView.setPadding(0, 0, 0, 20);
         contentContainer.addView(textView);
     }
 

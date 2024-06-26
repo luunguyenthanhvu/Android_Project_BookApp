@@ -106,16 +106,19 @@ public class JwtService {
     return buildToken(extraClaims, userDetails);
   }
 
-  private String buildToken(
+  public String buildToken(
       Map<String, Object> extraClaims,
       CustomUserDetails userCustomDetails
   ) {
+    // Thời hạn là 30 ngày tính từ thời điểm hiện tại
+    Date expirationDate = new Date(System.currentTimeMillis() + 30 * 24 * 60 * 60 * 1000L);
+
     return Jwts
         .builder()
         .setClaims(extraClaims)
         .setSubject(userCustomDetails.getUsername())
         .setIssuedAt(new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis() + 86400000))
+        .setExpiration(expirationDate)
         .signWith(getSignKey(), SignatureAlgorithm.HS256)
         .compact();
   }
