@@ -83,26 +83,6 @@
             android:name=".user.login.Login"
             android:exported="true">
         </activity>
-        <activity android:name=".Admin.AdminHome"
-            android:exported="true">
-<!--                        <intent-filter>-->
-<!--                            <action android:name="android.intent.action.MAIN" />-->
-
-<!--                            <category android:name="android.intent.category.LAUNCHER" />-->
-<!--                        </intent-filter>-->
-        </activity>
-        <activity android:name=".Admin.ManageOrder"
-            android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".Admin.ManageAllOrder"
-            android:exported="false">
-        </activity>
-
         <activity android:name=".user.cart_user.Activity.MainActivity"
             android:exported="true">
         </activity>
@@ -126,10 +106,10 @@
         </activity>
         <activity android:name=".user.home.Activity.HomeActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".user.home.Activity.SearchActivity"
             android:exported="false">
@@ -156,22 +136,36 @@
 <!--                                        <category android:name="android.intent.category.LAUNCHER" />-->
 <!--                                    </intent-filter>-->
         </activity>
-        <activity android:name=".Admin.ManageInventory.AddBookActivity"
+        <activity android:name=".admin.Home"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".admin.order.activity.OrderList"
+            android:exported="true">
+        </activity>
+        <activity android:name=".admin.order.activity.OrderDetail"
+            android:exported="false">
+        </activity>
+        <activity android:name=".admin.ManageInventory.AddBookActivity"
             android:exported="true">
 
         </activity>
-        <activity android:name=".Admin.ManageInventory.ManageInventoryActivity"
+        <activity android:name=".admin.ManageInventory.ManageInventoryActivity"
             android:exported="true">
         </activity>
 
-        <activity android:name=".Admin.ManageInventory.ProductDetailActivity"
+        <activity android:name=".admin.ManageInventory.ProductDetailActivity"
             android:exported="false">
         </activity>
 
-        <activity android:name=".Admin.ManageInventory.BulkUpdateActivity"
+        <activity android:name=".admin.ManageInventory.BulkUpdateActivity"
             android:exported="false">
         </activity>
-        <activity android:name=".Admin.ManageInventory.ManageInventorDetailActivity"
+        <activity android:name=".admin.ManageInventory.ManageInventorDetailActivity"
             android:exported="false">
         </activity>
         <activity android:name=".user.bill.Activity.MyBill"
