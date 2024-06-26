@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.Admin.ManageInventory;
+package nlu.hmuaf.android_bookapp.admin.ManageInventory;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
@@ -26,7 +26,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;

@@ -1,30 +1,30 @@
-package nlu.hmuaf.android_bookapp.Admin.order.bean;
+package nlu.hmuaf.android_bookapp.admin.order.bean;
 
 import java.io.Serializable;
 
 public class Order implements Serializable {
     private String userName;
     private String productName;
-    private String productImageUrl;
+    private int resourceid;
     private int quantity;
     private String price;
     private String total;
     private String status;
 
-    private String productId;
+    private String orderId;
 
     public Order() {
 
     }
-    public Order(String userName, String productName, String productImageUrl, int quantity, String price, String total, String status, String productId) {
+    public Order(String userName, String productName, int resourceid, int quantity, String price, String total, String status, String orderId) {
         this.userName = userName;
         this.productName = productName;
-        this.productImageUrl = productImageUrl;
+        this.resourceid = resourceid;
         this.quantity = quantity;
         this.price = price;
         this.total = total;
         this.status = status;
-        this.productId = productId;
+        this.orderId = orderId;
     }
 
     public String getUserName() {
@@ -43,12 +43,12 @@ public class Order implements Serializable {
         this.productName = productName;
     }
 
-    public String getProductImageUrl() {
-        return productImageUrl;
+    public int getResourceid() {
+        return resourceid;
     }
 
-    public void setProductImageUrl(String productImageUrl) {
-        this.productImageUrl = productImageUrl;
+    public void setResourceid(int resourceid) {
+        this.resourceid = resourceid;
     }
 
     public int getQuantity() {
@@ -83,11 +83,11 @@ public class Order implements Serializable {
         this.status = status;
     }
 
-    public String getProductId() {
-        return productId;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 }

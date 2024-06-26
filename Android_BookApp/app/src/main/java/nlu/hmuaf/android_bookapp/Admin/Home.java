@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.Admin;
+package nlu.hmuaf.android_bookapp.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import nlu.hmuaf.android_bookapp.Admin.order.activity.OrderList;
+import nlu.hmuaf.android_bookapp.admin.order.activity.OrderList;
 import nlu.hmuaf.android_bookapp.R;
 
 public class Home extends AppCompatActivity {

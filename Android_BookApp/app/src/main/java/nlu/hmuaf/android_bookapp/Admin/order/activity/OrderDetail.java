@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.Admin.order.activity;
+package nlu.hmuaf.android_bookapp.admin.order.activity;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -22,9 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.Admin.order.adapter.OrderDetailAdapter;
-import nlu.hmuaf.android_bookapp.Admin.order.bean.Order;
-import nlu.hmuaf.android_bookapp.Admin.order.bean.OrderItem;
+import nlu.hmuaf.android_bookapp.admin.order.adapter.OrderDetailAdapter;
+import nlu.hmuaf.android_bookapp.admin.order.bean.OrderItem;
 import nlu.hmuaf.android_bookapp.R;
 
 public class OrderDetail extends AppCompatActivity {
@@ -33,8 +32,10 @@ public class OrderDetail extends AppCompatActivity {
             discount, intoPrice, paymentMethod, orderId, timeOrder, timePayment, timeDelivery, timeDelivered, copyIdOrder , statusView;
     private RecyclerView recyclerView;
     private LinearLayout detailsLayout;
-    private ImageView arrowLeftIcon, dropdownIcon;
+    private ImageView productImage, arrowLeftIcon, dropdownIcon;
     private String statusItem[] = {"Chờ xác nhận", "Chờ lấy hàng", "Đang giao", "Đã giao"};
+    private String currentStatus;
+
     private AutoCompleteTextView statusTextView;
     private ArrayAdapter<String> adapterItem;
     private Button update, delete;
@@ -72,17 +73,19 @@ public class OrderDetail extends AppCompatActivity {
             }
         });
 
-        // Cập nhật tình trạng đơn hàng
-        statusTextView = findViewById(R.id.status_view);
         // Nhận trạng thái từ Intent
+        Intent intent = getIntent();
+        currentStatus = intent.getStringExtra("order_status");
 
+        // Khởi tạo AutoCompleteTextView và adapter
+        statusTextView = findViewById(R.id.status_view);
         adapterItem = new ArrayAdapter<String>(this, R.layout.admin_list_home, statusItem);
 
         // Thiết lập trạng thái hiện tại
-        String currentStatus = getCurrentOrderStatus();
         statusTextView.setText(currentStatus, false);
-
         statusTextView.setAdapter(adapterItem);
+
+        // Xử lý sự kiện khi người dùng chọn trạng thái mới
         statusTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i , long l) {
@@ -162,8 +165,8 @@ public class OrderDetail extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<OrderItem> orderItemList = new ArrayList<>();
-        orderItemList.add(new OrderItem("Sản phẩm 1", "200,000 VND"));
-        orderItemList.add(new OrderItem("Sản phẩm 2", "300,000 VND"));
+        orderItemList.add(new OrderItem(R.drawable.book1 , "Sản phẩm 1", 1, "30,000 VND"));
+        orderItemList.add(new OrderItem(R.drawable.book2 ,"Sản phẩm 2", 2, "20,000 VND"));
 
         OrderDetailAdapter adapter = new OrderDetailAdapter(orderItemList);
         recyclerView.setAdapter(adapter);
@@ -175,8 +178,4 @@ public class OrderDetail extends AppCompatActivity {
         finish();
     }
 
-    // Hàm này trả về trạng thái hiện tại của đơn hàng
-    private String getCurrentOrderStatus() {
-        return "Chờ xác nhận";
-    }
 }

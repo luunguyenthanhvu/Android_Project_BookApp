@@ -1,19 +1,23 @@
-package nlu.hmuaf.android_bookapp.Admin.order.adapter;
+package nlu.hmuaf.android_bookapp.admin.order.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.Admin.order.bean.OrderItem;
+import nlu.hmuaf.android_bookapp.admin.order.bean.OrderItem;
 import nlu.hmuaf.android_bookapp.R;
 
 public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.OrderItemViewHolder> {
 
-    private List<OrderItem> orderItemList;
+    private final List<OrderItem> orderItemList;
 
     public OrderDetailAdapter(List<OrderItem> orderItemList) {
         this.orderItemList = orderItemList;
@@ -28,9 +32,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull OrderItemViewHolder holder, int position) {
-        OrderItem orderItem = orderItemList.get(position);
-        holder.productName.setText(orderItem.getProductName());
-        holder.productPrice.setText(orderItem.getProductPrice());
+        holder.bind(orderItemList.get(position));
     }
 
     @Override
@@ -38,13 +40,25 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         return orderItemList.size();
     }
 
-    public static class OrderItemViewHolder extends RecyclerView.ViewHolder {
-        TextView productName, productPrice;
+     class OrderItemViewHolder extends RecyclerView.ViewHolder {
+        ImageView productImage;
+        TextView productName, productQuantity, productPrice;
 
         public OrderItemViewHolder(@NonNull View itemView) {
             super(itemView);
+            productImage = itemView.findViewById(R.id.product_image);
             productName = itemView.findViewById(R.id.product_name);
+            productQuantity = itemView.findViewById(R.id.product_quantity);
             productPrice = itemView.findViewById(R.id.product_price);
         }
-    }
+         public void bind(OrderItem orderItem) {
+             // Load hình ảnh sản phẩm
+             Picasso.get().load(orderItem.getResourceid()).into(productImage);
+
+             productName.setText(orderItem.getProductName());
+             productQuantity.setText("Số lượng: "+orderItem.getQuantity());
+             productPrice.setText("Thành tiền:" +orderItem.getProductPrice());
+         }
+
+     }
 }
