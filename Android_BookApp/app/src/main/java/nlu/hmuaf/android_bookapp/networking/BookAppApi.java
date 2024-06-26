@@ -52,4 +52,14 @@ public interface BookAppApi {
 
     @GET("api/books/book-details/{bookId}")
     Call<BookDetailResponseDTO> getBookDetailByBookId(@Path("bookId") long bookId);
+
+    @GET("api/books/get-books")
+    Call<List<ListBookResponseDTO>> findBooks(
+            @Query("title") String title,
+            @Query("bookType") String bookType,
+            @Query("coverType") String coverType,
+            @Query("publisher") String publisher,
+            @Query("page") int page,
+            @Query("size") int size
+    );
 }
