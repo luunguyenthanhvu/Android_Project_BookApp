@@ -8,7 +8,9 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -20,10 +22,12 @@ import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
 import nlu.hmuaf.android_bookapp.networking.BookAppService;
 import nlu.hmuaf.android_bookapp.room.service.CartService;
+import nlu.hmuaf.android_bookapp.user.bill.Activity.MyBill;
 import nlu.hmuaf.android_bookapp.user.cart_user.Activity.MyCart;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.home.Activity.HomeActivity;
 import nlu.hmuaf.android_bookapp.user.login.Login;
+import nlu.hmuaf.android_bookapp.user.profile.Class.UserDetails;
 import nlu.hmuaf.android_bookapp.user.profile.DarkModeUtil;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
 import retrofit2.Call;
@@ -31,7 +35,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
+    private static final int REQUEST_EDIT_PROFILE = 1;
+
     private CartService cartService;
+    private TextView userNameTextView;
+    private TextView userEmailTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +48,9 @@ public class ProfileActivity extends AppCompatActivity {
         DarkModeUtil.applyDarkMode(this);
         cartService = new CartService(getApplicationContext());
         setContentView(R.layout.profile_activity_profile);
+
+        userNameTextView = findViewById(R.id.user_name);
+        userEmailTextView = findViewById(R.id.user_email);
 
         Switch darkModeSwitch = findViewById(R.id.dark_mode_switch);
         boolean isDarkMode = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("dark_mode", false);
@@ -54,9 +65,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        // Phần còn lại của mã
-
-
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
@@ -68,8 +76,8 @@ public class ProfileActivity extends AppCompatActivity {
         editImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(ProfileActivity.this, ProfileEditActivity.class);
+                startActivityForResult(intent, REQUEST_EDIT_PROFILE);
             }
         });
 
@@ -87,7 +95,7 @@ public class ProfileActivity extends AppCompatActivity {
         reviewImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chuyển hướng sang Activity NotificationActivity
+                // Chuyển hướng sang Activity ReviewActivity
                 Intent intent = new Intent(ProfileActivity.this, ReviewActivity.class);
                 startActivity(intent);
             }
@@ -97,7 +105,7 @@ public class ProfileActivity extends AppCompatActivity {
         cartImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chuyển hướng sang Activity NotificationActivity
+                // Chuyển hướng sang Activity MyCart
                 Intent intent = new Intent(ProfileActivity.this, MyCart.class);
                 startActivity(intent);
             }
@@ -107,7 +115,7 @@ public class ProfileActivity extends AppCompatActivity {
         privacyImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chuyển hướng sang Activity NotificationActivity
+                // Chuyển hướng sang Activity PrivacyActivity
                 Intent intent = new Intent(ProfileActivity.this, PrivacyActivity.class);
                 startActivity(intent);
             }
@@ -117,7 +125,7 @@ public class ProfileActivity extends AppCompatActivity {
         aboutImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chuyển hướng sang Activity NotificationActivity
+                // Chuyển hướng sang Activity AboutActivity
                 Intent intent = new Intent(ProfileActivity.this, AboutActivity.class);
                 startActivity(intent);
             }
@@ -127,8 +135,17 @@ public class ProfileActivity extends AppCompatActivity {
         helpImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chuyển hướng sang Activity NotificationActivity
+                // Chuyển hướng sang Activity HelpActivity
                 Intent intent = new Intent(ProfileActivity.this, HelpActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageView mybillImageView = findViewById(R.id.mybill_arrow);
+        mybillImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, MyBill.class);
                 startActivity(intent);
             }
         });
@@ -137,8 +154,16 @@ public class ProfileActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Xóa token và chuyển hướng đến màn hình đăng nhập
                 clearTokenAndRedirectToLogin();
+            }
+        });
+
+        ImageView mybillImageArrow = findViewById(R.id.mybill_arrow);
+        mybillImageArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, MyBill.class);
+                startActivity(intent);
             }
         });
     }
@@ -152,13 +177,24 @@ public class ProfileActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_EDIT_PROFILE && resultCode == RESULT_OK && data != null) {
+            UserDetails updatedUser = (UserDetails) data.getSerializableExtra("updated_user");
+            if (updatedUser != null) {
+                userNameTextView.setText(String.format("%s %s", updatedUser.getFirstName(), updatedUser.getLastName()));
+                userEmailTextView.setText(updatedUser.getEmail());
+            }
+        }
+    }
+
     private void clearTokenAndRedirectToLogin() {
         TokenResponseDTO token = MyUtils.getTokenResponse(getApplicationContext());
         // Trước đó update cart server
         cartService.syncCartWithServer(token, "Logout");
         // Xóa token từ SharedPreferences hoặc nơi lưu trữ token
         MyUtils.deleteTokenResponse(ProfileActivity.this);
-
 
         // Chuyển hướng đến màn hình đăng nhập
         Intent intent = new Intent(ProfileActivity.this, Login.class);
