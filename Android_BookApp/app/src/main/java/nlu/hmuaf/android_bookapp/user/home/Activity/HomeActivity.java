@@ -98,8 +98,10 @@ public class HomeActivity extends AppCompatActivity {
         textViewViewMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chuyển sang trang FantasyActivity khi click vào chữ "viewMore"
-                Intent intent = new Intent(HomeActivity.this, FantasyActivity.class);
+                // Chuyển sang trang search với tiêu chí đang giảm giá khi click vào chữ "viewMore"
+                Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+                // Truyền thông tin lựa chọn filter qua Intent
+                intent.putExtra("filterType", "discountBook");
                 startActivity(intent);
             }
         });
@@ -107,8 +109,10 @@ public class HomeActivity extends AppCompatActivity {
         textViewViewMore2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chuyển sang trang FantasyActivity khi click vào chữ "viewMore"
-                Intent intent = new Intent(HomeActivity.this, FantasyActivity.class);
+                // Chuyển sang trang search với tiêu chí sách mới nhập khi click vào chữ "viewMore"
+                Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+                // Truyền thông tin lựa chọn filter qua Intent
+                intent.putExtra("filterType", "newBook");
                 startActivity(intent);
             }
         });

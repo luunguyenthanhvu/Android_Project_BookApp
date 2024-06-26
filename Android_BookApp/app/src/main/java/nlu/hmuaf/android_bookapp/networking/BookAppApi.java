@@ -11,6 +11,7 @@ import nlu.hmuaf.android_bookapp.dto.request.VerifyRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.response.BookDetailResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.MessageResponseDTO;
+import nlu.hmuaf.android_bookapp.dto.response.PageBookResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import okhttp3.RequestBody;
@@ -54,7 +55,7 @@ public interface BookAppApi {
     Call<BookDetailResponseDTO> getBookDetailByBookId(@Path("bookId") long bookId);
 
     @GET("api/books/get-books")
-    Call<List<ListBookResponseDTO>> findBooks(
+    Call<PageBookResponseDTO> findBooks(
             @Query("title") String title,
             @Query("bookType") String bookType,
             @Query("coverType") String coverType,

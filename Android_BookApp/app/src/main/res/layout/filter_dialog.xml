@@ -89,12 +89,6 @@
             android:text="Nhà xuất bản Trẻ" />
 
         <RadioButton
-            android:id="@+id/radioButtonNxbHoc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nhà xuất bản Học" />
-
-        <RadioButton
             android:id="@+id/radioButtonNxbHaNoi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
