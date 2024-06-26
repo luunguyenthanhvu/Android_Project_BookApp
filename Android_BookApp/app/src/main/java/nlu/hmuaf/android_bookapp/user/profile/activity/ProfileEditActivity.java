@@ -100,6 +100,14 @@ public class ProfileEditActivity extends AppCompatActivity {
         userDetails.setPhoneNum(phone);
         userDetails.setEmail(email);
 
+        // Set result with updated user details
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("updated_user", userDetails);
+        setResult(RESULT_OK, resultIntent);
+
+        // Finish activity
+        finish();
+
         // For demonstration, we'll just show a toast
         Toast.makeText(this, R.string.info_saved, Toast.LENGTH_SHORT).show();
     }

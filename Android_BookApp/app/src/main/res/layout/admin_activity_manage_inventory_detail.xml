@@ -3,7 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context=".admin.ManageInventorDetailActivity">
+=======
+    tools:context=".Admin.ManageInventory.ManageInventorDetailActivity">
+>>>>>>> origin/main
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
@@ -22,6 +26,7 @@
         android:layout_below="@id/toolbar"
         app:tabIndicatorColor="@color/teal_200"
         app:tabIndicatorHeight="4dp"
+        app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/teal_200"
         app:tabTextColor="@color/black"/>
 
