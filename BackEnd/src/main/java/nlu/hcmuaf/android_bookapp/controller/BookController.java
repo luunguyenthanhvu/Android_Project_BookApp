@@ -3,6 +3,7 @@ package nlu.hcmuaf.android_bookapp.controller;
 import java.util.List;
 import nlu.hcmuaf.android_bookapp.dto.response.BookDetailResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.ListBookResponseDTO;
+import nlu.hcmuaf.android_bookapp.dto.response.PageBookResponseDTO;
 import nlu.hcmuaf.android_bookapp.repositories.BookRepository;
 import nlu.hcmuaf.android_bookapp.service.templates.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,7 @@ public class BookController {
   }
 
   @GetMapping("/get-books")
-  public ResponseEntity<List<ListBookResponseDTO>> findBooks(
+  public ResponseEntity<PageBookResponseDTO> findBooks(
       @RequestParam(required = false) String title,
       @RequestParam(required = false) String bookType,
       @RequestParam(required = false) String coverType,

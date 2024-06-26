@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import nlu.hcmuaf.android_bookapp.dto.json.BooksWrapper;
 import nlu.hcmuaf.android_bookapp.dto.response.BookDetailResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.ListBookResponseDTO;
+import nlu.hcmuaf.android_bookapp.dto.response.PageBookResponseDTO;
 import nlu.hcmuaf.android_bookapp.entities.BookDetails;
 import nlu.hcmuaf.android_bookapp.entities.BookImages;
 import nlu.hcmuaf.android_bookapp.entities.BookRating;
@@ -20,6 +21,7 @@ import nlu.hcmuaf.android_bookapp.entities.Books;
 import nlu.hcmuaf.android_bookapp.entities.PublishCompany;
 import nlu.hcmuaf.android_bookapp.entities.Ratings;
 import nlu.hcmuaf.android_bookapp.enums.EBookFormat;
+import nlu.hcmuaf.android_bookapp.exception.handler.ResourceNotFoundException;
 import nlu.hcmuaf.android_bookapp.repositories.BookDetailsRepository;
 import nlu.hcmuaf.android_bookapp.repositories.BookImageRepository;
 import nlu.hcmuaf.android_bookapp.repositories.BookRepository;
@@ -168,7 +170,9 @@ public class BookServiceImpl implements IBookService {
 
   @Override
   public BookDetailResponseDTO getBookDetailsByBookId(long bookId) {
-    Optional<BookDetailResponseDTO> optional = bookRepository.getBooksDetailsByBookId(bookId);
+    Optional<BookDetailResponseDTO> optional = Optional.ofNullable(
+        bookRepository.getBooksDetailsByBookId(bookId).orElseThrow(
+            () -> new ResourceNotFoundException("Book details NOT FOUND WITH " + bookId)));
     if (optional.isPresent()) {
       var data = optional.get();
       List<String> bookImages = bookImageRepository.getAllByBookImageByBookId(bookId);
@@ -181,9 +185,8 @@ public class BookServiceImpl implements IBookService {
   }
 
   @Override
-  public List<ListBookResponseDTO> findBooks(String title, String bookType, String coverType,
-      String publisher,
-      Pageable pageable) {
+  public PageBookResponseDTO findBooks(String title, String bookType, String coverType,
+      String publisher, Pageable pageable) {
     List<Specification<Books>> specs = new ArrayList<>();
     if (title != null && !title.isEmpty()) {
       specs.add(new BooksSpecifications(new SearchCriteria("title", ":", title)));
@@ -202,15 +205,17 @@ public class BookServiceImpl implements IBookService {
       specs.add(new BooksSpecifications(new SearchCriteria("publisher", ":", publisher)));
     }
     Specification<Books> finalSpec = specs.stream().reduce(Specification::and).orElse(null);
-    List<Books> booksPage;
+
+    // Tìm kiếm theo các tiêu chí và phân trang
+    Page<Books> booksPage;
     if (finalSpec != null) {
-      booksPage = bookRepository.findAll(finalSpec, pageable).getContent();
+      booksPage = bookRepository.findAll(finalSpec, pageable);
     } else {
-      booksPage = bookRepository.findAll(pageable)
-          .getContent(); // Nếu không có tiêu chí, lấy tất cả
+      booksPage = bookRepository.findAll(pageable);
     }
 
-    return booksPage.stream()
+    // Chuyển đổi từ Page<Books> sang PageBookResponseDTO
+    List<ListBookResponseDTO> listBookResponseDTOs = booksPage.getContent().stream()
         .map(book -> {
           // Tính trung bình rating
           Double averageRating = book.getBookRatings().stream()
@@ -240,5 +245,12 @@ public class BookServiceImpl implements IBookService {
           );
         })
         .collect(Collectors.toList());
+
+    // Tạo đối tượng PageBookResponseDTO và đặt giá trị
+    PageBookResponseDTO pageBookResponseDTO = new PageBookResponseDTO();
+    pageBookResponseDTO.setBookResponseDTOList(listBookResponseDTOs);
+    pageBookResponseDTO.setTotalPages(booksPage.getTotalPages());
+
+    return pageBookResponseDTO;
   }
 }

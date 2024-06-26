@@ -17,9 +17,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name = "User_Addresses")
 public class UserAddresses implements Serializable {
-
-  private static final long serialVersionUID = 1L;
-
   @Id
   @ManyToOne
   @JoinColumn(name = "userId")
