@@ -43,20 +43,6 @@ public class CartService {
         executorService = Executors.newSingleThreadExecutor();
     }
 
-    public void checkUserCart(Long userId) {
-        executorService.execute(() -> {
-            try {
-                List<CartItems> cartItems = cartItemDao.getCartItemByUserId(userId);
-                if (cartItems == null) {
-                    cartItems = new ArrayList<>();
-                }
-                cartSizeLiveData.postValue(cartItems.size());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
     public List<CartItems> getUserCart(Long userId) {
         return cartItemDao.getCartItemByUserId(userId);
     }
@@ -65,13 +51,18 @@ public class CartService {
         executorService.execute(() -> {
             try {
                 CartItems item = cartItemDao.getById(bookId);
-                if (quantity <= item.getAvailableQuantity()) {
-                    cartItemDao.updateQuantity(bookId, quantity, tokenResponseDTO.getUserId());
+                if (item != null) {
+                    if (quantity <= item.getAvailableQuantity()) {
+                        cartItemDao.updateQuantity(bookId, quantity, tokenResponseDTO.getUserId());
+                    } else {
+                        cartItemDao.updateQuantity(bookId, item.getAvailableQuantity(), tokenResponseDTO.getUserId());
+                    }
+                    int cartSize = cartItemDao.getCartItemByUserId(tokenResponseDTO.getUserId()).size();
+                    cartSizeLiveData.postValue(cartSize);
                 } else {
-                    cartItemDao.updateQuantity(bookId, item.getAvailableQuantity(), tokenResponseDTO.getUserId());
+                    // Xử lý trường hợp item không tồn tại
+                    System.out.println("Cart item không tồn tại.");
                 }
-                int cartSize = cartItemDao.getCartItemByUserId(tokenResponseDTO.getUserId()).size();
-                cartSizeLiveData.postValue(cartSize);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -204,6 +195,10 @@ public class CartService {
                 System.out.println(t);
             }
         });
+    }
+
+    public void deleteItem(CartItems items) {
+        cartItemDao.delete(items);
     }
 
 }

@@ -1,6 +1,7 @@
 package nlu.hmuaf.android_bookapp.room.repository;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -30,4 +31,6 @@ public interface CartItemDao {
     @Query("SELECT * FROM Cart_Items WHERE bookId = :bookId")
     CartItems getById(long bookId);
 
+    @Delete
+    void delete(CartItems cartItem);
 }
