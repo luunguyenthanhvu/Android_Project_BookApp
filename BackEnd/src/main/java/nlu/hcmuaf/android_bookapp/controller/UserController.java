@@ -24,18 +24,23 @@ public class UserController {
   @Autowired
   private ICartService cartService;
 
-  @GetMapping("cart/{userId}")
+  @GetMapping("/cart/{userId}")
   public ResponseEntity<List<CartItemResponseDTO>> getUserCart(@PathVariable long userId) {
     List<CartItemResponseDTO> cartItems = cartService.getUserCart(userId);
     return ResponseEntity.ok(cartItems);
   }
 
-  @PostMapping("cart/update/{userId}")
+  @PostMapping("/cart/update/{userId}")
   public ResponseEntity<MessageResponseDTO> syncCart(@PathVariable long userId,
       @RequestBody List<CartItemRequestDTO> requestDTO) {
     cartService.syncCart(userId, requestDTO);
     return ResponseEntity.ok(MessageResponseDTO.builder().message("Success").build());
   }
-//  @PostMapping("/cart/sync")
-//  public ResponseEntity
+
+  @PostMapping("/cart/delete/{userId}/{bookId}")
+  public ResponseEntity<MessageResponseDTO> deleteCartItem(@PathVariable long userId,
+      @PathVariable long bookId) {
+    cartService.deleteCartItem(userId, bookId);
+    return ResponseEntity.ok(MessageResponseDTO.builder().message("Success").build());
+  }
 }

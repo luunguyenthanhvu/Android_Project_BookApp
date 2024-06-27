@@ -9,4 +9,6 @@ public interface ICartService {
   List<CartItemResponseDTO> getUserCart(long userId);
 
   void syncCart(long userId, List<CartItemRequestDTO> requestDTO);
+
+  void deleteCartItem(long userId, long bookId);
 }

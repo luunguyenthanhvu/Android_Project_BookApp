@@ -33,6 +33,4 @@ public interface CartRepository extends JpaRepository<Carts, Long> {
 
   @Query("SELECT c FROM Cart c LEFT JOIN FETCH c.cartItems ci WHERE c.userId = :userId")
   Optional<Carts> getAllByUserId(@Param("userId") long userId);
-
-
 }
