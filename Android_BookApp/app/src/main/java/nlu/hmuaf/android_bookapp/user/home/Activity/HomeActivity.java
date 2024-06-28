@@ -241,7 +241,7 @@ public class HomeActivity extends AppCompatActivity {
         // lấy số lượng sách trong giỏ hàng
         updateCartQuantity();
 
-        //        Kiểm tra activity hiện tại để đổi màu icon ở navigation
+        //  Kiểm tra activity hiện tại để đổi màu icon ở navigation
         checkCurrentActivity();
 
     }

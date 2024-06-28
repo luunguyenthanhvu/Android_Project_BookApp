@@ -98,9 +98,9 @@ public class CartService {
                 }
                 int cartSize = cartItemDao.getCartItemByUserId(tokenResponseDTO.getUserId()).size();
                 cartSizeLiveData.postValue(cartSize);
-                if (!isProductInCart) {
-                    syncCartWithServer(tokenResponseDTO, "Default");
-                }
+//                if (!isProductInCart) {
+//                    syncCartWithServer(tokenResponseDTO, "Default");
+//                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -167,19 +167,51 @@ public class CartService {
                 List<CartItems> localCartItemUpdated = cartItemDao.getCartItemByUserId(tokenResponseDTO.getUserId());
                 int cartSize = localCartItemUpdated.size();
                 cartSizeLiveData.postValue(cartSize);
-                List<CartItemRequestDTO> requestDTO = localCartItemUpdated.stream()
-                        .map(item -> new CartItemRequestDTO(item.getBookId(), item.getQuantity()))
-                        .collect(Collectors.toList());
-                syncLocalCartToServer(requestDTO, tokenResponseDTO);
+                syncLocalCartToServer(localCartItemUpdated, tokenResponseDTO);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
     }
 
-    public void syncLocalCartToServer(List<CartItemRequestDTO> requestDTOS, TokenResponseDTO tokenResponseDTO) {
+    public void syncLocalCartToServer(TokenResponseDTO tokenResponseDTO) {
+        executorService.execute(() -> {
+            try {
+                BookAppApi bookAppApi = BookAppService.getClient(tokenResponseDTO.getToken());
+                List<CartItems> localCartItems = cartItemDao.getCartItemByUserId(tokenResponseDTO.getUserId());
+                List<CartItemRequestDTO> requestDTO = localCartItems.stream()
+                        .map(item -> new CartItemRequestDTO(item.getBookId(), item.getQuantity()))
+                        .collect(Collectors.toList());
+                Call<Void> call = bookAppApi.updateUserCart(tokenResponseDTO.getUserId(), requestDTO);
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if (response.isSuccessful()) {
+                            System.out.println("Cart synced successfully");
+                        } else {
+                            System.out.println("Failed to sync cart");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable throwable) {
+
+                    }
+                });
+            } catch (Exception e) {
+
+            }
+
+        });
+    }
+
+    public void syncLocalCartToServer(List<CartItems> localCartItemUpdated, TokenResponseDTO
+            tokenResponseDTO) {
         BookAppApi bookAppApi = BookAppService.getClient(tokenResponseDTO.getToken());
-        Call<Void> call = bookAppApi.updateUserCart(tokenResponseDTO.getUserId(), requestDTOS);
+        List<CartItemRequestDTO> requestDTO = localCartItemUpdated.stream()
+                .map(item -> new CartItemRequestDTO(item.getBookId(), item.getQuantity()))
+                .collect(Collectors.toList());
+        Call<Void> call = bookAppApi.updateUserCart(tokenResponseDTO.getUserId(), requestDTO);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
 import nlu.hmuaf.android_bookapp.networking.BookAppService;
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
@@ -40,18 +41,23 @@ public class MyCart extends AppCompatActivity {
     private List<Books> listBookChoose = new ArrayList<>();
     private CartService cartService;
     private RecycleViewBookForMyCartAdapter adapter;
+    private TokenResponseDTO tokenResponseDTO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mycart);
+
+        tokenResponseDTO = MyUtils.getTokenResponse(getApplicationContext());
         toolbar = findViewById(R.id.toolbar);
         btnConfirm = findViewById(R.id.btn_confirm);
         listBookInACart = findViewById(R.id.listViewBookInCart);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // to sync the cart at front end to sever (bookId, quantity)
         cartService = new CartService(getApplicationContext());
-        cartService.syncCartWithServer(MyUtils.getTokenResponse(this), "Default");
+        cartService.syncLocalCartToServer(tokenResponseDTO);
+
         adapter = new RecycleViewBookForMyCartAdapter(this, listBook, cartService);
         // Initialize adapter globally
         // Set up RecyclerView
