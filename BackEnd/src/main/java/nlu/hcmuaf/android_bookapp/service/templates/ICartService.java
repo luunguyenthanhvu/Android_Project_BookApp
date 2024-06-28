@@ -10,5 +10,5 @@ public interface ICartService {
 
   void syncCart(long userId, List<CartItemRequestDTO> requestDTO);
 
-  void deleteCartItem(long userId, long bookId);
+  void  deleteCartItem(long userId, long bookId);
 }
