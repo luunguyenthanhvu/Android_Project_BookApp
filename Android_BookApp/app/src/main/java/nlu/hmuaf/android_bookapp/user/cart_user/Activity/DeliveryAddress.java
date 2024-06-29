@@ -13,7 +13,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.shuhart.stepview.StepView;
+//import com.shuhart.stepview.StepView;
+
+import com.anton46.stepsview.StepsView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +29,7 @@ import nlu.hmuaf.android_bookapp.R;
 
 public class DeliveryAddress extends AppCompatActivity implements AddNewAddressFromUserDialog.OnAddressAddedListener, FragmentListAddressUser.OnAddressSelectedListenerFragment {
     private Toolbar toolbar;
-    private StepView stepView;
+    private StepsView stepView;
     private Button addAddress;
 
     private Button nextStep;
@@ -43,13 +45,19 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         toolbar = findViewById(R.id.toolbarDeliveryAddress);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-         stepView = findViewById(R.id.stepViewInDeliverAddress);
+//        stepView = findViewById(R.id.stepViewInDeliverAddress);
         listStepView.add("Review your order");
         listStepView.add("Address");
         listStepView.add("Payment");
         listStepView.add("Summary");
-        stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
-        stepView.go(1, true);
+//        stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
+//        stepView.go(1, true);
+        stepView.setLabels((String[]) listStepView.toArray()) // Đặt các bước (labels) cho StepsView từ listStepView
+                .setBarColorIndicator(getApplicationContext().getColor(android.R.color.darker_gray)) // Đặt màu của thanh chỉ báo
+                .setProgressColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo tiến độ
+                .setLabelColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo nhãn
+                .setCompletedPosition(3) // Đặt vị trí đã hoàn thành (nếu cần, ví dụ: 3)
+                .drawView(); // Vẽ StepsView
         addAddress = findViewById(R.id.buttonAddNewAddress);
 
         nextStep = findViewById(R.id.buttonDeliverToThisAddress);
@@ -69,7 +77,7 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         addAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddNewAddressFromUserDialog dialog = new AddNewAddressFromUserDialog(DeliveryAddress.this,DeliveryAddress.this);
+                AddNewAddressFromUserDialog dialog = new AddNewAddressFromUserDialog(DeliveryAddress.this, DeliveryAddress.this);
                 dialog.show();
 
 
@@ -78,10 +86,10 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         nextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Books> listBook = (ArrayList<Books>)getIntent().getSerializableExtra("listBookChoose");
-                HashMap<Integer,Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("selectedQuantities");
+                List<Books> listBook = (ArrayList<Books>) getIntent().getSerializableExtra("listBookChoose");
+                HashMap<Integer, Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("selectedQuantities");
                 Intent intent = new Intent(DeliveryAddress.this, Payment.class);
-                intent.putExtra("listBookChoose",(ArrayList<Books>) listBook);
+                intent.putExtra("listBookChoose", (ArrayList<Books>) listBook);
                 intent.putExtra("selectedQuantities", quantityMap);
                 intent.putExtra("address", selectedAddress);
                 startActivity(intent);
@@ -89,8 +97,8 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         });
 
 
-
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

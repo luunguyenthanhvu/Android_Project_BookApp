@@ -309,7 +309,7 @@ public class HomeActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
                     // Lấy danh sách sách mới từ phản hồi
-                    newListBook = (List<ListBookResponseDTO>) response.body();
+                    newListBook = response.body();
                     // Cập nhật RecyclerView với danh sách sách mới
                     updateNewBookRecyclerView(newListBook);
                 } else {

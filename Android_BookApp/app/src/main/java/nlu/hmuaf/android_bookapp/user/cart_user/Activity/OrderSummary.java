@@ -14,7 +14,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shuhart.stepview.StepView;
+import com.anton46.stepsview.StepsView;
+//import com.shuhart.stepview.StepView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ import nlu.hmuaf.android_bookapp.R;
 
 public class OrderSummary extends AppCompatActivity {
     private Toolbar toolbar;
-    private StepView stepView;
+    private StepsView stepView;
     private List<String> listStepView = new ArrayList<>();
     private RecyclerView recyclerView;
     private TextView address;
@@ -47,15 +48,24 @@ public class OrderSummary extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbarOrderSummary);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        stepView = findViewById(R.id.stepViewInOrderSummary);
+//        stepView = findViewById(R.id.stepViewInOrderSummary);
         listStepView.add("Review your order");
         listStepView.add("Address");
         listStepView.add("Payment");
         listStepView.add("Summary");
 
-        stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
-        stepView.go(3, true);
-        stepView.done(true);
+//        stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
+//        stepView.go(3, true);
+//        stepView.done(true);
+        stepView.setLabels((String[]) listStepView.toArray()) // Đặt các bước (labels) cho StepsView từ listStepView
+                .setBarColorIndicator(getApplicationContext().getColor(android.R.color.darker_gray)) // Đặt màu của thanh chỉ báo
+                .setProgressColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo tiến độ
+                .setLabelColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo nhãn
+                .setCompletedPosition(3) // Đặt vị trí đã hoàn thành (nếu cần, ví dụ: 3)
+                .drawView(); // Vẽ StepsView
+
+// Không có phương thức go() tương tự như StepView, nếu cần đi đến bước thì cần kiểm tra API của StepsView
+//        stepView.done(true);
 
         recyclerView = findViewById(R.id.recycleViewBook);
         address = findViewById(R.id.textViewAddress);

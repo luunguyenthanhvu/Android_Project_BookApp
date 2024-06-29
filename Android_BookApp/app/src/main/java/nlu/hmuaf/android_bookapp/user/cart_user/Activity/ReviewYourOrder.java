@@ -12,7 +12,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shuhart.stepview.StepView;
+import com.anton46.stepsview.StepsView;
+//import com.shuhart.stepview.StepView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +27,7 @@ import nlu.hmuaf.android_bookapp.user.home.activity.BookActivity;
 import nlu.hmuaf.android_bookapp.user.home.adapter.OnItemClickListener;
 
 public class ReviewYourOrder extends AppCompatActivity {
-    private StepView stepView;
+    private StepsView stepView;
     private List<String> listStepView = new ArrayList<>();
     private Toolbar toolbar;
 
@@ -65,13 +66,15 @@ public class ReviewYourOrder extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        listStepView.add("Review your order");
-        listStepView.add("Address");
-        listStepView.add("Payment");
-        listStepView.add("Summary");
-
-        stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
-        stepView.go(0, true);
+//        stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
+//        stepView.go(0, true);
+//        String[] arrayString = (String[]) listStepView.toArray();
+        stepView.setLabels(new String[]{"1","2","3","4"}) // Đặt các bước (labels) cho StepsView
+                .setBarColorIndicator(getApplicationContext().getColor(android.R.color.darker_gray)) // Đặt màu của thanh chỉ báo
+                .setProgressColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo tiến độ
+                .setLabelColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo nhãn
+                .setCompletedPosition(0) // Đặt vị trí đã hoàn thành (nếu cần)
+                .drawView(); // Vẽ StepsView
 
         listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBookChoose");
         HashMap<Integer, Integer> quantityMap = new HashMap<>();
