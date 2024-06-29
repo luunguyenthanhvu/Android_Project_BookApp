@@ -29,6 +29,7 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
     private Toolbar toolbar;
     private StepView stepView;
     private Button addAddress;
+    private Button addAddressByGoogleMap;
 
     private Button nextStep;
     private List<String> listStepView = new ArrayList<>();
@@ -51,7 +52,7 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
         stepView.go(1, true);
         addAddress = findViewById(R.id.buttonAddNewAddress);
-
+        addAddressByGoogleMap = findViewById(R.id.buttonAddAdressByGoogleMap);
         nextStep = findViewById(R.id.buttonDeliverToThisAddress);
         // Tạo instance của Fragment
         FragmentListAddressUser fragmentListAddressUser = new FragmentListAddressUser();
