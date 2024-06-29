@@ -13,7 +13,7 @@ import java.util.List;
 
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.profile.DarkModeUtil;
-import nlu.hmuaf.android_bookapp.user.profile.Class.Review;
+import nlu.hmuaf.android_bookapp.user.profile.classess.Review;
 import nlu.hmuaf.android_bookapp.user.profile.adapter.ReviewAdapter;
 
 public class ReviewActivity extends AppCompatActivity {

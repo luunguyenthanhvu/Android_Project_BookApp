@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.cart_user.Activity;
+package nlu.hmuaf.android_bookapp.user.cart_user.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
-import nlu.hmuaf.android_bookapp.user.cart_user.Adapter.RecycleViewBookChosenAdapter;
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Address;
+import nlu.hmuaf.android_bookapp.user.cart_user.adapter.RecycleViewBookChosenAdapter;
+import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
 import nlu.hmuaf.android_bookapp.R;
 
 public class OrderSummary extends AppCompatActivity {

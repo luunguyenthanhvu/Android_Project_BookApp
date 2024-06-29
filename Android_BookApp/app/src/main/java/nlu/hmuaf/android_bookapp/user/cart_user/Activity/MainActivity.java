@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.cart_user.Activity;
+package nlu.hmuaf.android_bookapp.user.cart_user.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

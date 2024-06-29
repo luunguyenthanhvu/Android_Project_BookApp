@@ -15,8 +15,8 @@ import java.util.List;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.profile.DarkModeUtil;
 import nlu.hmuaf.android_bookapp.user.profile.adapter.AddressAdapter;
-import nlu.hmuaf.android_bookapp.user.profile.Class.Address;
-import nlu.hmuaf.android_bookapp.user.profile.Class.User;
+import nlu.hmuaf.android_bookapp.user.profile.classess.Address;
+import nlu.hmuaf.android_bookapp.user.profile.classess.User;
 
 public class AddressActivity extends AppCompatActivity {
 

@@ -1,5 +1,5 @@
 
-package nlu.hmuaf.android_bookapp.user.bill.Activity;
+package nlu.hmuaf.android_bookapp.user.bill.activity;
 
 
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import java.util.List;
 
 
 import nlu.hmuaf.android_bookapp.R;
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Bills;
+import nlu.hmuaf.android_bookapp.user.cart_user.beans.Bills;
 
 public class MyBill extends AppCompatActivity {
     private Toolbar toolbar;

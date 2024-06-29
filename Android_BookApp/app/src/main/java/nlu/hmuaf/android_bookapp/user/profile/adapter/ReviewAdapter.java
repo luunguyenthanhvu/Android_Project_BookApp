@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.R;
-import nlu.hmuaf.android_bookapp.user.profile.Class.Review;
+import nlu.hmuaf.android_bookapp.user.profile.classess.Review;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder> {
 

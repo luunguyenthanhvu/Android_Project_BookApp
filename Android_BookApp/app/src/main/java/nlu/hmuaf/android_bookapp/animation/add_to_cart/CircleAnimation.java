@@ -19,8 +19,6 @@ import android.widget.FrameLayout;
 
 import java.lang.ref.WeakReference;
 
-import nlu.hmuaf.android_bookapp.user.home.Activity.HomeActivity;
-
 public class CircleAnimation {
     private static final int DEFAULT_DURATION = 1000;
     private static final int DEFAULT_DURATION_DISAPPEAR = 100;

@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.home.Activity;
+package nlu.hmuaf.android_bookapp.user.home.activity;
 
 import android.animation.Animator;
 import android.app.Activity;
@@ -18,7 +18,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,10 +42,9 @@ import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
 import nlu.hmuaf.android_bookapp.networking.BookAppService;
 import nlu.hmuaf.android_bookapp.room.service.CartService;
-import nlu.hmuaf.android_bookapp.user.cart_user.Activity.MyCart;
-import nlu.hmuaf.android_bookapp.user.home.Adapter.BookAdapter;
-import nlu.hmuaf.android_bookapp.user.home.Adapter.NewBookAdapter;
-import nlu.hmuaf.android_bookapp.user.home.Adapter.OnItemClickListener;
+import nlu.hmuaf.android_bookapp.user.cart_user.activity.MyCart;
+import nlu.hmuaf.android_bookapp.user.home.adapter.BookAdapter;
+import nlu.hmuaf.android_bookapp.user.home.adapter.OnItemClickListener;
 import nlu.hmuaf.android_bookapp.user.profile.activity.LogOutActivity;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
 import retrofit2.Call;

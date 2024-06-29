@@ -1,8 +1,6 @@
 package nlu.hmuaf.android_bookapp.admin.order.activity;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,7 +17,6 @@ import java.util.List;
 import nlu.hmuaf.android_bookapp.admin.order.adapter.OrderListAdapter;
 import nlu.hmuaf.android_bookapp.admin.order.bean.Order;
 import nlu.hmuaf.android_bookapp.R;
-import nlu.hmuaf.android_bookapp.user.home.Class.BookB;
 
 public class OrderList extends AppCompatActivity {
 

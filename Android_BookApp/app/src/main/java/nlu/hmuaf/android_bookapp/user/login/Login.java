@@ -11,11 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.List;
-
-import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.room.service.CartService;
-import nlu.hmuaf.android_bookapp.user.home.Activity.HomeActivity;
+import nlu.hmuaf.android_bookapp.user.home.activity.HomeActivity;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
