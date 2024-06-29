@@ -21,29 +21,12 @@
     <com.anton46.stepsview.StepsView
         android:id="@+id/stepViewInReviewYourOrder"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:background="#EEF4FB" />
-    <!--    <com.anton46.stepsview.StepsView-->
-    <!--        android:id="@+id/stepViewInReviewYourOrder"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="86dp"-->
-    <!--        android:layout_weight="1"-->
-    <!--        android:background="#EEF4FB"-->
-    <!--        app:sv_doneTextColor="#B868E9"-->
-    <!--        app:sv_nextStepCircleColor="@color/material_dynamic_neutral70"-->
-    <!--        app:sv_nextStepLineColor="@color/material_dynamic_neutral70"-->
-    <!--        app:sv_nextTextColor="#B868E9"-->
-    <!--        app:sv_selectedCircleColor="#6D1683"-->
-    <!--        app:sv_selectedTextColor="#B868E9"-->
-    <!--        app:sv_stepLineWidth="3dp"-->
-    <!--        app:sv_steps="@array/steps">-->
-
-    <!--    </com.anton46.stepsview.StepsView>-->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="370dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="#E8E4E9"
         android:padding="10dp">
@@ -51,7 +34,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listBookChosen"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="450dp"
+            android:layout_weight="1"/>
     </LinearLayout>
 
     <RelativeLayout
