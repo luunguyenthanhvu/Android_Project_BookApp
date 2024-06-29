@@ -12,15 +12,15 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.admin.order.bean.OrderItem;
+import nlu.hmuaf.android_bookapp.admin.order.bean.Order;
 import nlu.hmuaf.android_bookapp.R;
 
 public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.OrderItemViewHolder> {
 
-    private final List<OrderItem> orderItemList;
+    private final List<Order> orderList;
 
-    public OrderDetailAdapter(List<OrderItem> orderItemList) {
-        this.orderItemList = orderItemList;
+    public OrderDetailAdapter(List<Order> orderList) {
+        this.orderList = orderList;
     }
 
     @NonNull
@@ -32,12 +32,12 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull OrderItemViewHolder holder, int position) {
-        holder.bind(orderItemList.get(position));
+        holder.bind(orderList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return orderItemList.size();
+        return orderList.size();
     }
 
      class OrderItemViewHolder extends RecyclerView.ViewHolder {
@@ -51,13 +51,13 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             productQuantity = itemView.findViewById(R.id.product_quantity);
             productPrice = itemView.findViewById(R.id.product_price);
         }
-         public void bind(OrderItem orderItem) {
+         public void bind(Order orderItem) {
              // Load hình ảnh sản phẩm
              Picasso.get().load(orderItem.getResourceid()).into(productImage);
 
              productName.setText(orderItem.getProductName());
              productQuantity.setText("Số lượng: "+orderItem.getQuantity());
-             productPrice.setText("Thành tiền:" +orderItem.getProductPrice());
+             productPrice.setText("Thành tiền:" +orderItem.getPrice());
          }
 
      }

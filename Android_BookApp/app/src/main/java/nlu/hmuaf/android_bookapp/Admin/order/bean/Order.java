@@ -27,6 +27,13 @@ public class Order implements Serializable {
         this.orderId = orderId;
     }
 
+    public Order(int resourceid, String productName, int quantity, String price) {
+        this.resourceid = resourceid;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     public String getUserName() {
         return userName;
     }

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.admin.order.adapter.OrderDetailAdapter;
-import nlu.hmuaf.android_bookapp.admin.order.bean.OrderItem;
+import nlu.hmuaf.android_bookapp.admin.order.bean.Order;
 import nlu.hmuaf.android_bookapp.R;
 
 public class OrderDetail extends AppCompatActivity {
@@ -166,11 +166,11 @@ public class OrderDetail extends AppCompatActivity {
         timeDelivered.setText("22-05-2024");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        List<OrderItem> orderItemList = new ArrayList<>();
-        orderItemList.add(new OrderItem(R.drawable.book1 , "Sản phẩm 1", 1, "30,000 VND"));
-        orderItemList.add(new OrderItem(R.drawable.book2 ,"Sản phẩm 2", 2, "20,000 VND"));
+        List<Order> orderList = new ArrayList<>();
+        orderList.add(new Order(R.drawable.book1 , "Sản phẩm 1", 1, "30,000 VND"));
+        orderList.add(new Order(R.drawable.book2 ,"Sản phẩm 2", 2, "20,000 VND"));
 
-        OrderDetailAdapter adapter = new OrderDetailAdapter(orderItemList);
+        OrderDetailAdapter adapter = new OrderDetailAdapter(orderList);
         recyclerView.setAdapter(adapter);
     }
 
