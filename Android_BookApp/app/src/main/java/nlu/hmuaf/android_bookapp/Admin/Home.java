@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import nlu.hmuaf.android_bookapp.admin.manage_inventory.AddBookActivity;
+import nlu.hmuaf.android_bookapp.admin.manage_inventory.ManageInventoryActivity;
 import nlu.hmuaf.android_bookapp.admin.order.activity.OrderList;
 import nlu.hmuaf.android_bookapp.R;
 
@@ -68,8 +70,8 @@ public class Home extends AppCompatActivity {
         listInStockSubMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(@NonNull View view) {
-//                Intent intent = new Intent(AdminHome.this, ManageOrder.class);
-//                startActivity(intent);
+                Intent intent = new Intent(Home.this, ManageInventoryActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -93,13 +95,13 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        // Chọn Thêm đơn hàng
+        // Chọn Thêm sản phẩm
         listAddOrderSubMenu = findViewById(R.id.list_addProduct_submenu);
         listAddOrderSubMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(@NonNull View view) {
-//                Intent intent = new Intent(AdminHome.this, ManageOrder.class);
-//                startActivity(intent);
+                Intent intent = new Intent(Home.this, AddBookActivity.class);
+                startActivity(intent);
             }
         });
 
