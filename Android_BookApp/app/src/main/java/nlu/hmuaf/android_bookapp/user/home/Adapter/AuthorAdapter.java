@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.home.Adapter;
+package nlu.hmuaf.android_bookapp.user.home.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.home.Class.Author;
+import nlu.hmuaf.android_bookapp.user.home.classess.Author;
 import nlu.hmuaf.android_bookapp.R;
 
 public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.AuthorViewHolder> {

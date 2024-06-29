@@ -13,7 +13,7 @@ import java.util.List;
 
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.profile.DarkModeUtil;
-import nlu.hmuaf.android_bookapp.user.profile.Class.Notification;
+import nlu.hmuaf.android_bookapp.user.profile.classess.Notification;
 import nlu.hmuaf.android_bookapp.user.profile.adapter.NotificationAdapter;
 
 public class NotificationActivity extends AppCompatActivity {

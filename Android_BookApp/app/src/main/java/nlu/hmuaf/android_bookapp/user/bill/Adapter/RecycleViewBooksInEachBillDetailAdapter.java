@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.bill.Adapter;
+package nlu.hmuaf.android_bookapp.user.bill.adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.bill.Bean.BillDetails;
+import nlu.hmuaf.android_bookapp.user.bill.bean.BillDetails;
 import nlu.hmuaf.android_bookapp.R;
 
 public class RecycleViewBooksInEachBillDetailAdapter extends RecyclerView.Adapter<RecycleViewBooksInEachBillDetailAdapter.MyViewHolder>{

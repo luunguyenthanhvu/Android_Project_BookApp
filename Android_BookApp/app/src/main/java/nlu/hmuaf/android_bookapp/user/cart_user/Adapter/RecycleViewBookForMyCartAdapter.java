@@ -1,9 +1,8 @@
-package nlu.hmuaf.android_bookapp.user.cart_user.Adapter;
+package nlu.hmuaf.android_bookapp.user.cart_user.adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.util.SparseBooleanArray;
-import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +29,9 @@ import nlu.hmuaf.android_bookapp.networking.BookAppApi;
 import nlu.hmuaf.android_bookapp.networking.BookAppService;
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.room.service.CartService;
-import nlu.hmuaf.android_bookapp.user.cart_user.Dialog.AlertExceedQuantityDialog;
-import nlu.hmuaf.android_bookapp.user.cart_user.Dialog.AlertQuantityTo0Dialog;
-import nlu.hmuaf.android_bookapp.user.home.Adapter.OnItemClickListener;
+import nlu.hmuaf.android_bookapp.user.cart_user.dialogs.AlertExceedQuantityDialog;
+import nlu.hmuaf.android_bookapp.user.cart_user.dialogs.AlertQuantityTo0Dialog;
+import nlu.hmuaf.android_bookapp.user.home.adapter.OnItemClickListener;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
 import retrofit2.Call;
 import retrofit2.Callback;

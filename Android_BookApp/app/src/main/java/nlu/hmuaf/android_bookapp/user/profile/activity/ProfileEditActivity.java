@@ -20,7 +20,7 @@ import java.util.Calendar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import nlu.hmuaf.android_bookapp.R;
-import nlu.hmuaf.android_bookapp.user.profile.Class.UserDetails;
+import nlu.hmuaf.android_bookapp.user.profile.classess.UserDetails;
 
 public class ProfileEditActivity extends AppCompatActivity {
 

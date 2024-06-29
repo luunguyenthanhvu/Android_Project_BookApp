@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.home.Activity;
+package nlu.hmuaf.android_bookapp.user.home.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,8 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import nlu.hmuaf.android_bookapp.user.home.Adapter.LibraryAdapter;
-import nlu.hmuaf.android_bookapp.user.home.Class.BookB;
+import nlu.hmuaf.android_bookapp.user.home.adapter.LibraryAdapter;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.profile.activity.LogOutActivity;
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -9,7 +10,6 @@
 
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_BookApp"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
         <activity
@@ -81,95 +82,98 @@
             android:exported="false" />
         <activity
             android:name=".user.login.Login"
-            android:exported="true">
-        </activity>
-        <activity android:name=".user.cart_user.Activity.MainActivity"
-            android:exported="true">
-        </activity>
-        <activity android:name=".user.cart_user.Activity.ReviewYourOrder"
-            android:exported="false">
-        </activity>
-        <activity android:name=".user.cart_user.Activity.MyCart"
-            android:exported="false">
-        </activity>
-        <activity android:name=".user.cart_user.Activity.DeliveryAddress"
-            android:exported="false">
-        </activity>
-        <activity android:name=".user.cart_user.Activity.Payment"
-            android:exported="false">
-        </activity>
-        <activity android:name=".user.cart_user.Activity.OrderSummary"
-            android:exported="false">
-        </activity>
-        <activity android:name=".user.cart_user.Activity.DiscountsActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".user.home.Activity.HomeActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".user.cart_user.activity.MainActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".user.cart_user.activity.ReviewYourOrder"
+            android:exported="false"></activity>
+        <activity
+            android:name=".user.cart_user.activity.MyCart"
+            android:exported="false"></activity>
+        <activity
+            android:name=".user.cart_user.activity.DeliveryAddress"
+            android:exported="false"></activity>
+        <activity
+            android:name=".user.cart_user.activity.Payment"
+            android:exported="false"></activity>
+        <activity
+            android:name=".user.cart_user.activity.OrderSummary"
+            android:exported="false"></activity>
+        <activity
+            android:name=".user.cart_user.activity.DiscountsActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".user.home.activity.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".user.home.Activity.SearchActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".user.home.Activity.FantasyActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".user.home.Activity.LibraryActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".user.home.Activity.BookActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".user.home.Activity.NumberActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".user.home.Activity.MainActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".user.profile.activity.ProfileActivity"
+        <activity
+            android:name=".user.home.activity.SearchActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".user.home.activity.FantasyActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".user.home.activity.LibraryActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".user.home.activity.BookActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".user.home.activity.NumberActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".user.home.activity.MainActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".user.profile.activity.ProfileActivity"
             android:exported="true">
-<!--                                    <intent-filter>-->
-<!--                                        <action android:name="android.intent.action.MAIN" />-->
-<!--                                        <category android:name="android.intent.category.LAUNCHER" />-->
-<!--                                    </intent-filter>-->
+            <!--                                    <intent-filter>-->
+            <!--                                        <action android:name="android.intent.action.MAIN" />-->
+            <!--                                        <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--                                    </intent-filter>-->
         </activity>
-        <activity android:name=".admin.Home"
+        <activity
+            android:name=".admin.Home"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
-        <activity android:name=".admin.order.activity.OrderList"
-            android:exported="true">
-        </activity>
-        <activity android:name=".admin.order.activity.OrderDetail"
-            android:exported="false">
-        </activity>
-        <activity android:name=".admin.ManageInventory.AddBookActivity"
+        <activity
+            android:name=".admin.order.activity.OrderList"
+            android:exported="true"></activity>
+        <activity
+            android:name=".admin.order.activity.OrderDetail"
+            android:exported="false"></activity>
+        <activity
+            android:name=".admin.manage_inventory.AddBookActivity"
             android:exported="true">
 
         </activity>
-        <activity android:name=".admin.ManageInventory.ManageInventoryActivity"
-            android:exported="true">
-        </activity>
+        <activity
+            android:name=".admin.manage_inventory.ManageInventoryActivity"
+            android:exported="true"></activity>
 
-        <activity android:name=".admin.ManageInventory.ProductDetailActivity"
-            android:exported="false">
-        </activity>
+        <activity
+            android:name=".admin.manage_inventory.ProductDetailActivity"
+            android:exported="false"></activity>
 
-        <activity android:name=".admin.ManageInventory.BulkUpdateActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".admin.ManageInventory.ManageInventorDetailActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".user.bill.Activity.MyBill"
-            android:exported="true">
-        </activity>
+        <activity
+            android:name=".admin.manage_inventory.BulkUpdateActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".admin.manage_inventory.ManageInventorDetailActivity"
+            android:exported="false"></activity>
+        <activity
+            android:name=".user.bill.activity.MyBill"
+            android:exported="true"></activity>
     </application>
 </manifest>

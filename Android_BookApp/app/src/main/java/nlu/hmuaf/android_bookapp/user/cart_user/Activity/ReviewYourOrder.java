@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.cart_user.Activity;
+package nlu.hmuaf.android_bookapp.user.cart_user.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,11 +19,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
-import nlu.hmuaf.android_bookapp.user.cart_user.Adapter.RecycleViewBookChosenAdapter;
-import nlu.hmuaf.android_bookapp.user.cart_user.Adapter.RecycleViewBookForMyCartAdapter;
+import nlu.hmuaf.android_bookapp.user.cart_user.adapter.RecycleViewBookChosenAdapter;
+import nlu.hmuaf.android_bookapp.user.cart_user.adapter.RecycleViewBookForMyCartAdapter;
 import nlu.hmuaf.android_bookapp.R;
-import nlu.hmuaf.android_bookapp.user.home.Activity.BookActivity;
-import nlu.hmuaf.android_bookapp.user.home.Adapter.OnItemClickListener;
+import nlu.hmuaf.android_bookapp.user.home.activity.BookActivity;
+import nlu.hmuaf.android_bookapp.user.home.adapter.OnItemClickListener;
 
 public class ReviewYourOrder extends AppCompatActivity {
     private StepView stepView;

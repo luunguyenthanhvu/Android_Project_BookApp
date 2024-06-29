@@ -15,24 +15,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.preference.PreferenceManager;
-import android.widget.Toast;
 
-import nlu.hmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
-import nlu.hmuaf.android_bookapp.networking.BookAppApi;
-import nlu.hmuaf.android_bookapp.networking.BookAppService;
 import nlu.hmuaf.android_bookapp.room.service.CartService;
-import nlu.hmuaf.android_bookapp.user.bill.Activity.MyBill;
-import nlu.hmuaf.android_bookapp.user.cart_user.Activity.MyCart;
+import nlu.hmuaf.android_bookapp.user.bill.activity.MyBill;
+import nlu.hmuaf.android_bookapp.user.cart_user.activity.MyCart;
 import nlu.hmuaf.android_bookapp.R;
-import nlu.hmuaf.android_bookapp.user.home.Activity.HomeActivity;
 import nlu.hmuaf.android_bookapp.user.login.Login;
-import nlu.hmuaf.android_bookapp.user.profile.Class.UserDetails;
+import nlu.hmuaf.android_bookapp.user.profile.classess.UserDetails;
 import nlu.hmuaf.android_bookapp.user.profile.DarkModeUtil;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
     private static final int REQUEST_EDIT_PROFILE = 1;

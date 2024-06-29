@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import nlu.hmuaf.android_bookapp.R;
-import nlu.hmuaf.android_bookapp.user.profile.Class.Address;
-import nlu.hmuaf.android_bookapp.user.profile.Class.User;
+import nlu.hmuaf.android_bookapp.user.profile.classess.Address;
+import nlu.hmuaf.android_bookapp.user.profile.classess.User;
 
 public class EditAddressActivity extends AppCompatActivity {
 

@@ -1,11 +1,10 @@
-package nlu.hmuaf.android_bookapp.user.home.Activity;
+package nlu.hmuaf.android_bookapp.user.home.activity;
 
 import android.animation.Animator;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
@@ -33,8 +31,7 @@ import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
 import nlu.hmuaf.android_bookapp.networking.BookAppService;
 import nlu.hmuaf.android_bookapp.room.service.CartService;
-import nlu.hmuaf.android_bookapp.user.cart_user.Activity.MyCart;
-import nlu.hmuaf.android_bookapp.user.home.Adapter.DiscountAdapter;
+import nlu.hmuaf.android_bookapp.user.cart_user.activity.MyCart;
 import nlu.hmuaf.android_bookapp.user.profile.activity.LogOutActivity;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
 import retrofit2.Call;

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.R;
-import nlu.hmuaf.android_bookapp.user.profile.Class.Notification;
+import nlu.hmuaf.android_bookapp.user.profile.classess.Notification;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder> {
 

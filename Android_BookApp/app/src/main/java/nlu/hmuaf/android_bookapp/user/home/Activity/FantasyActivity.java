@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.home.Activity;
+package nlu.hmuaf.android_bookapp.user.home.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.home.Adapter.FantasyAdapter;
-import nlu.hmuaf.android_bookapp.user.home.Class.BookB;
+import nlu.hmuaf.android_bookapp.user.home.adapter.FantasyAdapter;
+import nlu.hmuaf.android_bookapp.user.home.classess.BookB;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.profile.activity.LogOutActivity;
 

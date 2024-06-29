@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.cart_user.Adapter;
+package nlu.hmuaf.android_bookapp.user.cart_user.adapter;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Discounts;
-import nlu.hmuaf.android_bookapp.user.cart_user.Activity.ICouponClickListener;
+import nlu.hmuaf.android_bookapp.user.cart_user.beans.Discounts;
+import nlu.hmuaf.android_bookapp.user.cart_user.activity.ICouponClickListener;
 import nlu.hmuaf.android_bookapp.R;
 
 public class RecycleViewDiscountUserAdapter extends RecyclerView.Adapter<RecycleViewDiscountUserAdapter.MyViewHolder> {

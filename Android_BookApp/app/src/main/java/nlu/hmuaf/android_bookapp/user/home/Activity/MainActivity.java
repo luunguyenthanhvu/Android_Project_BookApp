@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.home.Activity;
+package nlu.hmuaf.android_bookapp.user.home.activity;
 
 import android.os.Bundle;
 
