@@ -20,22 +20,24 @@
 
         />
 
-    <com.shuhart.stepview.StepView
-        android:id="@+id/stepViewInDeliverAddress"
-        android:layout_width="match_parent"
-        android:layout_height="153dp"
-        android:layout_marginBottom="40dp"
-        android:layout_weight="0"
-        android:background="#EEF4FB"
-        app:sv_doneTextColor="#B868E9"
-        app:sv_nextStepCircleColor="@color/material_dynamic_neutral70"
-        app:sv_nextStepLineColor="@color/material_dynamic_neutral70"
-        app:sv_nextTextColor="#B868E9"
-        app:sv_selectedCircleColor="#6D1683"
-        app:sv_selectedTextColor="#B868E9"
-        app:sv_stepLineWidth="3dp">
+<!--    <com.anton46.stepsview.StepsView-->
+    <!--        android:id="@+id/stepViewInDeliverAddress"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="153dp"-->
+    <!--        android:layout_marginBottom="40dp"-->
+    <!--        android:layout_weight="0"-->
+    <!--        android:background="#EEF4FB"-->
+    <!--        app:sv_doneTextColor="#B868E9"-->
+    <!--        app:sv_nextStepCircleColor="@color/material_dynamic_neutral70"-->
+    <!--        app:sv_nextStepLineColor="@color/material_dynamic_neutral70"-->
+    <!--        app:sv_nextTextColor="#B868E9"-->
+    <!--        app:sv_selectedCircleColor="#6D1683"-->
+    <!--        app:sv_selectedTextColor="#B868E9"-->
+    <!--        app:sv_stepLineWidth="3dp"/>-->
 
-    </com.shuhart.stepview.StepView>
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
