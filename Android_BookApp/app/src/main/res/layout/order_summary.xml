@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#EEF4FB"
     android:orientation="vertical">
 
@@ -11,27 +11,18 @@
         android:id="@+id/toolbarOrderSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:title="Order Summary"
-        android:layout_marginBottom="40dp"
         app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
-        />
-<!--    <com.anton46.stepsview.StepsView-->
-<!--        android:id="@+id/stepViewInOrderSummary"-->
-<!--        android:layout_width="match_parent"-->
-<!--        app:sv_selectedCircleColor="#6D1683"-->
-<!--        app:sv_nextStepCircleColor="@color/material_dynamic_neutral70"-->
-<!--        app:sv_selectedTextColor="#B868E9"-->
-<!--        app:sv_nextTextColor="#B868E9"-->
-<!--        app:sv_doneTextColor="#B868E9"-->
-<!--        app:sv_animationType="All"-->
-<!--        app:sv_nextStepLineColor="@color/material_dynamic_neutral70"-->
-<!--        app:sv_stepLineWidth="3dp"-->
-<!--        android:layout_height="86dp"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:background="#EEF4FB"/>-->
+        app:title="Order Summary" />
+
+    <com.anton46.stepsview.StepsView
+        android:id="@+id/stepViewInOrderSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EEF4FB" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,8 +46,8 @@
             android:id="@+id/textViewAddress"
             android:layout_width="177dp"
             android:layout_height="44dp"
-            android:textColor="@color/black"
             android:text="Name, contact no,  door no, street, city, dist, pin code"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.201"
@@ -98,28 +89,28 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Payment Method" />
+                android:layout_marginTop="10dp"
+                android:text="Payment Method"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/textViewPaymentMethod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Cart on delivery" />
+                android:text="Cart on delivery"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        >
+        android:layout_marginTop="20dp">
 
         <LinearLayout
             android:layout_width="5dp"
@@ -131,8 +122,8 @@
                 android:id="@+id/tv_priceDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Price Details (1 item)" />
+                android:text="Price Details (1 item)"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -141,8 +132,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/black"
-            android:text="2500" />
+            android:text="2500"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <RelativeLayout

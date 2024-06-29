@@ -1,6 +1,7 @@
 package nlu.hmuaf.android_bookapp.user.cart_user.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -45,10 +46,10 @@ public class OrderSummary extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_summary);
-        toolbar = findViewById(R.id.toolbarOrderSummary);
+        toolbar = findViewById(R.id.stepViewInReviewYourOrder);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        stepView = findViewById(R.id.stepViewInOrderSummary);
+        stepView = findViewById(R.id.stepViewInOrderSummary);
         listStepView.add("Review your order");
         listStepView.add("Address");
         listStepView.add("Payment");
@@ -57,15 +58,13 @@ public class OrderSummary extends AppCompatActivity {
 //        stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
 //        stepView.go(3, true);
 //        stepView.done(true);
-        stepView.setLabels((String[]) listStepView.toArray()) // Đặt các bước (labels) cho StepsView từ listStepView
-                .setBarColorIndicator(getApplicationContext().getColor(android.R.color.darker_gray)) // Đặt màu của thanh chỉ báo
-                .setProgressColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo tiến độ
-                .setLabelColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo nhãn
-                .setCompletedPosition(3) // Đặt vị trí đã hoàn thành (nếu cần, ví dụ: 3)
+        String[] arrayString = {"1", "2", "3", "4"};
+        stepView.setLabels(arrayString) // Đặt nhãn cho StepsView
+                .setBarColorIndicator(Color.GRAY) // Đặt màu mặc định cho thanh chỉ báo (màu xám)
+                .setProgressColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho chỉ báo tiến độ (màu xám)
+                .setLabelColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho nhãn (màu xám)
+                .setCompletedPosition(2) // Đặt vị trí đã hoàn thành
                 .drawView(); // Vẽ StepsView
-
-// Không có phương thức go() tương tự như StepView, nếu cần đi đến bước thì cần kiểm tra API của StepsView
-//        stepView.done(true);
 
         recyclerView = findViewById(R.id.recycleViewBook);
         address = findViewById(R.id.textViewAddress);
