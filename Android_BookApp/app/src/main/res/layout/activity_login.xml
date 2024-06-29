@@ -18,7 +18,7 @@
             android:layout_height="85dp"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            android:src="@drawable/book_login"/>
+            android:src="@drawable/book_login" />
         <!-- Icon -->
 
         <TextView
@@ -37,18 +37,18 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:hint="Email"
-            android:singleLine="true"
-            android:imeActionLabel="Next"/>
+            android:imeActionLabel="Next"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:inputType="textPassword"
             android:hint="Mật khẩu"
-            android:singleLine="true"
-            android:imeActionLabel="Next"/>
+            android:imeActionLabel="Next"
+            android:inputType="textPassword"
+            android:singleLine="true" />
 
         <TextView
             android:id="@+id/login_forgot"
@@ -57,16 +57,16 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:textSize="14dp"
-            android:text="Quên mật khẩu?" />
+            android:text="Quên mật khẩu?"
+            android:textSize="14dp" />
 
         <Button
             android:id="@+id/login_button"
             android:layout_width="374dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Đăng Nhập"
             android:backgroundTint="#6D1683"
+            android:text="Đăng Nhập"
             android:textColor="#FFFFFF" />
 
         <TextView
@@ -74,8 +74,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
-            android:textSize="14dp"
-            android:hint="hoặc" />
+            android:hint="hoặc"
+            android:textSize="14dp" />
 
         <LinearLayout
             android:id="@+id/socialicons"
@@ -83,12 +83,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:gravity="center">
+
             <ImageView
                 android:id="@+id/login_google"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_margin="20dp"
                 android:src="@drawable/google" />
+
             <ImageView
                 android:id="@+id/login_face"
                 android:layout_width="48dp"
@@ -113,8 +115,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginTop="6dp"
                 android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
                 android:text="Bạn mới biết đến Shop? "
                 android:textSize="14dp" />
 

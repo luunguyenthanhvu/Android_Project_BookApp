@@ -23,6 +23,9 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
+import nlu.hmuaf.android_bookapp.networking.BookAppApi;
+import nlu.hmuaf.android_bookapp.networking.BookAppService;
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.room.service.CartService;
 import nlu.hmuaf.android_bookapp.user.cart_user.Adapter.RecycleViewBookForMyCartAdapter;
@@ -38,17 +41,23 @@ public class MyCart extends AppCompatActivity {
     private List<Books> listBookChoose = new ArrayList<>();
     private CartService cartService;
     private RecycleViewBookForMyCartAdapter adapter;
+    private TokenResponseDTO tokenResponseDTO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mycart);
+
+        tokenResponseDTO = MyUtils.getTokenResponse(getApplicationContext());
         toolbar = findViewById(R.id.toolbar);
         btnConfirm = findViewById(R.id.btn_confirm);
         listBookInACart = findViewById(R.id.listViewBookInCart);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // to sync the cart at front end to sever (bookId, quantity)
         cartService = new CartService(getApplicationContext());
+        cartService.syncLocalCartToServer(tokenResponseDTO);
+
         adapter = new RecycleViewBookForMyCartAdapter(this, listBook, cartService);
         // Initialize adapter globally
         // Set up RecyclerView
@@ -64,7 +73,7 @@ public class MyCart extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MyCart.this, ReviewYourOrder.class);
                 SparseIntArray selectedQuantities = adapter.getQuantityStates();
-                ArrayList<CartItems> selectedBooks = (ArrayList<CartItems>) adapter.getSelectedCartItem();
+                ArrayList<CartItems> selectedBooks = new ArrayList<>();
                 HashMap<Integer, Integer> quantityMap = new HashMap<>();
                 for (int i = 0; i < selectedQuantities.size(); i++) {
                     int key = selectedQuantities.keyAt(i);

@@ -44,7 +44,7 @@ public class ReviewYourOrder extends AppCompatActivity {
 
         listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBookChoose");
 
-        RecycleViewBookForMyCartAdapter adapter = new RecycleViewBookForMyCartAdapter(this, listBook);
+        RecycleViewBookForMyCartAdapter adapter = new RecycleViewBookForMyCartAdapter(this, listBook, null);
         recycleListBookChosen.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recycleListBookChosen.setLayoutManager(linearLayoutManager);
