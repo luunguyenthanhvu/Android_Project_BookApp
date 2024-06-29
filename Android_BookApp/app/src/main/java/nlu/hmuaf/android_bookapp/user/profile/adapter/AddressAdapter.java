@@ -10,11 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.R;
-import nlu.hmuaf.android_bookapp.user.profile.Class.Address;
+import nlu.hmuaf.android_bookapp.user.profile.classess.Address;
 import nlu.hmuaf.android_bookapp.user.profile.activity.EditAddressActivity;
 import nlu.hmuaf.android_bookapp.user.profile.activity.AddressActivity;
 

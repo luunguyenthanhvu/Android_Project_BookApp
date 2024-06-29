@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.cart_user.Activity;
+package nlu.hmuaf.android_bookapp.user.cart_user.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,10 +22,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Address;
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Books;
-import nlu.hmuaf.android_bookapp.user.cart_user.FragmentFrontEnd.BankCardFragment;
-import nlu.hmuaf.android_bookapp.user.cart_user.FragmentFrontEnd.CreditCardFragment;
+import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
+import nlu.hmuaf.android_bookapp.user.cart_user.beans.Books;
+import nlu.hmuaf.android_bookapp.user.cart_user.fragment_front_end.BankCardFragment;
+import nlu.hmuaf.android_bookapp.user.cart_user.fragment_front_end.CreditCardFragment;
 import nlu.hmuaf.android_bookapp.R;
 
 public class Payment extends AppCompatActivity {

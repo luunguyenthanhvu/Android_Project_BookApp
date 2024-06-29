@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.cart_user.Activity;
+package nlu.hmuaf.android_bookapp.user.cart_user.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,12 +16,12 @@ import java.util.HashMap;
 import java.util.List;
 
 
-import nlu.hmuaf.android_bookapp.user.bill.Activity.MyBill;
-import nlu.hmuaf.android_bookapp.user.bill.Enum.EBillStatus;
+import nlu.hmuaf.android_bookapp.user.bill.activity.MyBill;
+import nlu.hmuaf.android_bookapp.user.bill.enums.EBillStatus;
 import nlu.hmuaf.android_bookapp.R;
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Bills;
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Books;
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Users;
+import nlu.hmuaf.android_bookapp.user.cart_user.beans.Bills;
+import nlu.hmuaf.android_bookapp.user.cart_user.beans.Books;
+import nlu.hmuaf.android_bookapp.user.cart_user.beans.Users;
 
 public class OrderSuccessfully extends AppCompatActivity {
   private TextView price;

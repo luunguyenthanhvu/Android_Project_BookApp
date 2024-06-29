@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.home.Adapter;
+package nlu.hmuaf.android_bookapp.user.home.adapter;
 
 import android.graphics.Paint;
 import android.view.LayoutInflater;

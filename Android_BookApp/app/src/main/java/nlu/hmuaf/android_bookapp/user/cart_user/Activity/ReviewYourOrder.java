@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.cart_user.Activity;
+package nlu.hmuaf.android_bookapp.user.cart_user.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,9 +19,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
-import nlu.hmuaf.android_bookapp.user.cart_user.Adapter.RecycleViewBookChosenAdapter;
-import nlu.hmuaf.android_bookapp.user.cart_user.Adapter.RecycleViewBookForMyCartAdapter;
+import nlu.hmuaf.android_bookapp.user.cart_user.adapter.RecycleViewBookChosenAdapter;
+import nlu.hmuaf.android_bookapp.user.cart_user.adapter.RecycleViewBookForMyCartAdapter;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.user.home.activity.BookActivity;
+import nlu.hmuaf.android_bookapp.user.home.adapter.OnItemClickListener;
 
 public class ReviewYourOrder extends AppCompatActivity {
     private StepView stepView;
@@ -44,7 +46,15 @@ public class ReviewYourOrder extends AppCompatActivity {
 
         listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBookChoose");
 
-        RecycleViewBookForMyCartAdapter adapter = new RecycleViewBookForMyCartAdapter(this, listBook, null);
+        RecycleViewBookForMyCartAdapter adapter = new RecycleViewBookForMyCartAdapter(this, listBook, null, new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                CartItems selectedBook = listBook.get(position);
+                Intent intent = new Intent(ReviewYourOrder.this, BookActivity.class);
+                intent.putExtra("BOOK_ID", selectedBook.getBookId());
+                startActivity(intent);
+            }
+        });
         recycleListBookChosen.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recycleListBookChosen.setLayoutManager(linearLayoutManager);
@@ -64,7 +74,7 @@ public class ReviewYourOrder extends AppCompatActivity {
         stepView.go(0, true);
 
         listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBookChoose");
-        HashMap<Integer, Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("selectedQuantities");
+        HashMap<Integer, Integer> quantityMap = new HashMap<>();
         RecycleViewBookChosenAdapter adapter2 = new RecycleViewBookChosenAdapter(this, listBook, quantityMap);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recycleListBookChosen.setLayoutManager(linearLayoutManager2);

@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.home.Adapter;
+package nlu.hmuaf.android_bookapp.user.home.adapter;
 
 import android.graphics.Paint;
 import android.view.LayoutInflater;
@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
-import nlu.hmuaf.android_bookapp.user.home.Class.BookB;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
 

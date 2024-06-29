@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.cart_user.Activity;
+package nlu.hmuaf.android_bookapp.user.cart_user.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -14,7 +14,7 @@ import com.shuhart.stepview.StepView;
 import java.util.ArrayList;
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.cart_user.FragmentFrontEnd.FragmentListDiscountUser;
+import nlu.hmuaf.android_bookapp.user.cart_user.fragment_front_end.FragmentListDiscountUser;
 import nlu.hmuaf.android_bookapp.R;
 
 public class DiscountsActivity extends AppCompatActivity {

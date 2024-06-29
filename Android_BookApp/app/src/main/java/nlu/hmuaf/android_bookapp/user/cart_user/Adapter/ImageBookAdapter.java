@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.cart_user.Adapter;
+package nlu.hmuaf.android_bookapp.user.cart_user.adapter;
 
 import android.os.Bundle;
 
@@ -9,7 +9,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.cart_user.FragmentFrontEnd.ImageBookInEachBillFragment;
+import nlu.hmuaf.android_bookapp.user.cart_user.fragment_front_end.ImageBookInEachBillFragment;
 
 public class ImageBookAdapter extends FragmentStateAdapter {
     private List<String> listImageBook;

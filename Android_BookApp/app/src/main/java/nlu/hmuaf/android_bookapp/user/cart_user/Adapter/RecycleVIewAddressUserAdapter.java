@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.cart_user.Adapter;
+package nlu.hmuaf.android_bookapp.user.cart_user.adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Address;
+import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
 
-import nlu.hmuaf.android_bookapp.user.cart_user.Dialog.ChangeAddressDialog;
+import nlu.hmuaf.android_bookapp.user.cart_user.dialogs.ChangeAddressDialog;
 import nlu.hmuaf.android_bookapp.R;
 
 public class RecycleVIewAddressUserAdapter extends RecyclerView.Adapter<RecycleVIewAddressUserAdapter.MyViewHolder> {

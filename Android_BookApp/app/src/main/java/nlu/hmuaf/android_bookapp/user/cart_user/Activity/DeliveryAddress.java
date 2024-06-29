@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.cart_user.Activity;
+package nlu.hmuaf.android_bookapp.user.cart_user.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,10 +19,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Address;
-import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Books;
-import nlu.hmuaf.android_bookapp.user.cart_user.Dialog.AddNewAddressFromUserDialog;
-import nlu.hmuaf.android_bookapp.user.cart_user.FragmentFrontEnd.FragmentListAddressUser;
+import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
+import nlu.hmuaf.android_bookapp.user.cart_user.beans.Books;
+import nlu.hmuaf.android_bookapp.user.cart_user.dialogs.AddNewAddressFromUserDialog;
+import nlu.hmuaf.android_bookapp.user.cart_user.fragment_front_end.FragmentListAddressUser;
 import nlu.hmuaf.android_bookapp.R;
 
 public class DeliveryAddress extends AppCompatActivity implements AddNewAddressFromUserDialog.OnAddressAddedListener, FragmentListAddressUser.OnAddressSelectedListenerFragment {
