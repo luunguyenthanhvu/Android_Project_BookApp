@@ -11,6 +11,7 @@ import nlu.hmuaf.android_bookapp.dto.request.VerifyRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.response.BookDetailResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.MessageResponseDTO;
+import nlu.hmuaf.android_bookapp.dto.response.PageBookResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import okhttp3.RequestBody;
@@ -50,6 +51,23 @@ public interface BookAppApi {
     @POST("api/v1/user/cart/update/{userId}")
     Call<Void> updateUserCart(@Path("userId") long userId, @Body List<CartItemRequestDTO> cartItems);
 
+
+    @POST("api/v1/user/cart/delete/{userId}/{bookId}")
+    Call<MessageResponseDTO> deleteCartItem(
+            @Path("userId") long userId,
+            @Path("bookId") long bookId
+    );
+
     @GET("api/books/book-details/{bookId}")
     Call<BookDetailResponseDTO> getBookDetailByBookId(@Path("bookId") long bookId);
+
+    @GET("api/books/get-books")
+    Call<PageBookResponseDTO> findBooks(
+            @Query("title") String title,
+            @Query("bookType") String bookType,
+            @Query("coverType") String coverType,
+            @Query("publisher") String publisher,
+            @Query("page") int page,
+            @Query("size") int size
+    );
 }

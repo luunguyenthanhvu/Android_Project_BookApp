@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
     android:background="#EEF4FB"
+    android:orientation="horizontal"
     android:padding="16dp">
 
-    <TextView
+    <ImageView
         android:id="@+id/tv_previous"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/previous"
-        android:textSize="18sp" />
+        android:layout_width="24dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/arrowleft" />
 
     <Space
         android:layout_width="0dp"
@@ -23,22 +23,22 @@
         android:layout_width="22dp"
         android:layout_height="40dp"
         android:src="@drawable/bell" />
+
     <FrameLayout
         android:id="@+id/cartItem"
+        android:layout_width="44dp"
+        android:layout_height="40dp"
         android:background="?attr/selectableItemBackground"
         android:clipToPadding="false"
         android:focusable="true"
-        android:padding="16dp"
-        android:layout_width="44dp"
-        android:layout_height="40dp">
+        android:padding="16dp">
 
         <ImageView
             android:layout_width="26dp"
             android:layout_height="34dp"
             android:layout_gravity="center"
             android:background="#EEF4FB"
-            app:srcCompat="@drawable/grocerystore"
-            />
+            app:srcCompat="@drawable/grocerystore" />
 
         <TextView
             android:id="@+id/cart_badge_text_view"
@@ -55,7 +55,6 @@
 
         </TextView>
     </FrameLayout>
-
 
 
 </LinearLayout>

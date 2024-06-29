@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -47,6 +46,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/valueSearch"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
@@ -60,114 +60,51 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="47dp"
+                        android:id="@+id/searchBtn"
+                        android:layout_width="35dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="16dp"
-                        android:padding="10dp"
-                        android:src="@drawable/search" />
+                        android:padding="0dp"
+                        android:src="@drawable/magnifying_glass_solid"
+                        app:tint="@null" />
 
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
-
-
-
                 <Button
-                    android:id="@+id/buttonBiaCung"
+                    android:id="@+id/filterButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bìa cứng"
-                    android:textSize="12sp"
-                    android:background="@android:color/transparent"
-                    android:textColor="@drawable/button_text_selector"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:onClick="showBiaCungRecyclerView" />
-
-
-                <Button
-                    android:id="@+id/buttonBiaMem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Bìa mềm"
-                    android:textSize="12sp"
-                    android:background="@android:color/transparent"
-                    android:textColor="@drawable/button_text_selector"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:onClick="showBiaMemRecyclerView" />
-
-
-                <Button
-                    android:id="@+id/buttonNhaXuatBan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NXB"
-                    android:textSize="12sp"
-                    android:background="@android:color/transparent"
-                    android:textColor="@drawable/button_text_selector"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:onClick="showNhaXuatBanRecyclerView" />
+                    android:text="Bộ lọc" />
             </LinearLayout>
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/AuthorRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/author_item" />
-
-
-
-            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/BookNameRecyclerView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/bookname_item" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/BookNameRecyclerViewM"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/bookname_item" />
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/OtherRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/other_item" />
+                tools:listitem="@layout/search_item" />
 
             <LinearLayout
                 android:id="@+id/paginationLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnPrevious"
@@ -179,8 +116,8 @@
                     android:id="@+id/tvPageNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1"
-                    android:padding="16dp" />
+                    android:padding="16dp"
+                    android:text="1" />
 
                 <Button
                     android:id="@+id/btnNext"

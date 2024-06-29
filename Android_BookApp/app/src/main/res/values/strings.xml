@@ -48,5 +48,10 @@
         <item>Kho B</item>
         <item>Kho C</item>
     </string-array>
+    <string-array name="filter_options">
+        <item>Bìa cứng</item>
+        <item>Bìa mềm</item>
+        <item>NXB</item>
+    </string-array>
 
 </resources>

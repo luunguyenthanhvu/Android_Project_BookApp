@@ -9,7 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Getter
-public class CustomUserDetails extends Users implements UserDetails {
+public class CustomUserDetails implements UserDetails {
 
   private String username;
   private String password;
@@ -19,7 +19,7 @@ public class CustomUserDetails extends Users implements UserDetails {
     this.username = user.getUsername();
     this.password = user.getPassword();
     List<GrantedAuthority> auths = List.of(
-        new SimpleGrantedAuthority(user.getRoles().toString().toUpperCase()));
+        new SimpleGrantedAuthority(user.getRoles().getRoleName().toString().toUpperCase()));
     this.authorities = auths;
   }
 

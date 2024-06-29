@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.Admin.ManageInventory;
+package nlu.hmuaf.android_bookapp.admin.ManageInventory;
 
 import android.content.Intent;
 import android.os.Bundle;

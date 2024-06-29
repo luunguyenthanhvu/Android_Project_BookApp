@@ -13,6 +13,7 @@ import nlu.hcmuaf.android_bookapp.entities.Books;
 import nlu.hcmuaf.android_bookapp.entities.CartItems;
 import nlu.hcmuaf.android_bookapp.entities.Carts;
 import nlu.hcmuaf.android_bookapp.repositories.BookRepository;
+import nlu.hcmuaf.android_bookapp.repositories.CartItemRepository;
 import nlu.hcmuaf.android_bookapp.repositories.CartRepository;
 import nlu.hcmuaf.android_bookapp.service.templates.ICartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,15 @@ public class CartServiceImpl implements ICartService {
   private CartRepository cartRepository;
   @Autowired
   private BookRepository bookRepository;
+  @Autowired
+  private CartItemRepository cartItemRepository;
 
   @Override
   public List<CartItemResponseDTO> getUserCart(long userId) {
+    System.out.println("Lấy cart");
     List<CartItemResponseDTO> result = new ArrayList<>();
     result = cartRepository.getUserCartItem(userId);
+    System.out.println(result);
     return result.isEmpty() ? new ArrayList<>() : result;
   }
 
@@ -52,11 +57,8 @@ public class CartServiceImpl implements ICartService {
           } else {
             Books book = bookRepository.getReferenceById(cartItemRequestDTO.getBookId());
             if (book != null) {
-              item = CartItems.builder()
-                  .cart(carts)
-                  .book(book)
-                  .quantity(cartItemRequestDTO.getQuantity())
-                  .build();
+              item = CartItems.builder().cart(carts).book(book)
+                  .quantity(cartItemRequestDTO.getQuantity()).build();
               newCartItems.add(item);
             }
           }
@@ -65,6 +67,19 @@ public class CartServiceImpl implements ICartService {
         cartRepository.save(carts);
       }
 
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void deleteCartItem(long userId, long bookId) {
+    try {
+      Optional<Carts> cartData = cartRepository.getAllByUserId(userId);
+      if (cartData.isPresent()) {
+        Carts carts = cartData.get();
+        cartItemRepository.deleteCartItemsByCartAndBook(carts.getCartId(), bookId);
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }
