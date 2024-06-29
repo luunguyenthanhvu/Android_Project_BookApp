@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 
-import nlu.hmuaf.android_bookapp.user.bill.bean.BillDetails;
+import nlu.hmuaf.android_bookapp.user.bill.beans.BillDetails;
 
 
 

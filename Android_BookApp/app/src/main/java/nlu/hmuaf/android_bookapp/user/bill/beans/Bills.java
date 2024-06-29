@@ -1,5 +1,5 @@
 
-package nlu.hmuaf.android_bookapp.user.bill.bean;
+package nlu.hmuaf.android_bookapp.user.bill.beans;
 
 
 import java.io.Serializable;
