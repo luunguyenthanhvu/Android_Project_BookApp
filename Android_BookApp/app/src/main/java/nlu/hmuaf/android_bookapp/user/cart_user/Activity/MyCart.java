@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
 import nlu.hmuaf.android_bookapp.networking.BookAppService;
@@ -31,6 +33,9 @@ import nlu.hmuaf.android_bookapp.room.service.CartService;
 import nlu.hmuaf.android_bookapp.user.cart_user.Adapter.RecycleViewBookForMyCartAdapter;
 import nlu.hmuaf.android_bookapp.user.cart_user.Bean.Books;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.user.home.Activity.BookActivity;
+import nlu.hmuaf.android_bookapp.user.home.Activity.SearchActivity;
+import nlu.hmuaf.android_bookapp.user.home.Adapter.OnItemClickListener;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
 
 public class MyCart extends AppCompatActivity {
@@ -58,7 +63,15 @@ public class MyCart extends AppCompatActivity {
         cartService = new CartService(getApplicationContext());
         cartService.syncLocalCartToServer(tokenResponseDTO);
 
-        adapter = new RecycleViewBookForMyCartAdapter(this, listBook, cartService);
+        adapter = new RecycleViewBookForMyCartAdapter(this, listBook, cartService, new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                CartItems selectedBook = listBook.get(position);
+                Intent intent = new Intent(MyCart.this, BookActivity.class);
+                intent.putExtra("BOOK_ID", selectedBook.getBookId());
+                startActivity(intent);
+            }
+        });
         // Initialize adapter globally
         // Set up RecyclerView
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -72,16 +85,7 @@ public class MyCart extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MyCart.this, ReviewYourOrder.class);
-                SparseIntArray selectedQuantities = adapter.getQuantityStates();
-                ArrayList<CartItems> selectedBooks = new ArrayList<>();
-                HashMap<Integer, Integer> quantityMap = new HashMap<>();
-                for (int i = 0; i < selectedQuantities.size(); i++) {
-                    int key = selectedQuantities.keyAt(i);
-                    int value = selectedQuantities.get(key);
-                    quantityMap.put(key, value);
-                }
-
-                intent.putExtra("selectedQuantities", quantityMap);
+                List<CartItems> selectedBooks = adapter.getSelectedCartItems();
                 intent.putExtra("listBookChoose", (ArrayList<CartItems>) selectedBooks);
                 startActivity(intent);
             }

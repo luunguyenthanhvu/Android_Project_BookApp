@@ -2,10 +2,12 @@ package nlu.hmuaf.android_bookapp.user.cart_user.Adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -17,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -29,6 +32,7 @@ import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.room.service.CartService;
 import nlu.hmuaf.android_bookapp.user.cart_user.Dialog.AlertExceedQuantityDialog;
 import nlu.hmuaf.android_bookapp.user.cart_user.Dialog.AlertQuantityTo0Dialog;
+import nlu.hmuaf.android_bookapp.user.home.Adapter.OnItemClickListener;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,11 +44,15 @@ public class RecycleViewBookForMyCartAdapter extends RecyclerView.Adapter<Recycl
     private List<CartItems> listBook;
     private CartService cartService;
     private BookAppApi bookAppApi;
+    private OnItemClickListener listener;
+    private SparseBooleanArray checkBoxStates;
 
-    public RecycleViewBookForMyCartAdapter(Activity context, List<CartItems> list, CartService cartService) {
+    public RecycleViewBookForMyCartAdapter(Activity context, List<CartItems> list, CartService cartService, OnItemClickListener listener) {
         this.listBook = list;
         this.context = context;
         this.cartService = cartService;
+        this.checkBoxStates = new SparseBooleanArray(list.size());
+        this.listener = listener;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -57,9 +65,11 @@ public class RecycleViewBookForMyCartAdapter extends RecyclerView.Adapter<Recycl
         private TextView price;
         private TextView priceConfirm;
         private ImageButton deleteBook;
+        private CheckBox checkBoxBook;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            checkBoxBook = itemView.findViewById(R.id.checkBoxBook);
             imageViewBook = itemView.findViewById(R.id.imageViewBook);
             textViewBookDetail = itemView.findViewById(R.id.textViewBookDetail);
             decreaseQuantity = itemView.findViewById(R.id.imageButtonDecreaseBook);
@@ -68,6 +78,17 @@ public class RecycleViewBookForMyCartAdapter extends RecyclerView.Adapter<Recycl
             price = itemView.findViewById(R.id.textViewPrice);
             priceConfirm = itemView.findViewById(R.id.textViewPriceConfirm);
             deleteBook = itemView.findViewById(R.id.imageButtonDeleteBook);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
 
         public void bind(CartItems currentItem) {
@@ -84,7 +105,6 @@ public class RecycleViewBookForMyCartAdapter extends RecyclerView.Adapter<Recycl
             quantityBook.setText(String.valueOf(currentItem.getQuantity()));
             price.setText(MyUtils.convertToVND(priceToShow));
             priceConfirm.setText(MyUtils.convertToVND(priceToShow * currentItem.getQuantity()));
-
             // Xử lý sự kiện giảm số lượng sản phẩm mua
             decreaseQuantity.setOnClickListener(v -> {
                 int quantity = Integer.parseInt(quantityBook.getText().toString());
@@ -181,6 +201,13 @@ public class RecycleViewBookForMyCartAdapter extends RecyclerView.Adapter<Recycl
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.bind(listBook.get(position));
+        holder.checkBoxBook.setChecked(checkBoxStates.get(position, false));
+        holder.checkBoxBook.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            int currentPosition = holder.getAdapterPosition();
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                checkBoxStates.put(currentPosition, isChecked);
+            }
+        });
     }
 
     @Override
@@ -194,7 +221,15 @@ public class RecycleViewBookForMyCartAdapter extends RecyclerView.Adapter<Recycl
         notifyDataSetChanged();
     }
 
-    public SparseIntArray getQuantityStates() {
-        return null;
+    public List<CartItems> getSelectedCartItems() {
+        List<CartItems> selectedItems = new ArrayList<>();
+        for (int i = 0; i < checkBoxStates.size(); i++) {
+            int key = checkBoxStates.keyAt(i);
+            if (checkBoxStates.get(key)) {
+                selectedItems.add(listBook.get(key));
+            }
+        }
+        return selectedItems;
     }
+
 }
