@@ -127,7 +127,9 @@ public class RecycleViewBookForMyCartAdapter extends RecyclerView.Adapter<Recycl
             });
 
             // Xử lý sự kiện xóa sản phẩm
-            deleteBook.setOnClickListener(v -> showDeleteConfirmationDialog(currentItem));
+            deleteBook.setOnClickListener(v -> {
+                showDeleteConfirmationDialog(currentItem);
+            });
         }
 
         private void updateQuantity(CartItems currentItem, int quantity) {
@@ -187,6 +189,7 @@ public class RecycleViewBookForMyCartAdapter extends RecyclerView.Adapter<Recycl
                     .setNegativeButton(android.R.string.no, null)
                     .show();
         }
+
     }
 
 
