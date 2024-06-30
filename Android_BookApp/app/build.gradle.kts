@@ -43,6 +43,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation("com.auth0.android:jwtdecode:2.0.0")
 
 //    depen của step view
     implementation("com.anton46:stepsview:0.0.2")

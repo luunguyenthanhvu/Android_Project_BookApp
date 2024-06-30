@@ -26,17 +26,8 @@ public class Addresses implements Serializable {
   @Column(name = "addressId")
   private long addressId;
 
-  @Column(name = "city")
-  private String city;
-
-  @Column(name = "district")
-  private String district;
-
-  @Column(name = "ward")
-  private String ward;
-
-  @Column(name = "street")
-  private String street;
+  @Column(name = "addressDetails")
+  private String addressDetails;
 
   @OneToMany(mappedBy = "address", cascade = CascadeType.ALL)
   private Set<UserAddresses> userAddresses;
