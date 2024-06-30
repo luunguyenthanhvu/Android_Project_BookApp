@@ -63,6 +63,20 @@ public class MyUtils {
         return gson.fromJson(json, TokenResponseDTO.class);
     }
 
+    // Example method to store API key in SharedPreferences
+    public static void saveApiKey(Context context, String apiKey) {
+        SharedPreferences preferences = context.getSharedPreferences("API_PREFS", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("google_maps_api_key", apiKey);
+        editor.apply();
+    }
+
+    public static String getApiKey(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("API_PREFS", Context.MODE_PRIVATE);
+        String apiKey = preferences.getString("google_maps_api_key", null); // Return null if not found
+        return apiKey;
+    }
+
     public static boolean isTokenExpiration(Context context) {
         try {
             JWT jwt = new JWT(MyUtils.getTokenResponse(context).getToken());
@@ -134,5 +148,4 @@ public class MyUtils {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
 }

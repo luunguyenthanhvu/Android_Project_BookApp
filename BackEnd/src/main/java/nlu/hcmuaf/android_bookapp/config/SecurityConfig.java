@@ -42,6 +42,7 @@ public class SecurityConfig {
         .authorizeHttpRequests(auth -> auth // ủy quyền
             .requestMatchers("/api/books/**").permitAll() // ai cũng có thể truy cập
             .requestMatchers("/api/v1/auth/**").permitAll() // ai cũng có thể truy cập
+            .requestMatchers("/api/v1/key/**").permitAll()
             .requestMatchers("/api/v1/user/**")
             .hasAnyAuthority(ERole.ADMIN.name(), ERole.MANAGER.name(), ERole.USER.name())
             .requestMatchers("/api/v1/user/cart/**")

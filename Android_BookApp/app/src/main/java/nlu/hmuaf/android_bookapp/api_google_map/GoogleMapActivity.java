@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Locale;
 
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
 
 public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap map;
@@ -35,15 +36,15 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
     private PlacesClient placesClient;
     private EditText editText;
     private ImageButton searchButton;
+    private String API_KEY = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.google_map_location);
-
-
+        API_KEY = MyUtils.getApiKey(getApplicationContext());
         // Initialize Places API
-        Places.initialize(getApplicationContext(), "AIzaSyC9bUyVWJwCUCNB00NXlrzCLWLPfYXWlq0");
+        Places.initialize(getApplicationContext(), API_KEY);
         placesClient = Places.createClient(this);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.googleMap);
