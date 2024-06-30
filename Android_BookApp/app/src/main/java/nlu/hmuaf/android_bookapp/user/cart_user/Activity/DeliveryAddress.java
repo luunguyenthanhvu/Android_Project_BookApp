@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Books;
 import nlu.hmuaf.android_bookapp.user.cart_user.dialogs.AddNewAddressFromUserDialog;
@@ -52,11 +53,10 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         listStepView.add("Address");
         listStepView.add("Payment");
         listStepView.add("Summary");
-//        stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
-//        stepView.go(1, true);
-        String[] arrayString = {"1", "2", "3", "4"};
+
+        String[] arrayString = {"Bước 1", "Bước 2", "Bước 3", "Bước 4"};
         stepView.setLabels(arrayString) // Đặt nhãn cho StepsView
-                .setBarColorIndicator(Color.GRAY) // Đặt màu mặc định cho thanh chỉ báo (màu xám)
+                .setBarColorIndicator(Color.parseColor("#E8E4E9")) // Đặt màu mặc định cho thanh chỉ báo (màu xám)
                 .setProgressColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho chỉ báo tiến độ (màu xám)
                 .setLabelColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho nhãn (màu xám)
                 .setCompletedPosition(1) // Đặt vị trí đã hoàn thành
@@ -64,6 +64,7 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         addAddress = findViewById(R.id.buttonAddNewAddress);
         addAddressByGoogleMap = findViewById(R.id.buttonAddAdressByGoogleMap);
         nextStep = findViewById(R.id.buttonDeliverToThisAddress);
+
         // Tạo instance của Fragment
         FragmentListAddressUser fragmentListAddressUser = new FragmentListAddressUser();
         fragmentListAddressUser.setOnAddressSelectedListener(this);
@@ -89,11 +90,9 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         nextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Books> listBook = (ArrayList<Books>) getIntent().getSerializableExtra("listBookChoose");
-                HashMap<Integer, Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("selectedQuantities");
+                List<CartItems> listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBookChoose");
                 Intent intent = new Intent(DeliveryAddress.this, Payment.class);
-                intent.putExtra("listBookChoose", (ArrayList<Books>) listBook);
-                intent.putExtra("selectedQuantities", quantityMap);
+                intent.putExtra("listBookChoose", (ArrayList<CartItems>) listBook);
                 intent.putExtra("address", selectedAddress);
                 startActivity(intent);
             }
