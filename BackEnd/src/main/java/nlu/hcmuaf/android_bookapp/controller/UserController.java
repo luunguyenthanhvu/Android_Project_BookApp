@@ -33,6 +33,8 @@ public class UserController {
   @PostMapping("/cart/update/{userId}")
   public ResponseEntity<MessageResponseDTO> syncCart(@PathVariable long userId,
       @RequestBody List<CartItemRequestDTO> requestDTO) {
+    System.out.println("update nè");
+    System.out.println(requestDTO);
     cartService.syncCart(userId, requestDTO);
     return ResponseEntity.ok(MessageResponseDTO.builder().message("Success").build());
   }

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 import nlu.hmuaf.android_bookapp.dto.request.CartItemRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
+import nlu.hmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
 import nlu.hmuaf.android_bookapp.networking.BookAppService;
@@ -181,11 +182,14 @@ public class CartService {
                 List<CartItemRequestDTO> requestDTO = localCartItems.stream()
                         .map(item -> new CartItemRequestDTO(item.getBookId(), item.getQuantity()))
                         .collect(Collectors.toList());
-                Call<Void> call = bookAppApi.updateUserCart(tokenResponseDTO.getUserId(), requestDTO);
-                call.enqueue(new Callback<Void>() {
+                System.out.println(requestDTO);
+                Call<MessageResponseDTO> call = bookAppApi.updateUserCart(tokenResponseDTO.getUserId(), requestDTO);
+                call.enqueue(new Callback<MessageResponseDTO>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    public void onResponse(Call<MessageResponseDTO> call, Response<MessageResponseDTO> response) {
                         if (response.isSuccessful()) {
+                            System.out.println("CART SEVER STATUS");
+                            System.out.println(response.body());
                             System.out.println("Cart synced successfully");
                         } else {
                             System.out.println("Failed to sync cart");
@@ -193,7 +197,7 @@ public class CartService {
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable throwable) {
+                    public void onFailure(Call<MessageResponseDTO> call, Throwable throwable) {
 
                     }
                 });
@@ -210,11 +214,13 @@ public class CartService {
         List<CartItemRequestDTO> requestDTO = localCartItemUpdated.stream()
                 .map(item -> new CartItemRequestDTO(item.getBookId(), item.getQuantity()))
                 .collect(Collectors.toList());
-        Call<Void> call = bookAppApi.updateUserCart(tokenResponseDTO.getUserId(), requestDTO);
-        call.enqueue(new Callback<Void>() {
+        Call<MessageResponseDTO> call = bookAppApi.updateUserCart(tokenResponseDTO.getUserId(), requestDTO);
+        call.enqueue(new Callback<MessageResponseDTO>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(Call<MessageResponseDTO> call, Response<MessageResponseDTO> response) {
                 if (response.isSuccessful()) {
+                    System.out.println("CART SEVER STATUS");
+                    System.out.println(response.body());
                     System.out.println("Cart synced successfully");
                 } else {
                     System.out.println("Failed to sync cart");
@@ -222,8 +228,8 @@ public class CartService {
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                System.out.println(t);
+            public void onFailure(Call<MessageResponseDTO> call, Throwable throwable) {
+
             }
         });
     }
