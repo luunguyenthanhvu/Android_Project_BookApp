@@ -1,51 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#EEF4FB"
     android:orientation="vertical">
 
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarPayment"
-        android:layout_marginBottom="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-         app:title="Payment"
         app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
-        />
+        app:title="Payment" />
 
-<!--    <com.shuhart.stepview.StepView-->
-<!--        android:id="@+id/stepViewInPayment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="134dp"-->
-<!--        android:layout_marginBottom="40dp"-->
-<!--        android:layout_weight="0"-->
-<!--        android:background="#EEF4FB"-->
-<!--        app:sv_doneTextColor="#B868E9"-->
-<!--        app:sv_nextStepCircleColor="@color/material_dynamic_neutral70"-->
-<!--        app:sv_nextStepLineColor="@color/material_dynamic_neutral70"-->
-<!--        app:sv_nextTextColor="#B868E9"-->
-<!--        app:sv_selectedCircleColor="#6D1683"-->
-<!--        app:sv_selectedTextColor="#B868E9"-->
-<!--        app:sv_stepLineWidth="3dp">-->
-
-<!--    </com.shuhart.stepview.StepView>-->
-    <TextView
-        android:layout_width="wrap_content"
+    <com.anton46.stepsview.StepsView
+        android:id="@+id/stepViewInPayment"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonAddNewAddress"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/draw_button_for_my_cart"
-        android:text="Select Payment Method"
-        android:textColor="#242629"
-        >
-
-    </TextView>
+        android:background="#EEF4FB" />
 
     <RadioGroup
         android:id="@+id/radioGroupPaymentMethods"
@@ -56,29 +33,29 @@
             android:id="@+id/radioButton_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Thanh toán khi nhận hàng" />
+            android:text="Thanh toán khi nhận hàng"
+            android:textColor="@color/black" />
 
         <RadioButton
             android:id="@+id/radioButton_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Thẻ ngân hàng" />
+            android:text="Thẻ ngân hàng"
+            android:textColor="@color/black" />
 
         <RadioButton
             android:id="@+id/radioButton_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="MoMo" />
+            android:text="MoMo"
+            android:textColor="@color/black" />
 
         <RadioButton
             android:id="@+id/radioButton_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Thẻ tín dụng" />
+            android:text="Thẻ tín dụng"
+            android:textColor="@color/black" />
 
     </RadioGroup>
 

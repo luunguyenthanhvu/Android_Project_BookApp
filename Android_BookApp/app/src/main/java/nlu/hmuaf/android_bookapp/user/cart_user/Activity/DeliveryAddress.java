@@ -1,6 +1,7 @@
 package nlu.hmuaf.android_bookapp.user.cart_user.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,18 +47,19 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         toolbar = findViewById(R.id.toolbarDeliveryAddress);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        stepView = findViewById(R.id.stepViewInDeliverAddress);
+        stepView = findViewById(R.id.stepViewInDeliverAddress);
         listStepView.add("Review your order");
         listStepView.add("Address");
         listStepView.add("Payment");
         listStepView.add("Summary");
 //        stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
 //        stepView.go(1, true);
-        stepView.setLabels((String[]) listStepView.toArray()) // Đặt các bước (labels) cho StepsView từ listStepView
-                .setBarColorIndicator(getApplicationContext().getColor(android.R.color.darker_gray)) // Đặt màu của thanh chỉ báo
-                .setProgressColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo tiến độ
-                .setLabelColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo nhãn
-                .setCompletedPosition(3) // Đặt vị trí đã hoàn thành (nếu cần, ví dụ: 3)
+        String[] arrayString = {"1", "2", "3", "4"};
+        stepView.setLabels(arrayString) // Đặt nhãn cho StepsView
+                .setBarColorIndicator(Color.GRAY) // Đặt màu mặc định cho thanh chỉ báo (màu xám)
+                .setProgressColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho chỉ báo tiến độ (màu xám)
+                .setLabelColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho nhãn (màu xám)
+                .setCompletedPosition(1) // Đặt vị trí đã hoàn thành
                 .drawView(); // Vẽ StepsView
         addAddress = findViewById(R.id.buttonAddNewAddress);
         addAddressByGoogleMap = findViewById(R.id.buttonAddAdressByGoogleMap);

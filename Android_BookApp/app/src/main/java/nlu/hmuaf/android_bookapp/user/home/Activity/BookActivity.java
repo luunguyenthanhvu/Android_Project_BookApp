@@ -38,7 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookActivity extends AppCompatActivity {
+public class    BookActivity extends AppCompatActivity {
 
     private ImageView bigImageView, bigImageViewCopy;
     private LinearLayout priceDcLayout;
