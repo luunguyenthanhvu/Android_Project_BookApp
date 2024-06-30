@@ -3,6 +3,7 @@ package nlu.hcmuaf.android_bookapp.controller;
 import java.util.List;
 import nlu.hcmuaf.android_bookapp.dto.request.CartItemRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.CartItemResponseDTO;
+import nlu.hcmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hcmuaf.android_bookapp.service.templates.ICartService;
 import nlu.hcmuaf.android_bookapp.service.templates.IUserService;
@@ -44,5 +45,14 @@ public class UserController {
       @PathVariable long bookId) {
     cartService.deleteCartItem(userId, bookId);
     return ResponseEntity.ok(MessageResponseDTO.builder().message("Success").build());
+  }
+
+  @GetMapping("/address/{userId}")
+  public ResponseEntity<List<ListAddressResponseDTO>> getUserAddress(@PathVariable long userId) {
+    List<ListAddressResponseDTO> addressList = userService.getListAddress(userId);
+    if (addressList.isEmpty()) {
+      return ResponseEntity.noContent().build();
+    }
+    return ResponseEntity.ok(addressList);
   }
 }

@@ -9,6 +9,7 @@ import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.RegisterRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.VerifyRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.response.BookDetailResponseDTO;
+import nlu.hmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.PageBookResponseDTO;
@@ -69,4 +70,7 @@ public interface BookAppApi {
             @Query("page") int page,
             @Query("size") int size
     );
+
+    @GET("api/v1/user/address/{userId}")
+    Call<List<ListAddressResponseDTO>> findUserAddress(@Path("userId") long userId);
 }
