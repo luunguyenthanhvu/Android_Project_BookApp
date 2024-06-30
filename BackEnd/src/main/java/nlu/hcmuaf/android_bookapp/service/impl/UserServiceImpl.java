@@ -87,10 +87,8 @@ public class UserServiceImpl implements IUserService {
 
         // Address user
         Addresses addresses = new Addresses();
-        addresses.setCity("Hồ Chí Minh");
-        addresses.setStreet("Khu Phố 6");
-        addresses.setWard("Phường Linh Trung");
-        addresses.setDistrict("Thủ Đức");
+        addresses.setAddressDetails(
+            "140 Đường Cầu Xây 2, Phường Tân Phú, Quận 9, Hồ Chí Minh, Việt Nam");
 
         UserAddresses userAddresses = new UserAddresses(userDetails, addresses, true);
         Set<UserAddresses> userAddressesSet = new HashSet<>();
@@ -137,6 +135,8 @@ public class UserServiceImpl implements IUserService {
                 .username(user.get().getUsername())
                 .role(user.get().getRoles().getRoleName().toString())
                 .username(user.get().getUsername())
+                .email(user.get().getUserDetails().getEmail())
+                .img(user.get().getUserDetails().getImg())
                 .message("Login success!")
                 .build();
           } else {
