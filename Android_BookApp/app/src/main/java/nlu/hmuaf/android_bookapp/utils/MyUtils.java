@@ -68,10 +68,13 @@ public class MyUtils {
             JWT jwt = new JWT(MyUtils.getTokenResponse(context).getToken());
             Date dateExpire = jwt.getExpiresAt();
             System.out.println(dateExpire);
-            if (dateExpire.before(new Date())) return true;
-            else {
+            if (dateExpire.before(new Date())) {
+                // Token đã hết hạn
                 showTokenExpireDialog(context);
                 return false;
+            } else {
+                // Token chưa hết hạn
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
