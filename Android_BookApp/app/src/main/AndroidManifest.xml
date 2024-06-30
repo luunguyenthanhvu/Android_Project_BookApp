@@ -39,8 +39,8 @@
         <activity android:name=".user.login.SignUp" android:exported="false" />
         <activity android:name=".user.login.Activate" android:exported="false" />
         <activity android:name=".user.login.ForgotPassword" android:exported="false" />
-        <activity android:name=".user.login.Login" android:exported="true" />
-        <activity android:name=".user.cart_user.activity.MainActivity" android:exported="true" />
+        <activity android:name=".user.login.Login" android:exported="false" />
+        <activity android:name=".user.cart_user.activity.MainActivity" android:exported="false" />
         <activity android:name=".user.cart_user.activity.ReviewYourOrder" android:exported="false" />
         <activity android:name=".user.cart_user.activity.MyCart" android:exported="false" />
         <activity android:name=".user.cart_user.activity.DeliveryAddress" android:exported="false" />
@@ -60,20 +60,11 @@
         <activity android:name=".user.home.activity.NumberActivity" android:exported="false" />
         <activity android:name=".user.home.activity.MainActivity" android:exported="false" />
         <activity android:name=".user.profile.activity.ProfileActivity" android:exported="false" />
-        <activity android:name=".admin.Home" android:exported="false" />
-        <activity android:name=".admin.order.activity.OrderList" android:exported="false" />
-        <activity android:name=".admin.order.activity.OrderDetail" android:exported="false" />
-        <activity android:name=".admin.manage_inventory.AddBookActivity" android:exported="true" />
-        <activity android:name=".admin.manage_inventory.ManageInventoryActivity" android:exported="false" />
-        <activity android:name=".admin.manage_inventory.ProductDetailActivity" android:exported="false" />
-        <activity android:name=".admin.manage_inventory.BulkUpdateActivity" android:exported="false" />
-        <activity android:name=".admin.manage_inventory.ManageInventorDetailActivity" android:exported="false" />
-        <activity android:name=".user.bill.activity.MyBill" android:exported="false" />
-        <activity android:name=".api_google_map.GoogleMapActivity" android:exported="false" />
 
         <!-- Meta data cho API Google map -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC9bUyVWJwCUCNB00NXlrzCLWLPfYXWlq0" />
+
     </application>
 </manifest>
