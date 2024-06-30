@@ -47,7 +47,7 @@
         <activity android:name=".user.cart_user.activity.Payment" android:exported="false" />
         <activity android:name=".user.cart_user.activity.OrderSummary" android:exported="false" />
         <activity android:name=".user.cart_user.activity.DiscountsActivity" android:exported="false" />
-        <activity android:name=".api_google_map.GoogleMapActivity" android:exported="true">
+        <activity android:name=".user.home.activity.HomeActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -69,6 +69,7 @@
         <activity android:name=".admin.manage_inventory.BulkUpdateActivity" android:exported="false" />
         <activity android:name=".admin.manage_inventory.ManageInventorDetailActivity" android:exported="false" />
         <activity android:name=".user.bill.activity.MyBill" android:exported="false" />
+        <activity android:name=".api_google_map.GoogleMapActivity" android:exported="false" />
 
         <!-- Meta data cho API Google map -->
         <meta-data
