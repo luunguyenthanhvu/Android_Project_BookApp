@@ -220,12 +220,12 @@ public class RecycleViewBookForMyCartAdapter extends RecyclerView.Adapter<Recycl
         notifyDataSetChanged();
     }
 
-    public List<CartItems> getSelectedCartItems() {
-        List<CartItems> selectedItems = new ArrayList<>();
+    public List<Long> getSelectedCartItems() {
+        List<Long> selectedItems = new ArrayList<>();
         for (int i = 0; i < checkBoxStates.size(); i++) {
             int key = checkBoxStates.keyAt(i);
             if (checkBoxStates.get(key)) {
-                selectedItems.add(listBook.get(key));
+                selectedItems.add(listBook.get(key).getBookId());
             }
         }
         return selectedItems;

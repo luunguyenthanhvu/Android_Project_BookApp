@@ -75,8 +75,8 @@ public class MyCart extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MyCart.this, ReviewYourOrder.class);
-                List<CartItems> selectedBooks = adapter.getSelectedCartItems();
-                intent.putExtra("listBookChoose", (ArrayList<CartItems>) selectedBooks);
+                List<Long> selectedBooks = adapter.getSelectedCartItems();
+                intent.putExtra("listBookChoose", (ArrayList<Long>) selectedBooks);
                 startActivity(intent);
             }
         });
