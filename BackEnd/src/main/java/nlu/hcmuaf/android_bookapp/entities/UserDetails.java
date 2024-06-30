@@ -1,5 +1,6 @@
 package nlu.hcmuaf.android_bookapp.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -57,7 +58,7 @@ public class UserDetails implements Serializable {
   @Column(name = "img")
   private String img;
 
-  @OneToMany(mappedBy = "userDetails")
+  @OneToMany(mappedBy = "userDetails", cascade = CascadeType.ALL)
   private Set<UserAddresses> userAddresses;
 
   @Column(name = "otp")

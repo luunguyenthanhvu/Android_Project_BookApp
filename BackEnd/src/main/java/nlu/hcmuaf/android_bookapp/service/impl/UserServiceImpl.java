@@ -2,15 +2,19 @@ package nlu.hcmuaf.android_bookapp.service.impl;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import nlu.hcmuaf.android_bookapp.config.CustomUserDetails;
 import nlu.hcmuaf.android_bookapp.config.JwtService;
 import nlu.hcmuaf.android_bookapp.dto.request.ForgotPasswordDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.RegisterRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.VerifyRequestDTO;
+import nlu.hcmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hcmuaf.android_bookapp.entities.Addresses;
@@ -61,8 +65,6 @@ public class UserServiceImpl implements IUserService {
   private MyUtils myUtils;
   @Autowired
   private AddressRepository addressRepository;
-
-
   private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
   @Override
@@ -86,15 +88,27 @@ public class UserServiceImpl implements IUserService {
         userDetails.setPhoneNum("0123456789");
 
         // Address user
-        Addresses addresses = new Addresses();
-        addresses.setAddressDetails(
+        Addresses addresses1 = new Addresses();
+        addresses1.setAddressDetails(
             "140 Đường Cầu Xây 2, Phường Tân Phú, Quận 9, Hồ Chí Minh, Việt Nam");
 
-        UserAddresses userAddresses = new UserAddresses(userDetails, addresses, true);
-        Set<UserAddresses> userAddressesSet = new HashSet<>();
-        userAddressesSet.add(userAddresses);
+        Addresses addresses2 = new Addresses();
+        addresses2.setAddressDetails("VQCR+GP6, Khu Phố 6, Thủ Đức, Hồ Chí Minh, Việt Nam");
+        List<Addresses> addressesList = new ArrayList<>();
+        addressesList.add(addresses1);
+        addressesList.add(addresses2);
 
-        addresses.setUserAddresses(userAddressesSet);
+        // save address first
+        addressRepository.saveAll(addressesList);
+        UserAddresses userAddresses1 = new UserAddresses(userDetails, addresses1, true);
+        UserAddresses userAddresses2 = new UserAddresses(userDetails, addresses2, false);
+        Set<UserAddresses> userAddressesSet = new HashSet<>();
+        userAddressesSet.add(userAddresses1);
+        userAddressesSet.add(userAddresses2);
+
+        addresses1.setUserAddresses(userAddressesSet);
+        addresses2.setUserAddresses(userAddressesSet);
+
         userDetails.setUserAddresses(userAddressesSet);
         users.setCreatedDate(LocalDate.of(2023, 1, 1));
         users.setRoles(roleRepository.getRolesByRoleName(ERole.ADMIN).get());
@@ -107,7 +121,6 @@ public class UserServiceImpl implements IUserService {
         users.setUsername("vuluu");
 
         userRepository.save(users);
-        addressRepository.save(addresses);
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -307,4 +320,33 @@ public class UserServiceImpl implements IUserService {
         .message("User not exist")
         .build();
   }
+
+  @Override
+  public List<ListAddressResponseDTO> getListAddress(long userId) {
+    try {
+      Optional<UserDetails> optional = userDetailRepository.findAllUserDetailsInfoByUserId(userId);
+      if (optional.isPresent()) {
+        UserDetails userDetails = optional.get();
+        Set<UserAddresses> userAddressesSet = userDetails.getUserAddresses();
+
+        // Ensure userAddressesSet is initialized (if using Hibernate)
+        if (userAddressesSet == null) {
+          userAddressesSet = new HashSet<>();
+        }
+
+        return userAddressesSet.stream()
+            .map(i -> new ListAddressResponseDTO(i.getAddress().getAddressId(),
+                i.getAddress().getAddressDetails(),
+                i.isMainAddress()))
+            .collect(Collectors.toList());
+      } else {
+        System.out.println("No user details found for userId: " + userId);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      // Log the exception with a logger instead of printStackTrace for production
+    }
+    return new ArrayList<>();
+  }
+
 }

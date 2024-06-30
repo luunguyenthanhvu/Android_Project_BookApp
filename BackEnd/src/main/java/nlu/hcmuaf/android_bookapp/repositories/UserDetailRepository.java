@@ -26,4 +26,8 @@ public interface UserDetailRepository extends CrudRepository<UserDetails, Long> 
   @Query("UPDATE User_Details u SET u.otp = :otp, u.otpExpiryTime = :otpExpiryTime WHERE u.email = :email")
   int updateUserOtp(@Param("otp") String otp, @Param("otpExpiryTime") LocalDateTime otpExpiryTime,
       @Param("email") String email);
+
+  @Query("SELECT ud FROM User_Details ud JOIN FETCH ud.userAddresses ua JOIN FETCH ua.address WHERE ud.user.userId = :userId")
+  Optional<UserDetails> findAllUserDetailsInfoByUserId(@Param("userId") long userId);
+
 }
