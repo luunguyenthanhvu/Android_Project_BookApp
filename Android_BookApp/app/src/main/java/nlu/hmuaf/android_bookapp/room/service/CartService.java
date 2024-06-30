@@ -25,6 +25,7 @@ import nlu.hmuaf.android_bookapp.room.database.AppDatabase;
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.room.repository.CartItemDao;
 import nlu.hmuaf.android_bookapp.sync.SyncCartCallback;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,6 +48,18 @@ public class CartService {
     public List<CartItems> getUserCart(Long userId) {
         return cartItemDao.getCartItemByUserId(userId);
     }
+
+    public List<CartItems> getItemUserChosen(Long userId, List<Long> itemChoose) {
+        List<CartItems> userCartItems = cartItemDao.getCartItemByUserId(userId);
+        List<CartItems> result = new ArrayList<>();
+        for (CartItems cartItem : userCartItems) {
+            if (itemChoose.contains(cartItem.getBookId())) {
+                result.add(cartItem);
+            }
+        }
+        return result;
+    }
+
     public void updateQuantity(TokenResponseDTO tokenResponseDTO, long bookId, int quantity) {
         executorService.execute(() -> {
             try {
