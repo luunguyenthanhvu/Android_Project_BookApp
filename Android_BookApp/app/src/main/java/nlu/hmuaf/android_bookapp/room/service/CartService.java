@@ -24,8 +24,6 @@ import nlu.hmuaf.android_bookapp.room.client.DatabaseClient;
 import nlu.hmuaf.android_bookapp.room.database.AppDatabase;
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.room.repository.CartItemDao;
-import nlu.hmuaf.android_bookapp.sync.SyncCartCallback;
-import nlu.hmuaf.android_bookapp.utils.MyUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

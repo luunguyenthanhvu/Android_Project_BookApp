@@ -8,6 +8,7 @@ import nlu.hmuaf.android_bookapp.dto.request.ForgotPasswordDTO;
 import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.RegisterRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.VerifyRequestDTO;
+import nlu.hmuaf.android_bookapp.dto.response.APIKeyResponse;
 import nlu.hmuaf.android_bookapp.dto.response.BookDetailResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
@@ -73,4 +74,7 @@ public interface BookAppApi {
 
     @GET("api/v1/user/address/{userId}")
     Call<List<ListAddressResponseDTO>> findUserAddress(@Path("userId") long userId);
+
+    @GET("api/v1/key/get/google-map")
+    Call<APIKeyResponse> getGoogleMapAPIKey();
 }
