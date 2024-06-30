@@ -49,8 +49,7 @@ public interface BookAppApi {
     Call<List<CartItems>> getUserCart(@Path("userId") long userId);
 
     @POST("api/v1/user/cart/update/{userId}")
-    Call<Void> updateUserCart(@Path("userId") long userId, @Body List<CartItemRequestDTO> cartItems);
-
+    Call<MessageResponseDTO> updateUserCart(@Path("userId") long userId, @Body List<CartItemRequestDTO> cartItems);
 
     @POST("api/v1/user/cart/delete/{userId}/{bookId}")
     Call<MessageResponseDTO> deleteCartItem(
