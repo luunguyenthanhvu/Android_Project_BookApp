@@ -25,9 +25,11 @@ public class RecycleVIewAddressUserAdapter extends RecyclerView.Adapter<RecycleV
 
     private boolean clickAdress = false;
     private OnAddressSelectedListener listener;
+
     public interface OnAddressSelectedListener {
         void onAddressSelected(Address address);
     }
+
     public RecycleVIewAddressUserAdapter(Activity context, List<Address> list, OnAddressSelectedListener listener) {
         this.list = list;
         this.context = context;
@@ -50,6 +52,7 @@ public class RecycleVIewAddressUserAdapter extends RecyclerView.Adapter<RecycleV
 
         }
     }
+
     @NonNull
     @Override
     public RecycleVIewAddressUserAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -62,29 +65,29 @@ public class RecycleVIewAddressUserAdapter extends RecyclerView.Adapter<RecycleV
 
     @Override
     public void onBindViewHolder(@NonNull RecycleVIewAddressUserAdapter.MyViewHolder holder, int position) {
-       holder.addressUser.setText(list.get(position).getStreet()+" , "+list.get(position).getWard()+" , "+list.get(position).getDistrict()+" , "+list.get(position).getCity());
-       holder.radioButton.setOnClickListener(new View.OnClickListener() {
+        holder.addressUser.setText(list.get(position).getStreet() + " , " + list.get(position).getWard() + " , " + list.get(position).getDistrict() + " , " + list.get(position).getCity());
+        holder.radioButton.setOnClickListener(new View.OnClickListener() {
 
-           @Override
-           public void onClick(View v) {
-               if(clickAdress != true){
-                   holder.radioButton.setChecked(true);
-                   clickAdress = true;
-                   if (listener != null) {
-                       listener.onAddressSelected(list.get(position));
-                   }
-               }else{
-                   holder.radioButton.setChecked(false);
-                   clickAdress = false;
-               }
-           }
-       });
+            @Override
+            public void onClick(View v) {
+                if (clickAdress != true) {
+                    holder.radioButton.setChecked(true);
+                    clickAdress = true;
+                    if (listener != null) {
+                        listener.onAddressSelected(list.get(position));
+                    }
+                } else {
+                    holder.radioButton.setChecked(false);
+                    clickAdress = false;
+                }
+            }
+        });
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Address address = list.get(position);
 
-                ChangeAddressDialog dialog = new ChangeAddressDialog(context,address);
+                ChangeAddressDialog dialog = new ChangeAddressDialog(context, address);
                 dialog.show();
             }
         });
