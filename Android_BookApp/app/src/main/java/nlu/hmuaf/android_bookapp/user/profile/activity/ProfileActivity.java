@@ -68,7 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
         editImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileActivity.this, ProfileEditActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
                 startActivityForResult(intent, REQUEST_EDIT_PROFILE);
             }
         });

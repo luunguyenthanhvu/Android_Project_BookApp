@@ -74,7 +74,7 @@ public class ReviewYourOrder extends AppCompatActivity {
                 .setBarColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho thanh chỉ báo (màu xám)
                 .setProgressColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho chỉ báo tiến độ (màu xám)
                 .setLabelColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho nhãn (màu xám)
-                .setCompletedPosition(4) // Đặt vị trí đã hoàn thành
+                .setCompletedPosition(1) // Đặt vị trí đã hoàn thành
                 .drawView(); // Vẽ StepsView
 
 

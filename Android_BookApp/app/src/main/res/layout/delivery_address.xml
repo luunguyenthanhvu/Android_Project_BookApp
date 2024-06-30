@@ -26,16 +26,31 @@
         android:layout_height="wrap_content"
         android:background="#EEF4FB" />
 
-    <Button
-        android:id="@+id/buttonAddNewAddress"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/draw_button_for_my_cart"
-        android:text="Add New Address"
-        android:textColor="#242629">
+        android:orientation="horizontal">
 
-    </Button>
+        <Button
+            android:id="@+id/buttonAddNewAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/draw_button_for_my_cart"
+            android:text="Thêm địa chỉ thủ công"
+            android:textColor="#242629">
+
+        </Button>
+
+        <Button
+            android:id="@+id/buttonAddAdressByGoogleMap"
+            android:layout_width="wrap_content"
+            android:background="@drawable/draw_button_for_my_cart"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Thêm bằng Google Map"
+            android:textColor="#242629"/>
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/contentListAddress"
