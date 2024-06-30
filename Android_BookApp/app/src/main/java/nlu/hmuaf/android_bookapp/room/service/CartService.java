@@ -46,7 +46,6 @@ public class CartService {
     public List<CartItems> getUserCart(Long userId) {
         return cartItemDao.getCartItemByUserId(userId);
     }
-
     public void updateQuantity(TokenResponseDTO tokenResponseDTO, long bookId, int quantity) {
         executorService.execute(() -> {
             try {
@@ -232,5 +231,4 @@ public class CartService {
     public void deleteItem(CartItems items) {
         cartItemDao.delete(items);
     }
-
 }
