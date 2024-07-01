@@ -13,9 +13,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+import nlu.hmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
+import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
+import nlu.hmuaf.android_bookapp.networking.BookAppApi;
+import nlu.hmuaf.android_bookapp.networking.BookAppService;
 import nlu.hmuaf.android_bookapp.user.cart_user.adapter.RecycleVIewAddressUserAdapter;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentListAddressUser extends Fragment implements RecycleVIewAddressUserAdapter.OnAddressSelectedListener {
     private static final String ARG_PARAM1 = "param1";
@@ -25,8 +33,10 @@ public class FragmentListAddressUser extends Fragment implements RecycleVIewAddr
     private View view;
     private RecyclerView recyclerViewAddressUser;
     private RecycleVIewAddressUserAdapter adapter;
+    private List<ListAddressResponseDTO> listAddressDTO = new ArrayList<>();
     private List<Address> listAddress = new ArrayList<>();
     private OnAddressSelectedListenerFragment listener;
+    private BookAppApi bookAppApi;
 
     public interface OnAddressSelectedListenerFragment {
         void onAddressSelectedFragment(Address address);
@@ -65,7 +75,7 @@ public class FragmentListAddressUser extends Fragment implements RecycleVIewAddr
         getDataAddressUser();
 
         recyclerViewAddressUser = view.findViewById(R.id.listAddressUser);
-        adapter = new RecycleVIewAddressUserAdapter(getActivity(), listAddress, this);
+        adapter = new RecycleVIewAddressUserAdapter(getActivity(), listAddress,listAddressDTO, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerViewAddressUser.setLayoutManager(linearLayoutManager);
         recyclerViewAddressUser.setAdapter(adapter);
@@ -73,19 +83,87 @@ public class FragmentListAddressUser extends Fragment implements RecycleVIewAddr
     }
 
     // Hàm này sẽ nạp dữ liệu Address vào List<Address>
-    public List<Address> getDataAddressUser() {
-        listAddress.add(new Address(1, "HCM", "HCM", "HCM", "HCM"));
-        listAddress.add(new Address(2, "HCM", "HCM", "HCM", "HCM"));
-        return listAddress;
+    public void getDataAddressUser() {
+        bookAppApi = BookAppService.getClient();
+        TokenResponseDTO tokenResponseDTO = MyUtils.getTokenResponse(getActivity());
+        Call<List<ListAddressResponseDTO>> call = bookAppApi.getUserAddress(tokenResponseDTO.getUserId());
+        call.enqueue(new Callback<List<ListAddressResponseDTO>>() {
+            @Override
+            public void onResponse(Call<List<ListAddressResponseDTO>> call, Response<List<ListAddressResponseDTO>> response) {
+                if (response.isSuccessful()) {
+                    List<ListAddressResponseDTO> addresses = response.body();
+                    // Xử lý dữ liệu nhận được ở đây
+                    listAddressDTO.clear(); // Xóa dữ liệu cũ trong listAddressDTO
+                    listAddress.clear();    // Xóa dữ liệu cũ trong listAddress
+
+                    listAddressDTO.addAll(addresses); // Thêm dữ liệu mới vào listAddressDTO
+                    for (ListAddressResponseDTO address : listAddressDTO) {
+                        Address newAddress = new Address();
+                        newAddress.setAddressDetails(address.getAddressDetails());
+                        listAddress.add(newAddress);
+                    }
+
+                    // Cập nhật lại RecyclerView thông qua adapter
+                    adapter.notifyDataSetChanged();
+
+                    System.out.println("Lấy thành công: ");
+                } else {
+                    // Xử lý lỗi ở đây
+                    System.out.println("Lấy danh sách địa chỉ thất bại: ");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ListAddressResponseDTO>> call, Throwable t) {
+                // Xử lý lỗi khi gọi API thất bại
+                t.printStackTrace();
+            }
+        });
     }
 
     public void updateAddressList(Address newAddress) {
-        listAddress.add(newAddress);
-        adapter.notifyDataSetChanged();
+        bookAppApi = BookAppService.getClient();
+        TokenResponseDTO tokenResponseDTO = MyUtils.getTokenResponse(getActivity());
+        Call<List<ListAddressResponseDTO>> call = bookAppApi.getUserAddress(tokenResponseDTO.getUserId());
+        call.enqueue(new Callback<List<ListAddressResponseDTO>>() {
+            @Override
+            public void onResponse(Call<List<ListAddressResponseDTO>> call, Response<List<ListAddressResponseDTO>> response) {
+                if (response.isSuccessful()) {
+                    List<ListAddressResponseDTO> addresses = response.body();
+                    // Xử lý dữ liệu nhận được ở đây
+                    listAddressDTO.clear(); // Xóa dữ liệu cũ trong listAddressDTO
+                    listAddress.clear();    // Xóa dữ liệu cũ trong listAddress
+
+                    listAddressDTO.addAll(addresses); // Thêm dữ liệu mới vào listAddressDTO
+                    for (ListAddressResponseDTO address : listAddressDTO) {
+                        Address newAddress = new Address();
+                        newAddress.setAddressDetails(address.getAddressDetails());
+                        listAddress.add(newAddress);
+                    }
+
+                    // Cập nhật lại RecyclerView thông qua adapter
+                    adapter.notifyDataSetChanged();
+
+                    System.out.println("Lấy thành công: ");
+                } else {
+                    // Xử lý lỗi ở đây
+                    System.out.println("Lấy danh sách địa chỉ thất bại: ");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ListAddressResponseDTO>> call, Throwable t) {
+                // Xử lý lỗi khi gọi API thất bại
+                t.printStackTrace();
+            }
+        });
+
     }
 
     @Override
     public void onAddressSelected(Address address) {
         listener.onAddressSelectedFragment(address);
     }
+
+
 }

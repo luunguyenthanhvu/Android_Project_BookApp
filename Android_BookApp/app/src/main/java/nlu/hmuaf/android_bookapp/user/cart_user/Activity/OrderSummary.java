@@ -24,12 +24,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.admin.Home;
+import nlu.hmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.user.bill.activity.MyBill;
 import nlu.hmuaf.android_bookapp.user.cart_user.adapter.RecycleViewBookChosenAdapter;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.home.activity.HomeActivity;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
 
 public class OrderSummary extends AppCompatActivity {
     private Toolbar toolbar;
@@ -87,7 +89,7 @@ public class OrderSummary extends AppCompatActivity {
 
 
         Address address1 = (Address) getIntent().getSerializableExtra("address");
-        address.setText(address1.getStreet() + ", " + address1.getWard() + ", " + address1.getDistrict() + ", " + address1.getCity());
+        address.setText(address1.getAddressDetails());
         paymentMethod.setText(getIntent().getStringExtra("paymentMethod"));
         int quantityBook = 0;
         for(int i = 0; i < listBook.size(); i++) {
@@ -95,7 +97,20 @@ public class OrderSummary extends AppCompatActivity {
             quantityBook += listBook.get(i).getQuantity();
         }
         priceDetail.setText("Price Details: " + quantityBook + " sản phẩm");
-        price.setText("Total: "  + " VNĐ");
+        double totalPriceBook = 0;
+        for(int i = 0; i < listBook.size(); i++) {
+            double priceBook =0;
+            if ((Double) listBook.get(i).getDiscountedPrice() != null && listBook.get(i).getDiscountedPrice() != 0 ) {
+                priceBook = listBook.get(i).getDiscountedPrice();
+            } else {
+                priceBook = listBook.get(i).getOriginalPrice();
+            }
+            priceBook = priceBook * listBook.get(i).getQuantity();
+            totalPriceBook += priceBook;
+        }
+        totalPriceBook+=30000;
+        price.setText("Tổng tiền: "  + MyUtils.convertToVND(totalPriceBook) + " VNĐ");
+
 
 //     Tạo action cho nút về trang Home
         buttonToHome.setOnClickListener(new View.OnClickListener() {
