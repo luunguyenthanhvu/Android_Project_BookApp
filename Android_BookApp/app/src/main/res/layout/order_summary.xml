@@ -27,39 +27,48 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:background="#E8E4E9">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleViewBook"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="350dp"
+            android:padding="10dp" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="110dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
         android:background="#E8E4E9">
+
 
         <TextView
             android:id="@+id/textViewAddress"
-            android:layout_width="177dp"
-            android:layout_height="44dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="4dp"
             android:text="Name, contact no,  door no, street, city, dist, pin code"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.201"
+            app:layout_constraintHorizontal_bias="0.363"
             app:layout_constraintStart_toStartOf="parent" />
-
 
         <TextView
             android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="DeliveryAdress"
+            android:text="Delivery Address"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/textViewAddress"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent"
@@ -80,7 +89,9 @@
     <LinearLayout
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <LinearLayout
             android:layout_width="82dp"
@@ -96,12 +107,28 @@
                 android:text="Payment Method"
                 android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/textViewPaymentMethod"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cart on delivery"
-                android:textColor="@color/black" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewPaymentMethod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Cart on delivery"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/textViewPhiVanChuyen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Phí vận chuyển: 30000 VNĐ"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -110,7 +137,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp">
 
         <LinearLayout
             android:layout_width="5dp"
@@ -120,7 +149,7 @@
 
             <TextView
                 android:id="@+id/tv_priceDetails"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Price Details (1 item)"
                 android:textColor="@color/black" />
@@ -131,7 +160,6 @@
             android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="2500"
             android:textColor="@color/black" />
     </LinearLayout>
@@ -142,12 +170,29 @@
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/buttonPlaceOrder"
-            android:layout_width="match_parent"
+            android:id="@+id/buttonToMyBill"
+            android:layout_width="268dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="8dp"
-            android:text="PLACE ORDER" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_button_order_success"
+            android:text="Xem đơn hàng của bạn tại đây"
+            android:textColor="@color/white"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/buttonToHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_button_order_success1"
+            android:text="Trang chủ"
+            android:textColor="#B868E9"
+            app:backgroundTint="@null" />
 
     </RelativeLayout>
 

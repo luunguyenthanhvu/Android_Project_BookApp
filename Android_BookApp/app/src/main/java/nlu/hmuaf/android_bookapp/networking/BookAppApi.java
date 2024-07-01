@@ -3,6 +3,7 @@ package nlu.hmuaf.android_bookapp.networking;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.dto.json.response.PageListBookResponseJson;
+import nlu.hmuaf.android_bookapp.dto.request.AddressRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.CartItemRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.ForgotPasswordDTO;
 import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
@@ -77,4 +78,14 @@ public interface BookAppApi {
 
     @GET("api/v1/key/get/google-map")
     Call<APIKeyResponse> getGoogleMapAPIKey();
+
+    @POST("api/v1/user/address/add/{userId}")
+    Call<List<ListAddressResponseDTO>> addNewAddress(@Path("userId") long userId, @Body AddressRequestDTO addressRequestDTO);
+
+    @PUT("api/v1/user/address/update/{userId}")
+    Call<List<ListAddressResponseDTO>> updateUserAddress(@Path("userId") long userId, @Body AddressRequestDTO addressRequestDTO);
+
+    @GET("api/v1/user/address/{userId}")
+    Call<List<ListAddressResponseDTO>> getUserAddress(@Path("userId") long userId);
+
 }
