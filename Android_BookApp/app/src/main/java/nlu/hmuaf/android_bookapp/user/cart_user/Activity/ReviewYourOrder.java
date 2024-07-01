@@ -50,7 +50,7 @@ public class ReviewYourOrder extends AppCompatActivity {
         stepView = findViewById(R.id.stepViewInReviewYourOrder);
         toolbar = findViewById(R.id.toolbar2);
         recycleListBookChosen = findViewById(R.id.listBookChosen);
-        cartService = new CartService(this);
+        cartService = new CartService(getApplicationContext());
         btn_continue = findViewById(R.id.button3);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -67,7 +67,8 @@ public class ReviewYourOrder extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recycleListBookChosen.setLayoutManager(linearLayoutManager2);
         recycleListBookChosen.setAdapter(adapter2);
-        getCartItemData();
+        List<Long> itemChoose = (List<Long>) getIntent().getSerializableExtra("listBookChoose");
+        getCartItemData(itemChoose);
 
 
         btn_continue.setOnClickListener(new View.OnClickListener() {
@@ -90,20 +91,10 @@ public class ReviewYourOrder extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void getCartItemData() {
+    private void getCartItemData(List<Long> itemId) {
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
-            List<CartItems> userCartItems = cartService.getUserCart(MyUtils.getTokenResponse(getApplicationContext()).getUserId());
-            List<Long> itemChoose = (List<Long>) getIntent().getSerializableExtra("listBookChoose");
-
-            for (CartItems cartItem : userCartItems) {
-                if (itemChoose.contains(cartItem.getBookId())) {
-                    listBook.add(cartItem);
-                    System.out.println("Lang coc.");
-                    System.out.println(listBook.size());
-                    System.out.println(cartItem);
-                }
-            }
+            listBook = cartService.getItemUserChosen(MyUtils.getTokenResponse(getApplicationContext()).getUserId(), itemId);
 
             runOnUiThread(() -> {
                 adapter2.updateData(listBook);

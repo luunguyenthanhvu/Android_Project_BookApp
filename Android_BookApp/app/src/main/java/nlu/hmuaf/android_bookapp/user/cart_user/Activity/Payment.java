@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import nlu.hmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
+import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Books;
 import nlu.hmuaf.android_bookapp.user.cart_user.fragment_front_end.BankCardFragment;
@@ -54,15 +56,14 @@ public class Payment extends AppCompatActivity {
         listStepView.add("Address");
         listStepView.add("Payment");
         listStepView.add("Summary");
-//        stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
-//        stepView.go(2, true);
 
-        String[] arrayString = {"1", "2", "3", "4"};
+
+        String[] arrayString = {"Bước 1", "Bước 2", "Bước 3", "Bước 4"};
         stepView.setLabels(arrayString) // Đặt nhãn cho StepsView
-                .setBarColorIndicator(Color.GRAY) // Đặt màu mặc định cho thanh chỉ báo (màu xám)
+                .setBarColorIndicator(Color.parseColor("#E8E4E9")) // Đặt màu mặc định cho thanh chỉ báo (màu xám)
                 .setProgressColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho chỉ báo tiến độ (màu xám)
                 .setLabelColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho nhãn (màu xám)
-                .setCompletedPosition(3) // Đặt vị trí đã hoàn thành
+                .setCompletedPosition(2) // Đặt vị trí đã hoàn thành
                 .drawView(); // Vẽ StepsView
         radioGroupPaymentMethods = findViewById(R.id.radioGroupPaymentMethods);
         payNow = findViewById(R.id.buttonPayNow);
@@ -116,11 +117,9 @@ public class Payment extends AppCompatActivity {
                     intent.putExtra("cardHolderName", creditCardFragment.getCreditCardHolderName());
 
                 }
-                List<Books> listBook = (ArrayList<Books>) getIntent().getSerializableExtra("listBookChoose");
-                HashMap<Integer, Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("selectedQuantities");
+                List<CartItems> listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBookChoose");
                 Address address = (Address) getIntent().getSerializableExtra("address");
-                intent.putExtra("listBook", (ArrayList<Books>) listBook);
-                intent.putExtra("quantityMap", quantityMap);
+                intent.putExtra("listBook", (ArrayList<CartItems>) listBook);
                 intent.putExtra("address", address);
                 intent.putExtra("paymentMethod", paymentMethod);
                 startActivity(intent);

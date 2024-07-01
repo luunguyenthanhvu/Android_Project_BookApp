@@ -17,48 +17,15 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/edt_change_street"
+        android:id="@+id/edt_change_detail_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:textColorHint="#808080"
-        android:textColor="@color/white"
-        android:hint="Đường"
         android:ems="10"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/edt_change_ward"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:textColorHint="#808080"
-        android:textColor="@color/white"
-        android:hint="Quận"
+        android:hint="Địa chỉ"
         android:inputType="text"
-        />
-
-    <EditText
-        android:id="@+id/edt_change_district"
-        android:layout_width="wrap_content"
         android:textColor="@color/white"
-        android:layout_height="wrap_content"
-        android:textColorHint="#808080"
-        android:hint="Huyện"
-        android:ems="10"
-        android:inputType="text"
-         />
-
-    <EditText
-        android:id="@+id/edt_change_city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColorHint="#808080"
-        android:hint="Thành phố"
-        android:textColor="@color/white"
-        android:ems="10"
-        android:inputType="text"
-        />
+        android:textColorHint="#808080" />
 
     <LinearLayout
         android:layout_width="wrap_content"

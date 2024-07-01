@@ -7,8 +7,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarGoogleMap"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"  android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
@@ -46,7 +45,13 @@
         android:id="@+id/googleMap"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="650dp">
 
     </fragment>
+
+    <Button
+        android:id="@+id/buttonConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xác nhận" />
 </LinearLayout>

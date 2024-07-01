@@ -60,11 +60,11 @@
         <activity android:name=".user.home.activity.NumberActivity" android:exported="false" />
         <activity android:name=".user.home.activity.MainActivity" android:exported="false" />
         <activity android:name=".user.profile.activity.ProfileActivity" android:exported="false" />
+        <activity android:name=".api_google_map.GoogleMapActivity" android:exported="false" />
 
         <!-- Meta data cho API Google map -->
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC9bUyVWJwCUCNB00NXlrzCLWLPfYXWlq0" />
-
+                    android:name="com.google.android.geo.API_KEY"
+                    android:value="" />
     </application>
 </manifest>

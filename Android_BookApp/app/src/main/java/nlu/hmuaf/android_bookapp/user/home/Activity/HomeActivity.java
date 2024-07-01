@@ -3,6 +3,8 @@ package nlu.hmuaf.android_bookapp.user.home.activity;
 import android.animation.Animator;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -26,6 +28,8 @@ import java.util.concurrent.Executors;
 
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.animation.add_to_cart.CircleAnimation;
+import nlu.hmuaf.android_bookapp.api_google_map.GoogleMapActivity;
+import nlu.hmuaf.android_bookapp.dto.response.APIKeyResponse;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.networking.BookAppApi;
@@ -68,7 +72,7 @@ public class HomeActivity extends AppCompatActivity {
         // get data from api
         getDiscountBookData();
         getNewBookData();
-
+        getApiGoogleKey();
         // get the cart service
         cartService = new CartService(getApplicationContext());
 
@@ -231,7 +235,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                     // Navigate to HomeActivity
-                    Intent intent = new Intent(HomeActivity.this, LibraryActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, GoogleMapActivity.class);
                     startActivity(intent);
                 }
             }
@@ -243,6 +247,32 @@ public class HomeActivity extends AppCompatActivity {
         //  Kiểm tra activity hiện tại để đổi màu icon ở navigation
         checkCurrentActivity();
 
+    }
+
+    public void getApiGoogleKey() {
+        if (MyUtils.getApiKey(getApplicationContext()) == null) {
+            bookAppApi = BookAppService.getClient();
+            Call<APIKeyResponse> call = bookAppApi.getGoogleMapAPIKey();
+            call.enqueue(new Callback<APIKeyResponse>() {
+                @Override
+                public void onResponse(Call<APIKeyResponse> call, Response<APIKeyResponse> response) {
+                    System.out.println("API KEY NE");
+                    if (response.isSuccessful()) {
+                        APIKeyResponse apiKeyResponse = response.body();
+                        String apiKey = apiKeyResponse.getApiKey();
+                        MyUtils.saveApiKey(getApplicationContext(), apiKey); // Store the API key in SharedPreferences
+                    } else {
+                        System.out.println(response.errorBody());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<APIKeyResponse> call, Throwable throwable) {
+                    // Handle failure
+                    System.out.println(throwable.getMessage());
+                }
+            });
+        }
     }
 
     private void updateCartQuantity() {

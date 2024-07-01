@@ -5,17 +5,11 @@ import java.io.Serializable;
 public class Address implements Serializable {
 
     private long addressId;
-    private String city;
-    private String district;
-    private String ward;
-    private String street;
+    private String addressDetails;
 
-    public Address(long addressId, String city, String district, String ward, String street) {
+    public Address(long addressId, String addressDetails) {
         this.addressId = addressId;
-        this.city = city;
-        this.district = district;
-        this.ward = ward;
-        this.street = street;
+        this.addressDetails = addressDetails;
     }
     public Address(){
 
@@ -29,35 +23,11 @@ public class Address implements Serializable {
         this.addressId = addressId;
     }
 
-    public String getCity() {
-        return city;
+    public String getAddressDetails() {
+        return addressDetails;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public String getWard() {
-        return ward;
-    }
-
-    public void setWard(String ward) {
-        this.ward = ward;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
+    public void setAddressDetails(String addressDetails) {
+        this.addressDetails = addressDetails;
     }
 }
