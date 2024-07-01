@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -22,10 +23,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import nlu.hmuaf.android_bookapp.admin.Home;
+import nlu.hmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
+import nlu.hmuaf.android_bookapp.user.bill.activity.MyBill;
 import nlu.hmuaf.android_bookapp.user.cart_user.adapter.RecycleViewBookChosenAdapter;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.user.home.activity.HomeActivity;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
 
 public class OrderSummary extends AppCompatActivity {
     private Toolbar toolbar;
@@ -40,13 +46,14 @@ public class OrderSummary extends AppCompatActivity {
     private TextView price;
     private Button placeOrder;
     private List<CartItems> listBook = new ArrayList<>();
+    private Button buttonToMyBill, buttonToHome;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_summary);
-        toolbar = findViewById(R.id.stepViewInReviewYourOrder);
+        toolbar = findViewById(R.id.toolbarOrderSummary);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         stepView = findViewById(R.id.stepViewInOrderSummary);
@@ -55,15 +62,13 @@ public class OrderSummary extends AppCompatActivity {
         listStepView.add("Payment");
         listStepView.add("Summary");
 
-//        stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
-//        stepView.go(3, true);
-//        stepView.done(true);
-        String[] arrayString = {"1", "2", "3", "4"};
+
+        String[] arrayString = {"Bước 1", "Bước 2", "Bước 3", "Bước 4"};
         stepView.setLabels(arrayString) // Đặt nhãn cho StepsView
-                .setBarColorIndicator(Color.GRAY) // Đặt màu mặc định cho thanh chỉ báo (màu xám)
+                .setBarColorIndicator(Color.parseColor("#E8E4E9")) // Đặt màu mặc định cho thanh chỉ báo (màu xám)
                 .setProgressColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho chỉ báo tiến độ (màu xám)
                 .setLabelColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho nhãn (màu xám)
-                .setCompletedPosition(4) // Đặt vị trí đã hoàn thành
+                .setCompletedPosition(3) // Đặt vị trí đã hoàn thành
                 .drawView(); // Vẽ StepsView
 
 
@@ -72,28 +77,57 @@ public class OrderSummary extends AppCompatActivity {
         paymentMethod = findViewById(R.id.textViewPaymentMethod);
         priceDetail = findViewById(R.id.tv_priceDetails);
         price = findViewById(R.id.tv_price);
-        placeOrder = findViewById(R.id.buttonPlaceOrder);
+        buttonToMyBill = findViewById(R.id.buttonToMyBill);
+        buttonToHome = findViewById(R.id.buttonToHome);
+
 
         listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBook");
-        HashMap<Integer, Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("quantityMap");
         RecycleViewBookChosenAdapter adapter2 = new RecycleViewBookChosenAdapter(this, listBook);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager2);
         recyclerView.setAdapter(adapter2);
 
-        Address address1 = (Address) getIntent().getSerializableExtra("address");
-        address.setText(address1.getStreet() + ", " + address1.getWard() + ", " + address1.getDistrict() + ", " + address1.getCity());
-        paymentMethod.setText(getIntent().getStringExtra("paymentMethod"));
-        priceDetail.setText("Price Details " + " items");
-        price.setText("Total: "  + " VNĐ");
 
-        double totalPriceTemp = 0.0;
-        placeOrder.setOnClickListener(v -> {
-            Intent intent = new Intent(OrderSummary.this, OrderSuccessfully.class);
-            intent.putExtra("totalPrice", totalPriceTemp);
-            intent.putExtra("listBook", (ArrayList<CartItems>) listBook);
-            intent.putExtra("quantityEachBook", quantityMap);
-            startActivity(intent);
+        Address address1 = (Address) getIntent().getSerializableExtra("address");
+        address.setText(address1.getAddressDetails());
+        paymentMethod.setText(getIntent().getStringExtra("paymentMethod"));
+        int quantityBook = 0;
+        for(int i = 0; i < listBook.size(); i++) {
+            listBook.get(i).getQuantity();
+            quantityBook += listBook.get(i).getQuantity();
+        }
+        priceDetail.setText("Price Details: " + quantityBook + " sản phẩm");
+        double totalPriceBook = 0;
+        for(int i = 0; i < listBook.size(); i++) {
+            double priceBook =0;
+            if ((Double) listBook.get(i).getDiscountedPrice() != null && listBook.get(i).getDiscountedPrice() != 0 ) {
+                priceBook = listBook.get(i).getDiscountedPrice();
+            } else {
+                priceBook = listBook.get(i).getOriginalPrice();
+            }
+            priceBook = priceBook * listBook.get(i).getQuantity();
+            totalPriceBook += priceBook;
+        }
+        totalPriceBook+=30000;
+        price.setText("Tổng tiền: "  + MyUtils.convertToVND(totalPriceBook) + " VNĐ");
+
+
+//     Tạo action cho nút về trang Home
+        buttonToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OrderSummary.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+//        Tạo button cho nút sang MyBill
+        buttonToMyBill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OrderSummary.this, MyBill.class);
+                startActivity(intent);
+            }
         });
 
     }
