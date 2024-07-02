@@ -3,6 +3,7 @@ package nlu.hmuaf.android_bookapp.user.profile.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -13,10 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
+import nlu.hmuaf.android_bookapp.networking.BookAppApi;
+import nlu.hmuaf.android_bookapp.networking.BookAppService;
 import nlu.hmuaf.android_bookapp.user.profile.DarkModeUtil;
 import nlu.hmuaf.android_bookapp.user.profile.adapter.AddressAdapter;
 import nlu.hmuaf.android_bookapp.user.profile.classess.Address;
 import nlu.hmuaf.android_bookapp.user.profile.classess.User;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddressActivity extends AppCompatActivity {
 
@@ -24,7 +32,8 @@ public class AddressActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private AddressAdapter adapter;
-    private List<Address> addressList;
+    private List<ListAddressResponseDTO> addressList;
+    private BookAppApi bookAppApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +49,10 @@ public class AddressActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         addressList = new ArrayList<>();
-        loadAddresses();
-
         adapter = new AddressAdapter(this, addressList);
         recyclerView.setAdapter(adapter);
+
+        getAddressUser();
 
         findViewById(R.id.addAddressButton).setOnClickListener(view -> {
             Intent intent = new Intent(AddressActivity.this, EditAddressActivity.class);
@@ -60,56 +69,6 @@ public class AddressActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == EDIT_ADDRESS_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            Address newAddress = (Address) data.getSerializableExtra("newAddress");
-            Address updatedAddress = (Address) data.getSerializableExtra("updatedAddress");
-            Address deletedAddress = (Address) data.getSerializableExtra("deletedAddress");
-
-            if (newAddress != null) {
-                if (newAddress.isDefault()) {
-                    clearDefaultAddress();
-                }
-                addressList.add(newAddress);
-                adapter.notifyItemInserted(addressList.size() - 1);
-            }
-            if (updatedAddress != null) {
-                int index = findAddressIndexById(updatedAddress.getAddressId());
-                if (index != -1) {
-                    if (updatedAddress.isDefault()) {
-                        clearDefaultAddress();
-                    }
-                    addressList.set(index, updatedAddress);
-                    adapter.notifyItemChanged(index);
-                }
-            }
-            if (deletedAddress != null) {
-                int index = findAddressIndexById(deletedAddress.getAddressId());
-                if (index != -1) {
-                    boolean wasDefault = addressList.get(index).isDefault();
-                    addressList.remove(index);
-                    adapter.notifyItemRemoved(index);
-                    if (wasDefault && !addressList.isEmpty()) {
-                        addressList.get(0).setDefault(true);
-                        adapter.notifyItemChanged(0);
-                    }
-                }
-            }
-
-            adapter.notifyDataSetChanged();
-        }
-    }
-
-    private void clearDefaultAddress() {
-        for (Address addr : addressList) {
-            if (addr.isDefault()) {
-                addr.setDefault(false);
-            }
-        }
-    }
-
     private int findAddressIndexById(int addressId) {
         for (int i = 0; i < addressList.size(); i++) {
             if (addressList.get(i).getAddressId() == addressId) {
@@ -119,22 +78,30 @@ public class AddressActivity extends AppCompatActivity {
         return -1;
     }
 
-    private void loadAddresses() {
-        User user1 = new User(1, 1, "tuongminh", "password", "hash", "2023-01-01");
-        user1.setFirstName("Tường");
-        user1.setLastName("Minh");
-        user1.setPhoneNum("1234567890");
+    public void getAddressUser() {
+        bookAppApi = BookAppService.getClient(MyUtils.getTokenResponse(getApplicationContext()).getToken());
+        Call<List<ListAddressResponseDTO>> call = bookAppApi.getUserAddress(MyUtils.getTokenResponse(getApplicationContext()).getUserId());
+        call.enqueue(new Callback<List<ListAddressResponseDTO>>() {
+            @Override
+            public void onResponse(Call<List<ListAddressResponseDTO>> call, Response<List<ListAddressResponseDTO>> response) {
+                if (response.isSuccessful()) {
+                    List<ListAddressResponseDTO> responseDTOS = response.body();
+                    adapter.updateData(responseDTOS);
+                }
+            }
 
-        Address address1 = new Address(1, "TP. Hồ Chí Minh", "Thủ Đức", "Linh Trung", "Đại Học Nông Lâm, Cư Xá E", true);
-        address1.setUser(user1);
-        addressList.add(address1);
+            @Override
+            public void onFailure(Call<List<ListAddressResponseDTO>> call, Throwable throwable) {
 
-        Address address2 = new Address(2, "TP. Hồ Chí Minh", "Thủ Đức", "Linh Trung", "Đại Học Nông Lâm, Cư Xá E", false);
-        address2.setUser(user1);
-        addressList.add(address2);
+            }
+        });
+    }
 
-        Address address3 = new Address(3, "TP. Hồ Chí Minh", "Thủ Đức", "Linh Trung", "Đại Học Nông Lâm, Cư Xá E", false);
-        address3.setUser(user1);
-        addressList.add(address3);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == EDIT_ADDRESS_REQUEST_CODE && resultCode == RESULT_OK) {
+            getAddressUser(); // Lấy lại dữ liệu mới từ server
+        }
     }
 }

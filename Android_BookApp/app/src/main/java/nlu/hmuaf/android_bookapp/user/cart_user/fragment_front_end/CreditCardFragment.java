@@ -25,12 +25,24 @@ public class CreditCardFragment extends Fragment {
         creditCardNumber = view.findViewById(R.id.creditCardNumber);
         return inflater.inflate(R.layout.fragment_credit_card, container, false);
     }
+
     public String getCreditCardNumber() {
         return creditCardNumber.getText().toString();
     }
 
     public String getCreditCardHolderName() {
         return creditCardHolder.getText().toString();
+    }
+
+    public boolean isCardInfoValid() {
+        String cardNumber = creditCardNumber.getText().toString().trim();
+        String cardHolderName = creditCardHolder.getText().toString().trim();
+
+        // Kiểm tra các điều kiện để xác nhận thông tin thẻ tín dụng hợp lệ
+        if (cardNumber.isEmpty() || cardHolderName.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
 }

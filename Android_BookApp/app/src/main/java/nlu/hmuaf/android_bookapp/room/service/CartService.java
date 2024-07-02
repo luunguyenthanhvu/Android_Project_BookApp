@@ -248,4 +248,8 @@ public class CartService {
     public void deleteItem(CartItems items) {
         cartItemDao.delete(items);
     }
+
+    public void deleteCartItemByBookId(long bookId) {
+        cartItemDao.deleteCartItemByBookId(bookId);
+    }
 }

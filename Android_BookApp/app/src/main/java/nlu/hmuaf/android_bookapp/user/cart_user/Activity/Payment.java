@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -24,14 +25,27 @@ import com.anton46.stepsview.StepsView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
+import nlu.hmuaf.android_bookapp.dto.request.BillRequestDTO;
+import nlu.hmuaf.android_bookapp.dto.request.CartItemRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
+import nlu.hmuaf.android_bookapp.dto.response.MessageResponseDTO;
+import nlu.hmuaf.android_bookapp.networking.BookAppApi;
+import nlu.hmuaf.android_bookapp.networking.BookAppService;
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
+import nlu.hmuaf.android_bookapp.room.service.CartService;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Books;
 import nlu.hmuaf.android_bookapp.user.cart_user.fragment_front_end.BankCardFragment;
 import nlu.hmuaf.android_bookapp.user.cart_user.fragment_front_end.CreditCardFragment;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Payment extends AppCompatActivity {
     private Toolbar toolbar;
@@ -43,6 +57,8 @@ public class Payment extends AppCompatActivity {
     private List<String> listStepView = new ArrayList<>();
     private String paymentMethod = "";
     private Fragment selectedFragment = null;
+    BookAppApi bookAppApi;
+    CartService cartService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +73,7 @@ public class Payment extends AppCompatActivity {
         listStepView.add("Payment");
         listStepView.add("Summary");
 
-
+        cartService = new CartService(getApplicationContext());
         String[] arrayString = {"Bước 1", "Bước 2", "Bước 3", "Bước 4"};
         stepView.setLabels(arrayString) // Đặt nhãn cho StepsView
                 .setBarColorIndicator(Color.parseColor("#E8E4E9")) // Đặt màu mặc định cho thanh chỉ báo (màu xám)
@@ -101,30 +117,92 @@ public class Payment extends AppCompatActivity {
             }
         });
 
-
         payNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Payment.this, OrderSummary.class);
-                if (selectedFragment instanceof BankCardFragment) {
-                    BankCardFragment bankCardFragment = (BankCardFragment) selectedFragment;
-                    intent.putExtra("cardNumber", bankCardFragment.getBankCardNumber());
-                    intent.putExtra("cardHolderName", bankCardFragment.getBankCardHolderName());
-                    intent.putExtra("cardBankName", bankCardFragment.getBankCardName());
-                } else if (selectedFragment instanceof CreditCardFragment) {
-                    CreditCardFragment creditCardFragment = (CreditCardFragment) selectedFragment;
-                    intent.putExtra("cardNumber", creditCardFragment.getCreditCardNumber());
-                    intent.putExtra("cardHolderName", creditCardFragment.getCreditCardHolderName());
+                boolean isValid = true;
 
+                // Kiểm tra xem người dùng đã chọn phương thức thanh toán hay chưa
+                if (paymentMethod.isEmpty()) {
+                    Toast.makeText(Payment.this, "Vui lòng chọn phương thức thanh toán.", Toast.LENGTH_SHORT).show();
+                    isValid = false;
                 }
-                List<CartItems> listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBookChoose");
-                Address address = (Address) getIntent().getSerializableExtra("address");
-                intent.putExtra("listBook", (ArrayList<CartItems>) listBook);
-                intent.putExtra("address", address);
-                intent.putExtra("paymentMethod", paymentMethod);
-                startActivity(intent);
+
+                // Kiểm tra thông tin thẻ ngân hàng hoặc thẻ tín dụng nếu được chọn
+                if (paymentMethod.equals("Thẻ ngân hàng") && selectedFragment instanceof BankCardFragment) {
+                    BankCardFragment bankCardFragment = (BankCardFragment) selectedFragment;
+                    if (!bankCardFragment.isCardInfoValid()) {
+                        Toast.makeText(Payment.this, "Vui lòng nhập đầy đủ thông tin thẻ ngân hàng.", Toast.LENGTH_SHORT).show();
+                        isValid = false;
+                    }
+                } else if (paymentMethod.equals("Thẻ tín dụng") && selectedFragment instanceof CreditCardFragment) {
+                    CreditCardFragment creditCardFragment = (CreditCardFragment) selectedFragment;
+                    if (!creditCardFragment.isCardInfoValid()) {
+                        Toast.makeText(Payment.this, "Vui lòng nhập đầy đủ thông tin thẻ tín dụng.", Toast.LENGTH_SHORT).show();
+                        isValid = false;
+                    }
+                }
+
+                // Nếu thông tin hợp lệ, chuyển sang màn hình OrderSummary
+                if (isValid) {
+                    Intent intent = new Intent(Payment.this, OrderSummary.class);
+                    // Truyền thông tin thẻ hoặc phương thức thanh toán vào intent
+                    if (selectedFragment instanceof BankCardFragment) {
+                        BankCardFragment bankCardFragment = (BankCardFragment) selectedFragment;
+                        intent.putExtra("cardNumber", bankCardFragment.getBankCardNumber());
+                        intent.putExtra("cardHolderName", bankCardFragment.getBankCardHolderName());
+                        intent.putExtra("cardBankName", bankCardFragment.getBankCardName());
+                    } else if (selectedFragment instanceof CreditCardFragment) {
+                        CreditCardFragment creditCardFragment = (CreditCardFragment) selectedFragment;
+                        intent.putExtra("cardNumber", creditCardFragment.getCreditCardNumber());
+                        intent.putExtra("cardHolderName", creditCardFragment.getCreditCardHolderName());
+                    }
+
+                    // Truyền danh sách sách và địa chỉ vào intent
+                    List<CartItems> listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBookChoose");
+                    ListAddressResponseDTO address = (ListAddressResponseDTO) getIntent().getSerializableExtra("address");
+                    intent.putExtra("listBook", (ArrayList<CartItems>) listBook);
+                    intent.putExtra("address", address);
+                    intent.putExtra("paymentMethod", paymentMethod);
+
+                    bookAppApi = BookAppService.getClient(MyUtils.getTokenResponse(getApplicationContext()).getToken());
+
+                    BillRequestDTO requestDTO = BillRequestDTO
+                            .builder()
+                            .cartItemRequestDTO(listBook.stream()
+                                    .map(item -> new CartItemRequestDTO(item.getBookId(), item.getQuantity()))
+                                    .collect(Collectors.toList()))
+                            .addressId(address.getAddressId())
+                            .paymentMethod(paymentMethod)
+                            .build();
+                    Call<MessageResponseDTO> call = bookAppApi.addUserBills(MyUtils.getTokenResponse(getApplicationContext()).getUserId(), requestDTO);
+                    call.enqueue(new Callback<MessageResponseDTO>() {
+                        @Override
+                        public void onResponse(Call<MessageResponseDTO> call, Response<MessageResponseDTO> response) {
+                            if (response.isSuccessful()) {
+                                ExecutorService executor = Executors.newSingleThreadExecutor();
+                                executor.execute(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        listBook.forEach(item -> {
+                                            cartService.deleteCartItemByBookId(item.getBookId());
+                                        });
+                                        cartService.syncLocalCartToServer(MyUtils.getTokenResponse(getApplicationContext()));
+                                    }
+                                });
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<MessageResponseDTO> call, Throwable throwable) {
+
+                        }
+                    });
+                    startActivity(intent);
+                }
             }
         });
+
     }
 
     @Override

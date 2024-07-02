@@ -16,6 +16,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.preference.PreferenceManager;
 
+import com.squareup.picasso.Picasso;
+
+import nlu.hmuaf.android_bookapp.animation.add_to_cart.CircleImageView;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.room.service.CartService;
 import nlu.hmuaf.android_bookapp.user.bill.activity.MyBill;
@@ -32,17 +35,24 @@ public class ProfileActivity extends AppCompatActivity {
     private CartService cartService;
     private TextView userNameTextView;
     private TextView userEmailTextView;
+    private ImageView circleImageView;
+    private TokenResponseDTO tokenResponseDTO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        tokenResponseDTO = MyUtils.getTokenResponse(getApplicationContext());
         DarkModeUtil.applyDarkMode(this);
         cartService = new CartService(getApplicationContext());
         setContentView(R.layout.profile_activity_profile);
 
         userNameTextView = findViewById(R.id.user_name);
         userEmailTextView = findViewById(R.id.user_email);
+        circleImageView = findViewById(R.id.profile_image);
+
+        userEmailTextView.setText(tokenResponseDTO.getEmail());
+        userNameTextView.setText(tokenResponseDTO.getUsername());
+        Picasso.get().load(tokenResponseDTO.getImg()).into(circleImageView);
 
         Switch darkModeSwitch = findViewById(R.id.dark_mode_switch);
         boolean isDarkMode = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("dark_mode", false);

@@ -41,7 +41,7 @@ public class ChangeAddressDialog extends Dialog {
     private BookAppApi bookAppApi;
 
 
-    public ChangeAddressDialog(@NonNull Activity activity, ListAddressResponseDTO address, RecycleVIewAddressUserAdapter.OnAddressSelectedListener listener ) {
+    public ChangeAddressDialog(@NonNull Activity activity, ListAddressResponseDTO address, RecycleVIewAddressUserAdapter.OnAddressSelectedListener listener) {
         super(activity);
 
         this.activity = activity;
@@ -76,15 +76,13 @@ public class ChangeAddressDialog extends Dialog {
     // User click "OK" button.
     private void buttonOKClick() {
         String addressDetail = editTextAddressDetail.getText().toString();
-        if (addressDetail == null || addressDetail.isEmpty())
-            {
-                Toast.makeText(this.activity, "Bạn chưa điền đầy đủ thông tin. Vui lòng điền lại", Toast.LENGTH_LONG).show();
-                return;
-            }
-            else{
-                 bookAppApi = BookAppService.getClient();
-                 TokenResponseDTO tokenResponseDTO = MyUtils.getTokenResponse(this.activity);
-                     AddressRequestDTO addressRequestDTO = AddressRequestDTO.builder()
+        if (addressDetail == null || addressDetail.isEmpty()) {
+            Toast.makeText(this.activity, "Bạn chưa điền đầy đủ thông tin. Vui lòng điền lại", Toast.LENGTH_LONG).show();
+            return;
+        } else {
+            bookAppApi = BookAppService.getClient();
+            TokenResponseDTO tokenResponseDTO = MyUtils.getTokenResponse(this.activity);
+            AddressRequestDTO addressRequestDTO = AddressRequestDTO.builder()
                     .addressId(address.getAddressId()) // hoặc giá trị thích hợp
                     .addressDetails(addressDetail)
                     .build();
@@ -96,11 +94,7 @@ public class ChangeAddressDialog extends Dialog {
                 public void onResponse(Call<List<ListAddressResponseDTO>> call, Response<List<ListAddressResponseDTO>> response) {
                     if (response.isSuccessful()) {
                         List<ListAddressResponseDTO> addresses = response.body();
-                        renderData();
-                        Address newAddress = new Address();
-                        newAddress.setAddressDetails(addressDetail);
-                        sendAddressForDeliveryAddress(newAddress);
-                        System.out.println("Địa chỉ đã được cập nhật: " + addresses);
+                        fragmentListAddressUser.updateData(addresses);
 
                     } else {
                         // Xử lý lỗi ở đây
@@ -115,24 +109,16 @@ public class ChangeAddressDialog extends Dialog {
                 }
             });
 
-//                TextView textView = (TextView) this.activity.findViewById(R.id.tv_addressUser);
-//                textView.setText(addressDetail);
-                this.dismiss();
-            }
-
-
+            this.dismiss();
         }
 
 
+    }
+
 
     // User click "Cancel" button.
-    private void buttonCancelClick () {
+    private void buttonCancelClick() {
         this.dismiss();
     }
-    private void renderData() {
-        this.fragmentListAddressUser.getDataAddressUser();
-    }
-    private void sendAddressForDeliveryAddress(Address address){
-        this.fragmentListAddressUser.onAddressSelected(address);
-    }
+
 }

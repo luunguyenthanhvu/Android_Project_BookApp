@@ -36,16 +36,15 @@ public class AddNewAddressFromUserDialog extends Dialog {
 
     private OnAddressAddedListener listener;
     private FragmentListAddressUser fragmentListAddressUser;
+
     public interface OnAddressAddedListener {
         void onAddressAdded(Address address);
     }
-    public AddNewAddressFromUserDialog(@NonNull Activity activity, OnAddressAddedListener listener, FragmentListAddressUser fragmentListAddressUser) {
+
+    public AddNewAddressFromUserDialog(@NonNull Activity activity, FragmentListAddressUser fragmentListAddressUser) {
         super(activity);
-
-        this.activity = activity;
-        this.listener = listener;
         this.fragmentListAddressUser = fragmentListAddressUser;
-
+        this.activity = activity;
     }
 
     @Override
@@ -71,14 +70,13 @@ public class AddNewAddressFromUserDialog extends Dialog {
             }
         });
     }
-    private void buttonOKClick () {
-          String detailAddress = editTextDetailAddress.getText().toString();
-        if (detailAddress == null || detailAddress.isEmpty())
-        {
+
+    private void buttonOKClick() {
+        String detailAddress = editTextDetailAddress.getText().toString();
+        if (detailAddress == null || detailAddress.isEmpty()) {
             Toast.makeText(this.activity, "Bạn chưa điền đầy đủ thông tin. Vui lòng điền lại", Toast.LENGTH_LONG).show();
             return;
-        }
-        else{
+        } else {
             TokenResponseDTO tokenResponseDTO = MyUtils.getTokenResponse(this.activity);
             bookAppApi = BookAppService.getClient();
 
@@ -94,12 +92,7 @@ public class AddNewAddressFromUserDialog extends Dialog {
                 public void onResponse(Call<List<ListAddressResponseDTO>> call, Response<List<ListAddressResponseDTO>> response) {
                     if (response.isSuccessful()) {
                         List<ListAddressResponseDTO> addresses = response.body();
-                        Address newAddress = new Address();
-                        newAddress.setAddressDetails(detailAddress);
-                        renderDataAddessList(newAddress);
-                        sendAddressForDeliveryAddress(newAddress);
-                        // Xử lý dữ liệu nhận được ở đây
-                        System.out.println("Địa chỉ mới đã được thêm: " + addresses);
+                        fragmentListAddressUser.updateAddressList(address);
                     } else {
                         // Xử lý lỗi ở đây
                         System.out.println("Thêm địa chỉ thất bại: " + response.errorBody());
@@ -113,21 +106,12 @@ public class AddNewAddressFromUserDialog extends Dialog {
                 }
             });
             Toast.makeText(this.activity, "Đã thêm thành công", Toast.LENGTH_SHORT).show();
-            address.setAddressDetails(detailAddress);
-            listener.onAddressAdded(address);
             this.dismiss();
         }
 
     }
 
-    private void buttonCancelClick () {
+    private void buttonCancelClick() {
         this.dismiss();
     }
-   private void renderDataAddessList(Address detailAdress){
-        this.listener.onAddressAdded(detailAdress);
-   }
-   private void sendAddressForDeliveryAddress(Address address){
-        this.fragmentListAddressUser.onAddressSelected(address);
-   }
-
 }

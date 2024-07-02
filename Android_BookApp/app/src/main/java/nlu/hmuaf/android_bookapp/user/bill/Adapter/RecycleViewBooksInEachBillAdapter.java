@@ -1,5 +1,5 @@
 
-package nlu.hmuaf.android_bookapp.user.bill.adapter;
+package nlu.hmuaf.android_bookapp.user.bill.Adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -18,6 +18,7 @@ import nlu.hmuaf.android_bookapp.user.bill.beans.BillDetails;
 
 
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.user.cart_user.beans.Books;
 
 public class RecycleViewBooksInEachBillAdapter extends RecyclerView.Adapter<RecycleViewBooksInEachBillAdapter.MyViewHolder>{
     private Activity context;

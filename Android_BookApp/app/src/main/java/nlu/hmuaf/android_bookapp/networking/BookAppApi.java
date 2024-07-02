@@ -4,6 +4,7 @@ import java.util.List;
 
 import nlu.hmuaf.android_bookapp.dto.json.response.PageListBookResponseJson;
 import nlu.hmuaf.android_bookapp.dto.request.AddressRequestDTO;
+import nlu.hmuaf.android_bookapp.dto.request.BillRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.CartItemRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.ForgotPasswordDTO;
 import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
@@ -20,6 +21,7 @@ import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -73,9 +75,6 @@ public interface BookAppApi {
             @Query("size") int size
     );
 
-    @GET("api/v1/user/address/{userId}")
-    Call<List<ListAddressResponseDTO>> findUserAddress(@Path("userId") long userId);
-
     @GET("api/v1/key/get/google-map")
     Call<APIKeyResponse> getGoogleMapAPIKey();
 
@@ -88,4 +87,9 @@ public interface BookAppApi {
     @GET("api/v1/user/address/{userId}")
     Call<List<ListAddressResponseDTO>> getUserAddress(@Path("userId") long userId);
 
+    @POST("api/v1/user/bills/{userId}")
+    Call<MessageResponseDTO> addUserBills(@Path("userId") long userId, @Body BillRequestDTO requestDTO);
+
+    @DELETE("api/v1/user/address/delete/{userId}/{addressId}")
+    Call<List<ListAddressResponseDTO>> deleteUserAddress(@Path("userId") long userId, @Path("addressId") long addressId);
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -74,10 +75,19 @@ public class MyCart extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyCart.this, ReviewYourOrder.class);
                 List<Long> selectedBooks = adapter.getSelectedCartItems();
-                intent.putExtra("listBookChoose", (ArrayList<Long>) selectedBooks);
-                startActivity(intent);
+                // Kiểm tra xem danh sách selectedBooks có rỗng không
+                if (selectedBooks.isEmpty()) {
+                    // Nếu danh sách rỗng, hiển thị thông báo cho người dùng
+                    Toast.makeText(MyCart.this, "Vui lòng chọn ít nhất 1 sản phẩm!", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Nếu danh sách không rỗng, chuyển sang ReviewYourOrder activity
+                    Intent intent = new Intent(MyCart.this, ReviewYourOrder.class);
+                    intent.putExtra("listBookChoose", (ArrayList<Long>) selectedBooks);
+                    // update data cart server
+                    cartService.syncLocalCartToServer(tokenResponseDTO);
+                    startActivity(intent);
+                }
             }
         });
     }
