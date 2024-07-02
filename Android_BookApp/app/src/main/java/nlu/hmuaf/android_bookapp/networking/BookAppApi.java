@@ -4,6 +4,7 @@ import java.util.List;
 
 import nlu.hmuaf.android_bookapp.dto.json.response.PageListBookResponseJson;
 import nlu.hmuaf.android_bookapp.dto.request.AddressRequestDTO;
+import nlu.hmuaf.android_bookapp.dto.request.BillRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.CartItemRequestDTO;
 import nlu.hmuaf.android_bookapp.dto.request.ForgotPasswordDTO;
 import nlu.hmuaf.android_bookapp.dto.request.LoginRequestDTO;
@@ -73,9 +74,6 @@ public interface BookAppApi {
             @Query("size") int size
     );
 
-    @GET("api/v1/user/address/{userId}")
-    Call<List<ListAddressResponseDTO>> findUserAddress(@Path("userId") long userId);
-
     @GET("api/v1/key/get/google-map")
     Call<APIKeyResponse> getGoogleMapAPIKey();
 
@@ -88,4 +86,6 @@ public interface BookAppApi {
     @GET("api/v1/user/address/{userId}")
     Call<List<ListAddressResponseDTO>> getUserAddress(@Path("userId") long userId);
 
+    @POST("api/v1/user/bills/{userId}")
+    Call<MessageResponseDTO> addUserBills(@Path("userId") long userId, @Body BillRequestDTO requestDTO);
 }
