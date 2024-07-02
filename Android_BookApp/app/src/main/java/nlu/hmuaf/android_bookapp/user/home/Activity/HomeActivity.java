@@ -237,7 +237,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (MyUtils.isUserLoggedIn(HomeActivity.this)) {
                     // Navigate to HomeActivity
-                    Intent intent = new Intent(HomeActivity.this, GoogleMapActivity.class);
+                    Intent intent = new Intent(HomeActivity.this, LibraryActivity.class);
                     startActivity(intent);
                 }
             }

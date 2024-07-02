@@ -43,12 +43,12 @@ public class OrderDetail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_order_detail);
+        setContentView(R.layout.user_order_detail);
 
         // Khai báo
-        nameUser = findViewById(R.id.name_user);
-        phoneNumUser = findViewById(R.id.phoneNum_user);
-        addressUser = findViewById(R.id.address_user);
+//        nameUser = findViewById(R.id.name_user);
+//        phoneNumUser = findViewById(R.id.phoneNum_user);
+//        addressUser = findViewById(R.id.address_user);
         totalPrice = findViewById(R.id.total_price);
         priceShip = findViewById(R.id.price_ship);
         discountPriceShip = findViewById(R.id.discount_price_ship);
@@ -56,10 +56,10 @@ public class OrderDetail extends AppCompatActivity {
         intoPrice = findViewById(R.id.into_price);
         paymentMethod = findViewById(R.id.payment_method);
         orderId = findViewById(R.id.order_id);
-        timeOrder = findViewById(R.id.time_order);
-        timePayment = findViewById(R.id.time_payment);
-        timeDelivery = findViewById(R.id.time_delivery);
-        timeDelivered = findViewById(R.id.time_delivered);
+//        timeOrder = findViewById(R.id.time_order);
+//        timePayment = findViewById(R.id.time_payment);
+//        timeDelivery = findViewById(R.id.time_delivery);
+//        timeDelivered = findViewById(R.id.time_delivered);
         recyclerView = findViewById(R.id.recycler_view);
         detailsLayout = findViewById(R.id.details_layout);
 
@@ -78,7 +78,7 @@ public class OrderDetail extends AppCompatActivity {
         currentStatus = intent.getStringExtra("order_status");
 
         // Khởi tạo AutoCompleteTextView và adapter
-        statusTextView = findViewById(R.id.status_view);
+//        statusTextView = findViewById(R.id.status_view);
         adapterItem = new ArrayAdapter<String>(this, R.layout.admin_list_home, statusItem);
 
         // Thiết lập trạng thái hiện tại
@@ -126,7 +126,7 @@ public class OrderDetail extends AppCompatActivity {
         });
 
         // Nút Button cập nhật thông tin đơn hàng
-        update = findViewById(R.id.update);
+//        update = findViewById(R.id.update);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,7 +138,7 @@ public class OrderDetail extends AppCompatActivity {
         });
 
         // Nút Button xóa đơn hàng
-        delete = findViewById(R.id.delete);
+//        delete = findViewById(R.id.delete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

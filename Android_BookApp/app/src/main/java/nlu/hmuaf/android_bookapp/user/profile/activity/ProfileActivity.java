@@ -25,6 +25,7 @@ import nlu.hmuaf.android_bookapp.user.bill.activity.MyBill;
 import nlu.hmuaf.android_bookapp.user.cart_user.activity.MyCart;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.login.Login;
+import nlu.hmuaf.android_bookapp.user.order.activity.OrderList;
 import nlu.hmuaf.android_bookapp.user.profile.classess.UserDetails;
 import nlu.hmuaf.android_bookapp.user.profile.DarkModeUtil;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
@@ -147,7 +148,7 @@ public class ProfileActivity extends AppCompatActivity {
         mybillImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileActivity.this, MyBill.class);
+                Intent intent = new Intent(ProfileActivity.this, OrderList.class);
                 startActivity(intent);
             }
         });
@@ -164,7 +165,7 @@ public class ProfileActivity extends AppCompatActivity {
         mybillImageArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfileActivity.this, MyBill.class);
+                Intent intent = new Intent(ProfileActivity.this, OrderList.class);
                 startActivity(intent);
             }
         });

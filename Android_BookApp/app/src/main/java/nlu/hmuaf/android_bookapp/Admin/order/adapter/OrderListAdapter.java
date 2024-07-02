@@ -65,11 +65,11 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.Orde
             productQuantityTextView = itemView.findViewById(R.id.product_quantity);
             productPriceTextView = itemView.findViewById(R.id.product_price);
             productTotalTextView = itemView.findViewById(R.id.product_total);
-            shopNameTextView = itemView.findViewById(R.id.name_user);
+//            shopNameTextView = itemView.findViewById(R.id.name_user);
             statusTextView = itemView.findViewById(R.id.status);
             orderIdTexView = itemView.findViewById(R.id.id_order);
             getDetail = itemView.findViewById(R.id.get_detail);
-            getBookButton = itemView.findViewById(R.id.get_book);
+//            getBookButton = itemView.findViewById(R.id.get_book);
         }
 
         public void bind(Order order) {
