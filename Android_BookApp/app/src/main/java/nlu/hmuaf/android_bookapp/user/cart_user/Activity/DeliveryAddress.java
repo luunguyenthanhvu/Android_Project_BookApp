@@ -1,10 +1,12 @@
 package nlu.hmuaf.android_bookapp.user.cart_user.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,21 +23,34 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import nlu.hmuaf.android_bookapp.api_google_map.GoogleMapActivity;
+import nlu.hmuaf.android_bookapp.dto.request.AddressRequestDTO;
+import nlu.hmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
+import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
+import nlu.hmuaf.android_bookapp.networking.BookAppApi;
+import nlu.hmuaf.android_bookapp.networking.BookAppService;
+import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Books;
 import nlu.hmuaf.android_bookapp.user.cart_user.dialogs.AddNewAddressFromUserDialog;
 import nlu.hmuaf.android_bookapp.user.cart_user.fragment_front_end.FragmentListAddressUser;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DeliveryAddress extends AppCompatActivity implements AddNewAddressFromUserDialog.OnAddressAddedListener, FragmentListAddressUser.OnAddressSelectedListenerFragment {
     private Toolbar toolbar;
     private StepsView stepView;
     private Button addAddress;
+    private Button addAddressByGoogleMap;
 
     private Button nextStep;
     private List<String> listStepView = new ArrayList<>();
     private List<Address> addressList = new ArrayList<>();
     private Address selectedAddress = null;
+    private BookAppApi bookAppApi;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,22 +60,23 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         toolbar = findViewById(R.id.toolbarDeliveryAddress);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        stepView = findViewById(R.id.stepViewInDeliverAddress);
+        stepView = findViewById(R.id.stepViewInDeliverAddress);
         listStepView.add("Review your order");
         listStepView.add("Address");
         listStepView.add("Payment");
         listStepView.add("Summary");
-//        stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
-//        stepView.go(1, true);
-        stepView.setLabels((String[]) listStepView.toArray()) // Đặt các bước (labels) cho StepsView từ listStepView
-                .setBarColorIndicator(getApplicationContext().getColor(android.R.color.darker_gray)) // Đặt màu của thanh chỉ báo
-                .setProgressColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo tiến độ
-                .setLabelColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo nhãn
-                .setCompletedPosition(3) // Đặt vị trí đã hoàn thành (nếu cần, ví dụ: 3)
+
+        String[] arrayString = {"Bước 1", "Bước 2", "Bước 3", "Bước 4"};
+        stepView.setLabels(arrayString) // Đặt nhãn cho StepsView
+                .setBarColorIndicator(Color.parseColor("#E8E4E9")) // Đặt màu mặc định cho thanh chỉ báo (màu xám)
+                .setProgressColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho chỉ báo tiến độ (màu xám)
+                .setLabelColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho nhãn (màu xám)
+                .setCompletedPosition(1) // Đặt vị trí đã hoàn thành
                 .drawView(); // Vẽ StepsView
         addAddress = findViewById(R.id.buttonAddNewAddress);
-
+        addAddressByGoogleMap = findViewById(R.id.buttonAddAdressByGoogleMap);
         nextStep = findViewById(R.id.buttonDeliverToThisAddress);
+
         // Tạo instance của Fragment
         FragmentListAddressUser fragmentListAddressUser = new FragmentListAddressUser();
         fragmentListAddressUser.setOnAddressSelectedListener(this);
@@ -77,20 +93,27 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         addAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddNewAddressFromUserDialog dialog = new AddNewAddressFromUserDialog(DeliveryAddress.this, DeliveryAddress.this);
+                AddNewAddressFromUserDialog dialog = new AddNewAddressFromUserDialog(DeliveryAddress.this, DeliveryAddress.this,fragmentListAddressUser);
                 dialog.show();
 
 
             }
         });
+        addAddressByGoogleMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(DeliveryAddress.this, GoogleMapActivity.class);
+                startActivityForResult(intent,1);
+
+            }
+        });
+
         nextStep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Books> listBook = (ArrayList<Books>) getIntent().getSerializableExtra("listBookChoose");
-                HashMap<Integer, Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("selectedQuantities");
+                List<CartItems> listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBookChoose");
                 Intent intent = new Intent(DeliveryAddress.this, Payment.class);
-                intent.putExtra("listBookChoose", (ArrayList<Books>) listBook);
-                intent.putExtra("selectedQuantities", quantityMap);
+                intent.putExtra("listBookChoose", (ArrayList<CartItems>) listBook);
                 intent.putExtra("address", selectedAddress);
                 startActivity(intent);
             }
@@ -108,7 +131,7 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         return super.onOptionsItemSelected(item);
     }
 
-
+//Khi hàm này được chạy thì sẽ đến FragmentListAddressUser để kêu adapter cập nhập lại
     @Override
     public void onAddressAdded(Address address) {
 
@@ -123,5 +146,54 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
     @Override
     public void onAddressSelectedFragment(Address address) {
         this.selectedAddress = address;
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            if (data != null) {
+                String address = data.getStringExtra("detailAddress"); // Retrieve address from intent
+                if (address != null && !address.isEmpty()) {
+//                    Toast.makeText(this, "Address from Google Map: " + address, Toast.LENGTH_SHORT).show();
+                    TokenResponseDTO tokenResponseDTO = MyUtils.getTokenResponse(this);
+                  bookAppApi = BookAppService.getClient();
+
+                    AddressRequestDTO addressRequestDTO = AddressRequestDTO.builder()
+                            .addressDetails(address)
+                            .mainAddress(false)
+                            .build();
+
+                    Call<List<ListAddressResponseDTO>> call = bookAppApi.addNewAddress(tokenResponseDTO.getUserId(), addressRequestDTO);
+
+                    call.enqueue(new Callback<List<ListAddressResponseDTO>>() {
+                        @Override
+                        public void onResponse(Call<List<ListAddressResponseDTO>> call, Response<List<ListAddressResponseDTO>> response) {
+                            if (response.isSuccessful()) {
+                                List<ListAddressResponseDTO> addresses = response.body();
+                                // Xử lý dữ liệu nhận được ở đây
+                                System.out.println("Địa chỉ mới đã được thêm: " + addresses);
+                                Address addressTemp = new Address();
+                                addressTemp.setAddressDetails(address);
+                                onAddressAdded(addressTemp);
+                                onAddressSelectedFragment(addressTemp);
+
+                            } else {
+                                // Xử lý lỗi ở đây
+                                System.out.println("Thêm địa chỉ thất bại: " + response.errorBody());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<ListAddressResponseDTO>> call, Throwable t) {
+                            // Xử lý lỗi khi gọi API thất bại
+                            t.printStackTrace();
+                        }
+                    });
+
+
+                }
+            }
+        }
     }
 }

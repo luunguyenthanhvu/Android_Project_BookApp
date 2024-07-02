@@ -38,11 +38,12 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.circleimageview)
-//    implementation(libs.recyclerview)
-//    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation(libs.recyclerview)
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation("com.auth0.android:jwtdecode:2.0.0")
 
 //    depen của step view
     implementation("com.anton46:stepsview:0.0.2")
@@ -66,4 +67,9 @@ dependencies {
     implementation("androidx.room:room-rxjava2:2.6.1")
     implementation("androidx.room:room-runtime:2.6.1")
     annotationProcessor("androidx.room:room-compiler:2.6.1")
+
+//     google map
+    implementation("com.google.android.gms:play-services-maps:18.0.1")
+    implementation("com.google.android.libraries.places:places:3.5.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 }

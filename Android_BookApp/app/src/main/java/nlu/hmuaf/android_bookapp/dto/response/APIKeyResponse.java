@@ -9,12 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TokenResponseDTO {
-    private long userId;
-    private String token;
-    private String role;
-    private String username;
-    private String email;
-    private String img;
-    private String message;
+public class APIKeyResponse {
+
+  private String apiKey;
 }

@@ -9,13 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TokenResponseDTO {
+public class ListAddressResponseDTO {
 
-  private long userId;
-  private String token;
-  private String role;
-  private String username;
-  private String email;
-  private String img;
-  private String message;
+  private long addressId;
+  private String addressDetails;
+  private boolean mainAddress;
 }

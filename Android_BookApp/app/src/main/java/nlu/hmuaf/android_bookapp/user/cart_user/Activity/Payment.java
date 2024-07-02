@@ -1,6 +1,7 @@
 package nlu.hmuaf.android_bookapp.user.cart_user.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import nlu.hmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
+import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Books;
 import nlu.hmuaf.android_bookapp.user.cart_user.fragment_front_end.BankCardFragment;
@@ -38,7 +41,7 @@ public class Payment extends AppCompatActivity {
     private Button payNow;
 
     private List<String> listStepView = new ArrayList<>();
-    private String paymentMethod="";
+    private String paymentMethod = "";
     private Fragment selectedFragment = null;
 
     @Override
@@ -48,20 +51,20 @@ public class Payment extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbarPayment);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        stepView = findViewById(R.id.stepViewInPayment);
+        stepView = findViewById(R.id.stepViewInPayment);
         listStepView.add("Review your order");
         listStepView.add("Address");
         listStepView.add("Payment");
         listStepView.add("Summary");
-//        stepView.getState().animationType(StepView.ANIMATION_ALL).steps(listStepView).animationDuration(getResources().getInteger(android.R.integer.config_shortAnimTime)).commit();
-//        stepView.go(2, true);
 
-        stepView.setLabels((String[]) listStepView.toArray()) // Đặt các bước (labels) cho StepsView từ listStepView
-                .setBarColorIndicator(getApplicationContext().getColor(android.R.color.darker_gray)) // Đặt màu của thanh chỉ báo
-                .setProgressColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo tiến độ
-                .setLabelColorIndicator(getApplicationContext().getColor(android.R.color.black)) // Đặt màu của chỉ báo nhãn
-                .setCompletedPosition(2) // Đặt vị trí đã hoàn thành (nếu cần, ví dụ: 2)
-                .drawView();
+
+        String[] arrayString = {"Bước 1", "Bước 2", "Bước 3", "Bước 4"};
+        stepView.setLabels(arrayString) // Đặt nhãn cho StepsView
+                .setBarColorIndicator(Color.parseColor("#E8E4E9")) // Đặt màu mặc định cho thanh chỉ báo (màu xám)
+                .setProgressColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho chỉ báo tiến độ (màu xám)
+                .setLabelColorIndicator(Color.parseColor("#B868E9")) // Đặt màu mặc định cho nhãn (màu xám)
+                .setCompletedPosition(2) // Đặt vị trí đã hoàn thành
+                .drawView(); // Vẽ StepsView
         radioGroupPaymentMethods = findViewById(R.id.radioGroupPaymentMethods);
         payNow = findViewById(R.id.buttonPayNow);
 
@@ -99,11 +102,6 @@ public class Payment extends AppCompatActivity {
         });
 
 
-
-
-
-
-
         payNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,17 +117,16 @@ public class Payment extends AppCompatActivity {
                     intent.putExtra("cardHolderName", creditCardFragment.getCreditCardHolderName());
 
                 }
-                List<Books> listBook = (ArrayList<Books>)getIntent().getSerializableExtra("listBookChoose");
-                HashMap<Integer,Integer> quantityMap = (HashMap<Integer, Integer>) getIntent().getSerializableExtra("selectedQuantities");
+                List<CartItems> listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBookChoose");
                 Address address = (Address) getIntent().getSerializableExtra("address");
-                intent.putExtra("listBook", (ArrayList<Books>) listBook);
-                intent.putExtra("quantityMap", quantityMap);
+                intent.putExtra("listBook", (ArrayList<CartItems>) listBook);
                 intent.putExtra("address", address);
                 intent.putExtra("paymentMethod", paymentMethod);
                 startActivity(intent);
             }
         });
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

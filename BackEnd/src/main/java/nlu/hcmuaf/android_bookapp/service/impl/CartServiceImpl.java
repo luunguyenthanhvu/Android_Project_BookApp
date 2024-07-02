@@ -51,6 +51,7 @@ public class CartServiceImpl implements ICartService {
         Set<CartItems> newCartItems = new HashSet<>();
         for (CartItemRequestDTO cartItemRequestDTO : requestDTO) {
           CartItems item = mapCartItemsServer.get(cartItemRequestDTO.getBookId());
+          System.out.println(cartItemRequestDTO);
           if (item != null) {
             item.setQuantity(cartItemRequestDTO.getQuantity());
             newCartItems.add(item);

@@ -10,22 +10,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.room.entity.CartItems;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
 
 public class RecycleViewBookChosenAdapter extends RecyclerView.Adapter<RecycleViewBookChosenAdapter.MyViewHolder> {
     private Activity context;
 
     private List<CartItems> listBook;
-    private HashMap<Integer, Integer> quantityBookChosen;
 
-    public RecycleViewBookChosenAdapter(Activity context, List<CartItems> list, HashMap<Integer, Integer> quantityBookChosen) {
-        this.listBook = list;
+    public RecycleViewBookChosenAdapter(Activity context, List<CartItems> list) {
+        this.listBook = list != null ? list : new ArrayList<>();
         this.context = context;
-        this.quantityBookChosen = quantityBookChosen;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -50,11 +54,19 @@ public class RecycleViewBookChosenAdapter extends RecyclerView.Adapter<RecycleVi
 
     @Override
     public void onBindViewHolder(@NonNull RecycleViewBookChosenAdapter.MyViewHolder holder, int position) {
-//        holder.imageBook.setImageResource(R.drawable.saber);
-//        holder.textViewBookName.setText(listBook.get(position).getTitle());
-//        holder.quantity.setText("Số lượng: " + String.valueOf(quantityBookChosen.get(position)));
-//        holder.price.setText(String.valueOf("Đơn giá: " + listBook.get(position).getOriginalPrice()) + " VNĐ");
-//        holder.finalPrice.setText(String.valueOf("Tổng tiền: " + quantityBookChosen.get(position) * listBook.get(position).getDiscountedPrice()) + " VNĐ");
+        CartItems item = listBook.get(position);
+        Picasso.get().load(item.getThumbnail()).into(holder.imageBook);
+        holder.textViewBookName.setText(item.getTitle());
+        holder.quantity.setText("Số lượng: " + String.valueOf(item.getQuantity()));
+        double priceToShow;
+        if ((Double) item.getDiscountedPrice() != null && item.getDiscountedPrice() != 0) {
+            priceToShow = item.getDiscountedPrice();
+        } else {
+            priceToShow = item.getOriginalPrice();
+        }
+        holder.price.setText("Tổng tiền: " + MyUtils.convertToVND(priceToShow * item.getQuantity()));
+
+
     }
 
 
@@ -63,21 +75,10 @@ public class RecycleViewBookChosenAdapter extends RecyclerView.Adapter<RecycleVi
         return listBook.size();
     }
 
-    public double getTotalPrice() {
-        double total = 0;
-        for (int i = 0; i < listBook.size(); i++) {
-            total += listBook.get(i).getDiscountedPrice() * quantityBookChosen.get(i);
-        }
-        return total;
+    public void updateData(List<CartItems> newList) {
+        this.listBook.clear();
+        this.listBook.addAll(newList);
+        notifyDataSetChanged();
     }
-
-    public int countQuantity() {
-        int total = 0;
-        for (int i = 0; i < listBook.size(); i++) {
-            total += quantityBookChosen.get(i);
-        }
-        return total;
-    }
-
 
 }

@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6514050c-91b0-436d-b482-d1013d4f8e6a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +48,8 @@
     "android.gradle.sync.needed": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "Tuan__branch",
-    "last_opened_file_path": "C:/Users/tuanh/AndroidStudioProjects/Android_Project_BookApp/Android_BookApp/app"
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Yukihira Souma/Desktop/AndroidPRoject/Android_Project_BookApp/Android_BookApp"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

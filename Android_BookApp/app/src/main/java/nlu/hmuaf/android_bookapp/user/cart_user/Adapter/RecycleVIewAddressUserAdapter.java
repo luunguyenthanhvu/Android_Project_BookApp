@@ -11,25 +11,40 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import nlu.hmuaf.android_bookapp.dto.request.AddressRequestDTO;
+import nlu.hmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
+import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
+import nlu.hmuaf.android_bookapp.networking.BookAppApi;
+import nlu.hmuaf.android_bookapp.networking.BookAppService;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
 
 import nlu.hmuaf.android_bookapp.user.cart_user.dialogs.ChangeAddressDialog;
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RecycleVIewAddressUserAdapter extends RecyclerView.Adapter<RecycleVIewAddressUserAdapter.MyViewHolder> {
     private Activity context;
 
-    private List<Address> list;
+    private List<ListAddressResponseDTO> listDTO;
+    private List<Address> listAddress ;
 
     private boolean clickAdress = false;
     private OnAddressSelectedListener listener;
+
     public interface OnAddressSelectedListener {
         void onAddressSelected(Address address);
+
     }
-    public RecycleVIewAddressUserAdapter(Activity context, List<Address> list, OnAddressSelectedListener listener) {
-        this.list = list;
+
+    public RecycleVIewAddressUserAdapter(Activity context,List<Address> listAddress, List<ListAddressResponseDTO> listDTO, OnAddressSelectedListener listener) {
+        this.listDTO = listDTO;
+        this.listAddress=listAddress;
         this.context = context;
         this.listener = listener;
     }
@@ -50,6 +65,7 @@ public class RecycleVIewAddressUserAdapter extends RecyclerView.Adapter<RecycleV
 
         }
     }
+
     @NonNull
     @Override
     public RecycleVIewAddressUserAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -62,29 +78,35 @@ public class RecycleVIewAddressUserAdapter extends RecyclerView.Adapter<RecycleV
 
     @Override
     public void onBindViewHolder(@NonNull RecycleVIewAddressUserAdapter.MyViewHolder holder, int position) {
-       holder.addressUser.setText(list.get(position).getStreet()+" , "+list.get(position).getWard()+" , "+list.get(position).getDistrict()+" , "+list.get(position).getCity());
-       holder.radioButton.setOnClickListener(new View.OnClickListener() {
+        holder.addressUser.setText(listAddress.get(position).getAddressDetails());
+        holder.radioButton.setChecked(listDTO.get(position).isMainAddress());
+        holder.radioButton.setOnClickListener(new View.OnClickListener() {
 
-           @Override
-           public void onClick(View v) {
-               if(clickAdress != true){
-                   holder.radioButton.setChecked(true);
-                   clickAdress = true;
-                   if (listener != null) {
-                       listener.onAddressSelected(list.get(position));
-                   }
-               }else{
-                   holder.radioButton.setChecked(false);
-                   clickAdress = false;
-               }
-           }
-       });
+            @Override
+            public void onClick(View v) {
+                if (clickAdress != true) {
+                    holder.radioButton.setChecked(true);
+                    clickAdress = true;
+                    setStatusClickedRadioButton(clickAdress, listDTO.get(position).getAddressId(), listDTO.get(position).getAddressDetails());
+
+                    if (listener != null) {
+                        Address newAddress = new Address();
+                        newAddress.setAddressDetails(listDTO.get(position).getAddressDetails());
+                        listener.onAddressSelected(newAddress);
+                    }
+                } else {
+                    holder.radioButton.setChecked(false);
+                    clickAdress = false;
+                    setStatusClickedRadioButton(clickAdress, listDTO.get(position).getAddressId(), listDTO.get(position).getAddressDetails());
+                }
+            }
+        });
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Address address = list.get(position);
+                ListAddressResponseDTO address = listDTO.get(position);
 
-                ChangeAddressDialog dialog = new ChangeAddressDialog(context,address);
+                ChangeAddressDialog dialog = new ChangeAddressDialog(context, address,listener);
                 dialog.show();
             }
         });
@@ -93,8 +115,40 @@ public class RecycleVIewAddressUserAdapter extends RecyclerView.Adapter<RecycleV
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return listDTO.size();
     }
+
+    private void setStatusClickedRadioButton(boolean status, long idAddress, String addressDetail ) {
+        BookAppApi bookAppApi = BookAppService.getClient();
+        TokenResponseDTO tokenResponseDTO = MyUtils.getTokenResponse(context);
+        AddressRequestDTO addressRequestDTO = AddressRequestDTO.builder()
+                .addressId(idAddress) // hoặc giá trị thích hợp
+                .addressDetails(addressDetail)
+                .build();
+
+        Call<List<ListAddressResponseDTO>> call = bookAppApi.updateUserAddress(tokenResponseDTO.getUserId(), addressRequestDTO);
+
+        call.enqueue(new Callback<List<ListAddressResponseDTO>>() {
+            @Override
+            public void onResponse(Call<List<ListAddressResponseDTO>> call, Response<List<ListAddressResponseDTO>> response) {
+                if (response.isSuccessful()) {
+                    List<ListAddressResponseDTO> addresses = response.body();
+                    System.out.println("Địa chỉ đã được cập nhật: " + addresses);
+                } else {
+                    // Xử lý lỗi ở đây
+                    System.out.println("Cập nhật địa chỉ thất bại: " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ListAddressResponseDTO>> call, Throwable t) {
+                // Xử lý lỗi khi gọi API thất bại
+                t.printStackTrace();
+            }
+        });
+
+    }
+
 
 
 }
