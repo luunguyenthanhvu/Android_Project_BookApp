@@ -1,9 +1,9 @@
 package nlu.hcmuaf.android_bookapp.enums;
 
 public enum EPaymentMethod {
-  CREDIT_CART("Thẻ Tín Dụng"),
-  COD("Thanh Toán Khi Nhận Hàng"),
-  BANK_CART("Thẻ Ngân Hàng"),
+  CREDIT_CART("Thẻ tín dụng"),
+  COD("Thanh toán khi nhận hàng"),
+  BANK_CART("Thẻ ngân hàng"),
   MOMO("MoMo");
   private final String text;
 
@@ -16,7 +16,7 @@ public enum EPaymentMethod {
     return this.text;
   }
 
-  public EPaymentMethod valueOfLabel(String label) {
+  public static EPaymentMethod valueOfLabel(String label) {
     for (EPaymentMethod e : values()) {
       if (e.text.equals(label)) {
         return e;

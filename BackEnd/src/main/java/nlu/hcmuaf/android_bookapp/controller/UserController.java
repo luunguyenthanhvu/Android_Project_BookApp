@@ -2,10 +2,12 @@ package nlu.hcmuaf.android_bookapp.controller;
 
 import java.util.List;
 import nlu.hcmuaf.android_bookapp.dto.request.AddressRequestDTO;
+import nlu.hcmuaf.android_bookapp.dto.request.BillRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.CartItemRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.CartItemResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.MessageResponseDTO;
+import nlu.hcmuaf.android_bookapp.service.templates.IBillService;
 import nlu.hcmuaf.android_bookapp.service.templates.ICartService;
 import nlu.hcmuaf.android_bookapp.service.templates.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,8 @@ public class UserController {
   private IUserService userService;
   @Autowired
   private ICartService cartService;
+  @Autowired
+  private IBillService billService;
 
   @GetMapping("/cart/{userId}")
   public ResponseEntity<List<CartItemResponseDTO>> getUserCart(@PathVariable long userId) {
@@ -76,5 +80,12 @@ public class UserController {
   public ResponseEntity<List<ListAddressResponseDTO>> deleteUserAddress(@PathVariable long userId,
       @PathVariable long addressId) {
     return ResponseEntity.ok(userService.deleteAddress(userId, addressId));
+  }
+
+  @PostMapping("/bills/{userId}")
+  public ResponseEntity<MessageResponseDTO> addUserBills(@PathVariable long userId,
+      @RequestBody BillRequestDTO billRequestDTO) {
+    billService.saveUserBills(userId, billRequestDTO);
+    return ResponseEntity.ok(MessageResponseDTO.builder().message("Order Success").build());
   }
 }
