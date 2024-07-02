@@ -57,7 +57,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         if (book.getDiscount() != 0.0) {
             double originalPrice = book.getOriginalPrice();
             holder.priceB.setText(MyUtils.convertToVND(book.getDiscountedPrice()));
-
+            holder.author.setText(book.getAuthor());
             //setting discount
             holder.tvDiscount.setText((int) (book.getDiscount() * 100) + "%");
             holder.tvDiscount.setVisibility(View.VISIBLE);
