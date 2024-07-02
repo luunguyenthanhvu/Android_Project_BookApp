@@ -13,6 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -63,4 +64,21 @@ public class Bills implements Serializable {
   @ManyToOne
   @JoinColumn(name = "addressId")
   private Addresses address;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Bills bills = (Bills) o;
+    return billId == bills.billId;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(billId);
+  }
 }

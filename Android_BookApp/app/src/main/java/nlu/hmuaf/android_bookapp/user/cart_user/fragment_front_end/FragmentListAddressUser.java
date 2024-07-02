@@ -34,24 +34,21 @@ public class FragmentListAddressUser extends Fragment implements RecycleVIewAddr
     private RecyclerView recyclerViewAddressUser;
     private RecycleVIewAddressUserAdapter adapter;
     private List<ListAddressResponseDTO> listAddressDTO = new ArrayList<>();
-    private List<Address> listAddress = new ArrayList<>();
     private OnAddressSelectedListenerFragment listener;
     private BookAppApi bookAppApi;
 
+    @Override
+    public void onAddressSelected(ListAddressResponseDTO addressResponseDTO) {
+        listener.onAddressSelectedFragment(addressResponseDTO);
+    }
+
     public interface OnAddressSelectedListenerFragment {
-        void onAddressSelectedFragment(Address address);
+        void onAddressSelectedFragment(ListAddressResponseDTO address);
     }
 
     // Constructor mặc định công khai
     public FragmentListAddressUser() {
         // Required empty public constructor
-    }
-
-    // Phương thức factory để khởi tạo fragment với listener
-    public static FragmentListAddressUser newInstance(OnAddressSelectedListenerFragment listener) {
-        FragmentListAddressUser fragment = new FragmentListAddressUser();
-        fragment.setOnAddressSelectedListener(listener);
-        return fragment;
     }
 
     public void setOnAddressSelectedListener(OnAddressSelectedListenerFragment listener) {
@@ -75,7 +72,7 @@ public class FragmentListAddressUser extends Fragment implements RecycleVIewAddr
         getDataAddressUser();
 
         recyclerViewAddressUser = view.findViewById(R.id.listAddressUser);
-        adapter = new RecycleVIewAddressUserAdapter(getActivity(), listAddress,listAddressDTO, this);
+        adapter = new RecycleVIewAddressUserAdapter(getActivity(), listAddressDTO, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         recyclerViewAddressUser.setLayoutManager(linearLayoutManager);
         recyclerViewAddressUser.setAdapter(adapter);
@@ -94,14 +91,7 @@ public class FragmentListAddressUser extends Fragment implements RecycleVIewAddr
                     List<ListAddressResponseDTO> addresses = response.body();
                     // Xử lý dữ liệu nhận được ở đây
                     listAddressDTO.clear(); // Xóa dữ liệu cũ trong listAddressDTO
-                    listAddress.clear();    // Xóa dữ liệu cũ trong listAddress
-
-                    listAddressDTO.addAll(addresses); // Thêm dữ liệu mới vào listAddressDTO
-                    for (ListAddressResponseDTO address : listAddressDTO) {
-                        Address newAddress = new Address();
-                        newAddress.setAddressDetails(address.getAddressDetails());
-                        listAddress.add(newAddress);
-                    }
+                    listAddressDTO.addAll(addresses);
 
                     // Cập nhật lại RecyclerView thông qua adapter
                     adapter.notifyDataSetChanged();
@@ -130,21 +120,7 @@ public class FragmentListAddressUser extends Fragment implements RecycleVIewAddr
             public void onResponse(Call<List<ListAddressResponseDTO>> call, Response<List<ListAddressResponseDTO>> response) {
                 if (response.isSuccessful()) {
                     List<ListAddressResponseDTO> addresses = response.body();
-                    // Xử lý dữ liệu nhận được ở đây
-                    listAddressDTO.clear(); // Xóa dữ liệu cũ trong listAddressDTO
-                    listAddress.clear();    // Xóa dữ liệu cũ trong listAddress
-
-                    listAddressDTO.addAll(addresses); // Thêm dữ liệu mới vào listAddressDTO
-                    for (ListAddressResponseDTO address : listAddressDTO) {
-                        Address newAddress = new Address();
-                        newAddress.setAddressDetails(address.getAddressDetails());
-                        listAddress.add(newAddress);
-                    }
-
-                    // Cập nhật lại RecyclerView thông qua adapter
-                    adapter.notifyDataSetChanged();
-
-                    System.out.println("Lấy thành công: ");
+                    updateData(addresses);
                 } else {
                     // Xử lý lỗi ở đây
                     System.out.println("Lấy danh sách địa chỉ thất bại: ");
@@ -160,10 +136,10 @@ public class FragmentListAddressUser extends Fragment implements RecycleVIewAddr
 
     }
 
-    @Override
-    public void onAddressSelected(Address address) {
-        listener.onAddressSelectedFragment(address);
+    public void updateData(List<ListAddressResponseDTO> listAddressResponseDTOS) {
+        this.listAddressDTO.clear();
+        this.listAddressDTO.addAll(listAddressResponseDTOS);
+        adapter.notifyDataSetChanged();
     }
-
 
 }
