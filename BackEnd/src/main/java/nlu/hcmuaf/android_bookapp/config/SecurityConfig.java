@@ -53,6 +53,8 @@ public class SecurityConfig {
             .hasAnyAuthority(ERole.ADMIN.name(), ERole.MANAGER.name(), ERole.USER.name())
             .requestMatchers("/api/v1/user/address/**")
             .hasAnyAuthority(ERole.ADMIN.name(), ERole.MANAGER.name(), ERole.USER.name())
+            .requestMatchers("/api/v1/user/orders/**")
+            .hasAnyAuthority(ERole.ADMIN.name(), ERole.MANAGER.name(), ERole.USER.name())
             .requestMatchers("/api/v1/user/bills/**")
             .hasAnyAuthority(ERole.ADMIN.name(), ERole.MANAGER.name(), ERole.USER.name())
             .requestMatchers("/api/v1/product/fish")

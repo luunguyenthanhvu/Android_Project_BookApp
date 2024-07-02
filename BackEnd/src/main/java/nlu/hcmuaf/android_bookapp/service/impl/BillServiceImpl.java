@@ -8,6 +8,8 @@ import java.util.Set;
 import nlu.hcmuaf.android_bookapp.dto.request.BillRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.CartItemRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.BookDetailResponseDTO;
+import nlu.hcmuaf.android_bookapp.dto.response.CartItemResponseDTO;
+import nlu.hcmuaf.android_bookapp.dto.response.ListOrderResponseDTO;
 import nlu.hcmuaf.android_bookapp.entities.Addresses;
 import nlu.hcmuaf.android_bookapp.entities.BillDetails;
 import nlu.hcmuaf.android_bookapp.entities.Bills;
@@ -81,7 +83,7 @@ public class BillServiceImpl implements IBillService {
             }
           }
         }
-        bills.setTotalPrice(totalPrice);
+        bills.setTotalPrice(totalPrice + 30000);
 
         billRepository.save(bills);
       }
@@ -89,4 +91,52 @@ public class BillServiceImpl implements IBillService {
       e.printStackTrace();
     }
   }
+
+  @Override
+  public List<ListOrderResponseDTO> getUserOrder(long userId) {
+    try {
+      List<Bills> bills = billRepository.findAllByUserId(userId);
+      List<ListOrderResponseDTO> result = new ArrayList<>();
+
+      for (Bills b : bills) {
+        Set<BillDetails> billDetails = b.getBillDetails();
+        List<CartItemResponseDTO> cartItemResponseDTOList = new ArrayList<>(); // Khởi tạo lại cho mỗi đơn hàng
+        double totalPrice = 0.0; // Đặt lại giá trị 0 cho mỗi đơn hàng
+
+        for (BillDetails item : billDetails) {
+          BookDetailResponseDTO bookDetailResponseDTO = bookRepository.getBooksDetailsByBookId(
+              item.getBook().getBookId()).get();
+          Books books = bookRepository.getBooksByBookId(item.getBook().getBookId()).get();
+
+          CartItemResponseDTO cartItemResponseDTO = CartItemResponseDTO
+              .builder()
+              .bookId(item.getBook().getBookId())
+              .originalPrice(bookDetailResponseDTO.getOriginalPrice())
+              .discountedPrice(bookDetailResponseDTO.getDiscountedPrice())
+              .thumbnail(books.getThumbnail())
+              .title(bookDetailResponseDTO.getTitle())
+              .quantity(item.getQuantity())
+              .availableQuantity(bookDetailResponseDTO.getAvailableQuantity())
+              .build();
+          cartItemResponseDTOList.add(cartItemResponseDTO);
+        }
+
+        ListOrderResponseDTO listOrderResponseDTO = ListOrderResponseDTO
+            .builder()
+            .bookList(cartItemResponseDTOList)
+            .orderId(b.getBillId())
+            .totalPrice(b.getTotalPrice())
+            .paymentMethod(b.getPayments().getPaymentMethod().toString())
+            .status(b.getStatus().toString())
+            .build();
+        result.add(listOrderResponseDTO);
+      }
+
+      return result;
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return new ArrayList<>();
+  }
+
 }

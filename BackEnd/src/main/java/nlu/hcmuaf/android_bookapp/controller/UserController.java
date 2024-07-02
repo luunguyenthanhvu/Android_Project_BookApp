@@ -6,6 +6,7 @@ import nlu.hcmuaf.android_bookapp.dto.request.BillRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.request.CartItemRequestDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.CartItemResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
+import nlu.hcmuaf.android_bookapp.dto.response.ListOrderResponseDTO;
 import nlu.hcmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hcmuaf.android_bookapp.service.templates.IBillService;
 import nlu.hcmuaf.android_bookapp.service.templates.ICartService;
@@ -87,5 +88,10 @@ public class UserController {
       @RequestBody BillRequestDTO billRequestDTO) {
     billService.saveUserBills(userId, billRequestDTO);
     return ResponseEntity.ok(MessageResponseDTO.builder().message("Order Success").build());
+  }
+
+  @GetMapping("/orders/{userId}")
+  public ResponseEntity<List<ListOrderResponseDTO>> getUserOrders(@PathVariable long userId) {
+    return ResponseEntity.ok(billService.getUserOrder(userId));
   }
 }
