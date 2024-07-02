@@ -2,4 +2,10 @@
 <resources>
     <dimen name="small_image_width">50dp</dimen>
     <dimen name="small_image_height">50dp</dimen>
+    <dimen name="column_width_shop">150dp</dimen>
+    <dimen name="column_width_status">150dp</dimen>
+    <dimen name="column_width_date_create">150dp</dimen>
+    <dimen name="column_width_date_edit">250dp</dimen>
+    <dimen name="column_width_product_name">250dp</dimen>
+    <dimen name="column_margin_right">40dp</dimen>
 </resources>

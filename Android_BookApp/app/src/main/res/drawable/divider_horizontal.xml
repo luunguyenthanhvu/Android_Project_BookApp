@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#CCCCCC" /> <!-- Màu sắc của đường gạch -->
+    <size android:width="2dp" android:height="2dp" /> <!-- Độ dày và chiều cao của đường gạch -->
+</shape>

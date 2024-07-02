@@ -124,7 +124,7 @@
         <activity android:name=".user.cart_user.Activity.DiscountsActivity"
             android:exported="false">
         </activity>
-        <activity android:name=".user.home.Activity.HomeActivity"
+        <activity android:name=".Admin.ManageProduct.ManageProductActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
