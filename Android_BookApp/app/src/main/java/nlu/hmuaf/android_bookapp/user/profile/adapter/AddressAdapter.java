@@ -13,16 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
 import nlu.hmuaf.android_bookapp.user.profile.classess.Address;
 import nlu.hmuaf.android_bookapp.user.profile.activity.EditAddressActivity;
 import nlu.hmuaf.android_bookapp.user.profile.activity.AddressActivity;
 
 public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressViewHolder> {
 
-    private List<Address> addressList;
+    private List<ListAddressResponseDTO> addressList;
     private Context context;
 
-    public AddressAdapter(Context context, List<Address> addressList) {
+    public AddressAdapter(Context context, List<ListAddressResponseDTO> addressList) {
         this.context = context;
         this.addressList = addressList;
     }
@@ -36,7 +37,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
 
     @Override
     public void onBindViewHolder(@NonNull AddressViewHolder holder, int position) {
-        Address address = addressList.get(position);
+        ListAddressResponseDTO address = addressList.get(position);
         holder.bind(address);
 
         holder.itemView.setOnClickListener(v -> {
@@ -57,19 +58,19 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
 
         public AddressViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.nameTextView);
-            phoneTextView = itemView.findViewById(R.id.phoneTextView);
             addressLine1TextView = itemView.findViewById(R.id.addressLine1TextView);
-            addressLine2TextView = itemView.findViewById(R.id.addressLine2TextView);
             defaultTextView = itemView.findViewById(R.id.defaultTextView);
         }
 
-        public void bind(Address address) {
-            nameTextView.setText(address.getUser().getFirstName() + " " + address.getUser().getLastName());
-            phoneTextView.setText(address.getUser().getPhoneNum());
-            addressLine1TextView.setText(address.getCity() + ", " + address.getDistrict());
-            addressLine2TextView.setText(address.getStreet());
-            defaultTextView.setVisibility(address.isDefault() ? View.VISIBLE : View.GONE);
+        public void bind(ListAddressResponseDTO responseDTO) {
+            addressLine1TextView.setText(responseDTO.getAddressDetails());
+            defaultTextView.setVisibility(responseDTO.isMainAddress() ? View.VISIBLE : View.GONE);
         }
+    }
+
+    public void updateData(List<ListAddressResponseDTO> newAddressList) {
+        this.addressList.clear();
+        this.addressList.addAll(newAddressList);
+        notifyDataSetChanged();
     }
 }

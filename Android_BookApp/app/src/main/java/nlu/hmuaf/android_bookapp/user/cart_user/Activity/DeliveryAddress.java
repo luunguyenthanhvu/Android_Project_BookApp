@@ -56,6 +56,7 @@ public class DeliveryAddress extends AppCompatActivity implements FragmentListAd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delivery_address);
 
+        fragmentListAddressUser = new FragmentListAddressUser();
         toolbar = findViewById(R.id.toolbarDeliveryAddress);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -166,8 +167,7 @@ public class DeliveryAddress extends AppCompatActivity implements FragmentListAd
                         public void onResponse(Call<List<ListAddressResponseDTO>> call, Response<List<ListAddressResponseDTO>> response) {
                             if (response.isSuccessful()) {
                                 List<ListAddressResponseDTO> addresses = response.body();
-
-
+                                renderData(addresses);
                             } else {
                                 // Xử lý lỗi ở đây
                                 System.out.println("Thêm địa chỉ thất bại: " + response.errorBody());
@@ -183,6 +183,11 @@ public class DeliveryAddress extends AppCompatActivity implements FragmentListAd
                 }
             }
         }
+    }
+
+    private void renderData(List<ListAddressResponseDTO> listAddressDTO) {
+        FragmentListAddressUser fragment = (FragmentListAddressUser) getSupportFragmentManager().findFragmentById(R.id.contentListAddress);
+        fragment.updateData(listAddressDTO);
     }
 
     public void getUserAddress() {
