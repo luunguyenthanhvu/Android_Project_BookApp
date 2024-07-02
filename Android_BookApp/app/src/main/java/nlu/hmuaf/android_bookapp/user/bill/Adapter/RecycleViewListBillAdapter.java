@@ -1,8 +1,9 @@
 
-package nlu.hmuaf.android_bookapp.user.bill.adapter;
+package nlu.hmuaf.android_bookapp.user.bill.Adapter;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 
 import nlu.hmuaf.android_bookapp.R;
+import nlu.hmuaf.android_bookapp.user.bill.activity.MyBillDetai;
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Bills;
 
 public class RecycleViewListBillAdapter  extends RecyclerView.Adapter<RecycleViewListBillAdapter.MyViewHolder> {
@@ -38,12 +41,17 @@ public class RecycleViewListBillAdapter  extends RecyclerView.Adapter<RecycleVie
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+//           danh sách Sách trong hóa đơn
 //        holder.recyclerViewBookBought.setAdapter(new RecycleViewBooksInEachBillAdapter(context, billsList.get(position).getBillDetailsList()));
+        holder.recyclerViewBookBought.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
         holder.textViewTotalPrice.setText("Thành tiền:  "+billsList.get(position).getTotalPrice()+"đ");
         holder.textViewStatusPrice.setText("Trảng thái thanh toán "+billsList.get(position).getStatus().toString());
         holder.buttonSeeBillDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Đến xem chi tiết hóa đơn
+                Intent intent = new Intent(context, MyBillDetai.class);
+                context.startActivity(intent);
 
             }
         });

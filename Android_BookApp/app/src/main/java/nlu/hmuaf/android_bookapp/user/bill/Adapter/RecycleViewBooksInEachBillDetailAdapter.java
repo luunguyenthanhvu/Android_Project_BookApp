@@ -1,4 +1,4 @@
-package nlu.hmuaf.android_bookapp.user.bill.adapter;
+package nlu.hmuaf.android_bookapp.user.bill.Adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -34,6 +34,10 @@ public class RecycleViewBooksInEachBillDetailAdapter extends RecyclerView.Adapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+//        BillDetails billDetails = billDetailsList.get(position);
+//        holder.textViewBookName.setText(billDetails.getBooks().getTitle());
+//        holder.quantity.setText("Số lưu: "+String.valueOf(billDetails.getQuantity()));
+//        holder.priceFinal.setText(String.valueOf("Đơn giá: "+billDetails.getBooks().getPrice())+" VNĐ");
 
     }
 
