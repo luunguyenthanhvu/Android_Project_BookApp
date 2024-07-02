@@ -30,4 +30,28 @@ public class BillDetails implements Serializable {
 
   @Column(name = "quantity")
   private int quantity;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    BillDetails that = (BillDetails) o;
+
+    if (!book.equals(that.book)) {
+      return false;
+    }
+    return bill.equals(that.bill);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = book.hashCode();
+    result = 31 * result + bill.hashCode();
+    return result;
+  }
 }

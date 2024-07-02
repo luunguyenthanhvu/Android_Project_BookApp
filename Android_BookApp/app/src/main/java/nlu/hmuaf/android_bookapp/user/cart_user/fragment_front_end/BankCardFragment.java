@@ -39,5 +39,19 @@ public class BankCardFragment extends Fragment {
         return bankCardName.getText().toString();
 
     }
+
+    public boolean isCardInfoValid() {
+        String cardNumber = bankCardNumber.getText().toString().trim();
+        String cardHolderName = bankCardHolderName.getText().toString().trim();
+        String bankName = bankCardName.getText().toString().trim();
+
+        // Kiểm tra các điều kiện để xác nhận thông tin thẻ ngân hàng hợp lệ
+        if (cardNumber.isEmpty() || cardHolderName.isEmpty() || bankName.isEmpty()) {
+            return false;
+        }
+
+        return true;
+    }
+
 }
 

@@ -47,6 +47,7 @@ public class OrderSummary extends AppCompatActivity {
     private Button placeOrder;
     private List<CartItems> listBook = new ArrayList<>();
     private Button buttonToMyBill, buttonToHome;
+    private TextView phiVanChuyen;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,28 +80,29 @@ public class OrderSummary extends AppCompatActivity {
         price = findViewById(R.id.tv_price);
         buttonToMyBill = findViewById(R.id.buttonToMyBill);
         buttonToHome = findViewById(R.id.buttonToHome);
-
+        phiVanChuyen = findViewById(R.id.textViewPhiVanChuyen);
 
         listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBook");
         RecycleViewBookChosenAdapter adapter2 = new RecycleViewBookChosenAdapter(this, listBook);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager2);
         recyclerView.setAdapter(adapter2);
+        phiVanChuyen.setText("Phí vận chuyển: " + MyUtils.convertToVND(30000));
 
 
-        Address address1 = (Address) getIntent().getSerializableExtra("address");
+        ListAddressResponseDTO address1 = (ListAddressResponseDTO) getIntent().getSerializableExtra("address");
         address.setText(address1.getAddressDetails());
         paymentMethod.setText(getIntent().getStringExtra("paymentMethod"));
         int quantityBook = 0;
-        for(int i = 0; i < listBook.size(); i++) {
+        for (int i = 0; i < listBook.size(); i++) {
             listBook.get(i).getQuantity();
             quantityBook += listBook.get(i).getQuantity();
         }
         priceDetail.setText("Price Details: " + quantityBook + " sản phẩm");
         double totalPriceBook = 0;
-        for(int i = 0; i < listBook.size(); i++) {
-            double priceBook =0;
-            if ((Double) listBook.get(i).getDiscountedPrice() != null && listBook.get(i).getDiscountedPrice() != 0 ) {
+        for (int i = 0; i < listBook.size(); i++) {
+            double priceBook = 0;
+            if ((Double) listBook.get(i).getDiscountedPrice() != null && listBook.get(i).getDiscountedPrice() != 0) {
                 priceBook = listBook.get(i).getDiscountedPrice();
             } else {
                 priceBook = listBook.get(i).getOriginalPrice();
@@ -108,8 +110,8 @@ public class OrderSummary extends AppCompatActivity {
             priceBook = priceBook * listBook.get(i).getQuantity();
             totalPriceBook += priceBook;
         }
-        totalPriceBook+=30000;
-        price.setText("Tổng tiền: "  + MyUtils.convertToVND(totalPriceBook) + " VNĐ");
+        totalPriceBook += 30000;
+        price.setText("Tổng tiền: " + MyUtils.convertToVND(totalPriceBook));
 
 
 //     Tạo action cho nút về trang Home

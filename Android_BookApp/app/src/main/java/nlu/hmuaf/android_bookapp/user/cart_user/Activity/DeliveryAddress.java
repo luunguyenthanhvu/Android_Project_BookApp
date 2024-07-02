@@ -40,17 +40,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DeliveryAddress extends AppCompatActivity implements AddNewAddressFromUserDialog.OnAddressAddedListener, FragmentListAddressUser.OnAddressSelectedListenerFragment {
+public class DeliveryAddress extends AppCompatActivity implements FragmentListAddressUser.OnAddressSelectedListenerFragment {
     private Toolbar toolbar;
     private StepsView stepView;
     private Button addAddress;
     private Button addAddressByGoogleMap;
-
     private Button nextStep;
     private List<String> listStepView = new ArrayList<>();
-    private List<Address> addressList = new ArrayList<>();
-    private Address selectedAddress = null;
+    private ListAddressResponseDTO selectedAddress;
     private BookAppApi bookAppApi;
+    private FragmentListAddressUser fragmentListAddressUser;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,17 +92,15 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         addAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddNewAddressFromUserDialog dialog = new AddNewAddressFromUserDialog(DeliveryAddress.this, DeliveryAddress.this,fragmentListAddressUser);
+                AddNewAddressFromUserDialog dialog = new AddNewAddressFromUserDialog(DeliveryAddress.this, fragmentListAddressUser);
                 dialog.show();
-
-
             }
         });
         addAddressByGoogleMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(DeliveryAddress.this, GoogleMapActivity.class);
-                startActivityForResult(intent,1);
+                Intent intent = new Intent(DeliveryAddress.this, GoogleMapActivity.class);
+                startActivityForResult(intent, 1);
 
             }
         });
@@ -112,10 +109,18 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
             @Override
             public void onClick(View v) {
                 List<CartItems> listBook = (ArrayList<CartItems>) getIntent().getSerializableExtra("listBookChoose");
-                Intent intent = new Intent(DeliveryAddress.this, Payment.class);
-                intent.putExtra("listBookChoose", (ArrayList<CartItems>) listBook);
-                intent.putExtra("address", selectedAddress);
-                startActivity(intent);
+
+                // Kiểm tra xem người dùng đã chọn địa chỉ hay chưa
+                if (selectedAddress == null) {
+                    // Nếu chưa chọn địa chỉ, hiển thị thông báo cho người dùng
+                    Toast.makeText(DeliveryAddress.this, "Please select a delivery address.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Nếu đã chọn địa chỉ, chuyển sang màn hình Payment
+                    Intent intent = new Intent(DeliveryAddress.this, Payment.class);
+                    intent.putExtra("listBookChoose", (ArrayList<CartItems>) listBook);
+                    intent.putExtra("address", selectedAddress);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -131,22 +136,12 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
         return super.onOptionsItemSelected(item);
     }
 
-//Khi hàm này được chạy thì sẽ đến FragmentListAddressUser để kêu adapter cập nhập lại
-    @Override
-    public void onAddressAdded(Address address) {
-
-
-        // Lấy fragment và cập nhật adapter
-        FragmentListAddressUser fragment = (FragmentListAddressUser) getSupportFragmentManager().findFragmentById(R.id.contentListAddress);
-        if (fragment != null) {
-            fragment.updateAddressList(address);
-        }
-    }
 
     @Override
-    public void onAddressSelectedFragment(Address address) {
+    public void onAddressSelectedFragment(ListAddressResponseDTO address) {
         this.selectedAddress = address;
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -157,7 +152,7 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
                 if (address != null && !address.isEmpty()) {
 //                    Toast.makeText(this, "Address from Google Map: " + address, Toast.LENGTH_SHORT).show();
                     TokenResponseDTO tokenResponseDTO = MyUtils.getTokenResponse(this);
-                  bookAppApi = BookAppService.getClient();
+                    bookAppApi = BookAppService.getClient();
 
                     AddressRequestDTO addressRequestDTO = AddressRequestDTO.builder()
                             .addressDetails(address)
@@ -171,12 +166,7 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
                         public void onResponse(Call<List<ListAddressResponseDTO>> call, Response<List<ListAddressResponseDTO>> response) {
                             if (response.isSuccessful()) {
                                 List<ListAddressResponseDTO> addresses = response.body();
-                                // Xử lý dữ liệu nhận được ở đây
-                                System.out.println("Địa chỉ mới đã được thêm: " + addresses);
-                                Address addressTemp = new Address();
-                                addressTemp.setAddressDetails(address);
-                                onAddressAdded(addressTemp);
-                                onAddressSelectedFragment(addressTemp);
+
 
                             } else {
                                 // Xử lý lỗi ở đây
@@ -190,10 +180,26 @@ public class DeliveryAddress extends AppCompatActivity implements AddNewAddressF
                             t.printStackTrace();
                         }
                     });
-
-
                 }
             }
         }
+    }
+
+    public void getUserAddress() {
+        bookAppApi = BookAppService.getClient(MyUtils.getTokenResponse(getApplicationContext()).getToken());
+        Call<List<ListAddressResponseDTO>> call = bookAppApi.getUserAddress(MyUtils.getTokenResponse(getApplicationContext()).getUserId());
+        call.enqueue(new Callback<List<ListAddressResponseDTO>>() {
+            @Override
+            public void onResponse(Call<List<ListAddressResponseDTO>> call, Response<List<ListAddressResponseDTO>> response) {
+                if (response.isSuccessful()) {
+                    fragmentListAddressUser.updateData(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ListAddressResponseDTO>> call, Throwable throwable) {
+
+            }
+        });
     }
 }

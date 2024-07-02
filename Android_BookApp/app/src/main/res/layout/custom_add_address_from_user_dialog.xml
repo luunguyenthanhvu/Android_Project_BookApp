@@ -22,7 +22,7 @@
         android:ems="10"
         android:hint="Địa chỉ"
         android:inputType="text"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorHint="#808080" />
 
     <LinearLayout
@@ -35,7 +35,7 @@
             android:id="@+id/btn_Ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
             android:text="Ok" />
 
@@ -43,7 +43,7 @@
             android:id="@+id/btn_Cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="30dp"
             android:text="Cancel" />
     </LinearLayout>
 </LinearLayout>

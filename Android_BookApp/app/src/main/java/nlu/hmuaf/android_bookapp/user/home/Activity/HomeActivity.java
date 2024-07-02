@@ -72,6 +72,8 @@ public class HomeActivity extends AppCompatActivity {
         // get data from api
         getDiscountBookData();
         getNewBookData();
+
+        // get api key
         getApiGoogleKey();
         // get the cart service
         cartService = new CartService(getApplicationContext());
