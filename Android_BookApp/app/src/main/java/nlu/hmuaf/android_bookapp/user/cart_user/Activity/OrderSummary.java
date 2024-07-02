@@ -31,6 +31,7 @@ import nlu.hmuaf.android_bookapp.user.cart_user.adapter.RecycleViewBookChosenAda
 import nlu.hmuaf.android_bookapp.user.cart_user.beans.Address;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.home.activity.HomeActivity;
+import nlu.hmuaf.android_bookapp.user.order.activity.OrderList;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
 
 public class OrderSummary extends AppCompatActivity {
@@ -127,7 +128,7 @@ public class OrderSummary extends AppCompatActivity {
         buttonToMyBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OrderSummary.this, MyBill.class);
+                Intent intent = new Intent(OrderSummary.this, OrderList.class);
                 startActivity(intent);
             }
         });

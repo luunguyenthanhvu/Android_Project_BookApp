@@ -64,10 +64,12 @@
 
         <TextView
             android:id="@+id/AuthorName"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="150dp"
             android:layout_marginTop="60dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="Ciin" />
 
         <TextView

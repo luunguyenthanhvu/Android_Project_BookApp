@@ -16,9 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
 import nlu.hmuaf.android_bookapp.user.home.adapter.LibraryAdapter;
 import nlu.hmuaf.android_bookapp.R;
 import nlu.hmuaf.android_bookapp.user.profile.activity.LogOutActivity;
+import nlu.hmuaf.android_bookapp.user.profile.activity.ProfileActivity;
+import nlu.hmuaf.android_bookapp.utils.MyUtils;
 
 public class LibraryActivity extends AppCompatActivity {
 
@@ -49,33 +52,51 @@ public class LibraryActivity extends AppCompatActivity {
             }
         });
         LinearLayout homeLayout = findViewById(R.id.homeLayout);
-        homeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LibraryActivity.this, HomeActivity.class);
-                startActivity(intent);
-            }
-        });
-
         LinearLayout searchLayout = findViewById(R.id.searchLayout);
-        searchLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LibraryActivity.this, SearchActivity.class);
-                startActivity(intent);
-            }
-        });
+        LinearLayout libraryLayout = findViewById(R.id.libraryLayout);
         LinearLayout profileLayout = findViewById(R.id.profileLayout);
+        TokenResponseDTO tokenResponse = MyUtils.getTokenResponse(this);
         // Set click listeners for footer
         profileLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate to HomeActivity
-                Intent intent = new Intent(LibraryActivity.this, LogOutActivity.class);
+                if (tokenResponse != null) {
+                    Intent intent = new Intent(LibraryActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(LibraryActivity.this, LogOutActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+        homeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to HomeActivity
+                Intent intent = new Intent(LibraryActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
         });
 
+        searchLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to SearchActivity
+                Intent intent = new Intent(LibraryActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
+        libraryLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (MyUtils.isUserLoggedIn(LibraryActivity.this)) {
+                    // Navigate to HomeActivity
+                    Intent intent = new Intent(LibraryActivity.this, LibraryActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
 //            Đổi màu icon navigation hiện tại
         checkCurrentActivity();
     }

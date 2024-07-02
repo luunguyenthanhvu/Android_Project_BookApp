@@ -73,7 +73,6 @@ public class RecycleVIewAddressUserAdapter extends RecyclerView.Adapter<RecycleV
 
     @Override
     public void onBindViewHolder(@NonNull RecycleVIewAddressUserAdapter.MyViewHolder holder, int position) {
-        holder.radioButton.setChecked(listDTO.get(position).isMainAddress());
         holder.addressUser.setText(listDTO.get(position).getAddressDetails());
         holder.radioButton.setOnClickListener(new View.OnClickListener() {
             @Override

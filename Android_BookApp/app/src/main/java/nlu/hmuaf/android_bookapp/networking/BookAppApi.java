@@ -14,6 +14,7 @@ import nlu.hmuaf.android_bookapp.dto.response.APIKeyResponse;
 import nlu.hmuaf.android_bookapp.dto.response.BookDetailResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.ListAddressResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.ListBookResponseDTO;
+import nlu.hmuaf.android_bookapp.dto.response.ListOrderResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.MessageResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.PageBookResponseDTO;
 import nlu.hmuaf.android_bookapp.dto.response.TokenResponseDTO;
@@ -92,4 +93,7 @@ public interface BookAppApi {
 
     @DELETE("api/v1/user/address/delete/{userId}/{addressId}")
     Call<List<ListAddressResponseDTO>> deleteUserAddress(@Path("userId") long userId, @Path("addressId") long addressId);
+
+    @GET("api/v1/user/orders/{userId}")
+    Call<List<ListOrderResponseDTO>> getUserListOrder(@Path("userId") long userId);
 }

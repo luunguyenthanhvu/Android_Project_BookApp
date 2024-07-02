@@ -16,23 +16,13 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/name_user"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingBottom="5dp"
-                android:text="Tên tài khoản"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/status"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="right"
+                android:gravity="left"
                 android:paddingBottom="5dp"
-                android:text="Trạng thái"
+                android:text="Trạng thái: "
                 android:textSize="16sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -58,8 +48,10 @@
 
             <TextView
                 android:id="@+id/product_name"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:text="Tên sản phẩm"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -82,9 +74,9 @@
                 android:id="@+id/product_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="Tổng giá: ??? "
-                android:textColor="@color/black"
-                android:layout_marginTop="5dp" />
+                android:textColor="@color/black" />
         </LinearLayout>
     </LinearLayout>
 
@@ -98,8 +90,8 @@
             android:id="@+id/name_order"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
             android:layout_weight="1"
+            android:paddingBottom="5dp"
             android:text="Mã đơn hàng"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -108,8 +100,8 @@
             android:id="@+id/id_order"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="right"
             android:layout_weight="1"
+            android:gravity="right"
             android:paddingBottom="5dp"
             android:text="11111111"
             android:textSize="16sp"
@@ -132,19 +124,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
             android:backgroundTint="@color/light_blue_A400"
-            android:text="Xem thêm"
+            android:text="Xem chi tết đơn hàng"
             android:textColor="@color/white" />
-
-        <Button
-            android:id="@+id/get_book"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/light_blue_A400"
-            android:text="Cái gí đó?"
-            android:textColor="@color/white" />
-
-
     </LinearLayout>
 
 

@@ -46,6 +46,7 @@ import nlu.hmuaf.android_bookapp.user.cart_user.activity.MyCart;
 import nlu.hmuaf.android_bookapp.user.home.adapter.BookAdapter;
 import nlu.hmuaf.android_bookapp.user.home.adapter.OnItemClickListener;
 import nlu.hmuaf.android_bookapp.user.profile.activity.LogOutActivity;
+import nlu.hmuaf.android_bookapp.user.profile.activity.ProfileActivity;
 import nlu.hmuaf.android_bookapp.utils.MyUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -186,23 +187,29 @@ public class SearchActivity extends AppCompatActivity {
         });
         rcvBook.setAdapter(bookAdapter);
         setView();
-        // Set click listeners for footer
         LinearLayout homeLayout = findViewById(R.id.homeLayout);
         LinearLayout searchLayout = findViewById(R.id.searchLayout);
         LinearLayout libraryLayout = findViewById(R.id.libraryLayout);
         LinearLayout profileLayout = findViewById(R.id.profileLayout);
-
+        TokenResponseDTO tokenResponse = MyUtils.getTokenResponse(this);
+        // Set click listeners for footer
         profileLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SearchActivity.this, LogOutActivity.class);
-                startActivity(intent);
+                // Navigate to HomeActivity
+                if (tokenResponse != null) {
+                    Intent intent = new Intent(SearchActivity.this, ProfileActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(SearchActivity.this, LogOutActivity.class);
+                    startActivity(intent);
+                }
             }
         });
-
         homeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Navigate to HomeActivity
                 Intent intent = new Intent(SearchActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
@@ -211,16 +218,19 @@ public class SearchActivity extends AppCompatActivity {
         searchLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Navigate to SearchActivity
                 Intent intent = new Intent(SearchActivity.this, SearchActivity.class);
                 startActivity(intent);
             }
         });
-
         libraryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SearchActivity.this, LibraryActivity.class);
-                startActivity(intent);
+                if (MyUtils.isUserLoggedIn(SearchActivity.this)) {
+                    // Navigate to HomeActivity
+                    Intent intent = new Intent(SearchActivity.this, LibraryActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

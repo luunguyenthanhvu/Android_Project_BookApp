@@ -89,18 +89,18 @@ public class OrderList extends AppCompatActivity {
         updateTabTitles();
 
         // Xử lý sự kiện tìm kiếm
-        searchEditText = findViewById(R.id.search_edit_text);
-        searchIcon = findViewById(R.id.search_icon);
-        searchIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String searchText = searchEditText.getText().toString();
-                if (!searchText.isEmpty()) {
-                    List<Order> filteredOrders = searchOrdersById(searchText);
-                    ordersAdapter.updateOrders(filteredOrders);
-                }
-            }
-        });
+//        searchEditText = findViewById(R.id.search_edit_text);
+//        searchIcon = findViewById(R.id.search_icon);
+//        searchIcon.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String searchText = searchEditText.getText().toString();
+//                if (!searchText.isEmpty()) {
+//                    List<Order> filteredOrders = searchOrdersById(searchText);
+//                    ordersAdapter.updateOrders(filteredOrders);
+//                }
+//            }
+//        });
     }
 
     public void updateTabTitles() {
