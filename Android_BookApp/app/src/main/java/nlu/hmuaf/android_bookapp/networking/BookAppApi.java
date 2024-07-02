@@ -21,6 +21,7 @@ import nlu.hmuaf.android_bookapp.room.entity.CartItems;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -88,4 +89,7 @@ public interface BookAppApi {
 
     @POST("api/v1/user/bills/{userId}")
     Call<MessageResponseDTO> addUserBills(@Path("userId") long userId, @Body BillRequestDTO requestDTO);
+
+    @DELETE("api/v1/user/address/delete/{userId}/{addressId}")
+    Call<List<ListAddressResponseDTO>> deleteUserAddress(@Path("userId") long userId, @Path("addressId") long addressId);
 }
