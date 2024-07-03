@@ -93,9 +93,9 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        // Chọn Thêm đơn hàng
-        listAddOrderSubMenu = findViewById(R.id.list_addProduct_submenu);
-        listAddOrderSubMenu.setOnClickListener(new View.OnClickListener() {
+        // Chọn Thêm sản phẩm
+        listAddProductSubMenu = findViewById(R.id.list_addProduct_submenu);
+        listAddProductSubMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(@NonNull View view) {
 //                Intent intent = new Intent(AdminHome.this, ManageOrder.class);
